@@ -14,8 +14,8 @@ class CreateCustomerAddressesTable extends Migration
     public function up()
     {
         Schema::create('customer_addresses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id')->unsigned();
+            $table->id();
+            $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();

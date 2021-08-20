@@ -14,7 +14,7 @@ class CreateCartItemsTable extends Migration
     public function up()
     {
         Schema::create('cart_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedMediumInteger('quantity')->unsigned()->default(0);
             $table->string('sku')->nullable();
             $table->string('type')->nullable();
@@ -41,12 +41,12 @@ class CreateCartItemsTable extends Migration
 
             $table->json('additional')->nullable();
 
-            $table->unsignedInteger('parent_id')->unsigned()->nullable();
-            $table->unsignedInteger('product_id')->unsigned();
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedInteger('cart_id')->unsigned();
+            $table->unsignedInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
-            $table->unsignedInteger('tax_category_id')->unsigned()->nullable();
+            $table->unsignedInteger('tax_category_id')->nullable();
             $table->foreign('tax_category_id')->references('id')->on('tax_categories');
             $table->timestamps();
         });

@@ -14,8 +14,8 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('cart_id')->nullable();
+            $table->id();
+            $table->unsignedBigInteger('cart_id')->nullable();
             $table->string('invoice_id')->nullable();
             $table->string('status')->nullable();
 
@@ -82,7 +82,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('shipping_refunded', 12, 2)->default(0)->nullable();
             $table->decimal('base_shipping_refunded', 12, 2)->default(0)->nullable();
 
-            $table->unsignedInteger('customer_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->string('customer_type')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
             $table->timestamps();

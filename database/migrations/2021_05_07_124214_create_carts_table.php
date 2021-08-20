@@ -14,7 +14,7 @@ class CreateCartsTable extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('cartType')->nullable();
             $table->string('shipping_method')->nullable();
             $table->string('coupon_code')->nullable();
@@ -34,7 +34,7 @@ class CreateCartsTable extends Migration
             $table->boolean('is_active')->nullable()->default(1);
             $table->dateTime('conversion_time')->nullable();
 
-            $table->unsignedInteger('customer_id')->unsigned()->nullable();
+            $table->unsignedunsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });

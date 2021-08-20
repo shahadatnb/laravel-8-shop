@@ -14,9 +14,9 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('type');
-            $table->integer('parent_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedTinyInteger('status')->default(0);
             $table->unsignedInteger('user_id')->references('id')->on('users');
@@ -57,43 +57,43 @@ class CreateProductsTable extends Migration
         });
 
         Schema::create('product_categories', function (Blueprint $table) {
-            $table->integer('product_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger('category_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
 
         Schema::create('product_attribute_options', function (Blueprint $table) {
-            $table->integer('product_id')->unsigned();
-            $table->integer('attribute_option_id')->unsigned();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('attribute_option_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('attribute_option_id')->references('id')->on('attribute_options')->onDelete('cascade');
         });
 
         Schema::create('product_relations', function (Blueprint $table) {
-            $table->integer('parent_id')->unsigned();
-            $table->integer('child_id')->unsigned();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('child_id');
             $table->foreign('parent_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('child_id')->references('id')->on('products')->onDelete('cascade');
         });
 
         Schema::create('product_attributes', function (Blueprint $table) {
-            $table->integer('product_id')->unsigned();
-            $table->integer('attribute_id')->unsigned();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('attribute_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('restrict');
         });
 
         Schema::create('product_up_sells', function (Blueprint $table) {
-            $table->integer('parent_id')->unsigned();
-            $table->integer('child_id')->unsigned();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('child_id');
             $table->foreign('parent_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('child_id')->references('id')->on('products')->onDelete('cascade');
         });
 
         Schema::create('product_cross_sells', function (Blueprint $table) {
-            $table->integer('parent_id')->unsigned();
-            $table->integer('child_id')->unsigned();
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('child_id');
             $table->foreign('parent_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('child_id')->references('id')->on('products')->onDelete('cascade');
         });

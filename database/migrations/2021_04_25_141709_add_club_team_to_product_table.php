@@ -14,8 +14,7 @@ class AddClubTeamToProductTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->unsignedInteger('club_id')->after('thumbnail')->nullable();
-            $table->unsignedInteger('store_id')->after('club_id')->nullable();
+            $table->unsignedBigInteger('store_id')->after('club_id')->nullable();
         });
     }
 
@@ -27,7 +26,7 @@ class AddClubTeamToProductTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['club_id', 'store_id']);
+            $table->dropColumn(['store_id']);
         });
     }
 }

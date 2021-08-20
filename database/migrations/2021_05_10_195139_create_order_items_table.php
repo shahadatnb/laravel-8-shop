@@ -14,7 +14,7 @@ class CreateOrderItemsTable extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('sku')->nullable();
             $table->string('type')->nullable();
             $table->string('name')->nullable();
@@ -55,11 +55,11 @@ class CreateOrderItemsTable extends Migration
             $table->decimal('tax_amount_refunded', 12, 2)->default(0)->nullable();
             $table->decimal('base_tax_amount_refunded', 12, 2)->default(0)->nullable();
             
-            $table->unsignedInteger('product_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
             $table->string('product_type')->nullable();
-            $table->unsignedInteger('order_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->unsignedInteger('parent_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
 
             $table->json('additional')->nullable();

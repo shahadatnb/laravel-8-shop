@@ -14,7 +14,7 @@ class CreateOrderAddressesTable extends Migration
     public function up()
     {
         Schema::create('order_addresses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->nullable();
@@ -26,9 +26,9 @@ class CreateOrderAddressesTable extends Migration
             $table->string('postcode')->nullable();
             $table->string('phone')->nullable();
             $table->string('address_type')->nullable();
-            $table->unsignedInteger('order_id')->unsigned();
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->unsignedInteger('customer_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
             $table->timestamps();
         });

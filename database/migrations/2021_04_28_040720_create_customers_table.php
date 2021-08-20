@@ -14,9 +14,9 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedSmallInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('users')->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('store_id')->nullable();
+            $table->foreign('store_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('jersey_name',100)->nullable();
@@ -27,19 +27,8 @@ class CreateCustomersTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->string('password')->nullable();
             $table->string('otp')->nullable();
-            $table->string('FatherName')->nullable();
-            $table->string('FatherEmail')->nullable();
-            $table->string('MotherName')->nullable();
-            $table->string('MotherEmail')->nullable();
             $table->boolean('subscribed_to_news_letter')->default(0);
             $table->text('notes')->nullable();
-            $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('country')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
-            $table->string('postcode')->nullable();
-            $table->string('phone')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
