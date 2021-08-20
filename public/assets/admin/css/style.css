@@ -1,0 +1,108 @@
+form.delete {
+    display: inline;
+}
+.dt-buttons {
+    position: absolute;
+}
+.nav-link {
+    padding: .4rem .3rem;
+  }
+
+.input[type=text], input[type=number]{
+    min-width: 70px !important
+}
+
+  /* Print Page */
+page {
+    background-color: white;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5cm;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+page[size="A4"] {
+    width: 21cm;
+    height: 29.7cm;
+}
+page[size="A4"][layout="landscape"] {
+    width: 29.7cm;
+    height: 21cm;
+}
+page[size="A3"] {
+    width: 29.7cm;
+    height: 42cm;
+}
+page[size="A3"][layout="landscape"] {
+    width: 42cm;
+    height: 29.7cm;
+}
+page[size="A5"] {
+    /* width: 14.8cm; */
+    width: 15.5cm;
+    height: 21cm;
+}
+page[size="A5"][layout="landscape"] {
+    width: 21cm;
+    height: 14.8cm;
+}
+
+.cg-autocomplete {
+	z-index: 2 !important;
+}
+
+.invoicePrint .due-status {
+	position: absolute !important;
+	top: 15px;
+	right: 0;
+	font-size: 40px;
+}
+.invoicePrint .user-name span{
+    border-top: 1px solid #000;
+  }
+
+@media print {
+    body, page {
+        margin: 0 auto;
+        box-shadow: 0;
+        margin-bottom: 0cm;
+        width: 100%;
+        height: 100%;
+    }
+    html
+    {
+        background-color: #FFFFFF;
+        margin: 0px;  /* this affects the margin on the html before sending to printer */
+    }
+
+    a[href]:after {
+        display: none;
+        visibility: hidden;
+    }
+
+    .rheader{
+        padding-top: 1cm;
+    }
+
+    .badge-secondary{
+        color: #000;
+    }
+
+    .invoicePrint .rheader h2{
+        font-size: 1.8rem!important;
+    }
+
+    .invoicePrint .table tr th,.table tr td {
+        border: 1px solid #000000!important;
+        padding: 1px 5px!important;
+     }
+     .invoicePrint .table thead th {
+        text-align: center
+     }
+     .invoicePrint .table tfoot td {
+        font-size: 1.2em;
+        font-weight: bold;
+     }
+     .invoicePrint .modal-backdrop.show {
+       opacity: 0;
+     }
+}

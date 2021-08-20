@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assts/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/owl.carousel.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/owl.theme.default.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/style.css" media="all">
+    <link rel="stylesheet" href="assts/font-awesome-4.7.0/css/font-awesome.css">
+
+    <title>Template Design</title>
+    <style>
+        ._checkout_cart_header {
+            background: #182e46;
+            position: relative;
+            padding: 15px 0px;
+            color: #535353;
+        }
+
+        #bardowncheckout {
+            position: relative;
+            background: #fafafa;
+            color: #535353;
+        }
+
+        ._checkout_cart_header p {
+            font-size: 18px;
+            font-weight: normal;
+            color: #FFF;
+        }
+
+        .chkborright {
+            border-right: 1px solid #182e462e;
+            padding: 20px 50px;
+        }
+        h6._or_::after {
+    content: '';
+    position: absolute;
+    width: 48%;
+    height: 1px;
+    background: #c1c1c1;
+    right: 0;
+    bottom: 30px;
+}
+h6._or_::before {
+    content: '';
+    position: absolute;
+    width: 48%;
+    height: 1px;
+    background: #c1c1c1;
+    left: 0;
+    bottom: 30px;
+}
+        .checkprocess {
+            text-align: center;
+        }
+
+        .ckcrtshipay {
+            padding: 10px 0px;
+        }
+
+        .ckcrtshipay a {
+            font-size: 14px;
+            color: #535353;
+        }
+
+        .checkContactlogin {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            place-content: space-between;
+        }
+
+        .expresscheckout {
+            border: 1px solid #182e462e;
+            border-radius: 5px;
+            padding: 26px 0px 15px 0px;
+            margin: 20px 0px;
+            position: relative;
+        }
+
+        .expresscheckout h3 {
+            font-size: 16px;
+            font-weight: 600;
+            position: absolute;
+            top: -11px;
+            background: #fafafa;
+            width: 24%;
+            left: 0px;
+            right: 0px;
+            margin: auto;
+        }
+
+        .expresscheckout a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #0d6ef2;
+            color: #FFF;
+            border-radius: 10px;
+            margin: 0px 10px;
+            width: 29.333333%;
+        }
+
+        ._or_ {
+            text-align: center;
+            padding: 20px 0px;
+            position: relative;
+            font-weight: 900;
+        }
+
+        .checkvajal {
+            padding: 20px 0px;
+        }
+
+        .checkContactlogin h6,
+        .ShippingaddressCheck h6 {
+            font-size: 18px;
+            padding: 15px 0px;
+        }
+
+        .continueto-shipping {
+            padding: 20px 0px;
+        }
+
+        .continuetoshippingbtn {
+            padding: 18px 24px;
+            border: 1px solid #182e462e;
+            border-radius: 10px;
+        }
+
+        .chkborleft {
+            padding: 20px 0px;
+        }
+
+        .procartimg {
+            position: relative;
+            width: 4em;
+            height: 4em;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .procartimg::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border-radius: 8px;
+            border: 1px solid #182e462e;
+            z-index: 2;
+        }
+
+        .procartimgdsd img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+        }
+
+        .procartimgdsd {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            z-index: 1;
+        }
+        .chkborright input,.chkborright select#floatingSelectCountry {
+    padding: 15px 10px;
+}
+        span.countproscart {
+            font-size: 0.8571428571em;
+            font-weight: 700;
+            line-height: 1.75em;
+            white-space: nowrap;
+            text-align: center;
+            border-radius: 1.75em;
+            background-color: rgba(114, 114, 114, 0.9);
+            color: #fafafa;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            min-width: 1.75em;
+            height: 1.75em;
+            padding: 0 0.5833333333em;
+            position: absolute;
+            right: -0.75em;
+            top: -0.75em;
+            z-index: 3;
+        }
+
+        .proaligny {
+            width: 100%;
+            vertical-align: middle;
+        }
+
+        tr.protrtab {
+            border-bottom: 1px solid #182e462e;
+        }
+
+        .cartproname h2 {
+            font-size: 16px;
+        }
+
+        .cartpriceck p {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .porv-scoral {
+            height: 300px;
+            overflow: auto;
+            padding: 30px 0px;
+            margin-bottom: 30px;
+        }
+
+        .text-right-tba {
+            text-align: right;
+        }
+
+        .needsubbordar {
+            border-top: 1px solid #182e462e;
+            border-bottom: 1px solid #182e462e;
+            padding: 10px 0px;
+        }
+
+        p.text-right-tbass {
+            text-align: right;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .text-right-tba p {
+            font-weight: 600;
+        }
+
+        .goftcart {
+            padding: 30px 0px 10px 0px;
+            border-top: 1px solid #182e462e;
+        }
+
+        .totalmhisab {
+            padding: 15px 0px;
+        }
+
+        .text-right-tbacad {
+            text-align: right;
+        }
+
+        .text-right-tbacad span {
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .text-right-tbacad p {
+            font-size: 20px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="_checkout_cart_header">
+        <div class="container">
+            <p>Already have an account?<a href="#">Log in</a></p>
+        </div>
+    </header>
+    <!-- ======= About Us Section ======= -->
+    <section id="bardowncheckout" class="bardowncheckout">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="chkborright">
+
+                        <div class="checkprocess">
+                            <h2>Company Logo</h2>
+                            <div class="ckcrtshipay">
+                                <a href="#">Cart</a> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                <a href="#">Information</a> <span><i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </span><a href="#">Shipping</a> <span><i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></span> <a href="#">Payment</a>
+                            </div>
+                            <div class="expresscheckout">
+                                <h3>Express checkout</h3>
+                                <a href="#">shop Pay</a>
+                                <a href="#">Paypal</a>
+                                <a href="#">G Pay</a>
+
+                            </div>
+                        </div>
+
+                        <h6 class="_or_">OR</h6>
+                        <div class="checkvajal">
+                            <div class="checkContactlogin">
+                                <h6>Contact information</h6>
+                                <p>Already have an account?<a href="#">Log in</a></p>
+                            </div>
+                            <div class="inputContactcheck">
+                                <input class="form-control checkcontrollg" type="text"
+                                    placeholder="Email or mobile phone number" aria-label=".form-control-lg example">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                        checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Keep me up to date on news and exclusive offers
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="ShippingaddressCheck">
+                            <h6>Shipping Address</h6>
+                            <div class="row g-4">
+                                <div class="col-md">
+                                    <input type="text" class="form-control" id="floatingInputfristname"
+                                        placeholder="First name">
+                                </div>
+                                <div class="col-md">
+                                    <input type="text" class="form-control" id="floatingInputlastname"
+                                        placeholder="Last name (optional)">
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="floatingInputAddress"
+                                        placeholder="Address">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="floatingInputApartment"
+                                        placeholder="Apartment, suite, etc. (optional)">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="floatingInputCity" placeholder="City">
+                                </div>
+                                <!-- </div>
+                        <div class="row g-4"> -->
+
+                                <div class="col-md">
+                                    <select class="form-select" id="floatingSelectCountry"
+                                        aria-label="Floating label select example">
+                                        <option selected>Country/Region</option>
+                                        <option value="1">Austria</option>
+                                        <option value="2">Bangladesh</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md">
+                                    <input type="text" class="form-control" id="floatingInputPostalCode"
+                                        placeholder="Postal Code">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="continueto-shipping">
+                            <button class="continuetoshippingbtn"><a href="#">Continueto Shipping</a></button>
+                            <a href="#">Return to cart</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="chkborleft">
+                        <div class="porv-scoral">
+
+                            <table class="proaligny">
+
+                                <tbody>
+                                    <tr class="protrtab">
+                                        <td>
+                                            <div class="procartimg">
+                                                <div class="procartimgdsd">
+                                                    <img src="svg/small.jpg" alt="">
+                                                </div>
+                                                <span class="countproscart">1</span>
+                                            </div>
+                                        </td>
+                                        <td class="product__description" scope="row">
+                                            <div class="cartproname">
+                                                <h2>Tucan Sam Bucket Hat</h2>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cartpriceck">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="protrtab">
+                                        <td>
+                                            <div class="procartimg">
+                                                <div class="procartimgdsd">
+                                                    <img src="svg/small.jpg" alt="">
+                                                </div>
+                                                <span class="countproscart">1</span>
+                                            </div>
+                                        </td>
+                                        <td class="product__description" scope="row">
+                                            <div class="cartproname">
+                                                <h2>Tucan Sam Bucket Hat</h2>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cartpriceck">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="protrtab">
+                                        <td>
+                                            <div class="procartimg">
+                                                <div class="procartimgdsd">
+                                                    <img src="svg/small.jpg" alt="">
+                                                </div>
+                                                <span class="countproscart">1</span>
+                                            </div>
+                                        </td>
+                                        <td class="product__description" scope="row">
+                                            <div class="cartproname">
+                                                <h2>Tucan Sam Bucket Hat</h2>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cartpriceck">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="protrtab">
+                                        <td>
+                                            <div class="procartimg">
+                                                <div class="procartimgdsd">
+                                                    <img src="svg/small.jpg" alt="">
+                                                </div>
+                                                <span class="countproscart">1</span>
+                                            </div>
+                                        </td>
+                                        <td class="product__description" scope="row">
+                                            <div class="cartproname">
+                                                <h2>Tucan Sam Bucket Hat</h2>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cartpriceck">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="protrtab">
+                                        <td>
+                                            <div class="procartimg">
+                                                <div class="procartimgdsd">
+                                                    <img src="svg/small.jpg" alt="">
+                                                </div>
+                                                <span class="countproscart">1</span>
+                                            </div>
+                                        </td>
+                                        <td class="product__description" scope="row">
+                                            <div class="cartproname">
+                                                <h2>Tucan Sam Bucket Hat</h2>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cartpriceck">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="goftcart">
+                            <form class="row g-3">
+                                <div class="col-9">
+                                    <input type="text" class="form-control" id="inputApply" placeholder="Gift card">
+                                </div>
+                                <div class="col-3">
+                                    <button type="submit" class="btn btn-primary mb-3">Apply</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="needsubbordar">
+
+                            <table class="proaligny">
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <td>
+                                            <div class="text-right-tba">
+                                                <p>$296.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Shipping</td>
+                                        <td>
+                                            <p class="text-right-tbass">Calculated at next step</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="totalmhisab">
+                            <table class="proaligny">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Total
+                                        </td>
+                                        <td>
+                                            <div class="text-right-tbacad">
+                                                <p><span>CAD</span> $596.996</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End About Us Section -->
+
+
+    <section class="_footer_copyright">
+        <div class="container">
+            <p>&copy; 2021. All Rights Reserved Name. Powered by Club.</p>
+        </div>
+    </section>
+    </footer>
+
+
+
+    <script src="assts/js/jquery.js"></script>
+    <script src="assts/js/bootstrap.min.js"></script>
+    <script src="assts/js/owl.carousel.min.js"></script>
+    <script src="assts/js/custom.js"></script>
+
+</body>
+
+</html>

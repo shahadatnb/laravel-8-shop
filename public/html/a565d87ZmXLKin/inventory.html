@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assts/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/style.css" media="all">
+    <link rel="stylesheet" href="assts/css/imageuploadify.min.css" media="all">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assts/font-awesome-4.7.0/css/font-awesome.css">
+
+    <title>Admin Dashbord</title>
+</head>
+
+<body>
+
+    <header class="_admin_header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-lg-2 g-0">
+                    <div class="admin_logo">
+                        <figure>
+                            <img class="_ad_icon" src="img/master.png" alt="Master">
+                            <figcaption>
+                                Company Name
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-lg-10">
+                    <div class="admin_homeare">
+                        <nav class="navbar navbar-expand-lg">
+                            <h4>Admin</h4>
+                            <div class="collapse navbar-collapse adminhome_menu" id="adminhome_nav">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="img/user.png" alt="User"> </a>
+                                        <ul class="dropdown-menu dropdown-menu-end _nedd_color">
+                                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                                            <li><a class="dropdown-item" href="#"> Sign Out </a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="_inSe">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-lg-2 g-0">
+                    <div class="admin_menu">
+                        <span><a class="back">Back</a></span>
+                            <p class="_setting">setting</p>
+
+                            <div class="_amdin_side_nav">
+                                <nav id="sidebar">
+
+                                    <ul class="list-unstyled components">
+
+                                        <li class="active">
+                                            <a href="#anageClubs" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img class="_adme_icn" src="img/Create-Clubs-Teams.png"> Manage</a>
+                                            <ul class="collapse list-unstyled" id="anageClubs">
+                                                <li><a href="#">Create Club</a></li>
+                                                <li><a href="#">List Of Clubs</a></li>
+                                                <li><a href="#">Create Team</a></li>
+                                                <li><a href="#">List Of Teams</a></li>
+                                                <li><a href="#">Assign Coaches</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img class="_adme_icn" src="img/Create-Staff-Accounts.png"> Create Staffs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#ProductsManagement" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img class="_adme_icn" src="img/Manage-Team-Store.png"> Products</a>
+                                            <ul class="collapse list-unstyled" id="ProductsManagement">
+                                                <li><a href="#">Categories</a></li>
+                                                <li><a href="#">Create Store</a></li>
+                                                <li><a href="#">Add Products</a></li>
+                                                <li><a href="#">View Products</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#"><img class="_adme_icn" src="img/Design-Store.png"> Manage Store</a></li>
+                                        <li>
+                                            <a href="#InventoryManagement" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><img class="_adme_icn" src="img/Inventory-Report.png"> Inventory</a>
+                                            <ul class="collapse list-unstyled" id="InventoryManagement">
+                                                <li><a href="#">Sale</a></li>
+                                                <li><a href="#">Order</a></li>
+                                                <li><a href="#">Refund</a></li>
+                                                <li><a href="#">View</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li><a href="#"><img class="_adme_icn" src="img/Manage-Promotion.png"> Promotion</a></li>
+                                    </ul>
+
+
+                                </nav>
+
+                            </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-lg-10">
+                    <div class="row _sapcetop">
+
+                        <div class="col-md-8 col-lg-8">
+
+                            <h3 class="_itsprotitle">Inventory</h3>
+
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="_ap_btn">
+                                <a href="#">View Products</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="rowdsd">
+                        <div class="_2fwQZ">
+                            <div class="tabletabsmenus">
+                                <ul>
+                                    <li class="active"><a href="#">All</a></li>
+                                    <li><a href="#">Active</a></li>
+                                    <li><a href="#">Draft</a></li>
+                                    <li><a href="#">Archived</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="tablesearchmenus">
+                                <div class="row g-3">
+                                    <div class="col-md-9">
+                                        <form class="d-flex">
+                                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="btn-group-mo" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btimary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Sort
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                                                <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr class="_uopd">
+                                        <th class="_x3drcb"><input type="checkbox"></th>
+                                        <th class="_x3dy _o4jxevimg">View</th>
+                                        <th class="_x3dy">Title</th>
+                                        <th class="_x3dy">SKU</th>
+                                        <th class="_x3dy">When sold out</th>
+                                        <th class="_x3dy">Incoming</th>
+                                        <th class="_x3dy">Available</th>
+                                        <th class="_x3dy">Edit quantity available</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="_2xFU">
+                                        <td class="_x3drcbW"><input type="checkbox"></td>
+                                        <td class="_o4jxevimg">
+                                            <div class="hiodf">
+                                                <img src="img/Sudbury-Sq-Blue-T-Shirt.jpg">
+                                            </div>
+                                        </td>
+                                        <td class="_o4jxev">
+                                            <a href="product.html">Los Angeles Lakers Infant Personalized Bodysuit
+                                                <p>M / Jobor / Bazar</p>
+                                            </a>
+
+                                        </td>
+                                        <td class="_o4jxev"><a href="#">#98080</a>
+                                        </td>
+                                        <td class="_o4jxev">Continue selling
+                                        </td>
+                                        <td class="_o4jxev">00.00</td>
+                                        <td class="_o4jxev">99</td>
+                                        <td class="_o4jxev">
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                                <label class="btn btn-outline-primary" for="btnradio1">Add</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="btnradio2">Set</label>
+                                                
+                                                <input type="number" class="jvsj" name="" id="sdsdv" autocomplete="off"><button type="button" class="btn btimary">Save</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="_2xFU">
+                                        <td class="_o4jxev"><input type="checkbox"></td>
+                                        <td class="_o4jxevimg">
+                                            <div class="hiodf">
+                                                <img src="img/North-Sq-Black-T-Shirt.jpg">
+                                            </div>
+                                        </td>
+                                        <td class="_o4jxev">
+                                            <a href="product.html">Los Angeles Lakers Infant Personalized Bodysuit
+                                                <p>M / Jobor / Bazar</p>
+                                            </a>
+                                        </td>
+                                        <td class="_o4jxev"><a href="#">#98080</a>
+                                        <td class="_o4jxev">Continue selling
+                                        </td>
+                                        <td class="_o4jxev">00.00</td>
+                                        <td class="_o4jxev">99</td>
+                                        <td class="_o4jxev">
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                                <label class="btn btn-outline-primary" for="btnradio1">Add</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="btnradio2">Set</label>
+                                                
+                                                <input type="number" class="jvsj" name="" id="sdsdv" autocomplete="off"><button type="button" class="btn btimary">Save</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="_2xFU">
+                                        <td class="_o4jxev"><input type="checkbox"></td>
+                                        <td class="_o4jxevimg">
+                                            <div class="hiodf">
+                                                <img src="img/Barrie-RED.jpg">
+                                            </div>
+                                        </td>
+                                        <td class="_o4jxev">
+                                            <a href="product.html">Los Angeles Lakers Infant Personalized Bodysuit
+                                                <p>M / Jobor / Bazar</p>
+                                            </a>
+                                        </td>
+                                        <td class="_o4jxev"><a href="#">#98080</a>
+                                        <td class="_o4jxev">Continue selling
+                                        </td>
+                                        <td class="_o4jxev">00.00</td>
+                                        <td class="_o4jxev">99</td>
+                                        <td class="_o4jxev">
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                                <label class="btn btn-outline-primary" for="btnradio1">Add</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="btnradio2">Set</label>
+                                                
+                                                <input type="number" class="jvsj" name="" id="sdsdv" autocomplete="off"><button type="button" class="btn btimary">Save</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="_2xFU">
+                                        <td class="_o4jxev"><input type="checkbox"></td>
+                                        <td class="_o4jxevimg">
+                                            <div class="hiodf">
+                                                <img src="img/Erie-NAVY.jpg">
+                                            </div>
+                                        </td>
+                                        <td class="_o4jxev">
+                                            <a href="product.html">Los Angeles Lakers Infant Personalized Bodysuit</a>
+                                        </td>
+                                        <td class="_o4jxev"><a href="#">#98080</a>
+                                        <td class="_o4jxev">
+                                            Continue selling
+                                        </td>
+                                        <td class="_o4jxev">00.00</td>
+                                        <td class="_o4jxev">99</td>
+                                        <td class="_o4jxev">
+                                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                                <label class="btn btn-outline-primary" for="btnradio1">Add</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="btnradio2">Set</label>
+                                                
+                                                <input type="number" class="jvsj" name="" id="sdsdv" autocomplete="off"><button type="button" class="btn btimary">Save</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+             
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="_nedan">
+
+    </section>
+    <script src="assts/js/jquery.js"></script>
+    <script src="assts/js/bootstrap.min.js"></script>
+    <script src="assts/js/imageuploadify.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script>
+        $('input[type="file"]').imageuploadify();
+
+    </script>
+
+    <script>
+        $('#summernote').summernote({
+            placeholder: 'Hello stand alone ui',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+
+    </script>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+
+
+    <!-- jQuery Custom Scroller CDN -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assts/css/bootstrap.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/owl.carousel.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/owl.theme.default.min.css" media="all">
+    <link rel="stylesheet" href="assts/css/inner_product.css" media="all">
+    <link rel="stylesheet" href="assts/css/style.css" media="all">
+    <link rel="stylesheet" href="assts/font-awesome-4.7.0/css/font-awesome.css">
+
+    <title>Cart Design</title>
+    <style>
+        table.carttablew {
+            width: 100%;
+        }
+
+        form.cartpage th {
+            padding: 10px 0px;
+            background: #F4F4F4;
+        }
+
+        .qtyField .qtyBtn,
+        .qtyField input {
+            margin: 0;
+            color: #111111;
+            width: 28px;
+            height: 38px;
+            text-align: center;
+            line-height: normal;
+            text-align: center;
+            padding: 11px 0;
+            background: none;
+            border-radius: 0;
+        }
+        #bardowncart {
+    padding: 20px 0px;
+}
+p.cart-options-ttl {
+    font-size: 20px;
+    font-weight: 600;
+}
+    </style>
+</head>
+
+<body>
+
+    <header class="_home_header">
+        <div class="_headcontainerinn menus">
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <figure class="_hmenu">
+                            <img class="" src="img/menu-icon.png" alt="Menu Icon">
+                        </figure>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse _site_mega_menu" id="main_nav">
+                        <ul class="navbar-nav _site_mega_menu_ul m-auto">
+                            <li class="nav-item active"> <a class="nav-link" href="index.html">Home </a> </li>
+                            <li class="nav-item"><a class="nav-link" href="store.html"> Store Page </a></li>
+                            <li class="nav-item"><a class="nav-link" href="product.html"> Product Page </a></li>
+                            <li class="nav-item dropdown has-megamenu">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                    aria-expanded="false"> Mega menu </a>
+                                <div class="dropdown-menu megamenu _site_mega_menu_div" role="menu">
+                                    <div class="container">
+                                        <div class="row justify-content-between">
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="col-megamenu">
+                                                    <span class="_mg_title_img">More Sports</span>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Baseball Hall of Fame</a></li>
+                                                        <li><a href="#">Boxing</a></li>
+                                                    </ul>
+                                                    <button><a href="#">View More</a></button>
+                                                </div>
+                                                <div class="col-megamenu">
+                                                    <span class="_mg_title_img">Top Searches</span>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Beast Mode</a></li>
+                                                        <li><a href="#">Big & Tall</a></li>
+                                                    </ul>
+                                                    <button><a href="#">View More</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3">
+                                                <div class="col-megamenu">
+                                                    <span class="_mg_title_img">National Teams</span>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Argentina National Team</a></li>
+                                                        <li><a href="#">Australia National Team</a></li>
+                                                    </ul>
+                                                    <button><a href="#">View More</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="col-megamenu">
+                                                    <span class="_mg_title_img">International Clubs</span>
+                                                    <ul class="list-unstyled">
+                                                        <li><a href="#">Arsenal</a></li>
+                                                        <li><a href="#">Barcelona</a></li>
+                                                        <li><a href="#">Bayern Munich</a></li>
+                                                    </ul>
+                                                    <button><a href="#">View More</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="col-megamenu">
+
+                                                    <figure>
+                                                        <img class="img-fluid" src="img/q1.webp">
+                                                    </figure>
+                                                    <span class="_mg_title_img">New Arrival</span>
+                                                </div>
+
+                                                <div class="col-megamenu">
+                                                    <figure>
+                                                        <img class="img-fluid" src="img/q2.webp">
+                                                    </figure>
+                                                    <span class="_mg_title_img">10% Off</span>
+                                                </div>
+                                            </div><!-- end col-3 -->
+
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="col-megamenu">
+
+                                                    <figure>
+                                                        <img class="img-fluid" src="img/q3.webp">
+                                                    </figure>
+                                                    <span class="_mg_title_img">New Arrival</span>
+                                                </div>
+
+                                                <div class="col-megamenu">
+                                                    <figure>
+                                                        <img class="img-fluid" src="img/q4.webp">
+                                                    </figure>
+                                                    <span class="_mg_title_img">10% Off</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- end row -->
+                                    </div><!-- end container -->
+                                </div> <!-- dropdown-mega-menu.// -->
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <!--			<li class="nav-item"><a class="nav-link" href="#"> Menu item </a></li>-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img
+                                        src="img/user.png" alt="User"> </a>
+                                <ul class="dropdown-menu dropdown-menu-end _nedd_color">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"> Sign Out </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div> <!-- navbar-collapse.// -->
+                </div> <!-- container-fluid.// -->
+            </nav>
+
+
+        </div>
+
+    </header>
+    <section class="_sub_nav">
+        <div class="container">
+            <div class="_nav_product_view">
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Cart</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!-- ======= About Us Section ======= -->
+    <section id="bardowncart" class="bardowncart">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="cartborright">
+                        <form action="/cart" method="post" novalidate="" class="cartpage">
+                            <table class="carttablew">
+                                <thead class="cart__row cart__header small--hide">
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="2" class="text-left">Product</th>
+                                        <th class="small--hide">Price</th>
+
+                                        <th class="text-center">Quantity</th>
+
+                                        <th class="small--hide text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <tr class="cart__row">
+                                        <td class="delete"><a href="#" title="Remove" class="btn cart__remove"><i
+                                                    class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td class="cart__image-wrapper cart-flex-item">
+                                            <a href="#"> <img class="cart__image" src="svg/small.jpg"
+                                                    alt="Tucan Sam Bucket Hat"> </a>
+                                        </td>
+                                        <td class="cart__meta small--text-left cart-flex-item">
+                                            <div class="list-view-item__title">
+                                                <a href="#"> Tucan Sam Bucket Hat </a>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price-wrapper small--hide">
+                                            $29.99
+
+                                        </td>
+
+                                        <td class="cart__update-wrapper">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="javascript:void(0);"><i
+                                                        class="ad ad-minus-r" aria-hidden="true"></i></a>
+                                                <input class="qty cart__qty-input" type="text" name="updates[]" id="ttt"
+                                                    value="1" min="0" pattern="[0-9]*">
+                                                <a class="qtyBtn plus" href="javascript:void(0);"><i
+                                                        class="ad ad-plus-r" aria-hidden="true"></i></a>
+                                            </div>
+                                        </td>
+
+                                        <td class="text-right-adoio">
+                                            <p>$29.99</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="cart__row">
+                                        <td class="delete"><a href="#" title="Remove" class="btn cart__remove"><i
+                                                    class="fa fa-times-circle" aria-hidden="true"></i></a>
+                                        </td>
+                                        <td class="cart__image-wrapper cart-flex-item">
+                                            <a href="#"> <img class="cart__image" src="svg/small.jpg"
+                                                    alt="Tucan Sam Bucket Hat"> </a>
+                                        </td>
+                                        <td class="cart__meta small--text-left cart-flex-item">
+                                            <div class="list-view-item__title">
+                                                <a href="#"> Tucan Sam Bucket Hat </a>
+                                            </div>
+                                        </td>
+                                        <td class="cart__price-wrapper small--hide">
+                                            $29.99
+
+                                        </td>
+
+                                        <td class="cart__update-wrapper">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="javascript:void(0);"><i
+                                                        class="ad ad-minus-r" aria-hidden="true"></i></a>
+                                                <input class="qty cart__qty-input" type="text" name="updates[]" id="ttt"
+                                                    value="1" min="0" pattern="[0-9]*">
+                                                <a class="qtyBtn plus" href="javascript:void(0);"><i
+                                                        class="ad ad-plus-r" aria-hidden="true"></i></a>
+                                            </div>
+                                        </td>
+
+                                        <td class="text-right-adoio">
+                                            <p>$29.99</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="sidecart">
+                        <div class="cartSummery">
+                            <div class="cart-option cart-note">
+                                <p class="cart-options-ttl">Special instructions for seller with your order</p>
+                                <textarea name="note" id="CartSpecialInstructions" class="cart-note__input"
+                                    spellcheck="false"></textarea>
+                            </div>
+
+
+                            <div class="bdr-box">
+
+                                <div class="flex cart-subtotal-row">
+                                    <span>Subtotal</span>
+                                    <span class="cart__subtotal text-right">$149.95</span>
+                                </div>
+
+
+
+
+
+
+
+                                <p id="freeShipMsg" class="freeShipMsg" ><i
+                                        class="ad ad-truck-l"></i> Spent <b class="freeShip"></b> more for free shipping
+                                </p>
+                                <p id="freeShipclaim" class="freeShipMsg freeShipclaim" style="display: block;"><i
+                                        class="ad ad-truck-l"></i> You have got <b>FREE SHIPPING</b></p>
+                                <p class="cart__shipping">Shipping &amp; taxes calculated at checkout</p>
+                                <p class="cart_tearm">
+                                    <input type="checkbox" name="tearm" id="cartTearm" class="checkbox custCheck"
+                                        value="tearm" required="">
+                                    <label for="cartTearm"><span class="checkbox"></span> I agree with the terms and
+                                        conditions</label>
+                                </p><input type="submit" name="checkout" id="cartCheckout" class="btn checkout"
+                                    value="Proceed to Checkout" disabled="disabled">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End About Us Section -->
+
+
+    <section class="_footer_copyright">
+        <div class="container">
+            <p>&copy; 2021. All Rights Reserved Name. Powered by Club.</p>
+        </div>
+    </section>
+    </footer>
+
+
+
+    <script src="assts/js/jquery.js"></script>
+    <script src="assts/js/bootstrap.min.js"></script>
+    <script src="assts/js/owl.carousel.min.js"></script>
+    <script src="assts/js/custom.js"></script>
+
+</body>
+
+</html>
