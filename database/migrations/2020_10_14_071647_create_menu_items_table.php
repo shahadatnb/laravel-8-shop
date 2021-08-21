@@ -15,12 +15,12 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedSmallInteger('menu_id',2);
+            $table->unsignedBigInteger('menu_id',2);
             $table->string('lebel',80);
             $table->string('menu_url',80);
             $table->string('menu_class',80)->nullable();
             $table->string('menu_role',80)->nullable();
-            $table->unsignedMediumInteger('parent_id')->default(0);
+            $table->unsignedBigInteger('parent_id')->default(0);
             $table->unsignedMediumInteger('sl')->default(0);
             $table->string('menuType',20)->nullable();
             $table->timestamps();
