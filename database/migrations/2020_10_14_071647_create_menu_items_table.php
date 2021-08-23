@@ -15,7 +15,7 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('menu_id',2);
+            $table->unsignedBigInteger('menu_id');
             $table->string('lebel',80);
             $table->string('menu_url',80);
             $table->string('menu_class',80)->nullable();

@@ -181,7 +181,7 @@ return [
         App\Providers\CartFacadeServiceProvider::class,
         App\Providers\HelperFacadeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        //Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
     ],
 

@@ -9,8 +9,21 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory,SoftDeletes;
+/*
+    public static function boot() {
+        parent::boot();
+        self::created(function ($model) {
+            $stock = new ProductStock();
+            $model->stock()->save($stock);
+        });
+    }
+*/
+    protected $fillable = ['sku','barcode','type','parent_id','status','user_id','title','slug','short_description','description','thumbnail','qty','store_id','price','cost','special_price','special_price_from','special_price_to','weight','color','color_label','size','size_label','trackQuantity','stockOutSell','readyToShipping','noShappingCharge'];
 
-    protected $fillable = ['sku','barcode','type','parent_id','status','user_id','title','slug','short_description','description','thumbnail','qty','club_id','store_id','price','cost','special_price','special_price_from','special_price_to','weight','color','color_label','size','size_label','trackQuantity','stockOutSell','readyToShipping','noShappingCharge'];
+    public function stock()
+    {
+        return $this->hasOne(ProductStock::class);
+    }
 
     public function categories(){
         return $this->belongsToMany(Category::class, 'product_categories','product_id', 'category_id');
@@ -55,10 +68,7 @@ class Product extends Model
 
     public function store()
     {
-        return $this->hasOne(User::class,'id','store_id');
+        return $this->belonsTo(Store::class);
     }
 
-    public function club(){
-        return $this->hasOne(User::class,'id','club_id');
-    }
 }

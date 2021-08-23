@@ -36,7 +36,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-          @if(Auth::user()->hasAnyRole(['staff','admin','club']))
+          {{-- @if(Auth::user()->hasAnyRole(['staff','admin','club']))
           <li class="nav-header">Setting</li>
           <li class="nav-item has-treeview {{ (request()->routeIs('createTeam','teamList','createUser','userList','club.*')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ (request()->routeIs('createTeam','teamList','createUser','userList','club.*')) ? 'active' : '' }}">
@@ -48,56 +48,10 @@
               <li class="nav-item"><a href="{{ route('club.index') }}" class="nav-link{{ (request()->routeIs('club.*')) ? ' active' : '' }}">
                 <i class="far fa-circle nav-icon"></i> Requested Club</a>
               </li>
-                <li class="nav-item"><a href="{{ route('createUser','club') }}" class="nav-link{{ (request()->routeIs('createUser')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> Create Club</a>
-              </li>
-              <li class="nav-item"><a href="{{ route('userList','club')}}" class="nav-link{{ (request()->routeIs('userList')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> List Of Clubs</a>
-              </li>
-              @endif
-              @if(Auth::user()->hasAnyRole(['staff','admin','club']))
-              <li class="nav-item"><a href="{{ route('createTeam') }}" class="nav-link{{ (request()->routeIs('createTeam')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> Create Team</a>
-              </li>
-              <li class="nav-item"><a href="{{ route('teamList') }}" class="nav-link{{ (request()->routeIs('teamList')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> List Of Teams</a>
-              </li>
               @endif
             </ul>
           </li>
-          @endif
-          @if(Auth::user()->hasAnyRole(['admin']))
-          <li class="nav-item has-treeview {{ (request()->routeIs('createStuff','stuffList')) ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ (request()->routeIs('createStuff','stuffList')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-plus"></i>
-              <p>Staff <i class="right fas fa-angle-left"></i> </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="{{ route('createStuff','staff') }}" class="nav-link{{ (request()->routeIs('createStuff')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> Create Staff Accounts</a>
-              </li>
-              <li class="nav-item"><a href="{{ route('stuffList','staff')}}" class="nav-link{{ (request()->routeIs('stuffList')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> List Of Staff</a>
-              </li>
-            </ul>
-          </li>
-          @endif
-          @if(Auth::user()->hasAnyRole(['staff','admin','club','team']))
-          <li class="nav-item has-treeview {{ (request()->routeIs('player.*')) ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ (request()->routeIs('player.*')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-plus"></i>
-              <p>Players <i class="right fas fa-angle-left"></i> </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="{{ route('player.create') }}" class="nav-link{{ (request()->routeIs('player.create')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> Create Player</a>
-              </li>
-              <li class="nav-item"><a href="{{ route('player.index')}}" class="nav-link{{ (request()->routeIs('player.index')) ? ' active' : '' }}">
-                <i class="far fa-circle nav-icon"></i> List Of Players</a>
-              </li>
-            </ul>
-          </li>
-          @endif
+          @endif --}}
           @if(Auth::user()->hasAnyRole(['staff','admin']))
           <li class="nav-item has-treeview {{ (request()->routeIs('product.*','category.*','attribute.*')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ (request()->routeIs('product.*','category.*','attribute.*')) ? 'active' : '' }}">
@@ -124,14 +78,6 @@
                 <i class="far fa-circle nav-icon"></i> Attributes</a>
               </li>
             </ul>
-          </li>
-          @endif
-          @if(Auth::user()->hasAnyRole(['staff','admin']))
-          <li class="nav-item">
-            <a href="{{route('storeManagement')}}" class="nav-link{{ (request()->routeIs('storeManagement')) ? ' active' : '' }}">
-              <i class="nav-icon fas fa-store"></i>
-              <p>Store Management</p>
-            </a>
           </li>
           @endif
           @if(Auth::user()->hasAnyRole(['staff','admin']))

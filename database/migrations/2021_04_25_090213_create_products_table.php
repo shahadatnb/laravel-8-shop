@@ -20,6 +20,8 @@ class CreateProductsTable extends Migration
             $table->foreign('parent_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedTinyInteger('status')->default(0);
             $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('store_id')->nullable();            
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             
             $table->string('title')->nullable();
             $table->string('slug')->nullable()->unique();;
@@ -32,7 +34,7 @@ class CreateProductsTable extends Migration
             $table->boolean('stockOutSell')->nullable()->default(0);
             $table->boolean('trackQuantity')->nullable()->default(0);
             $table->boolean('readyToShipping')->nullable()->default(0);
-            $table->boolean('noShappingCharge')->nullable()->default(0);
+            $table->boolean('noShappingCharge')->nullable()->default(0);            
             $table->decimal('qty',12,4)->nullable()->default(0);
             
             $table->string('sku')->nullable()->unique();

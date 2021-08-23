@@ -15,12 +15,8 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('store_id')->nullable();
-            $table->foreign('store_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('jersey_name',100)->nullable();
-            $table->string('jersey_no',5)->nullable();
             $table->enum('gender', ['Male', 'Female','Others'])->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('email')->unique();

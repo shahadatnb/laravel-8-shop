@@ -22,7 +22,7 @@ class CreateTaxCategoriesTable extends Migration
         });
 
         Schema::create('tax_categories_tax_rates', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('tax_category_id')->unsigned();
             $table->foreign('tax_category_id')->references('id')->on('tax_categories')->onDelete('cascade');
             $table->integer('tax_rate_id')->unsigned();

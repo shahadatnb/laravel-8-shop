@@ -15,7 +15,7 @@ class CreatePostmetasTable extends Migration
     {
         Schema::create('postmetas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('post_id');
+            $table->unsignedBigInteger('post_id');
             $table->string('meta_key',100);
             $table->text('meta_value');
             //$table->timestamps();

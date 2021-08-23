@@ -14,7 +14,7 @@ class CreateCouponsTable extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('coupen_code');
             $table->string('title');
             $table->string('description')->nullable();
@@ -24,7 +24,7 @@ class CreateCouponsTable extends Migration
             $table->date('ends_till')->nullable();
             $table->boolean('discount_limitation')->nullable();
             $table->unsignedSmallInteger('n_times')->nullable();
-            $table->unsignedSmallInteger('club')->nullable();
+            $table->unsignedBigInteger('store_id')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

@@ -39,21 +39,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function loginStep2(Request $request){
-        if ($request->isMethod('GET')) {
-            //Session::flash('success','Successfully Save');
-            return view('auth.login');
-        }
-        if ($request->isMethod('POST')) {
-            $this->validate($request, array(
-                'email'=>'required|email|max:255|exists:users,email',
-            ));
-            $email = $request->email;
-            return view('auth.loginStep2',compact('email'));
-        }
-    }
-
-
         
     /**
      * Get the needed authorization credentials from the request.
