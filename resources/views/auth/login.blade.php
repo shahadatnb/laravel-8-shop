@@ -3,7 +3,9 @@
 <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in</p>
-
+      @if (session('message'))
+          <div class="alert alert-danger">{{ session('message') }}</div>
+      @endif
       <form action="{{ url('login') }}" method="post">
         @csrf
         <div class="input-group mb-3">

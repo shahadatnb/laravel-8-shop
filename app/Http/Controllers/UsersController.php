@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Traits\userTrait;
+use Carbon\Carbon;
 use Session;
 use Auth;
 
@@ -223,6 +224,55 @@ class UsersController extends Controller
         return view('admin.users.userList',compact('role','users'));
     }
 
+    public function ban(Request $request)
+    {
+        if($request->days != 0 ){
+            // ban for days
+            $ban_days = Carbon::now()->addDays($request->days);
+        }else{
+            $ban_days = $request->days;
+        }
+
+        // ban user
+        $user = User::find($request->user_id);
+        if($user){
+            $user->banned_till = $ban_days;
+            $user->save();
+            Session::flash('success', "Successfully ban.");
+        }
+	    return redirect()->back(); 
+    }
+
+    public function unban($id)
+    {
+        $user = User::find($id);
+        if($user){
+            $user->banned_till = null;
+            $user->save();
+            Session::flash('success', "Successfully unban.");
+        }
+	    return redirect()->back();   
+    }
+
+    public function bannedStatus()
+    {
+        $user_id = 1;
+        $user = User::find($user_id);
+    
+        $message = "The user is not banned";
+        if ($user->banned_till != null) {
+            if ($user->banned_till == 0) {
+                $message = "Banned Permanently";
+            }
+    
+            if (now()->lessThan($user->banned_till)) {
+                $banned_days = now()->diffInDays($user->banned_till) + 1;
+                $message = "Suspended for " . $banned_days . ' ' . Str::plural('day', $banned_days);
+            }
+        }
+    
+        dd($message);
+    }
 
     public function destroy(User $user)
     {

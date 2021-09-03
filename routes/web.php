@@ -156,6 +156,9 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::resource('order', OrderController::class);
 
     Route::resource('coupon', CouponController::class);
+
+    Route::post('/user-ban', [UsersController::class, 'ban'])->name('user-ban');
+    Route::get('/user-unban/{id}', [UsersController::class, 'unban'])->name('user-unban');
 });
 
 Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin,staff,club']], function(){
