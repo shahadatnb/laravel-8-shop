@@ -189,7 +189,7 @@ class ProductController extends Controller
     public function create()
     {
         //$categories = $this->catArray();
-        $clubs = $this->usersArray('club');
+        //$clubs = $this->usersArray('club');
         $categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
 
         $colors = $this->colorAtt();
@@ -197,7 +197,7 @@ class ProductController extends Controller
         $mode='create';
         $store = array();
         //return view('admin.product.createOrEdit',compact('mode','store','categories','clubs'));
-        return view('admin.product.create',compact('mode','store','categories','clubs','colors','sizes'));
+        return view('admin.product.create',compact('mode','store','categories','colors','sizes'));
     }
 
 
@@ -250,16 +250,10 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $clubs = $this->usersArray('club');
         $colors = $this->colorAtt();
         $categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
         $mode='edit';
-        $store = array();
-        if($product->store_id != null ){
-            $store[$product->store_id] = $product->store->name;
-        }
-        //return $store;
-        return view('admin.product.createOrEdit',compact('mode','categories','clubs','store','product','colors'));
+        return view('admin.product.createOrEdit',compact('mode','categories','product','colors'));
     }
 
 
@@ -278,13 +272,13 @@ class ProductController extends Controller
         //$request['user_id'] = Auth::user()->id;
         //return $request->all();
         Product::where('id',$product->id)->update($request->except(['_token', '_method','categories','photo' ]));
-//dd($product->childs->count());
+        /*
         if($product->childs->count() > 0){
             foreach($product->childs as $item){
-                Product::where('id', $item->id)->update(['store_id'=>$product->store_id,'club_id'=>$product->club_id]);
+                Product::where('id', $item->id)->update([]);
             }
         }
-
+*/
         $product->categories()->sync($request->categories);
         Session::flash('success','Successfully Save');
         return redirect()->route('product.edit',$product);

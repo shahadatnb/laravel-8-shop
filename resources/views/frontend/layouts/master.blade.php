@@ -64,10 +64,7 @@
                     <div class="collapse navbar-collapse _site_mega_menu" id="main_nav">
                         <ul class="navbar-nav _site_mega_menu_ul m-auto">
                             <li class="nav-item active"> <a class="nav-link" href="{{ url('/') }}">Home </a> </li>
-                            @auth('customer')
-                                <li class="nav-item"><a class="nav-link" href="{{ url('/store') }}"> Store Page </a></li>
-                            @endauth
-                            <li class="nav-item"><a class="nav-link" href="product.html"> Product Page </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('/store') }}"> Products </a></li>
                             <li class="nav-item dropdown has-megamenu">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Mega menu </a>
                                 <div class="dropdown-menu megamenu _site_mega_menu_div" role="menu">

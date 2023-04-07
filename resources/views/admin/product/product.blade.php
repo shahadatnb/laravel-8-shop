@@ -17,10 +17,8 @@
         @if(request()->routeIs('product.index'))
         {!! Form::model($data,['route'=>'product.index','method'=>'GET','class'=>'mb-3']) !!}
           <div class="row">
-            <div class="col-sm-2">{{ Form::select('club',$clubs,null,['class'=>'form-control select2','id'=>'club_id','placeholder'=>'All Club','data-url'=>route('teamApi')]) }}</div>
-            <div class="col-sm-2">{{ Form::select('team',$teams,null,['class'=>'form-control select2','id'=>'team','placeholder'=>'All Team']) }}</div>
             <div class="col-sm-2">{{ Form::select('category',$categories,null,['class'=>'form-control select2','placeholder'=>'Category']) }}</div>
-{{--            <div class="col-sm-2">{{ Form::text('product_title',null,['class'=>'form-control','placeholder'=>'Product Title']) }}</div>--}}
+           <div class="col-sm-2">{{ Form::text('product_title',null,['class'=>'form-control','placeholder'=>'Product Title']) }}</div>
             <div class="col-sm-1">{{ Form::number('per_page',null,['class'=>'form-control','placeholder'=>'Product perpage']) }}</div>
             <div class="col-sm-2">{{ Form::submit('Find',array('class'=>'form-control btn btn-success')) }}</div>
           </div>
@@ -32,8 +30,7 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    <th>Club</th>
-                    <th>Store</th>
+                    {{-- <th>Store</th> --}}
                     <th></th>
                 </tr>
             </thead>
@@ -42,8 +39,7 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->club->name }}</td>
-                    <td>{{ $item->store->name }}</td>
+                    {{-- <td>{{ $item->store->name }}</td> --}}
                     <td>
                         @if ($item->trashed())
                             <a href="{{ route('product.restore', $item) }}" class="btn btn-warning btn-sm">Restore</a>
@@ -87,25 +83,6 @@
         } );
 
     } );
-
-    $(document).ready( function(){
-        //$('#club_id').change(function(){
-        $('.card').on('load | change', '#club_id', function() {
-            //console.log($(this).val());
-            $.get($(this).data('url'), {
-                    option: $(this).val()
-            },
-            function(data) {
-                    var subcat = $('#team');
-                    subcat.empty();
-                    //console.log(data);
-                    subcat.append("<option value=''>All Team</option>")
-                    $.each(data, function(index, element) {
-                            subcat.append("<option value='"+ element.id +"'>" + element.name + "</option>");
-                    });
-            });
-        });
-    });
 })(jQuery)
 </script>
 @endsection

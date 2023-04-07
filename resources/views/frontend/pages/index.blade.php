@@ -64,16 +64,27 @@
 <section class="_product">
 <div class="container">
   <h2>We Produce</h2>
-  @php $produces = CustomHelper::posts(['post_type'=>'produce','orderBy'=>'sort']) @endphp
+  @php $produces = CustomHelper::products(['orderBy'=>'desc']) @endphp
     @if($produces)
     <div class="owl-carousel owl-theme" id="produces">
-    @foreach($produces as $key=>$produce)
-        <figure class="_overhover">
-            <img class="img-fluid img-products" src="{{asset('storage/'.$produce->image)}}" alt="Product Image">
-            <figcaption class="_plink">
-                <a href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+    @foreach($produces as $key=>$item)
+    <figure class="_inn_overhover">
+        <a href="{{ url('/product',$item->id)}}">
+            <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
+            <figcaption class="_in_plink">
+                <h3>{{ $item->title }}</h3>
+                @include('frontend.layouts.price',['item',$item])
             </figcaption>
-        </figure>
+
+        </a>
+        <div class="_button-set">
+            <a class="addto-wishlist" wire:click="addToWishlist({{$item->id}})" href="javascript:void(0);" rel="" tabindex="0" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            <a class="quickShop" wire:click="addToCart({{$item->id}})" href="javascript:void(0);" rel="nofollow" tabindex="0" title="Quick Shop"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            <!-- <a href="" type="button" rel="nofollow" class="quick-view" tabindex="0" title="Quick View" data-toggle="modal" data-target="#productMpdalLong"></a>-->
+            <a href="javascript:void(0);" class="quick-view" wire:click="quickView({{$item->id}})"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+            <!-- Button trigger modal -->
+        </div>
+    </figure>
     @endforeach
     @endif
     </div>

@@ -18,7 +18,7 @@ class Product extends Model
         });
     }
 */
-    protected $fillable = ['sku','barcode','type','parent_id','status','user_id','title','slug','short_description','description','thumbnail','qty','store_id','price','cost','special_price','special_price_from','special_price_to','weight','color','color_label','size','size_label','trackQuantity','stockOutSell','readyToShipping','noShappingCharge'];
+    protected $fillable = ['sku','barcode','type','parent_id','status','user_id','title','slug','short_description','description','thumbnail','qty','price','cost','special_price','special_price_from','special_price_to','weight','color','color_label','size','size_label','trackQuantity','stockOutSell','readyToShipping','noShappingCharge'];//,'store_id'
 
     public function stock()
     {

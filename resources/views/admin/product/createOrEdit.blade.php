@@ -173,18 +173,6 @@
 				<!-- /.card-footer-->
 			</div>
 			<!-- /.card -->
-			<div class="card card-outline">
-				<div class="card-body">
-						<div class="form-group">
-							{{ Form::label('Store','Store',array('class' => '' )) }}
-							{{ Form::select('club_id',$clubs,null,array('class'=>'form-control','placeholder'=>'Select Club','id'=>'club_id','required'=>'','data-url'=>route('teamApi'))) }}
-						</div>
-						<div class="form-group">
-							{{ Form::select('store_id',$store,null,array('class'=>'form-control','id'=>'store_id','required'=>'')) }}
-						</div>
-				</div>
-				<!-- /.card-footer-->
-			</div>
 		<div class="text-center">{{ Form::submit('Save Product',array('class'=>'btn btn-success')) }}</div>
 	</div>
 </div>
@@ -206,21 +194,6 @@
 	<script>
 			$(document).ready(function(){
 				$('.textarea').summernote();
-
-				$('#club_id').change(function(){
-					$.get($(this).data('url'), {
-							option: $(this).val()
-					},
-					function(data) {
-							var subcat = $('#store_id');
-							subcat.empty();
-							//subcat.append("<option value=''>-----</option>")
-							$.each(data, function(index, element) {
-									subcat.append("<option value='"+ element.id +"'>" + element.name + "</option>");
-							});
-					});
-				});
-
 
                 /*
                                 $('#type').change(function() {

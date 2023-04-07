@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2021 at 03:02 AM
+-- Generation Time: Apr 07, 2023 at 08:01 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel_teams`
+-- Database: `laravel_shop`
 --
 
 -- --------------------------------------------------------
@@ -61,7 +61,8 @@ INSERT INTO `attributes` (`id`, `code`, `name`, `type`, `validation`, `position`
 CREATE TABLE `attribute_options` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sort_order` int(11) DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort_order` tinyint(2) DEFAULT NULL,
   `attribute_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -71,15 +72,20 @@ CREATE TABLE `attribute_options` (
 -- Dumping data for table `attribute_options`
 --
 
-INSERT INTO `attribute_options` (`id`, `name`, `sort_order`, `attribute_id`, `created_at`, `updated_at`) VALUES
-(1, 'S', 1, 1, NULL, NULL),
-(2, 'L', 2, 1, NULL, NULL),
-(3, 'XL', 3, 1, NULL, NULL),
-(4, 'XXL', 4, 1, NULL, NULL),
-(5, 'Red', 1, 2, NULL, NULL),
-(6, 'Green', 2, 2, NULL, NULL),
-(7, 'Blue', 3, 2, NULL, NULL),
-(8, 'Yalow', 4, 2, NULL, NULL);
+INSERT INTO `attribute_options` (`id`, `name`, `label`, `sort_order`, `attribute_id`, `created_at`, `updated_at`) VALUES
+(1, 'S', NULL, 1, 1, NULL, NULL),
+(2, 'L', NULL, 2, 1, NULL, NULL),
+(3, 'XL', NULL, 3, 1, NULL, NULL),
+(4, 'XXL', NULL, 4, 1, NULL, NULL),
+(5, 'White', '#FFFFFF', 1, 2, NULL, NULL),
+(6, 'Silver', '#C0C0C0', 2, 2, NULL, NULL),
+(7, 'Gray', '#808080', 3, 2, NULL, NULL),
+(8, 'Black', '#000000', 4, 2, NULL, NULL),
+(9, 'Red', '#FF0000', 5, 2, NULL, NULL),
+(10, 'Yellow', '#FFFF00', 6, 2, NULL, NULL),
+(11, 'Green', '#008000', 7, 2, NULL, NULL),
+(12, 'Blue', '#0000FF', 8, 2, NULL, NULL),
+(13, 'Olive', '#808000', NULL, 2, '2021-06-16 19:36:36', '2021-06-16 19:36:36');
 
 -- --------------------------------------------------------
 
@@ -89,6 +95,7 @@ INSERT INTO `attribute_options` (`id`, `name`, `sort_order`, `attribute_id`, `cr
 
 CREATE TABLE `carts` (
   `id` int(10) UNSIGNED NOT NULL,
+  `cartType` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shipping_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `coupon_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `exchange_rate` decimal(12,4) DEFAULT NULL,
@@ -112,11 +119,17 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `shipping_method`, `coupon_code`, `exchange_rate`, `global_currency_code`, `base_currency_code`, `cart_currency_code`, `tax_total`, `base_tax_total`, `discount`, `base_discount`, `checkout_method`, `is_guest`, `is_active`, `conversion_time`, `customer_id`, `created_at`, `updated_at`) VALUES
-(4, NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 2, '2021-05-10 11:17:22', '2021-05-11 08:37:31'),
-(5, NULL, '25% Diccount', NULL, NULL, NULL, NULL, '0.0000', '0.0000', '38.5000', '0.0000', NULL, NULL, 0, NULL, 2, '2021-05-13 03:04:20', '2021-05-13 06:39:51'),
-(6, NULL, '25-Diccount', NULL, NULL, NULL, NULL, '0.0000', '0.0000', '113.5000', '0.0000', NULL, NULL, 0, NULL, 2, '2021-05-13 14:22:06', '2021-05-13 14:25:28'),
-(7, NULL, 'test', NULL, NULL, NULL, NULL, '0.0000', '0.0000', '800.0000', '0.0000', NULL, NULL, 0, NULL, 2, '2021-05-15 03:33:40', '2021-05-26 08:05:16');
+INSERT INTO `carts` (`id`, `cartType`, `shipping_method`, `coupon_code`, `exchange_rate`, `global_currency_code`, `base_currency_code`, `cart_currency_code`, `tax_total`, `base_tax_total`, `discount`, `base_discount`, `checkout_method`, `is_guest`, `is_active`, `conversion_time`, `customer_id`, `created_at`, `updated_at`) VALUES
+(1, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 5, '2021-05-10 11:19:47', '2021-05-11 11:40:01'),
+(2, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 5, '2021-05-11 11:42:35', '2021-05-11 11:42:57'),
+(3, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 5, '2021-05-11 11:45:43', '2021-05-11 11:46:15'),
+(4, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 5, '2021-05-11 11:48:25', '2021-05-11 11:48:38'),
+(5, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 6, '2021-05-11 11:50:23', '2021-05-11 11:51:14'),
+(6, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 0, NULL, 6, '2021-05-11 11:52:33', '2021-05-11 11:52:47'),
+(7, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 6, '2021-05-17 07:42:45', '2021-05-17 07:42:45'),
+(8, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 11, '2021-05-18 11:53:21', '2021-05-18 11:53:21'),
+(9, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 13, '2021-06-16 20:09:47', '2021-06-16 20:09:47'),
+(10, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 16, '2021-07-05 20:05:07', '2021-07-05 20:05:07');
 
 -- --------------------------------------------------------
 
@@ -159,15 +172,25 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`id`, `quantity`, `sku`, `type`, `name`, `coupon_code`, `weight`, `total_weight`, `base_total_weight`, `price`, `base_price`, `custom_price`, `total`, `base_total`, `tax_percent`, `tax_amount`, `base_tax_amount`, `discount_percent`, `discount_amount`, `base_discount_amount`, `additional`, `parent_id`, `product_id`, `cart_id`, `tax_category_id`, `created_at`, `updated_at`) VALUES
-(11, 3, 'variant-new-feature', NULL, 'Variant New Feature', NULL, '1.0000', '0.0000', '0.0000', '77.00', '0.00', '0.00', '231.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 75, 4, NULL, '2021-05-10 11:17:22', '2021-05-10 13:24:30'),
-(12, 6, NULL, NULL, 'New Product XL Blue', NULL, '1.0000', '0.0000', '0.0000', '84.00', '0.00', '0.00', '504.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 13, 15, 4, NULL, '2021-05-10 11:17:55', '2021-05-10 13:24:26'),
-(13, 1, NULL, NULL, 'Test variant M Blue', NULL, '1.0000', '0.0000', '0.0000', '456.00', '0.00', '0.00', '456.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 4, 6, 4, NULL, '2021-05-11 08:10:26', '2021-05-11 08:10:26'),
-(14, 2, NULL, NULL, 'Variant New Feature L Red', NULL, '1.0000', '0.0000', '0.0000', '77.00', '0.00', '0.00', '154.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 75, 76, 5, NULL, '2021-05-13 03:04:20', '2021-05-13 03:58:00'),
-(15, 1, NULL, NULL, 'Test variant XL Blue', NULL, '1.0000', '0.0000', '0.0000', '454.00', '0.00', '0.00', '454.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 4, 8, 6, NULL, '2021-05-13 14:22:07', '2021-05-13 14:22:07'),
-(35, 1, '', NULL, 'Laptop core-i 5 L Blue', NULL, '1.0000', '0.0000', '0.0000', '45.00', '0.00', '0.00', '45.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 61, 65, 7, NULL, '2021-05-26 08:02:55', '2021-05-26 08:02:55'),
-(36, 1, NULL, NULL, 'Laptop core-i 5 L Red', NULL, '1.0000', '0.0000', '0.0000', '46.00', '0.00', '0.00', '46.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 61, 67, 7, NULL, '2021-05-26 08:03:00', '2021-05-26 08:03:00'),
-(37, 1, NULL, NULL, 'Laptop core-i 5 M Blue', NULL, '1.0000', '0.0000', '0.0000', '47.00', '0.00', '0.00', '47.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 61, 70, 7, NULL, '2021-05-26 08:03:07', '2021-05-26 08:03:07'),
-(38, 1, NULL, NULL, 'Laptop core-i 5 M Red', NULL, '1.0000', '0.0000', '0.0000', '48.00', '0.00', '0.00', '48.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 61, 71, 7, NULL, '2021-05-26 08:03:12', '2021-05-26 08:03:12');
+(1, 1, NULL, NULL, 'NIAGARA ICEDOGS T-SHIRTs M Black', NULL, '1.0000', '0.0000', '0.0000', '110.00', '0.00', '0.00', '110.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 51, 52, 1, NULL, '2021-05-10 11:19:47', '2021-05-10 18:03:45'),
+(2, 1, '5556', NULL, 'Barrie Colts T-Shirt- Grey', NULL, '1.0000', '0.0000', '0.0000', '25.00', '0.00', '0.00', '25.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 42, 1, NULL, '2021-05-10 17:25:48', '2021-05-10 17:25:48'),
+(3, 1, NULL, NULL, 'Errie Otters TShirt  ', NULL, '1.0000', '0.0000', '0.0000', '30.00', '0.00', '0.00', '30.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 35, 36, 1, NULL, '2021-05-10 18:03:22', '2021-05-10 18:03:22'),
+(4, 1, NULL, NULL, 'NIAGARA ICEDOGS T-SHIRTs M Black', NULL, '1.0000', '0.0000', '0.0000', '110.00', '0.00', '0.00', '110.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 51, 52, 1, NULL, '2021-05-11 11:39:27', '2021-05-11 11:39:27'),
+(5, 3, '30225', NULL, 'Flint Firebirds T-Shirt', NULL, '1.0000', '0.0000', '0.0000', '25.00', '0.00', '0.00', '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 43, 2, NULL, '2021-05-11 11:42:35', '2021-05-11 11:42:38'),
+(6, 8, NULL, NULL, 'Errie Otters TShirt  ', NULL, '1.0000', '0.0000', '0.0000', '30.00', '0.00', '0.00', '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 35, 36, 3, NULL, '2021-05-11 11:45:43', '2021-05-11 11:45:49'),
+(7, 3, 'Fl-2002-GRY-13S', NULL, 'Errie Otters TShirt', NULL, '1.0000', '0.0000', '0.0000', '30.00', '0.00', '0.00', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 35, 4, NULL, '2021-05-11 11:48:25', '2021-05-11 11:48:25'),
+(8, 2, 'sdg689sfd', NULL, 'Test Night Monday', NULL, '1.0000', '0.0000', '0.0000', '2897.00', '0.00', '0.00', '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 20, 5, NULL, '2021-05-11 11:50:23', '2021-05-11 11:50:27'),
+(9, 3, NULL, NULL, 'Owen Sound Attack T-Shirt 36 Black', NULL, '1.0000', '0.0000', '0.0000', '4000.00', '0.00', '0.00', '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 7, 9, 6, NULL, '2021-05-11 11:52:33', '2021-05-11 11:52:36'),
+(10, 5, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '10000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 7, NULL, '2021-05-17 07:42:45', '2021-05-20 03:39:28'),
+(11, 1, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 8, NULL, '2021-05-18 11:53:21', '2021-05-18 11:53:21'),
+(12, 1, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 8, NULL, '2021-05-18 11:55:51', '2021-05-18 11:55:51'),
+(13, 1, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 8, NULL, '2021-05-18 11:55:56', '2021-05-18 11:55:56'),
+(14, 3, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '6000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 7, NULL, '2021-05-20 03:39:07', '2021-05-20 03:39:32'),
+(15, 1, '0781', NULL, 'Pant', NULL, '1.0000', '0.0000', '0.0000', '2000.00', '0.00', '0.00', '2000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 1, 7, NULL, '2021-05-20 03:44:18', '2021-05-20 03:44:18'),
+(16, 1, NULL, NULL, 'Title B XXL Blue', NULL, '1.0000', '0.0000', '0.0000', '4.00', '0.00', '0.00', '4.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 11, 17, 8, NULL, '2021-06-06 11:10:10', '2021-06-06 11:10:10'),
+(17, 2, NULL, NULL, 'Title B XL Blue', NULL, '1.0000', '0.0000', '0.0000', '4.00', '0.00', '0.00', '8.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 11, 15, 7, NULL, '2021-06-16 15:19:11', '2021-06-16 15:19:11'),
+(18, 1, '80', NULL, 'GAMER HOODIE (UNISEX)', NULL, '1.0000', '0.0000', '0.0000', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 57, 9, NULL, '2021-06-16 20:09:47', '2021-06-16 20:09:47'),
+(19, 1, '2', NULL, 'RIDE THE PINE', NULL, '1.0000', '0.0000', '0.0000', '45.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 54, 10, NULL, '2021-07-05 20:05:07', '2021-07-05 20:05:07');
 
 -- --------------------------------------------------------
 
@@ -192,15 +215,16 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `title`, `slug`, `image`, `position`, `status`, `parent_id`, `created_at`, `updated_at`) VALUES
-(1, 'Clothing', 'clothing', NULL, 0, 1, NULL, '2021-04-26 16:12:49', '2021-05-07 14:51:53'),
-(2, 'Accessories', 'accessories', NULL, 0, 1, NULL, '2021-04-26 16:17:39', '2021-05-07 14:54:29'),
-(4, 'Hoodies', 'hoodies', NULL, 0, 1, 1, '2021-04-27 03:03:48', '2021-05-07 14:53:00'),
-(5, 'Jersey', 'jersey', NULL, 0, 1, 1, '2021-05-07 14:52:30', '2021-05-07 14:52:30'),
-(6, 'T-Shirt', 't-shirt', NULL, 0, 1, 1, '2021-05-07 14:53:27', '2021-05-07 14:53:27'),
-(7, 'Shorts', 'shorts', NULL, 0, 1, 1, '2021-05-07 14:53:46', '2021-05-07 14:53:46'),
-(8, 'Headwear', 'headwear', NULL, 0, 1, NULL, '2021-05-07 14:55:19', '2021-05-07 14:55:19'),
-(9, 'Cap', 'cap', NULL, 0, 1, 2, '2021-05-15 16:45:28', '2021-05-15 16:45:28'),
-(10, 'Show', 'show', NULL, 0, 1, 2, '2021-05-15 16:46:51', '2021-05-15 16:46:51');
+(4, 'Demimm', 'demimm', NULL, 0, 1, 3, '2021-04-30 06:05:37', '2021-04-30 09:01:24'),
+(5, 'Cemim', 'cemim2', NULL, 0, 1, 3, '2021-04-30 06:06:20', '2021-04-30 06:06:31'),
+(7, 'Hujur', 'hujur2', NULL, 0, 1, 1, '2021-04-30 09:00:58', '2021-04-30 09:01:09'),
+(11, 'Hoodies', 'hoodies', NULL, 0, 1, 13, '2021-04-30 16:22:38', '2021-04-30 18:31:29'),
+(13, 'Clothing', 'clothing', NULL, 0, 1, NULL, '2021-04-30 18:31:20', '2021-04-30 18:31:20'),
+(14, 'Shirts', 'shirts', NULL, 0, 1, 13, '2021-04-30 18:32:55', '2021-04-30 18:32:55'),
+(15, 'Headwear', 'headwear', NULL, 0, 1, NULL, '2021-05-03 18:31:06', '2021-05-03 18:31:06'),
+(16, 'Hats', 'hats', NULL, 0, 1, 15, '2021-05-03 20:17:12', '2021-05-03 20:17:12'),
+(17, 'New', 'new', NULL, 0, 1, NULL, '2021-06-16 19:17:41', '2021-06-16 19:17:41'),
+(18, 'Very New', 'very-new', NULL, 0, 1, 17, '2021-06-16 19:17:51', '2021-06-16 19:17:51');
 
 -- --------------------------------------------------------
 
@@ -217,7 +241,9 @@ CREATE TABLE `coupons` (
   `discount` decimal(12,2) DEFAULT NULL,
   `starts_from` date DEFAULT NULL,
   `ends_till` date DEFAULT NULL,
-  `club` smallint(6) DEFAULT NULL,
+  `discount_limitation` tinyint(1) DEFAULT NULL,
+  `n_times` smallint(5) UNSIGNED DEFAULT NULL,
+  `club` smallint(5) UNSIGNED DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -227,11 +253,11 @@ CREATE TABLE `coupons` (
 -- Dumping data for table `coupons`
 --
 
-INSERT INTO `coupons` (`id`, `title`, `coupen_code`, `description`, `is_percentage`, `discount`, `starts_from`, `ends_till`, `club`, `status`, `created_at`, `updated_at`) VALUES
-(6, '20% Diccount', '20_discount', NULL, 1, '20.00', '2021-05-12', '2021-07-31', 11, 1, '2021-05-12 17:36:46', '2021-05-15 02:55:15'),
-(7, 'Eid Offer', 'eid_offer', NULL, 1, '99.00', '2021-05-14', '2021-05-16', 11, 1, '2021-05-12 18:00:40', '2021-05-15 02:47:23'),
-(9, '25% Diccount', '25-Diccount', NULL, 1, '25.00', '2021-05-13', '2021-05-14', 11, 1, '2021-05-13 02:38:03', '2021-05-13 12:20:24'),
-(10, 'Test', 'test', NULL, NULL, '800.00', '2021-05-13', '2021-05-22', NULL, 1, '2021-05-13 02:48:14', '2021-05-13 12:17:53');
+INSERT INTO `coupons` (`id`, `title`, `coupen_code`, `description`, `is_percentage`, `discount`, `starts_from`, `ends_till`, `discount_limitation`, `n_times`, `club`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Eid Offer', 'Monir', NULL, 1, '10.00', '2021-05-14', '2021-05-21', NULL, NULL, 41, 1, '2021-05-12 18:21:24', '2021-05-13 16:48:19'),
+(2, 'After Eid', '0998jks', NULL, NULL, '1000.00', '2021-05-14', '2021-05-15', NULL, NULL, 42, 1, '2021-05-12 18:22:15', '2021-05-16 08:17:53'),
+(3, 'Test', '5yuw8', NULL, NULL, '200.00', '2021-05-15', '2021-05-22', NULL, NULL, 52, 1, '2021-05-12 18:23:04', '2021-05-13 16:47:49'),
+(4, '200', '200', NULL, 1, '100.00', '2021-05-20', '2021-05-21', NULL, NULL, 42, 1, '2021-05-13 17:01:45', '2021-05-16 08:12:23');
 
 -- --------------------------------------------------------
 
@@ -241,23 +267,24 @@ INSERT INTO `coupons` (`id`, `title`, `coupen_code`, `description`, `is_percenta
 
 CREATE TABLE `customers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `team_id` smallint(5) UNSIGNED NOT NULL,
+  `team_id` smallint(5) UNSIGNED DEFAULT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `jersey_name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `jersey_no` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender` enum('Male','Female','Others') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `otp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FatherName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FatherEmail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `MotherName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `MotherEmail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subscribed_to_news_letter` tinyint(1) NOT NULL DEFAULT 0,
   `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -267,11 +294,23 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `team_id`, `first_name`, `last_name`, `jersey_name`, `jersey_no`, `gender`, `date_of_birth`, `email`, `status`, `password`, `otp`, `FatherName`, `FatherEmail`, `MotherName`, `MotherEmail`, `subscribed_to_news_letter`, `notes`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 23, 'Shahadat', 'Hosain', NULL, '10', 'Female', '2016-03-09', 'shahadat@asiancoder.com', 1, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, '2021-04-28 17:01:47', '2021-04-29 16:49:59'),
-(3, 24, 'Salima', 'Akter', 'Salima', '9', 'Female', '2021-04-30', 'saima@gmail.com', 1, '$2y$10$SnXyh3SKXlv..WLlLamBDel0fEphMQTUXl5fE/ndluzLV6AUS5XeS', NULL, 'Sahahadat', 'shahadat80@gmail.com', NULL, NULL, 0, NULL, NULL, '2021-04-30 04:10:47', '2021-05-01 07:06:21'),
-(4, 26, 'Saima', 'Akter', NULL, '10', NULL, NULL, 'salima@gmail.com', 1, NULL, '804791', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2021-04-30 04:10:55', '2021-04-30 04:10:55'),
-(6, 27, 'Azmira', 'Khatun', NULL, NULL, NULL, NULL, 'azmiranb@gmail.com', 1, NULL, '805722', NULL, NULL, NULL, NULL, 0, NULL, NULL, '2021-04-30 05:05:19', '2021-04-30 05:05:19');
+INSERT INTO `customers` (`id`, `team_id`, `first_name`, `last_name`, `gender`, `date_of_birth`, `email`, `status`, `password`, `otp`, `subscribed_to_news_letter`, `notes`, `address1`, `address2`, `country`, `state`, `city`, `postcode`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 46, 'Schools', 'Dress', NULL, NULL, 'schoolsdress@gmail.com', 1, '$2y$10$InWxIinNjlNdX3LzqDb.POn0l5l4l63Bpm.46Y76twTXaQyCh9ZNK', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
+(3, 47, 'Monir', 'Noyon', 'Male', '1990-12-23', 'gallantdigital360@gmail.com', 1, '$2y$10$ioHQZNJNSRnHr9iizTypSuBM/KAkF0eThhwV24BGG8H8XrGfxvZxK', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:32', '2021-05-03 19:31:31'),
+(4, 47, 'Gobar', 'Down', NULL, NULL, 'gobardown.info@gmail.com', 1, '$2y$10$S0KlMFvRm2VPkpvWbg/CKuVc4yRvmeg9CDNbJfjNsFGDszYNkwN1m', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:33', '2021-04-30 16:44:44'),
+(5, 47, 'Jony', 'Jon', NULL, NULL, 'jon_info_all@yahoo.com', 1, '$2y$10$NITEtUBqA2rxo8.AwDUoLOQ2llI1VQbQ1YyDC0faIZV50bryVxf.O', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:20:57', '2021-05-03 17:34:59'),
+(6, 46, 'shariful', 'islam', NULL, NULL, 'shariful.islam.shuvo27@gmail.com', 1, '$2y$10$9BPYO8VYJ/X85jVN/25pcupnf03321S7AB3wdIagQHG8141vQGLhu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:30:47', '2021-05-03 17:37:36'),
+(7, 47, 'Hossain', 'Monir', NULL, NULL, 'sajiviphlujsjpvzxl@twzhhq.com', 1, NULL, '253575', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:49:48', '2021-05-03 18:49:48'),
+(8, 47, 'Shoroni', 'Khan', NULL, NULL, 'bekrrseiygoyhbqkhp@mhzayt.online', 1, NULL, '90881', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:52:40', '2021-05-03 19:52:40'),
+(9, 47, 'Sumaya', 'Khan', NULL, NULL, 'shoronikhan2020@gmail.com', 1, '$2y$10$dbqzyrgTQAqL5ewMtkcpQeFAeZsHwcnxhNqLIDYrh0Cg2nflTBgFa', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:54:47', '2021-05-03 19:55:16'),
+(10, 56, 'thehanse', 'ict', NULL, NULL, 'thehanseict@gmail.com', 1, '$2y$10$8tk8DSZfI726rz6.FYnJNe7THSBsKfrsjEeSwm7bOMkzMi3UBmBZq', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-05 15:23:11', '2021-05-05 15:24:06'),
+(11, 46, 'Schools', 'Dress', NULL, NULL, 'customer@gmail.com', 1, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
+(12, 59, 'Shourov', 'Chishti', NULL, NULL, 'shourovchishti@gmail.com', 1, NULL, '643044', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-07 15:57:00', '2021-06-07 15:57:00'),
+(13, 68, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@gmail.com', 1, '$2y$10$t705il7Py/Z9hs1dm0jd/uzajgMB8Z.QkgdHKYkjxI94WAcdtaQRu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:43:28', '2021-06-16 19:56:06'),
+(14, 68, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@outlook.com', 1, '$2y$10$Wrmt26K6c4e2LCTD7pU3CeqlydPqwUKHNigkWTRcF5uIf4R68dftS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:44:52', '2021-06-16 17:27:17'),
+(15, 67, 'Photos', 'Pervez', NULL, NULL, 'photospervez@gmail.com', 1, '$2y$10$ZqOQhVVBR079tsl.vXvP1OaRadN/oCJ8w1y.dKOGG/21td06xxY/K', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:22', '2021-06-16 16:50:29'),
+(16, 67, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@gmail.com', 1, '$2y$10$z54v.IdbZKHotN5LMdorhOE6682ozZJtpmquKuDpEUVZGzx0PwuQy', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:24', '2021-06-16 16:09:42'),
+(17, 68, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@outlook.com', 1, '$2y$10$trY21ANcmX7nOPqYcMy6Pu3u0f9kguNUFUUUvt3Y2WZpJ3RsTKGti', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 18:18:18', '2021-06-16 18:19:55');
 
 -- --------------------------------------------------------
 
@@ -299,10 +338,15 @@ CREATE TABLE `customer_addresses` (
 --
 
 INSERT INTO `customer_addresses` (`id`, `customer_id`, `address1`, `address2`, `country`, `state`, `city`, `postcode`, `phone`, `default_address`, `created_at`, `updated_at`) VALUES
-(1, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-04-30 05:05:19', '2021-04-30 05:05:19'),
-(2, 4, 'Naodapara', NULL, NULL, 'Rajshahi', 'Rajshahi', 6204, NULL, 0, '2021-04-30 05:05:19', '2021-04-30 05:05:19'),
-(3, 3, 'Naodapara', NULL, NULL, 'Dhaka', 'Rajshahi', 6204, NULL, 0, '2021-04-30 05:05:19', '2021-04-30 05:18:04'),
-(4, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-04-30 05:05:19', '2021-04-30 05:05:19');
+(2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-04-30 09:27:51', '2021-04-30 09:27:51'),
+(3, 3, 'A 41, Imandipur, Savar', NULL, NULL, 'Dhaka', 'Savar', 1340, NULL, 0, '2021-04-30 16:40:32', '2021-04-30 23:16:46'),
+(4, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-04-30 16:40:33', '2021-04-30 16:40:33'),
+(5, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-03 17:20:57', '2021-05-03 17:20:57'),
+(6, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-03 17:30:47', '2021-05-03 17:30:47'),
+(7, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-03 18:49:48', '2021-05-03 18:49:48'),
+(8, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-03 19:52:40', '2021-05-03 19:52:40'),
+(9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-03 19:54:47', '2021-05-03 19:54:47'),
+(10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2021-05-05 15:23:11', '2021-05-05 15:23:11');
 
 -- --------------------------------------------------------
 
@@ -315,28 +359,6 @@ CREATE TABLE `customer_password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer_siblings`
---
-
-CREATE TABLE `customer_siblings` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `customer_id` int(10) UNSIGNED NOT NULL,
-  `SiblingsName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `SiblingsEmail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `customer_siblings`
---
-
-INSERT INTO `customer_siblings` (`id`, `customer_id`, `SiblingsName`, `SiblingsEmail`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Salima', 'salima@gmail.com', '2021-04-30 04:47:38', '2021-04-30 04:47:38');
 
 -- --------------------------------------------------------
 
@@ -52716,6 +52738,60 @@ INSERT INTO `location_states` (`id`, `name`, `country_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menus`
+--
+
+CREATE TABLE `menus` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `menu_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Title` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `menus`
+--
+
+INSERT INTO `menus` (`id`, `menu_id`, `Title`, `created_at`, `updated_at`) VALUES
+(1, 'social', 'Social', '2021-05-30 06:33:16', '2021-05-30 06:33:16'),
+(2, 'quick-shop', 'Quick Shop', '2021-05-30 06:38:10', '2021-05-30 06:38:10'),
+(3, 'useful-links', 'Useful Links', '2021-05-30 06:38:40', '2021-05-30 06:38:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_items`
+--
+
+CREATE TABLE `menu_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `menu_id` smallint(2) UNSIGNED NOT NULL,
+  `lebel` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `menu_url` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `menu_class` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `menu_role` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` mediumint(8) UNSIGNED DEFAULT NULL,
+  `sl` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `menuType` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+INSERT INTO `menu_items` (`id`, `menu_id`, `lebel`, `menu_url`, `menu_class`, `menu_role`, `parent_id`, `sl`, `menuType`, `created_at`, `updated_at`) VALUES
+(1, 3, 'About Us', 'page/about-us', NULL, NULL, NULL, 0, 'others', '2021-05-30 06:41:53', '2021-05-30 06:41:53'),
+(2, 2, 'Membership offers', 'page/membership-offers', NULL, NULL, NULL, 0, 'others', '2021-05-30 06:42:45', '2021-05-30 06:42:45'),
+(3, 1, 'Facebook', '#', 'fa fa-facebook', NULL, NULL, 0, 'extrenal', '2021-05-30 06:53:55', '2021-05-30 06:53:55'),
+(4, 1, 'Instagram', '#', 'fa fa-instagram', NULL, NULL, 0, 'others', '2021-05-30 06:54:27', '2021-05-30 06:54:27'),
+(5, 1, 'Youtube', '#', 'fa fa-youtube-play', NULL, NULL, 0, 'others', '2021-05-30 06:54:44', '2021-05-30 06:54:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -52756,13 +52832,22 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (50, '2021_05_07_133905_create_location_countries_table', 8),
 (51, '2021_05_07_134111_create_location_states_table', 8),
 (52, '2021_05_07_134130_create_location_cities_table', 8),
-(59, '2021_05_10_194820_create_orders_table', 9),
-(60, '2021_05_10_195139_create_order_items_table', 9),
-(61, '2021_05_10_201524_create_order_addresses_table', 9),
-(62, '2021_05_11_154501_create_shipping_methods_table', 10),
-(64, '2021_05_12_200525_create_users_coupon_table', 11),
-(65, '2021_05_12_195819_create_coupons_table', 12),
-(66, '2021_05_16_074009_create_user_profiles_table', 13);
+(53, '2021_05_10_194820_create_orders_table', 9),
+(54, '2021_05_10_195139_create_order_items_table', 9),
+(55, '2021_05_10_201524_create_order_addresses_table', 9),
+(56, '2021_05_11_154501_create_shipping_methods_table', 9),
+(57, '2021_05_12_195819_create_coupons_table', 10),
+(58, '2021_05_12_200525_create_users_coupon_table', 10),
+(59, '2021_05_16_074009_create_user_profiles_table', 11),
+(60, '2020_10_14_071134_create_menus_table', 3),
+(61, '2020_10_14_071647_create_menu_items_table', 3),
+(62, '2021_02_19_085142_create_postmetas_table', 4),
+(63, '2019_05_03_000001_create_customer_columns', 12),
+(64, '2019_05_03_000002_create_subscriptions_table', 12),
+(65, '2019_05_03_000003_create_subscription_items_table', 12),
+(66, '2021_05_30_054904_create_subscribes_table', 13),
+(67, '2021_05_30_101450_create_club_regs_table', 13),
+(68, '2021_06_16_102644_create_product_reviews_table', 14);
 
 -- --------------------------------------------------------
 
@@ -52772,9 +52857,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `invoice_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cart_id` int(10) UNSIGNED DEFAULT NULL,
+  `invoice_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Processing','Pending payment','On hold','Completed','Refunded','Cancelled','Failed') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_status` tinyint(1) NOT NULL DEFAULT 0,
+  `refund_status` tinyint(1) DEFAULT 0,
   `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_method_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shipping_status` tinyint(1) NOT NULL DEFAULT 0,
@@ -52837,12 +52924,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `invoice_id`, `status`, `payment_status`, `payment_method`, `payment_method_title`, `shipping_status`, `carrier_code`, `carrier_title`, `track_number`, `is_guest`, `customer_email`, `customer_first_name`, `customer_last_name`, `shipping_method`, `shipping_title`, `shipping_description`, `coupon_code`, `is_gift`, `total_item_count`, `total_qty_ordered`, `base_currency_code`, `order_currency_code`, `grand_total`, `base_grand_total`, `grand_total_invoiced`, `base_grand_total_invoiced`, `grand_total_refunded`, `base_grand_total_refunded`, `sub_total`, `base_sub_total`, `sub_total_invoiced`, `base_sub_total_invoiced`, `sub_total_refunded`, `base_sub_total_refunded`, `discount_percent`, `discount_amount`, `base_discount_amount`, `discount_invoiced`, `base_discount_invoiced`, `discount_refunded`, `base_discount_refunded`, `tax_amount`, `base_tax_amount`, `tax_amount_invoiced`, `base_tax_amount_invoiced`, `tax_amount_refunded`, `base_tax_amount_refunded`, `shipping_amount`, `base_shipping_amount`, `shipping_invoiced`, `base_shipping_invoiced`, `shipping_refunded`, `base_shipping_refunded`, `club_id`, `team_id`, `customer_id`, `customer_type`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Processing', 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2, 9, NULL, NULL, '735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '735.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 25, 26, 2, NULL, '2021-05-10 18:22:59', '2021-05-10 18:22:59'),
-(2, NULL, 'Processing', 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 3, 10, NULL, NULL, '1191.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1191.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 25, 27, 2, NULL, '2021-05-11 08:37:30', '2021-05-11 08:37:30'),
-(3, NULL, 'Processing', 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '25% Diccount', 0, 1, 2, NULL, NULL, '154.00', '0.00', '0.00', '0.00', '0.00', '0.00', '154.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '38.50', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 11, 24, 2, NULL, '2021-05-13 06:39:51', '2021-05-13 06:39:51'),
-(4, NULL, 'Processing', 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '25-Diccount', 0, 1, 1, NULL, NULL, '454.00', '0.00', '0.00', '0.00', '0.00', '0.00', '454.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '113.50', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 11, 23, 2, NULL, '2021-05-13 14:25:28', '2021-05-13 14:25:28'),
-(5, NULL, 'Processing', 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'test', 0, 4, 4, NULL, NULL, '186.00', '0.00', '0.00', '0.00', '0.00', '0.00', '186.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '800.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 11, 23, 2, NULL, '2021-05-26 08:05:15', '2021-05-26 08:05:15');
+INSERT INTO `orders` (`id`, `cart_id`, `invoice_id`, `status`, `payment_status`, `refund_status`, `payment_method`, `payment_method_title`, `shipping_status`, `carrier_code`, `carrier_title`, `track_number`, `is_guest`, `customer_email`, `customer_first_name`, `customer_last_name`, `shipping_method`, `shipping_title`, `shipping_description`, `coupon_code`, `is_gift`, `total_item_count`, `total_qty_ordered`, `base_currency_code`, `order_currency_code`, `grand_total`, `base_grand_total`, `grand_total_invoiced`, `base_grand_total_invoiced`, `grand_total_refunded`, `base_grand_total_refunded`, `sub_total`, `base_sub_total`, `sub_total_invoiced`, `base_sub_total_invoiced`, `sub_total_refunded`, `base_sub_total_refunded`, `discount_percent`, `discount_amount`, `base_discount_amount`, `discount_invoiced`, `base_discount_invoiced`, `discount_refunded`, `base_discount_refunded`, `tax_amount`, `base_tax_amount`, `tax_amount_invoiced`, `base_tax_amount_invoiced`, `tax_amount_refunded`, `base_tax_amount_refunded`, `shipping_amount`, `base_shipping_amount`, `shipping_invoiced`, `base_shipping_invoiced`, `shipping_refunded`, `base_shipping_refunded`, `club_id`, `team_id`, `customer_id`, `customer_type`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 4, 4, NULL, NULL, '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 41, 46, 5, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(2, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 42, 47, 5, NULL, '2021-05-11 11:42:57', '2021-05-11 11:42:57'),
+(3, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 8, NULL, NULL, '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 41, 51, 5, NULL, '2021-05-11 11:46:15', '2021-05-11 11:46:15'),
+(4, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 42, 54, 5, NULL, '2021-05-11 11:48:37', '2021-05-11 11:48:37'),
+(5, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 2, NULL, NULL, '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 49, 59, 6, NULL, '2021-05-11 11:51:14', '2021-05-11 11:51:14'),
+(6, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 52, 56, 10, NULL, '2021-05-11 11:52:47', '2021-05-11 11:52:47');
 
 -- --------------------------------------------------------
 
@@ -52874,11 +52962,12 @@ CREATE TABLE `order_addresses` (
 --
 
 INSERT INTO `order_addresses` (`id`, `first_name`, `last_name`, `email`, `address1`, `address2`, `country`, `state`, `city`, `postcode`, `phone`, `address_type`, `order_id`, `customer_id`, `created_at`, `updated_at`) VALUES
-(1, 'Shahadat', 'Hosain', NULL, 'Nawdapara', 'Amchattar', 'Bangladesh', NULL, 'Rajshahi', '6204', NULL, 'shipping', 1, 2, '2021-05-10 18:23:00', '2021-05-10 18:23:00'),
-(2, 'Azmira', 'Khatun', NULL, 'Kecuatoil', NULL, 'Bangladesh', NULL, 'Rajshahi', '6203', NULL, 'shipping', 2, 2, '2021-05-11 08:37:31', '2021-05-11 08:37:31'),
-(3, 'Azmira', 'Khatun', NULL, 'Kechuatoil', NULL, 'Bangladesh', NULL, 'Rajshahi', '6204', NULL, 'shipping', 3, 2, '2021-05-13 06:39:51', '2021-05-13 06:39:51'),
-(4, 'Saima', 'Akter', NULL, 'Rajshahi', 'Rajshahi', 'Bangladesh', NULL, 'Rajshahi', '6000', NULL, 'shipping', 4, 2, '2021-05-13 14:25:28', '2021-05-13 14:25:28'),
-(5, 'Shahadat', 'Hosain', NULL, 'Address', 'Address 2', 'AL', 'Dibre', 'Rajshahi', '6204', NULL, 'shipping', 5, 2, '2021-05-26 08:05:16', '2021-05-26 08:05:16');
+(1, 'Ahasan', 'Pervez', NULL, 'Daspakur', NULL, 'Bangladesh', NULL, 'Dhaka', '1207', NULL, 'shipping', 1, 5, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(2, 'School', 'Dress', NULL, 'Daspakur', NULL, 'Bangladesh', NULL, 'Dhaka', '1207', NULL, 'shipping', 2, 5, '2021-05-11 11:42:57', '2021-05-11 11:42:57'),
+(3, 'Ahasan', 'Dress', NULL, 'Daspakur', NULL, 'Bangladesh', NULL, 'Dhaka', '1207', NULL, 'shipping', 3, 5, '2021-05-11 11:46:15', '2021-05-11 11:46:15'),
+(4, 'Pinky', 'Hack', NULL, 'Daspakur', NULL, 'Bangladesh', NULL, 'Dhaka', '1207', NULL, 'shipping', 4, 5, '2021-05-11 11:48:37', '2021-05-11 11:48:37'),
+(5, 'Shuvo', 'Shuvo', NULL, 'Uttara', NULL, 'Bangladesh', NULL, 'Dhaka', '1205', NULL, 'shipping', 5, 6, '2021-05-11 11:51:14', '2021-05-11 11:51:14'),
+(6, 'Ahasan', 'Pervez', NULL, 'Daspakur', NULL, 'Bangladesh', NULL, 'Dhaka', '1207', NULL, 'shipping', 6, 6, '2021-05-11 11:52:47', '2021-05-11 11:52:47');
 
 -- --------------------------------------------------------
 
@@ -52925,7 +53014,7 @@ CREATE TABLE `order_items` (
   `product_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `order_id` int(10) UNSIGNED DEFAULT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL,
-  `additional` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`additional`)),
+  `additional` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -52935,17 +53024,15 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`id`, `sku`, `type`, `name`, `coupon_code`, `weight`, `total_weight`, `qty_ordered`, `qty_shipped`, `qty_invoiced`, `qty_canceled`, `qty_refunded`, `price`, `base_price`, `total`, `base_total`, `total_invoiced`, `base_total_invoiced`, `amount_refunded`, `base_amount_refunded`, `discount_percent`, `discount_amount`, `base_discount_amount`, `discount_invoiced`, `base_discount_invoiced`, `discount_refunded`, `base_discount_refunded`, `tax_percent`, `tax_amount`, `base_tax_amount`, `tax_amount_invoiced`, `base_tax_amount_invoiced`, `tax_amount_refunded`, `base_tax_amount_refunded`, `product_id`, `product_type`, `order_id`, `parent_id`, `additional`, `created_at`, `updated_at`) VALUES
-(1, 'variant-new-feature', NULL, 'Variant New Feature', NULL, '0.0000', '0.0000', 3, 0, 0, 0, 0, '77.00', '0.00', '231.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 75, NULL, 1, NULL, NULL, '2021-05-10 18:22:59', '2021-05-10 18:22:59'),
-(2, NULL, NULL, 'New Product XL Blue', NULL, '0.0000', '0.0000', 6, 0, 0, 0, 0, '84.00', '0.00', '504.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 15, NULL, 1, 13, NULL, '2021-05-10 18:22:59', '2021-05-10 18:22:59'),
-(3, 'variant-new-feature', NULL, 'Variant New Feature', NULL, '0.0000', '0.0000', 3, 0, 0, 0, 0, '77.00', '0.00', '231.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 75, NULL, 2, NULL, NULL, '2021-05-11 08:37:30', '2021-05-11 08:37:30'),
-(4, NULL, NULL, 'New Product XL Blue', NULL, '0.0000', '0.0000', 6, 0, 0, 0, 0, '84.00', '0.00', '504.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 15, NULL, 2, 13, NULL, '2021-05-11 08:37:30', '2021-05-11 08:37:30'),
-(5, NULL, NULL, 'Test variant M Blue', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '456.00', '0.00', '456.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 6, NULL, 2, 4, NULL, '2021-05-11 08:37:30', '2021-05-11 08:37:30'),
-(6, NULL, NULL, 'Variant New Feature L Red', NULL, '0.0000', '0.0000', 2, 0, 0, 0, 0, '77.00', '0.00', '154.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 76, NULL, 3, 75, NULL, '2021-05-13 06:39:51', '2021-05-13 06:39:51'),
-(7, NULL, NULL, 'Test variant XL Blue', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '454.00', '0.00', '454.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 8, NULL, 4, 4, NULL, '2021-05-13 14:25:28', '2021-05-13 14:25:28'),
-(8, '', NULL, 'Laptop core-i 5 L Blue', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '45.00', '0.00', '45.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 65, NULL, 5, 61, NULL, '2021-05-26 08:05:15', '2021-05-26 08:05:15'),
-(9, NULL, NULL, 'Laptop core-i 5 L Red', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '46.00', '0.00', '46.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 67, NULL, 5, 61, NULL, '2021-05-26 08:05:15', '2021-05-26 08:05:15'),
-(10, NULL, NULL, 'Laptop core-i 5 M Blue', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '47.00', '0.00', '47.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 70, NULL, 5, 61, NULL, '2021-05-26 08:05:15', '2021-05-26 08:05:15'),
-(11, NULL, NULL, 'Laptop core-i 5 M Red', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '48.00', '0.00', '48.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 71, NULL, 5, 61, NULL, '2021-05-26 08:05:15', '2021-05-26 08:05:15');
+(1, NULL, NULL, 'NIAGARA ICEDOGS T-SHIRTs M Black', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '110.00', '0.00', '110.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 52, NULL, 1, 51, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(2, '5556', NULL, 'Barrie Colts T-Shirt- Grey', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '25.00', '0.00', '25.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 42, NULL, 1, NULL, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(3, NULL, NULL, 'Errie Otters TShirt  ', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '30.00', '0.00', '30.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 36, NULL, 1, 35, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(4, NULL, NULL, 'NIAGARA ICEDOGS T-SHIRTs M Black', NULL, '0.0000', '0.0000', 1, 0, 0, 0, 0, '110.00', '0.00', '110.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 52, NULL, 1, 51, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(5, '30225', NULL, 'Flint Firebirds T-Shirt', NULL, '0.0000', '0.0000', 3, 0, 0, 0, 0, '25.00', '0.00', '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 43, NULL, 2, NULL, NULL, '2021-05-11 11:42:57', '2021-05-11 11:42:57'),
+(6, NULL, NULL, 'Errie Otters TShirt  ', NULL, '0.0000', '0.0000', 8, 0, 0, 0, 0, '30.00', '0.00', '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 36, NULL, 3, 35, NULL, '2021-05-11 11:46:15', '2021-05-11 11:46:15'),
+(7, 'Fl-2002-GRY-13S', NULL, 'Errie Otters TShirt', NULL, '0.0000', '0.0000', 3, 0, 0, 0, 0, '30.00', '0.00', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 35, NULL, 4, NULL, NULL, '2021-05-11 11:48:37', '2021-05-11 11:48:37'),
+(8, 'sdg689sfd', NULL, 'Test Night Monday', NULL, '0.0000', '0.0000', 2, 0, 0, 0, 0, '2897.00', '0.00', '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 20, NULL, 5, NULL, NULL, '2021-05-11 11:51:14', '2021-05-11 11:51:14'),
+(9, NULL, NULL, 'Owen Sound Attack T-Shirt 36 Black', NULL, '0.0000', '0.0000', 3, 0, 0, 0, 0, '4000.00', '0.00', '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 9, NULL, 6, 7, NULL, '2021-05-11 11:52:47', '2021-05-11 11:52:47');
 
 -- --------------------------------------------------------
 
@@ -52973,13 +53060,89 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `permissions`
+-- Table structure for table `postmetas`
 --
 
-INSERT INTO `permissions` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(7, 'Doctor Add', 'doctor-add', '2021-03-19 04:16:34', '2021-03-19 04:16:34'),
-(8, 'Outdoor Ticket', 'outdoor-ticket', '2021-03-19 04:27:30', '2021-03-19 04:27:30');
+CREATE TABLE `postmetas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `meta_key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `postmetas`
+--
+
+INSERT INTO `postmetas` (`id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(1, 7, 'designation', 'CEO, Canada Company');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `body` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `post_type` varchar(191) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pageTemplate` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort` tinyint(2) UNSIGNED DEFAULT 0,
+  `user_id` int(3) UNSIGNED NOT NULL,
+  `status` tinyint(1) UNSIGNED DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `slug`, `body`, `image`, `post_type`, `pageTemplate`, `sort`, `user_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Sports for <br> healthy lifetime', 'sports-for-br-healthy-lifetime', '<p>Some representative placeholder content for the first slide content for the.<p>Some representative placeholder content for the first slide content for the.<br></p></p>\n', 'post_file/1.jpg', 'slide', NULL, 0, 1, 1, '2021-05-29 10:33:44', '2023-04-07 16:41:31'),
+(2, 'Logo 1', 'logo-1', NULL, 'post_file/2.png', 'client-logo', NULL, 0, 1, 1, '2021-05-29 10:34:50', '2021-05-29 10:34:50'),
+(3, 'Logo 2', 'logo-2', NULL, 'post_file/3.png', 'client-logo', NULL, 0, 1, 1, '2021-05-29 10:35:15', '2021-05-29 10:35:15'),
+(4, 'Logo 3', 'logo-3', NULL, 'post_file/4.png', 'client-logo', NULL, 0, 1, 1, '2021-05-29 10:35:40', '2021-05-29 10:35:40'),
+(5, 'Product 1', 'product-1', NULL, 'post_file/5.jpg', 'produce', NULL, 0, 1, 1, '2021-05-29 10:38:27', '2021-05-29 10:38:27'),
+(6, 'Product 2', 'product-2', NULL, 'post_file/6.jpg', 'produce', NULL, 0, 1, 1, '2021-05-29 10:38:52', '2021-05-29 10:38:52'),
+(7, 'Tomas jhono', 'tomas-jhono', '<p>Some representative placeholder content for the first slide content for the.Some representative placeholder content for the first slide content for the.Some representative placeholder content for the first slide content for the.Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/7.png', 'testimonial', NULL, 0, 1, 1, '2021-05-29 10:41:26', '2021-05-29 10:41:26'),
+(8, 'About Us', 'about-us', '<p>What is Lorem Ipsum?<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><span style=\"font-size: 1rem;\">Why do we use it?</span><br></p><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></p>\n', NULL, 'page', NULL, 0, 1, 1, '2021-05-30 06:32:10', '2021-05-30 06:32:10'),
+(9, 'Membership offers', 'membership-offers', '<p>What is Lorem Ipsum?<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><p><span style=\"font-size: 1rem;\">Why do we use it?</span><br></p><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></p>\n', NULL, 'page', NULL, 0, 1, 1, '2021-05-30 06:41:01', '2021-05-30 06:41:01'),
+(10, 'Why us', 'why-us', '<p>Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/10.jpg', 'why-us', NULL, NULL, 1, 1, '2021-07-04 15:56:35', '2021-07-04 15:57:25'),
+(11, 'Eclub sign up', 'eclub-sign-up', '<p>Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/11.png', 'why-us', NULL, 1, 1, 1, '2021-07-04 15:58:59', '2021-07-04 15:58:59'),
+(12, 'Facilities', 'facilities', '<p>Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/12.png', 'why-us', NULL, 2, 1, 1, '2021-07-04 15:59:44', '2021-07-04 15:59:44'),
+(13, 'Specials', 'specials', '<p>Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/13.png', 'why-us', NULL, 1, 1, 1, '2021-07-04 16:00:26', '2021-07-04 16:00:26'),
+(14, 'representative', 'representative', '<p>Some representative placeholder content for the first slide content for the.<br></p>\n', 'post_file/14.png', 'why-us', NULL, 2, 1, 1, '2021-07-04 16:01:02', '2021-07-04 16:01:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_tax`
+--
+
+CREATE TABLE `post_tax` (
+  `id` int(11) NOT NULL,
+  `post_id` smallint(5) UNSIGNED NOT NULL,
+  `tax_id` smallint(5) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `post_tax`
+--
+
+INSERT INTO `post_tax` (`id`, `post_id`, `tax_id`) VALUES
+(1, 10, 1),
+(2, 11, 2),
+(3, 12, 2),
+(4, 13, 3),
+(5, 14, 3);
 
 -- --------------------------------------------------------
 
@@ -53003,8 +53166,6 @@ CREATE TABLE `products` (
   `featured` tinyint(1) DEFAULT NULL,
   `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `qty` decimal(12,2) NOT NULL DEFAULT 0.00,
-  `club_id` int(10) UNSIGNED DEFAULT NULL,
-  `store_id` int(10) UNSIGNED DEFAULT NULL,
   `price` decimal(12,2) DEFAULT NULL,
   `cost` decimal(12,2) DEFAULT NULL,
   `special_price` decimal(12,2) DEFAULT NULL,
@@ -53028,44 +53189,83 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `sku`, `barcode`, `type`, `parent_id`, `status`, `user_id`, `title`, `slug`, `short_description`, `description`, `new`, `featured`, `thumbnail`, `qty`, `club_id`, `store_id`, `price`, `cost`, `special_price`, `special_price_from`, `special_price_to`, `weight`, `color`, `color_label`, `size`, `size_label`, `deleted_at`, `created_at`, `updated_at`, `trackQuantity`, `stockOutSell`, `readyToShipping`, `noShappingCharge`) VALUES
-(4, '50', NULL, 'variant', NULL, 1, 1, 'Test variant', 'test-variant', '<p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">browsers/environments that allow the user to specify their preference for reduced motion, most CSS transition effects in Bootstrap (for instance, when a modal dialog is opened or closed) will be disabled. Currently, support is limited to Safari on macOS and iOS.</span></p>', '<p><span style=\"color: rgb(33, 37, 41); font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;\">browsers/environments that allow the user to specify their preference for reduced motion, most CSS transition effects in Bootstrap (for instance, when a modal dialog is opened or closed) will be disabled. Currently, support is limited to Safari on macOS and iOS.</span></p>', NULL, NULL, 'product/4/c9e4123e2c7d875b40ace28b1a1a3469.png', '1.00', 11, 23, '50.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-27 17:43:37', '2021-05-21 12:02:14', NULL, NULL, NULL, NULL),
-(5, NULL, NULL, 'simple', 4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '45.00', 11, 23, '456.00', NULL, NULL, NULL, NULL, NULL, 'Red', NULL, 'M', NULL, NULL, '2021-04-27 17:43:37', '2021-05-21 12:02:14', 0, 0, 0, 0),
-(6, NULL, NULL, 'simple', 4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.00', 11, 23, '456.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'M', NULL, NULL, '2021-04-27 17:43:37', '2021-05-21 12:02:15', 0, 0, 0, 0),
-(7, NULL, NULL, 'simple', 4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '454.00', 11, 23, '467.00', NULL, NULL, NULL, NULL, NULL, 'Red', NULL, 'XL', NULL, NULL, '2021-04-27 17:43:37', '2021-05-21 12:02:15', 0, 0, 0, 0),
-(8, NULL, NULL, 'simple', 4, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '845.00', 11, 23, '454.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'XL', NULL, NULL, '2021-04-27 17:43:37', '2021-05-21 12:02:15', 0, 0, 0, 0),
-(12, '546562', NULL, 'variant', NULL, 1, 1, 'Test variant sdaf', 'test-variant-sdaf', '<p>asfasdf<br></p>', '<p>dsfasdf<br></p>', NULL, NULL, NULL, '0.00', 11, 23, '5449.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-27 18:33:48', '2021-04-27 18:33:48', NULL, NULL, NULL, NULL),
-(13, '8545', NULL, 'variant', NULL, 1, 1, 'New Product', 'new-product', NULL, '<p>Some representative placeholder content for the first slide content for \r\nthe.Some representative placeholder content for the first slide content \r\nfor the.</p>', NULL, NULL, 'product/13/290f6fb2848a9464e1087f5abc1822b9.png', '85.00', 11, 23, '88.00', NULL, '77.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-28 11:00:38', '2021-04-30 11:56:31', 1, NULL, NULL, NULL),
-(14, NULL, NULL, 'simple', 13, 1, 1, 'XL / Raed', NULL, NULL, NULL, NULL, NULL, NULL, '87.00', 11, 23, '512.00', NULL, NULL, NULL, NULL, NULL, 'Raed', NULL, 'XL', NULL, NULL, '2021-04-28 11:00:38', '2021-05-18 15:06:37', 0, 0, 0, 0),
-(15, NULL, NULL, 'simple', 13, 1, 1, 'XL / Blue', NULL, NULL, NULL, NULL, NULL, NULL, '41.00', 11, 23, '84.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'XL', NULL, NULL, '2021-04-28 11:00:38', '2021-05-18 15:06:37', 0, 0, 0, 0),
-(16, NULL, NULL, 'simple', 13, 1, 1, 'L / Raed', NULL, NULL, NULL, NULL, NULL, NULL, '0.00', 11, 23, '485.00', NULL, NULL, NULL, NULL, NULL, 'Raed', NULL, 'L', NULL, NULL, '2021-04-28 11:00:38', '2021-05-18 15:06:37', 0, 0, 0, 0),
-(17, NULL, NULL, 'simple', 13, 1, 1, 'L / Blue', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', 11, 23, '45.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'L', NULL, NULL, '2021-04-28 11:00:38', '2021-05-18 15:06:37', 0, 0, 0, 0),
-(23, '456', NULL, 'simple', NULL, 0, 1, 'sdfgserfd sdg', 'sdfgserfd-sdg', NULL, '<p>e erty erty erty <br></p>', NULL, NULL, 'product/2021/05/91abb4fdb256142bb2dece4eb06d5346.png', '5.00', 11, 23, '54564.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-02 15:56:58', '2021-05-18 15:06:37', NULL, NULL, NULL, NULL),
-(35, 'hfjgukhj', NULL, 'variant', NULL, 0, 1, 'jyguh hgkhj ', 'jyguh-hgkhj', NULL, '<p>dfgadfasdf<br></p>', NULL, NULL, 'product/2021/05/35491fc963ead48d4f9872b193b5fc96.jpeg', '545.00', 11, 23, '656.00', NULL, '545.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 10:57:43', '2021-05-18 15:06:37', 1, 1, 1, 1),
-(36, NULL, '456', 'simple', 35, 1, 1, 'jyguh hgkhj ', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', 11, 23, '55.00', NULL, '55.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 10:57:43', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(37, NULL, '456', 'simple', 35, 1, 1, 'jyguh hgkhj ', NULL, NULL, NULL, NULL, NULL, NULL, '45.00', 11, 23, '58.00', NULL, '5.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 10:57:43', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(38, NULL, '456', 'simple', 35, 1, 1, 'jyguh hgkhj ', NULL, NULL, NULL, NULL, NULL, NULL, '1.00', 11, 23, '54.00', NULL, '5.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 10:57:43', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(39, NULL, '456', 'simple', 35, 1, 1, 'jyguh hgkhj ', NULL, NULL, NULL, NULL, NULL, NULL, '12.00', 11, 23, '45.00', NULL, '5.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 10:57:43', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(49, 'fcghsdfgsdfg', NULL, 'simple', NULL, 0, 1, 'dfhg dfhgdfg', 'dfhg-dfhgdfg', NULL, NULL, NULL, NULL, NULL, '545.00', 11, 24, '13.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 15:43:23', '2021-05-18 15:06:38', NULL, NULL, NULL, NULL),
-(50, 'jkhjkfyu', NULL, 'variant', NULL, 0, 1, 'vmbnmb', 'vmbnmb', NULL, '<p>vbmnbvn<br></p>', NULL, NULL, NULL, '45.00', 25, 27, '5456.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 23:01:01', '2021-05-18 15:06:38', NULL, NULL, NULL, NULL),
-(52, 'fydtfysrstyhh', NULL, 'variant', NULL, 0, 1, 'jfghsgdsfg', 'jfghsgdsfg', NULL, '<p>dfgfdh<br></p>', NULL, NULL, NULL, '45.00', 11, 24, '4561.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 23:05:27', '2021-05-04 10:20:14', NULL, NULL, NULL, NULL),
-(61, 'dfds-hgf-gh', NULL, 'variant', NULL, 1, 1, 'Laptop core-i 5', 'fghdfgh', NULL, '<p>dfhgfdgh<br></p>', NULL, NULL, 'product/2021/05', '85.00', 11, 23, '4545.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-04 10:35:32', '2021-05-04 15:56:27', NULL, NULL, NULL, NULL),
-(65, '', NULL, 'simple', 61, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 11, 23, '45.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'L', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(67, NULL, NULL, 'simple', 61, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 11, 23, '46.00', NULL, NULL, NULL, NULL, NULL, 'Red', NULL, 'L', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(70, NULL, NULL, 'simple', 61, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 11, 23, '47.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'M', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(71, NULL, NULL, 'simple', 61, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 11, 23, '48.00', NULL, NULL, NULL, NULL, NULL, 'Red', NULL, 'M', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(72, NULL, NULL, 'simple', 50, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 25, 27, '45.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'L', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(74, NULL, NULL, 'simple', 52, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', 11, 24, '45.00', NULL, NULL, NULL, NULL, NULL, 'Blue', NULL, 'L', NULL, NULL, '2021-05-04 10:35:33', '2021-05-18 15:06:38', 0, 0, 0, 0),
-(75, 'variant-new-feature', NULL, 'variant', NULL, 1, 1, 'Variant New Feature', 'variant-new-feature', NULL, '<p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: var(--s-prose-spacing); margin-left: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">Hy Guys, I have a problem again. and this time with my laravel project.</p><p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: var(--s-prose-spacing); margin-left: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">I have a controller function like this:</p><pre class=\"lang-php s-code-block hljs\" style=\"margin-top: 0px; margin-right: 0px; margin-bottom: calc(var(--s-prose-spacing) + 0.4em); margin-left: 0px; padding: 12px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Monaco, \"Lucida Console\", \"Liberation Mono\", \"DejaVu Sans Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", monospace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; overflow: auto; background-color: var(--highlight-bg); border-radius: 5px; color: var(--highlight-color); overflow-wrap: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><code style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; background-color: transparent; white-space: inherit;\"><span class=\"hljs-keyword\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-keyword);\">public</span> <span class=\"hljs-function\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit;\"><span class=\"hljs-keyword\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-keyword);\">function</span> <span class=\"hljs-title\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-literal);\">postDetail</span>(<span class=\"hljs-params\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit;\">Request <span class=\"hljs-variable\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">$request</span></span>)\r\n</span>{\r\n  <span class=\"hljs-variable\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">$product_requests</span> = <span class=\"hljs-variable\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">$request</span>->sku;\r\n  <span class=\"hljs-variable\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">$arr</span> = [];\r\n}\r\n</code></pre><p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: var(--s-prose-spacing); margin-left: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">And my<span> </span><code style=\"margin: 0px; padding: 2px 4px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: Consolas, Menlo, Monaco, \"Lucida Console\", \"Liberation Mono\", \"DejaVu Sans Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", monospace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inherit; background-color: var(--black-075); white-space: pre-wrap; color: var(--black-800); border-radius: 3px;\">$request->sku</code><span> </span>looked like this:</p><pre class=\"lang-php s-code-block hljs\" style=\"margin-top: 0px; margin-right: 0px; margin-bottom: calc(var(--s-prose-spacing) + 0.4em); margin-left: 0px; padding: 12px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Monaco, \"Lucida Console\", \"Liberation Mono\", \"DejaVu Sans Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", monospace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; overflow: auto; background-color: var(--highlight-bg); border-radius: 5px; color: var(--highlight-color); overflow-wrap: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><code style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; background-color: transparent; white-space: inherit;\">[<span class=\"hljs-number\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-namespace);\">612552892</span> => [<span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\'quantity\'</span> => <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\'1\'</span>], <span class=\"hljs-number\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-namespace);\">625512336</span> => [<span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\'quantity\'</span> => <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\'10\'</span>]]\r\n</code></pre><p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: var(--s-prose-spacing); margin-left: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">but i need the json file like this:</p><pre class=\"lang-php s-code-block hljs\" style=\"margin-top: 0px; margin-right: 0px; margin-bottom: calc(var(--s-prose-spacing) + 0.4em); margin-left: 0px; padding: 12px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: 1.30769; font-family: Consolas, Menlo, Monaco, \"Lucida Console\", \"Liberation Mono\", \"DejaVu Sans Mono\", \"Bitstream Vera Sans Mono\", \"Courier New\", monospace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; overflow: auto; background-color: var(--highlight-bg); border-radius: 5px; color: var(--highlight-color); overflow-wrap: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><code style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; background-color: transparent; white-space: inherit;\">[{<span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"sku_id\"</span>: <span class=\"hljs-number\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-namespace);\">612552892</span>, <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"quantity\"</span>: <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"1\"</span>}, {<span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"sku_id\"</span>: <span class=\"hljs-number\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-namespace);\">625512336</span>, <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"quantity\"</span>: <span class=\"hljs-string\" style=\"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 13px; vertical-align: baseline; box-sizing: inherit; color: var(--highlight-variable);\">\"10\"</span>}]\r\n</code></pre><p style=\"margin-top: 0px; margin-right: 0px; margin-bottom: var(--s-prose-spacing); margin-left: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">so, should i make the key too? but.. How ?</p><p style=\"margin: 0px; padding: 0px; border: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-weight: 400; font-stretch: inherit; line-height: inherit; font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear: both; color: rgb(36, 39, 41); letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">and I think I have to make it in foreach loop right? anyone can help me?</p>', NULL, NULL, 'product/2021/05/78df370b3e9c198396d6289c5a7db919.jpeg', '54.00', 12, 29, '88.00', NULL, '77.00', NULL, NULL, NULL, '[\"red\",\"blue\",\"black\"]', NULL, '[\"L\",\"M\",\"XL\"]', NULL, NULL, '2021-05-05 03:18:06', '2021-05-19 01:15:49', 1, 1, 1, 1),
-(76, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '454.00', 12, 29, '85.00', NULL, '77.00', NULL, NULL, NULL, 'Red', NULL, 'L', NULL, NULL, '2021-05-05 03:18:06', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(77, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '464.00', 12, 29, '89.00', NULL, '87.00', NULL, NULL, NULL, 'Blue', NULL, 'L', NULL, NULL, '2021-05-05 03:18:06', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(78, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '5.00', 12, 29, '84.00', NULL, '45.00', NULL, NULL, NULL, 'Black', NULL, 'L', NULL, NULL, '2021-05-05 03:18:07', '2021-05-25 12:40:31', 0, 0, 0, 0),
-(79, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '790.00', 12, 29, '82.00', NULL, '32.00', NULL, NULL, NULL, 'Red', NULL, 'M', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(80, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '133.00', 12, 29, '81.00', NULL, '46.00', NULL, NULL, NULL, 'Blue', NULL, 'M', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(81, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '787.00', 12, 29, '91.00', NULL, '72.00', NULL, NULL, NULL, 'Black', NULL, 'M', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(82, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '76.00', 12, 29, '87.00', NULL, '25.00', NULL, NULL, NULL, 'Red', NULL, 'XL', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(83, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '46.00', 12, 29, '68.00', NULL, '54.00', NULL, NULL, NULL, 'Blue', NULL, 'XL', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0),
-(84, NULL, NULL, 'simple', 75, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '48.00', 12, 29, '88.00', NULL, '78.00', NULL, NULL, NULL, 'Black', NULL, 'XL', NULL, NULL, '2021-05-05 03:18:07', '2021-05-19 01:15:49', 0, 0, 0, 0);
+INSERT INTO `products` (`id`, `sku`, `barcode`, `type`, `parent_id`, `status`, `user_id`, `title`, `slug`, `short_description`, `description`, `new`, `featured`, `thumbnail`, `qty`, `price`, `cost`, `special_price`, `special_price_from`, `special_price_to`, `weight`, `color`, `color_label`, `size`, `size_label`, `deleted_at`, `created_at`, `updated_at`, `trackQuantity`, `stockOutSell`, `readyToShipping`, `noShappingCharge`) VALUES
+(1, '0781', '0781', 'variant', NULL, 1, 1, 'Pant', 'pant', NULL, '<p><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">With BrowserStack, you can test your mobile apps and websites across 2,000+ real devices, browsers and operating systems.</span><br style=\"font-family: sans-serif; color: rgb(51, 51, 51); font-size: 14px;\"><br style=\"font-family: sans-serif; color: rgb(51, 51, 51); font-size: 14px;\"><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">Try any of our interactive or automated testing products, available with your free trial.</span><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">With BrowserStack, you can test your mobile apps and websites across 2,000+ real devices, browsers and operating systems.</span><br></p><br style=\"font-family: sans-serif; color: rgb(51, 51, 51); font-size: 14px;\"><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">Try any of our interactive or automated testing products, available with your free trial.</span><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">With BrowserStack, you can test your mobile apps and websites across 2,000+ real devices, browsers and operating systems.</span><br style=\"font-family: sans-serif; color: rgb(51, 51, 51); font-size: 14px;\"><br style=\"font-family: sans-serif; color: rgb(51, 51, 51); font-size: 14px;\"><span style=\"color: rgb(51, 51, 51); font-family: sans-serif; font-size: 14px;\">Try any of our interactive or automated testing products, available with your free trial.</span>', NULL, NULL, 'product/2021/06/b16ce5cf3e76f795385fecc77842d705.jpg', '90.00', '3000.00', NULL, '2000.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 06:13:41', '2023-04-07 17:05:35', 1, 1, 1, 1),
+(2, '567657', '567565', 'simple', 1, 1, 1, 'M / Red', NULL, NULL, NULL, NULL, NULL, NULL, '200.00', '2000.00', NULL, NULL, NULL, NULL, NULL, 'Red', '#FF0000', 'M', '#FF0000', NULL, '2021-04-30 06:13:41', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(3, '4563456', '34664', 'simple', 1, 1, 1, 'L / Red', NULL, NULL, NULL, NULL, NULL, NULL, '2000.00', '5666.00', NULL, NULL, NULL, NULL, NULL, 'Red', '#FF0000', 'L', '#FF0000', NULL, '2021-04-30 06:13:41', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(4, '44', '44', 'variant', NULL, 1, 1, 'Shirt', 'shirt', NULL, '<p>hjihkjfh</p>', NULL, NULL, 'public/product/4/6dd01ae83f7870be62f7451734a0a7b0.png', '44.00', '2000.00', NULL, '1888.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:07:10', '2021-04-30 17:59:18', NULL, NULL, 1, 1),
+(5, '33', '33', 'simple', 4, 1, 1, 'M / Green', NULL, NULL, NULL, NULL, NULL, NULL, '33.00', '33.00', NULL, NULL, NULL, NULL, NULL, 'Green', '#008000', 'M', '#008000', NULL, '2021-04-30 09:07:10', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(7, '677', '788', 'variant', NULL, 1, 1, 'Owen Sound Attack T-Shirt', 'upscale-independent-basketball-footwear', NULL, '<p><span style=\"font-family: Roboto; font-size: 17px;\">The Big Baller Brand ZO2, the official shoe of UCLA\'s Lonzo Ball, has just been revealed. The Big Baller Brand was created by LaVar Ball, father of Lonzo. The elder ball is attempting to take on big shoe companies like Nike and Adidas, forgoing the shoe sponsorship deals NBA players normally sign. Lonzo Ball is expected to be a top pick in the upcoming NBA draft, and when he finally hits the court as a professional these are the shoes that will be on his feet.</span><br style=\"outline-color: var(--btn-hover); font-family: Roboto; font-size: 17px;\"><br style=\"outline-color: var(--btn-hover); font-family: Roboto; font-size: 17px;\"><span style=\"font-family: Roboto; font-size: 17px;\">What makes the Big Baller Brand ZO2 so unique is its price point. The Z02 Prime starts at $495, although that price balloons to $695 for sizes 14 and up. Then there\'s the Z02 Wet which is autographed by Lonzo Ball. That starts at $995 ($1,195 if you wear a size 14 or higher) and comes inside an acrylic case with white LED lighting. Should you be unable to afford the Big Baller Brand ZO2 shoes the company also sells sandals for a cool $220 a pair.</span><br></p>', NULL, NULL, 'public/product/7/ab890f9d96b04c02f72c4bb0cc4c5031.jpg', '98.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 11:18:44', '2021-05-03 19:26:34', NULL, NULL, 1, 1),
+(8, NULL, '675', 'simple', 7, 1, 1, '34 / Black', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '4000.00', NULL, NULL, NULL, NULL, NULL, 'Black', '#000000', '34', '#000000', NULL, '2021-04-30 11:18:44', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(9, NULL, '897', 'simple', 7, 1, 1, '36 / Black', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '4000.00', NULL, NULL, NULL, NULL, NULL, 'Black', '#000000', '36', '#000000', NULL, '2021-04-30 11:18:44', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(10, NULL, '766', 'simple', 7, 1, 1, '45 / Black', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '4000.00', NULL, NULL, NULL, NULL, NULL, 'Black', '#000000', '45', '#000000', NULL, '2021-04-30 11:18:44', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(11, '56778', '6789', 'variant', NULL, 1, 1, 'Title B', 'title-b', NULL, '<p style=\"font-size: 18px; line-height: 1.5; color: rgb(17, 17, 17); font-family: \"Precisely Demi\";\">We are the architects behind the accuracy and consistency of your data. Our approach gives you the confidence and context to reach beyond today’s performance. We move and help process data with integrity, giving tomorrow’s market leaders the ability to make better decisions and, ultimately, build new possibilities.</p><p style=\"font-size: 18px; line-height: 1.5; color: rgb(17, 17, 17); font-family: \"Precisely Demi\";\">With unmatched expertise across data domains, disciplines and platforms, we equip you with high quality, enriched insights that fuel innovation and power decision-making at scale.</p><p style=\"font-size: 18px; line-height: 1.5; color: rgb(17, 17, 17); font-family: \"Precisely Demi\";\">Simply put, we build trust in your data.</p>', NULL, NULL, 'public/product/11/bdd5487939baaf6ded9ea5b0435fca7a.jpg', '5.00', '3000.00', NULL, '2999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:51:14', '2021-05-03 19:28:35', 1, 1, 1, 1),
+(12, NULL, '444', 'simple', 11, 1, 1, 'M / Red', NULL, NULL, NULL, NULL, NULL, NULL, '44.00', '444.00', NULL, NULL, NULL, NULL, NULL, 'Red', '#FF0000', 'M', '#FF0000', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(13, NULL, '444', 'simple', 11, 1, 1, 'M / Blue', NULL, NULL, NULL, NULL, NULL, NULL, '44.00', '444.00', NULL, NULL, NULL, NULL, NULL, 'Blue', '#0000FF', 'M', '#0000FF', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(14, NULL, '44', 'simple', 11, 1, 1, 'XL / Red', NULL, NULL, NULL, NULL, NULL, NULL, '44.00', '44.00', NULL, NULL, NULL, NULL, NULL, 'Red', '#FF0000', 'XL', '#FF0000', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(15, NULL, '4', 'simple', 11, 1, 1, 'XL / Blue', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '4.00', NULL, NULL, NULL, NULL, NULL, 'Blue', '#0000FF', 'XL', '#0000FF', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(16, NULL, '4', 'simple', 11, 1, 1, 'XXL / Red', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '4.00', NULL, NULL, NULL, NULL, NULL, 'Red', '#FF0000', 'XXL', '#FF0000', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(17, NULL, '4', 'simple', 11, 1, 1, 'XXL / Blue', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '4.00', NULL, NULL, NULL, NULL, NULL, 'Blue', '#0000FF', 'XXL', '#0000FF', NULL, '2021-04-30 16:51:15', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(18, 'FL-3001-BLK-13S', NULL, 'simple', NULL, 0, 48, 'Barrie Colts', 'barrie-colts', NULL, '<p>Demo Text. <span style=\"font-size: 1rem;\">Demo Text. </span><span style=\"font-size: 1rem;\">Demo Text. </span><span style=\"font-size: 1rem;\">Demo Text. </span><span style=\"font-size: 1rem;\">Demo Text. </span><span style=\"font-size: 1rem;\">Demo Text. </span></p>', NULL, NULL, 'public/product/18/74511939ed983301d16d6ddd5643aff0.jpg', '50.00', '100.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 23:19:59', '2021-05-03 19:28:13', NULL, NULL, NULL, NULL),
+(19, 'AB-1110', NULL, 'simple', NULL, 0, 48, 'TShirt', 'tshirt', NULL, '<p>Demo Text</p>', NULL, NULL, 'public/product/19/b2f0e76845432a823cab56e0abd54e0f.jpg', '10.00', '30.00', NULL, '20.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 23:21:13', '2021-05-03 19:27:57', 1, NULL, NULL, NULL),
+(20, 'sdg689sfd', NULL, 'variant', NULL, 1, 1, 'Test Night Monday', 'test-night-monday', NULL, '<p><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif; font-size: 14px;\">A draft is a process used in some countries and sports to allocate certain players to teams. In a draft, teams take turns selecting from a pool of eligible players. When a team selects a player, the team receives exclusive rights to sign that player to a contract, and no other team in the league may sign the player.</span><br></p>', NULL, NULL, 'product/2021/05', '5656.00', '3000.00', NULL, '2897.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 1, 1, 1, 1),
+(21, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '3000.00', NULL, '2888.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(22, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(23, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(24, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(25, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(26, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(27, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(28, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(29, NULL, '222', 'simple', 20, 1, 1, 'Test Night Monday', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '555.00', NULL, '444.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 16:25:00', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(30, '9999', NULL, 'variant', NULL, 0, 1, 'Barrie Colts T-Shirt', 'last-test-product', NULL, '<p><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif; font-size: 14px;\">A draft is a process used in some countries and sports to allocate certain players to teams. In a draft, teams take turns selecting from a pool of eligible players. When a team selects a player, the team receives exclusive rights to sign that player to a contract, and no other team in the league may sign the player.</span></p><p><br></p><p><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif; font-size: 14px;\">A draft is a process used in some countries and sports to allocate certain players to teams. In a draft, teams take turns selecting from a pool of eligible players. When a team selects a player, the team receives exclusive rights to sign that player to a contract, and no other team in the league may sign the player.</span><span style=\"color: rgb(77, 81, 86); font-family: arial, sans-serif; font-size: 14px;\"><br></span><br></p>', NULL, NULL, 'product/2021/05/9ccde8ec9d786fa4f36dd55917296107.jpg', '99.00', '4000.00', NULL, '3999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:15:33', '2021-05-10 07:42:40', 1, 1, 1, 1),
+(31, NULL, '5255', 'simple', 30, 1, 1, 'Last Test Product', NULL, NULL, NULL, NULL, NULL, NULL, '700.00', '4000.00', NULL, '3999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:15:33', '2021-05-24 16:25:49', 0, 0, 0, 0),
+(32, NULL, '35434', 'simple', 30, 1, 1, 'Last Test Product', NULL, NULL, NULL, NULL, NULL, NULL, '7.00', '4000.00', NULL, '3999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:15:33', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(33, NULL, '3453', 'simple', 30, 1, 1, 'Last Test Product', NULL, NULL, NULL, NULL, NULL, NULL, '7.00', '4000.00', NULL, '3999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:15:33', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(34, NULL, '43534', 'simple', 30, 1, 1, 'Last Test Product', NULL, NULL, NULL, NULL, NULL, NULL, '7.00', '4000.00', NULL, '3999.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:15:33', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(35, 'Fl-2002-GRY-13S', NULL, 'variant', NULL, 1, 1, 'Errie Otters TShirt', 'errie-otters-tshirt', NULL, '<p>Demo Description</p>', NULL, NULL, 'product/2021/05/5a3c7dc32a294a722b810d99a6f6404f.jpg', '100.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:34:16', '2021-05-19 11:05:51', 1, NULL, NULL, NULL),
+(36, NULL, NULL, 'simple', 35, 1, 1, 'Errie Otters TShirt', NULL, NULL, NULL, NULL, NULL, NULL, '100.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:34:16', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(37, NULL, NULL, 'simple', 35, 1, 1, 'Errie Otters TShirt', NULL, NULL, NULL, NULL, NULL, NULL, '100.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:34:16', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(38, NULL, NULL, 'simple', 35, 1, 1, 'Errie Otters TShirt', NULL, NULL, NULL, NULL, NULL, NULL, '100.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:34:16', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(39, 'FL-3021-GRY-13S', NULL, 'simple', NULL, 1, 1, 'Guelph T-Shirt', 'guelph-t-shirt', NULL, '<p>Demo Text</p>', NULL, NULL, 'product/2021/05/aa0eb4f9409c4177eeb826815fecfc60.jpg', '100.00', '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:03:32', '2021-05-19 11:05:51', 1, NULL, NULL, NULL),
+(40, '4465', NULL, 'simple', NULL, 1, 1, 'London Knights T-Shirt', 'london-knights-t-shirt', NULL, NULL, NULL, NULL, 'product/2021/05/4899a46e8cb8be6b0bd313790bd45d36.jpg', '100.00', '40.00', NULL, '30.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:20:26', '2021-05-19 11:05:51', 1, NULL, 1, NULL),
+(41, '5456466', NULL, 'simple', NULL, 1, 1, 'Niagara IceDogs T-Shirt', 'niagara-icedogs-t-shirt', NULL, NULL, NULL, NULL, 'product/2021/05/e23f5f79fb4a8721da2bcdec07beb4c0.jpg', '20.00', '30.00', NULL, '20.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:25:26', '2021-05-19 11:05:51', 1, NULL, NULL, NULL),
+(42, '5556', NULL, 'simple', NULL, 1, 1, 'Barrie Colts T-Shirt- Grey', 'barrie-colts-t-shirt-grey', NULL, NULL, NULL, NULL, 'product/2021/05/beec3e454d21470ff9d2b5c3cbb9b203.jpg', '100.00', '30.00', NULL, '25.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:30:20', '2021-05-19 11:05:51', 1, NULL, NULL, NULL),
+(43, '30225', NULL, 'simple', NULL, 1, 1, 'Flint Firebirds T-Shirt', 'flint-firebirds-t-shirt', NULL, NULL, NULL, NULL, 'product/2021/05/358455b03b6a1ceb066d487f9941cdd8.jpg', '200.00', '30.00', NULL, '25.00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 20:18:04', '2021-05-19 11:05:51', 1, NULL, NULL, NULL),
+(46, '332', '232', 'variant', NULL, 1, 1, '10th may', '10th-may', NULL, '<p><span style=\"color: rgb(50, 55, 60); font-family: \"Open Sans\", sans-serif; font-size: 18px;\">Max Mega Menu will automatically convert your existing menu or menus into a mega menu. You can then add any WordPress widget to your menu, restyle your menu using the theme editor and change the menu behaviour using the built in settings. Max Mega Menu is a complete menu management plugin, perfect for taking control of your existing menu and turning it into a user-friendly, accessible and touch ready menu with just a few clicks.</span></p><p><span style=\"color: rgb(50, 55, 60); font-family: \"Open Sans\", sans-serif; font-size: 18px;\">Max Mega Menu will automatically convert your existing menu or menus into a mega menu. You can then add any WordPress widget to your menu, restyle your menu using the theme editor and change the menu behaviour using the built in settings. Max Mega Menu is a complete menu management plugin, perfect for taking control of your existing menu and turning it into a user-friendly, accessible and touch ready menu with just a few clicks.</span><span style=\"color: rgb(50, 55, 60); font-family: \"Open Sans\", sans-serif; font-size: 18px;\"><br></span><br></p>', NULL, NULL, NULL, '23.00', '333.00', NULL, '322.00', NULL, NULL, NULL, '[\"Black\",\"Blue\"]', NULL, '[\"M\",\"XXL\"]', NULL, NULL, '2021-05-10 07:45:50', '2021-05-10 07:47:20', 1, 1, 1, 1),
+(47, '2323', '2323', 'simple', 46, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '22.00', '222.00', NULL, '222.00', NULL, NULL, NULL, 'Black', '#000000', 'M', '#000000', NULL, '2021-05-10 07:45:50', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(48, '333', '333', 'simple', 46, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '33.00', '333.00', NULL, '333.00', NULL, NULL, NULL, 'Blue', '#0000FF', 'M', '#0000FF', NULL, '2021-05-10 07:45:50', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(49, '444', '444', 'simple', 46, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '444.00', NULL, '444.00', NULL, NULL, NULL, 'Black', '#000000', 'XXL', '#000000', NULL, '2021-05-10 07:45:50', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(50, '4343', '4343', 'simple', 46, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '43.00', NULL, '43.00', NULL, NULL, NULL, 'Blue', '#0000FF', 'XXL', '#0000FF', NULL, '2021-05-10 07:45:50', '2021-05-19 11:05:51', 0, 0, 0, 0),
+(51, '111', '111', 'variant', NULL, 1, 1, 'NIAGARA ICEDOGS T-SHIRTs', 'niagara-icedogs-t-shirts', NULL, '<h2 style=\"margin-right: 0px; margin-bottom: 0px; margin-left: 0px; font-weight: 600; font-size: 22px; padding: 0px 0px 5px; text-transform: uppercase; color: rgb(33, 37, 41); font-family: Ubuntu;\">NIAGARA ICEDOGS T-SHIRT</h2>', NULL, NULL, 'product/2021/05/9ecfd54e42ce31d951218a65a7c7fa09.jpg', '11.00', '222.00', NULL, '110.00', NULL, NULL, NULL, '[\"Black\"]', NULL, '[\"M\"]', NULL, NULL, '2021-05-10 08:41:12', '2021-05-19 11:05:51', 1, 1, 1, 1),
+(52, NULL, '111', 'simple', 51, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '100.00', '111.00', NULL, '110.00', NULL, NULL, NULL, 'Black', '#000000', 'M', '#000000', NULL, '2021-05-10 08:41:12', '2021-05-24 19:16:51', 0, 0, 0, 0),
+(53, '567657-r', '567565', 'simple', 1, 1, 1, 'M / Red', NULL, NULL, NULL, NULL, NULL, NULL, '200.00', '2000.00', NULL, NULL, NULL, NULL, NULL, 'Black', '#000000', 'L', '#FF0000', NULL, '2021-06-11 01:25:31', '2021-06-11 01:25:31', 0, 0, 0, 0),
+(54, '2', '221', 'variant', NULL, 1, 1, 'RIDE THE PINE', 'ride-the-pine', NULL, '<div class=\"product-single__tabs\" style=\"margin: 0px; padding-top: 10px; color: rgb(51, 51, 51); font-family: ProximaNova-Regular, Helvetica, Arial, sans-serif;\"><div class=\"product-single__tab tab-active\" style=\"font-family: league-gothic; color: rgb(17, 17, 17); padding: 0px 12px 0px 0px; font-size: 28px; line-height: 24px; text-transform: uppercase; cursor: pointer; border-bottom: none; margin-bottom: 0px; position: relative; display: inline-block;\"><span style=\"text-align: inherit;\">ITEM DETAILS</span></div></div><div class=\"product-single__description rte\" itemprop=\"description\" style=\"margin-bottom: 10px; color: rgb(34, 34, 34); font-size: 13px; padding: 13px 0px; font-family: ProximaNova-Regular, Helvetica, Arial, sans-serif;\"><div class=\"product-single__description-block small--hide\" style=\"margin-bottom: 10px;\"><p style=\"margin-right: 0px; margin-bottom: 10px; margin-left: 0px; text-align: inherit;\">This one goes out to the classic group of hero’s that live for old b-e-e-r league, and everyone knows at least one of them. The only thing worse than their chirps are their hands. They wheel out in full cages rocking mouth guards and a jersey tuck that belongs to Wayner and no one else. These jokers are the dust of the league and belong on the bench riding the pine. Sliver me Timbers!</p><ul style=\"margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 10px 0px 0px 18px; list-style-type: circle;\"><li style=\"margin-bottom: 5px;\"><span style=\"text-align: inherit;\">Adult</span>&nbsp;5 Panel Cap</li><li style=\"margin-bottom: 5px;\">50% Cotton 50% Polyester</li><li style=\"margin-bottom: 5px;\">Cotton Patch with Embroidery</li></ul></div></div>', NULL, NULL, 'product/2021/06/d8970dd6abc6ae52355b7103e8e02449.jpg', '3.00', '35.00', NULL, '45.00', NULL, NULL, NULL, '[\"Green\"]', NULL, '[\"M\",\"L\"]', NULL, NULL, '2021-06-16 19:24:03', '2021-06-16 19:24:03', 1, 1, 1, 0),
+(55, '231', '221', 'simple', 54, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', '35.00', NULL, '45.00', NULL, NULL, NULL, 'Green', '#008000', 'M', NULL, NULL, '2021-06-16 19:24:03', '2021-06-16 19:24:03', 0, 0, 0, 0),
+(56, '232', '221', 'simple', 54, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', '35.00', NULL, '45.00', NULL, NULL, NULL, 'Green', '#008000', 'L', NULL, NULL, '2021-06-16 19:24:03', '2021-06-16 19:24:03', 0, 0, 0, 0),
+(57, '80', '80', 'variant', NULL, 1, 1, 'GAMER HOODIE (UNISEX)', 'gamer-hoodie-unisex', NULL, '<div class=\"product-single__tabs\" style=\"margin: 0px; padding-top: 10px; color: rgb(51, 51, 51); font-family: ProximaNova-Regular, Helvetica, Arial, sans-serif;\"><div class=\"product-single__tab tab-active\" style=\"font-family: league-gothic; color: rgb(17, 17, 17); padding: 0px 12px 0px 0px; font-size: 28px; line-height: 24px; text-transform: uppercase; cursor: pointer; border-bottom: none; margin-bottom: 0px; position: relative; display: inline-block;\"><span style=\"text-align: inherit;\">ITEM DETAILS</span></div></div><div class=\"product-single__description rte\" itemprop=\"description\" style=\"margin-bottom: 10px; color: rgb(34, 34, 34); font-size: 13px; padding: 13px 0px; font-family: ProximaNova-Regular, Helvetica, Arial, sans-serif;\"><div class=\"product-single__description-block small--hide\" style=\"margin-bottom: 10px;\"><p style=\"margin-right: 0px; margin-bottom: 10px; margin-left: 0px; text-align: inherit;\">You are all about results. No time for half-assin’ it. When the championship is on the line, you hustle with a little bit of flash to seal the deal. You are a true Gamer, and your teammates respect you for that!</p><ul style=\"margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 10px 0px 0px 18px; list-style-type: circle;\"><li style=\"margin-bottom: 5px;\"><p style=\"margin-right: 0px; margin-bottom: 10px; margin-left: 0px; text-align: inherit;\">80% Cotton, 20% Polyester</p></li></ul></div></div>', NULL, NULL, 'product/2023/04/c79b08b42fe562e0b4295135573453f1.jpg', '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, '[\"White\",\"Silver\",\"Gray\"]', NULL, '[\"M\",\"L\",\"XL\",\"XXL\"]', NULL, NULL, '2021-06-16 19:28:20', '2023-04-07 17:21:48', 1, 1, 1, 1),
+(58, '80-1', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'White', '#FFFFFF', 'M', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(59, '80-2', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'M', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(60, '80-3', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Gray', '#808080', 'M', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(61, '80-4', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'White', '#FFFFFF', 'L', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(62, '80-5', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'L', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(63, '80-6', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Gray', '#808080', 'L', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(64, '80-7', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'White', '#FFFFFF', 'XL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(65, '80-8', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'XL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(66, '80-9', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Gray', '#808080', 'XL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(67, '80-10', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'White', '#FFFFFF', 'XXL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(68, '80-11', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'XXL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(69, '80-12', '80', 'simple', 57, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '8.00', '80.00', NULL, '90.00', NULL, NULL, NULL, 'Gray', '#808080', 'XXL', NULL, NULL, '2021-06-16 19:28:20', '2021-06-16 19:28:20', 0, 0, 0, 0),
+(70, 'sdfsdf', NULL, 'variant', NULL, 0, 1, 'test product', 'test-product', NULL, '<p>afsadf<br></p>', NULL, NULL, 'product/2021/10/fa1feec731adeb52d1f17ee6b264b42b.jpg', '50.00', '500.00', NULL, '400.00', NULL, NULL, NULL, '[\"Silver\",\"Gray\",\"Black\"]', NULL, '[\"XL\",\"L\",\"M\"]', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:41', NULL, NULL, NULL, NULL),
+(71, 'sdfsdf-1', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '50.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'XL', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:40', 0, 0, 0, 0),
+(72, 'sdfsdf-2', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '50.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Gray', '#808080', 'XL', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:40', 0, 0, 0, 0),
+(73, 'sdfsdf-3', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '499.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Black', '#000000', 'XL', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:40', 0, 0, 0, 0),
+(74, 'sdfsdf-4', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '5.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'L', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:40', 0, 0, 0, 0),
+(75, 'sdfsdf-5', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '4.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Gray', '#808080', 'L', NULL, NULL, '2021-10-19 13:23:40', '2021-10-19 13:23:40', 0, 0, 0, 0),
+(76, 'sdfsdf-6', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '100.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Black', '#000000', 'L', NULL, NULL, '2021-10-19 13:23:41', '2021-10-19 13:24:27', 0, 0, 0, 0),
+(77, 'sdfsdf-7', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '3.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Silver', '#C0C0C0', 'M', NULL, NULL, '2021-10-19 13:23:41', '2021-10-19 13:23:41', 0, 0, 0, 0),
+(78, 'sdfsdf-8', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '1.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Gray', '#808080', 'M', NULL, NULL, '2021-10-19 13:23:41', '2021-10-19 13:23:41', 0, 0, 0, 0),
+(79, 'sdfsdf-9', NULL, 'simple', 70, 0, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, '20.00', '500.00', NULL, '400.00', NULL, NULL, NULL, 'Black', '#000000', 'M', NULL, NULL, '2021-10-19 13:23:41', '2021-10-19 13:23:41', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -53083,29 +53283,29 @@ CREATE TABLE `product_attributes` (
 --
 
 INSERT INTO `product_attributes` (`product_id`, `attribute_id`) VALUES
-(12, 1),
-(12, 2),
-(13, 1),
-(13, 2),
+(1, 1),
+(1, 2),
+(4, 1),
+(4, 2),
+(7, 1),
+(7, 2),
+(11, 1),
+(11, 2),
+(20, 1),
+(20, 2),
+(30, 1),
+(30, 2),
 (35, 1),
-(35, 2),
-(52, 1),
-(52, 2),
-(61, 1),
-(61, 2),
-(75, 1),
-(75, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_attribute_options`
---
-
-CREATE TABLE `product_attribute_options` (
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `attribute_option_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(46, 1),
+(46, 2),
+(51, 1),
+(51, 2),
+(54, 1),
+(54, 2),
+(57, 1),
+(57, 2),
+(70, 1),
+(70, 2);
 
 -- --------------------------------------------------------
 
@@ -53123,23 +53323,44 @@ CREATE TABLE `product_categories` (
 --
 
 INSERT INTO `product_categories` (`product_id`, `category_id`) VALUES
-(4, 1),
-(4, 4),
-(12, 1),
-(12, 2),
-(13, 4),
-(13, 2),
-(35, 1),
-(35, 4),
-(35, 2),
-(49, 1),
-(52, 1),
-(61, 1),
-(61, 2),
-(75, 1),
-(75, 4),
-(75, 2),
-(4, 9);
+(18, 14),
+(19, 14),
+(20, 13),
+(20, 14),
+(30, 11),
+(35, 14),
+(35, 13),
+(39, 13),
+(39, 11),
+(39, 14),
+(7, 13),
+(7, 14),
+(40, 14),
+(40, 13),
+(41, 13),
+(41, 14),
+(42, 14),
+(43, 13),
+(43, 14),
+(46, 16),
+(54, 17),
+(54, 18),
+(57, 11),
+(70, 13),
+(70, 14),
+(70, 11),
+(1, 13),
+(1, 11),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(57, 13),
+(57, 14),
+(57, 15),
+(57, 16),
+(57, 17);
 
 -- --------------------------------------------------------
 
@@ -53172,28 +53393,33 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `type`, `path`, `product_id`, `created_at`, `updated_at`) VALUES
-(5, NULL, 'product/4/77fa5b58782ba90d4a46b128d8f26290.jpeg', 4, '2021-04-28 09:43:55', '2021-04-28 09:43:55'),
-(6, NULL, 'product/4/1700807eb80f154a2645710c1b4ee150.png', 4, '2021-04-28 09:44:34', '2021-04-28 09:44:34'),
-(7, NULL, 'product/4/32966cccd81a03b2868fb9a8cbc37c7c.jpeg', 4, '2021-04-28 10:00:19', '2021-04-28 10:00:19'),
-(8, NULL, 'product/4/c9e4123e2c7d875b40ace28b1a1a3469.png', 4, '2021-04-28 10:02:15', '2021-04-28 10:02:15'),
-(9, NULL, 'product/13/290f6fb2848a9464e1087f5abc1822b9.png', 13, '2021-04-30 11:49:00', '2021-04-30 11:49:00'),
-(10, NULL, 'product/13/fde4c2f83e36efeac7f9049bed952656.jpeg', 13, '2021-04-30 11:49:12', '2021-04-30 11:49:12'),
-(11, NULL, 'product/13/c97ed37044e6e326ba3142865247310a.jpeg', 13, '2021-04-30 11:53:24', '2021-04-30 11:53:24'),
-(13, NULL, 'product/13/567a85653516266914f065bec6bdec6d.jpeg', 13, '2021-04-30 11:54:08', '2021-04-30 11:54:08'),
-(14, NULL, 'product/13/d7eef35007bdb8c67fff33b51715a46f.png', 13, '2021-04-30 11:55:27', '2021-04-30 11:55:27'),
-(15, NULL, 'product/13/388410ec1407ec3a5fd8888585f397d1.jpeg', 13, '2021-04-30 11:55:43', '2021-04-30 11:55:43'),
-(19, NULL, 'product/2021/05/91abb4fdb256142bb2dece4eb06d5346.png', 23, '2021-05-02 15:56:58', '2021-05-02 15:56:58'),
-(20, NULL, 'product/2021/05/d769603b3202406508e75eeebfe99b89.jpeg', 23, '2021-05-02 15:56:59', '2021-05-02 15:56:59'),
-(26, NULL, 'product/2021/05/18f48f5fad833f5faf9c809e8e318fcc.jpeg', 35, '2021-05-03 14:50:22', '2021-05-03 14:50:22'),
-(27, NULL, 'product/2021/05/9001e128ae3ce957989adc4f62217b09.jpeg', 35, '2021-05-03 15:04:08', '2021-05-03 15:04:08'),
-(28, NULL, 'product/2021/05/d61a46b6a6c1c78673414e277c089856.jpeg', 35, '2021-05-03 15:12:03', '2021-05-03 15:12:03'),
-(29, NULL, 'product/2021/05/43f2a2456de26d177aca899f89039acd.jpeg', 35, '2021-05-03 17:27:10', '2021-05-03 17:27:10'),
-(30, NULL, 'product/2021/05/5bccac93c2e229b357699b38727a5a1a.jpeg', 61, '2021-05-04 15:13:01', '2021-05-04 15:13:01'),
-(31, NULL, 'product/2021/05/936d3083722484a87fd7b6c565374c30.jpeg', 61, '2021-05-04 15:13:01', '2021-05-04 15:13:01'),
-(32, NULL, 'product/2021/05/fcd9026cb6a18d3ff63be96a5b79ee8b.jpeg', 61, '2021-05-04 15:13:01', '2021-05-04 15:13:01'),
-(33, NULL, 'product/2021/05/78df370b3e9c198396d6289c5a7db919.jpeg', 75, '2021-05-05 03:18:07', '2021-05-05 03:18:07'),
-(34, NULL, 'product/2021/05/f72154e8e7b02470ee726cbdb2343111.jpeg', 75, '2021-05-05 03:18:07', '2021-05-05 03:18:07'),
-(35, NULL, 'product/2021/05/100ccc0bda7ec83de0a4376a0f40925c.jpeg', 75, '2021-05-05 03:18:07', '2021-05-05 03:18:07');
+(1, NULL, 'public/product/4/6dd01ae83f7870be62f7451734a0a7b0.png', 4, '2021-04-30 09:09:27', '2021-04-30 09:09:27'),
+(8, NULL, 'public/product/19/b2f0e76845432a823cab56e0abd54e0f.jpg', 19, '2021-04-30 23:24:42', '2021-04-30 23:24:42'),
+(11, NULL, 'product/2021/05/70e4cd296590c4a48c04d60f1f59417e.jpg', 20, '2021-05-03 17:02:39', '2021-05-03 17:02:39'),
+(15, NULL, 'product/2021/05/5a3c7dc32a294a722b810d99a6f6404f.jpg', 35, '2021-05-03 18:34:16', '2021-05-03 18:34:16'),
+(16, NULL, 'product/2021/05/30f20251aff57a6e8774d9ec6ac49bda.jpg', 18, '2021-05-03 18:56:24', '2021-05-03 18:56:24'),
+(17, NULL, 'product/2021/05/502ac383beafab3283a9abb3c85d1bbb.jpg', 30, '2021-05-03 19:01:01', '2021-05-03 19:01:01'),
+(18, NULL, 'product/2021/05/aa0eb4f9409c4177eeb826815fecfc60.jpg', 39, '2021-05-03 19:03:32', '2021-05-03 19:03:32'),
+(20, NULL, 'product/2021/05/4899a46e8cb8be6b0bd313790bd45d36.jpg', 40, '2021-05-03 19:20:26', '2021-05-03 19:20:26'),
+(21, NULL, 'product/2021/05/eb6645333526f904d8e607e6dacef305.jpg', 7, '2021-05-03 19:23:44', '2021-05-03 19:23:44'),
+(22, NULL, 'product/2021/05/e23f5f79fb4a8721da2bcdec07beb4c0.jpg', 41, '2021-05-03 19:25:26', '2021-05-03 19:25:26'),
+(23, NULL, 'product/2021/05/beec3e454d21470ff9d2b5c3cbb9b203.jpg', 42, '2021-05-03 19:30:20', '2021-05-03 19:30:20'),
+(24, NULL, 'product/2021/05/358455b03b6a1ceb066d487f9941cdd8.jpg', 43, '2021-05-03 20:18:04', '2021-05-03 20:18:04'),
+(30, NULL, 'product/2021/05/9a8dca6b144b608e84e711e02ca986e3.jpg', 43, '2021-05-07 17:49:08', '2021-05-07 17:49:08'),
+(31, NULL, 'product/2021/05/9ecfd54e42ce31d951218a65a7c7fa09.jpg', 51, '2021-05-10 08:41:12', '2021-05-10 08:41:12'),
+(32, NULL, 'product/2021/05/1cea6c459bbe522c6e09cd7abfdb5c4c.jpg', 51, '2021-05-10 08:41:12', '2021-05-10 08:41:12'),
+(37, NULL, 'product/2021/06/d8970dd6abc6ae52355b7103e8e02449.jpg', 54, '2021-06-16 19:24:03', '2021-06-16 19:24:03'),
+(38, NULL, 'product/2021/10/fa1feec731adeb52d1f17ee6b264b42b.jpg', 70, '2021-10-19 13:23:41', '2021-10-19 13:23:41'),
+(39, NULL, 'product/2021/10/7fbe5e99f120d18a000146d7a1e2f80c.jpg', 70, '2021-10-19 13:23:41', '2021-10-19 13:23:41'),
+(40, NULL, 'product/2021/10/9e470d61e126538d9d1114e3acb24ad7.jpg', 70, '2021-10-19 13:23:41', '2021-10-19 13:23:41'),
+(41, NULL, 'product/2021/10/b51a2bfa0a65c3ef1b952dde5f1356e3.jpg', 70, '2021-10-19 13:23:41', '2021-10-19 13:23:41'),
+(42, NULL, 'product/2021/10/f1924d8e36cba4e28f5ac95a46ca75b1.jpg', 70, '2021-10-19 13:23:41', '2021-10-19 13:23:41'),
+(43, NULL, 'product/2023/04/ba0bfd58ba38fd217295278fbad2657b.jpg', 1, '2023-04-07 16:45:02', '2023-04-07 16:45:02'),
+(44, NULL, 'product/2023/04/0bb2e8e54bac6fcc7cbcbf68c4b41311.jpg', 1, '2023-04-07 16:45:15', '2023-04-07 16:45:15'),
+(45, NULL, 'product/2023/04/c79b08b42fe562e0b4295135573453f1.jpg', 57, '2023-04-07 17:21:29', '2023-04-07 17:21:29'),
+(46, NULL, 'product/2023/04/238ce571fbf330953766a1b15c3ebb00.jpg', 57, '2023-04-07 17:21:34', '2023-04-07 17:21:34'),
+(47, NULL, 'product/2023/04/b0f5cb9218552a22141ba47ddcffff11.jpg', 57, '2023-04-07 17:21:41', '2023-04-07 17:21:41'),
+(48, NULL, 'product/2023/04/82e6cfa47a0e3a5b55dcdf54a1d83b80.jpg', 57, '2023-04-07 17:21:41', '2023-04-07 17:21:41');
 
 -- --------------------------------------------------------
 
@@ -53204,6 +53430,23 @@ INSERT INTO `product_images` (`id`, `type`, `path`, `product_id`, `created_at`, 
 CREATE TABLE `product_relations` (
   `parent_id` int(10) UNSIGNED NOT NULL,
   `child_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_reviews`
+--
+
+CREATE TABLE `product_reviews` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `rating` smallint(5) UNSIGNED DEFAULT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -53252,14 +53495,6 @@ CREATE TABLE `roles_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `roles_permissions`
---
-
-INSERT INTO `roles_permissions` (`role_id`, `permission_id`) VALUES
-(1, 7),
-(3, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -53299,13 +53534,19 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `sl`, `name`, `description`, `value`, `category`, `field`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'siteTitle', 'Site Title', 'Sports', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, '2021-05-20 17:47:18'),
-(2, 1, 'siteDdescription', 'Meta Description', 'Kharkhari, Rajshahi', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"textarea\"}', 1, NULL, '2020-09-09 23:51:13'),
-(3, 1, 'siteEmail', 'Site Email', 'shahadat@asiancoder.com.com', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"email\"}', 1, NULL, '2020-09-09 16:32:21'),
-(4, 1, 'sitePhone', 'Site Phone', '01757839516', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, '2020-09-30 17:10:22'),
-(10, 5, 'search', 'Item Search', 'random', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"select\",\"options\": {\"prefix\": \"Prefix\", \"random\": \"Random\"}}', 0, NULL, '2020-03-20 08:44:37'),
-(5, 2, 'homepage', 'Homepage', '1', 'website', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"number\"}', 0, NULL, '2019-12-18 08:52:31'),
-(6, 3, 'siteLogo', 'Site Logo', '1599975333.png', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"image\"}', 1, NULL, '2020-09-13 03:35:33');
+(1, 1, 'appTitle', 'Site Name', 'Fit Your Team', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, '2021-04-23 18:13:40'),
+(2, 4, 'appAddress', 'Site Address', 'Ontario, Canada', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"textarea\"}', 1, NULL, '2021-04-23 18:13:52'),
+(3, 2, 'appEmail', 'Site Email', 'admin@hanseict.xyz', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"email\"}', 1, NULL, '2021-04-23 12:02:12'),
+(4, 3, 'appPhone', 'Site Phone', '0100000000', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, '2021-04-23 12:02:24'),
+(15, 5, 'search', 'Item Search', 'random', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"select\",\"options\": {\"prefix\": \"Prefix\", \"random\": \"Random\"}}', 0, NULL, '2020-03-20 08:44:37'),
+(7, 8, 'footerDdescription', 'Footer Description', 'Some representative placeholder content for the first slide content for the.Some representative placeholder content for the first slide content for the.', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"textarea\"}', 1, NULL, NULL),
+(14, 2, 'homepage', 'Homepage', '1', 'website', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"number\"}', 0, NULL, '2019-12-18 08:52:31'),
+(6, 3, 'appLogo', 'Site Logo', 'site_file/1622452380.png', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"image\"}', 1, NULL, '2021-05-31 09:13:00'),
+(32, 1, 'appSlogan', 'Company Slogan', 'Company Slogan', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, NULL),
+(31, 4, 'metaKeywords', 'Meta Keywords', 'Sports', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"text\"}', 1, NULL, NULL),
+(8, 6, 'currencySymbol', 'Currency Symbol', '$', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"select\",\"options\": {\"$\": \"USD\", \"$\": \"CAD\"}}', 1, NULL, NULL),
+(5, 5, 'metaDdescription', 'Meta Ddescription', 'Meta Ddescription', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"textarea\"}', 1, NULL, NULL),
+(9, 7, 'currencyCode', 'Currency Code', 'USD', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"select\",\"options\": {\"USD\": \"USD\", \"CAD\": \"CAD\"}}', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53314,15 +53555,100 @@ INSERT INTO `settings` (`id`, `sl`, `name`, `description`, `value`, `category`, 
 --
 
 CREATE TABLE `shipping_methods` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `method_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `method_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_free` tinyint(1) DEFAULT NULL,
-  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`options`)),
+  `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscribes`
+--
+
+CREATE TABLE `subscribes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `firstName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `subscribes`
+--
+
+INSERT INTO `subscribes` (`id`, `firstName`, `lastName`, `email`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'sarkarpervez@gmail.com', '2021-06-01 03:53:43', '2021-06-01 03:53:43'),
+(2, NULL, NULL, 'debington30@aol.com', '2021-06-17 22:57:08', '2021-06-17 22:57:08'),
+(3, NULL, NULL, 'sippasalar@hotmail.com', '2021-07-14 06:51:19', '2021-07-14 06:51:19'),
+(4, NULL, NULL, 'shalinirx@gmail.com', '2021-07-19 10:38:02', '2021-07-19 10:38:02'),
+(5, NULL, NULL, 'margaretsenra@videotron.ca', '2021-07-25 02:44:31', '2021-07-25 02:44:31'),
+(6, NULL, NULL, 'dt_tt@yahoo.com', '2021-08-15 15:28:52', '2021-08-15 15:28:52'),
+(7, NULL, NULL, 'Brendan_Stracke62@yahoo.com', '2021-08-15 19:25:49', '2021-08-15 19:25:49'),
+(8, NULL, NULL, 'marinedog1209@yahoo.com', '2021-08-20 21:39:33', '2021-08-20 21:39:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stripe_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stripe_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stripe_plan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `trial_ends_at` timestamp NULL DEFAULT NULL,
+  `ends_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscription_items`
+--
+
+CREATE TABLE `subscription_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `subscription_id` bigint(20) UNSIGNED NOT NULL,
+  `stripe_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stripe_plan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taxonomies`
+--
+
+CREATE TABLE `taxonomies` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `slug` varchar(50) DEFAULT NULL,
+  `post_type` varchar(50) NOT NULL,
+  `parent_id` smallint(5) UNSIGNED DEFAULT NULL,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `image` varchar(180) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `taxonomies`
+--
+
+INSERT INTO `taxonomies` (`id`, `title`, `slug`, `post_type`, `parent_id`, `status`, `image`) VALUES
+(1, 'Center', 'center', 'why-us', NULL, 1, NULL),
+(2, 'Left', 'left', 'why-us', NULL, 1, NULL),
+(3, 'Right', 'right', 'why-us', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -53373,20 +53699,12 @@ CREATE TABLE `tax_rates` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `teams`
+-- Dumping data for table `tax_rates`
 --
 
-CREATE TABLE `teams` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `club_id` smallint(5) UNSIGNED NOT NULL,
-  `coach_id` smallint(5) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `tax_rates` (`id`, `identifier`, `is_zip`, `zip_code`, `zip_from`, `zip_to`, `state`, `country`, `tax_rate`, `created_at`, `updated_at`) VALUES
+(1, 'Ontario, CA', 0, NULL, NULL, NULL, 'Ontario', 'CA', '13.0000', '2021-05-24 19:15:41', '2021-05-24 19:15:41');
 
 -- --------------------------------------------------------
 
@@ -53398,8 +53716,7 @@ CREATE TABLE `users` (
   `id` smallint(5) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coachName` varchar(120) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `club_id` int(11) DEFAULT NULL,
+  `club_id` smallint(5) UNSIGNED DEFAULT NULL,
   `mobile` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -53408,34 +53725,40 @@ CREATE TABLE `users` (
   `photo` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `otp` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `stripe_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `card_brand` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `card_last_four` varchar(4) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trial_ends_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `coachName`, `club_id`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `photo`, `otp`, `created_at`, `updated_at`) VALUES
-(1, 'Shahadat Hosain', 'shahadat', NULL, NULL, '01757839516', 'shahadat@asiancoder.com', NULL, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, NULL, NULL, '2020-10-31 19:51:35', '2021-03-27 05:48:32'),
-(2, 'Global', NULL, NULL, NULL, '44', 'shahadat7@asiancoder.com', NULL, '$2y$10$Ttws5crKw7RpY8GM.riEUe5/FW39hp06m7KC32lFtRdJu6Sq5wcAO', NULL, NULL, NULL, '2021-03-19 04:26:17', '2021-04-09 16:33:18'),
-(11, 'Rajshahi', NULL, NULL, NULL, NULL, 'rajshahi@asiancoder.com', NULL, '$2y$10$ith5RRy44WGIeTHadQsI8.x7X0E8NUzqmN58eNK2PJx6AlPUQyfR2', NULL, '1619114786.png', NULL, '2021-04-22 18:06:26', '2021-04-22 18:41:41'),
-(12, 'Dhaka', NULL, NULL, NULL, NULL, 'dhahaka@gmail.com', NULL, '$2y$10$lm0MFw5uuNiPyiPtYS1koum5ctoSsq9ldgI3MN9a3IHmmXuy9mwSC', NULL, '1619155873.png', NULL, '2021-04-23 05:31:13', '2021-04-23 05:37:38'),
-(21, 'Rajshahi', NULL, NULL, NULL, NULL, 'shahadat80@gmail.com', NULL, NULL, NULL, NULL, '115634', '2021-04-23 15:59:58', '2021-04-23 15:59:58'),
-(23, 'Rajshahi Team A', NULL, 'Team A Coach', 11, NULL, 'rajteama@club.com', NULL, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, NULL, '593166', '2021-04-24 17:08:40', '2021-04-24 17:08:40'),
-(24, 'Rajshahi Team B', NULL, 'Team B Coach', 11, NULL, 'rajteamb@club.com', NULL, NULL, NULL, NULL, '975372', '2021-04-24 17:20:19', '2021-04-24 17:20:19'),
-(25, 'Natore', NULL, NULL, NULL, NULL, 'natore@asiancoder.com', NULL, NULL, NULL, NULL, '868695', '2021-05-03 20:49:50', '2021-05-03 20:49:50'),
-(26, 'Natore A', NULL, 'Team A Coach', 25, NULL, 'NATOREA@asiancoder.com', NULL, NULL, NULL, NULL, '131343', '2021-05-03 20:51:44', '2021-05-03 20:51:44'),
-(27, 'Natore A', NULL, 'Team A Coach', 25, NULL, 'natore11@asiancoder.com', NULL, NULL, NULL, NULL, '409120', '2021-05-03 20:53:45', '2021-05-03 20:53:45'),
-(28, 'Shahadat Hosain', NULL, NULL, NULL, NULL, 'shahadathosain@asiancoder.com', NULL, NULL, NULL, NULL, '86705', '2021-05-03 21:03:41', '2021-05-03 21:03:41'),
-(29, 'Dhaka A', NULL, 'Saima', 12, NULL, 'saimateam@asiancoder.com', NULL, NULL, NULL, NULL, '672761', '2021-05-10 12:30:40', '2021-05-10 12:30:40'),
-(30, 'Nawgaon', NULL, NULL, NULL, NULL, 'nawgaon@asiancoder.com', NULL, NULL, NULL, NULL, '1952', '2021-05-15 02:00:12', '2021-05-15 02:00:12'),
-(31, 'Chapainawan gange', NULL, NULL, NULL, NULL, 'chapai@asaincoder.com', NULL, NULL, NULL, NULL, '45360', '2021-05-15 02:01:08', '2021-05-15 02:01:08'),
-(32, 'Dinajpur', NULL, NULL, NULL, NULL, 'dinazpur@asiancoder.com', NULL, NULL, NULL, NULL, '766897', '2021-05-15 02:01:35', '2021-05-15 02:01:35'),
-(33, 'Shirajgange', NULL, NULL, NULL, NULL, 'siarajgang@asaincoder.com', NULL, NULL, NULL, NULL, '768392', '2021-05-15 02:02:11', '2021-05-15 02:02:11'),
-(34, 'Pabna', NULL, NULL, NULL, NULL, 'pabna@asianncoder.com', NULL, NULL, NULL, NULL, '726648', '2021-05-15 02:02:40', '2021-05-15 02:02:40'),
-(35, 'Bagra', NULL, NULL, NULL, NULL, 'bagra@asiancoder.com', NULL, NULL, NULL, NULL, '451723', '2021-05-15 02:05:00', '2021-05-15 02:05:00'),
-(37, 'Bagra A', NULL, 'Zalkir', 35, NULL, 'zakir@bagraa.com', NULL, NULL, NULL, NULL, '971430', '2021-05-16 02:48:19', '2021-05-16 02:48:19'),
-(38, 'Bagha', NULL, NULL, NULL, NULL, 'bagha@gmail.com', NULL, NULL, NULL, NULL, '693343', '2021-05-16 03:06:20', '2021-05-16 03:06:20');
+INSERT INTO `users` (`id`, `name`, `username`, `club_id`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `photo`, `otp`, `created_at`, `updated_at`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`) VALUES
+(1, 'Admin', 'admin', NULL, '01700000000', 'shahadat@asiancoder.com', NULL, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, NULL, NULL, '2020-10-31 19:51:35', '2021-03-27 05:48:32', NULL, NULL, NULL, NULL),
+(41, 'Ahasan Pervez', NULL, NULL, NULL, 'sarkarpervez@gmail.com', NULL, '$2y$10$csd0I4ScImHy.0Q2XkQgIOsXYiOVsLHGh9awEO6u6wjBCtZSAm6I2', NULL, NULL, NULL, '2021-04-23 16:07:27', '2021-04-23 16:09:05', NULL, NULL, NULL, NULL),
+(42, 'ABC Hockey Club', NULL, NULL, NULL, 'monirhossainoyon@gmail.com', NULL, '$2y$10$VLooeYMVq9E4k0I5IyiWh.1dQd3hq6PWCzM.r/7pI3RO.gePT5f8e', NULL, NULL, NULL, '2021-04-23 16:17:28', '2021-04-23 16:24:49', NULL, NULL, NULL, NULL),
+(43, 'Massimos Falcons', NULL, NULL, NULL, 'massimo@jumpresources.com', NULL, NULL, NULL, NULL, '841293', '2021-04-23 19:22:27', '2021-04-23 19:22:27', NULL, NULL, NULL, NULL),
+(44, 'Massimo', NULL, NULL, NULL, 'massimo1000@icloud.com', NULL, NULL, NULL, NULL, '332500', '2021-04-23 19:23:57', '2021-04-23 19:23:57', NULL, NULL, NULL, NULL),
+(46, 'Okk', NULL, NULL, NULL, 'sarkarpervez@hotmail.com', NULL, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', 'f3W99YcAQ6cpNbJwbzl34Ym1W016EhUfaunPrzGppCLmzIWyFxtJgxl4KzAk', NULL, NULL, '2021-04-30 06:13:28', '2021-05-16 09:08:29', NULL, NULL, NULL, NULL),
+(47, 'Blackout', NULL, NULL, NULL, 'monirhnoyon@gmail.com', NULL, '$2y$10$J/mEgioeO4.JtP04SSKHO.OnyPjALWEEnwqTizLVRBM0r6xlmIuTS', NULL, NULL, NULL, '2021-04-30 16:29:43', '2021-04-30 16:31:35', NULL, NULL, NULL, NULL),
+(48, 'BarDown', NULL, NULL, NULL, 'gobardown.info@gmail.com', NULL, '$2y$10$V6AXEwLSBoM455m9nm1uVOZQPANJgQDgp7TmUmZCFzwpR5omuK5WG', NULL, NULL, NULL, '2021-04-30 23:12:00', '2021-04-30 23:12:45', NULL, NULL, NULL, NULL),
+(49, 'massimo lions', NULL, NULL, NULL, 'massimo1000@live.ca', NULL, NULL, NULL, NULL, '960901', '2021-05-01 01:55:19', '2021-05-01 01:55:19', NULL, NULL, NULL, NULL),
+(52, 'Bardown Hockey', NULL, NULL, NULL, 'bardown123@mailpoof.com', NULL, '$2y$10$ZiZM1eIGk9s4C1XMvDIbNeIDd74/LliUB4pCyeSsKmeaYwrJPX.ny', NULL, NULL, NULL, '2021-05-03 18:18:19', '2021-05-03 18:18:57', NULL, NULL, NULL, NULL),
+(53, 'Bardown U18', NULL, NULL, NULL, 'coach@mailpoof.com', NULL, NULL, NULL, '1620066046.png', '714364', '2021-05-03 18:20:46', '2021-05-03 18:20:46', NULL, NULL, NULL, NULL),
+(54, 'Bardown U16', NULL, NULL, NULL, 'hkmdsojhhkkmkelhps@miucce.com', NULL, NULL, NULL, NULL, '996159', '2021-05-03 18:23:55', '2021-05-03 18:23:55', NULL, NULL, NULL, NULL),
+(55, 'Monir Hossain', NULL, NULL, NULL, 'ljm70681@cuoly.com', NULL, NULL, NULL, NULL, '196584', '2021-05-03 18:29:43', '2021-05-03 18:29:43', NULL, NULL, NULL, NULL),
+(56, 'schools dress', NULL, NULL, NULL, 'schoolsdress@gmail.com', NULL, NULL, NULL, NULL, '687642', '2021-05-03 18:40:51', '2021-05-03 18:40:51', NULL, NULL, NULL, NULL),
+(57, 'Bardown High Performance', NULL, NULL, NULL, 'mpy74464@zwoho.com', NULL, NULL, NULL, NULL, '333236', '2021-05-03 19:49:36', '2021-05-03 19:49:36', NULL, NULL, NULL, NULL),
+(58, 'Bardown High Performance', NULL, NULL, NULL, 'shoronikhan2020@gmail.com', NULL, NULL, NULL, NULL, '532916', '2021-05-03 19:49:58', '2021-05-03 19:49:58', NULL, NULL, NULL, NULL),
+(59, 'Sarkar', NULL, NULL, NULL, 'sarkarpervez@yahoo.com', NULL, NULL, NULL, NULL, '55635', '2021-05-10 17:28:24', '2021-05-10 17:28:24', NULL, NULL, NULL, NULL),
+(60, 'Monir', NULL, NULL, NULL, 'xjr50011@zwoho.com', NULL, NULL, NULL, NULL, '780958', '2021-05-30 20:47:03', '2021-05-30 20:47:03', NULL, NULL, NULL, NULL),
+(61, 'ThunderBirds', NULL, NULL, NULL, 'xnk98377@cuoly.com', NULL, NULL, NULL, NULL, '372133', '2021-05-30 21:19:08', '2021-05-30 21:19:08', NULL, NULL, NULL, NULL),
+(66, 'THe Hanse ICT', NULL, NULL, NULL, 'thehanseict@gmail.com', NULL, '$2y$10$ltFvCHqAb2d.MVxMUyMyfetuEm2VXoZF8a0XpR2OWQNYOngFZpolq', NULL, NULL, NULL, '2021-06-16 15:35:44', '2021-06-16 15:37:18', NULL, NULL, NULL, NULL),
+(67, 'Hanse ICT', NULL, NULL, NULL, 'jon_info_all@yahoo.com', NULL, NULL, NULL, NULL, '68733', '2021-06-16 15:39:34', '2021-06-16 15:39:34', NULL, NULL, NULL, NULL),
+(68, 'Today Ceations', NULL, NULL, NULL, 'todaycreations2018@gmail.com', NULL, '$2y$10$/jS6EdHoS4zTXeimGO9Gpe.DTj.lRX2FEr0oabWKQ8QtCaQLjQWRy', NULL, NULL, NULL, '2021-06-16 15:41:18', '2021-06-16 15:46:18', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -53454,9 +53777,11 @@ CREATE TABLE `users_coupons` (
 --
 
 INSERT INTO `users_coupons` (`id`, `user_id`, `coupon_id`) VALUES
-(13, 23, 7),
-(14, 24, 7),
-(15, 23, 6);
+(4, 57, 4),
+(5, 56, 3),
+(6, 54, 2),
+(7, 57, 2),
+(8, 58, 2);
 
 -- --------------------------------------------------------
 
@@ -53468,14 +53793,6 @@ CREATE TABLE `users_permissions` (
   `user_id` smallint(5) UNSIGNED NOT NULL,
   `permission_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users_permissions`
---
-
-INSERT INTO `users_permissions` (`user_id`, `permission_id`) VALUES
-(1, 7),
-(2, 8);
 
 -- --------------------------------------------------------
 
@@ -53494,24 +53811,22 @@ CREATE TABLE `users_roles` (
 
 INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES
 (1, 1),
-(2, 3),
-(11, 3),
-(12, 3),
-(21, 3),
-(23, 4),
-(24, 4),
-(25, 3),
-(27, 4),
-(28, 2),
-(29, 4),
-(30, 3),
-(31, 3),
-(32, 3),
-(33, 3),
-(34, 3),
-(35, 3),
-(37, 4),
-(38, 3);
+(41, 3),
+(42, 3),
+(43, 3),
+(44, 4),
+(46, 4),
+(47, 4),
+(48, 2),
+(49, 3),
+(52, 3),
+(55, 2),
+(59, 4),
+(60, 2),
+(61, 4),
+(66, 3),
+(67, 4),
+(68, 4);
 
 -- --------------------------------------------------------
 
@@ -53541,26 +53856,28 @@ CREATE TABLE `user_profiles` (
 --
 
 INSERT INTO `user_profiles` (`id`, `user_id`, `photo`, `banner`, `address1`, `address2`, `city`, `state`, `country`, `postcode`, `contactEmail`, `phone`, `created_at`, `updated_at`) VALUES
-(1, 1, 'users/1.png', 'users/banner/1.jpg', 'Cechuato', 'sdfgdf', 'Rajshahi', 'Rajshahi', 'Bangladesh', 6204, 'shahadat80@gmail.com', '01757839516', '2021-05-16 03:10:27', '2021-05-16 08:08:29'),
-(2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(3, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(4, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(5, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(6, 23, NULL, 'users/banner/1.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(7, 24, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(8, 25, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(9, 26, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(10, 27, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:27', '2021-05-16 03:10:27'),
-(11, 28, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(12, 29, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(13, 30, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(14, 31, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(15, 32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(16, 33, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(17, 34, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(18, 35, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(19, 37, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28'),
-(20, 38, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:10:28', '2021-05-16 03:10:28');
+(1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(2, 41, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(3, 42, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(4, 43, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(5, 44, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(7, 46, NULL, 'users/banner/46.jpg', 'House & Road', 'Address Line 2(Optional)', 'Rajshahi', 'Rajshahi', 'Bangladesh', 6000, 'ook@gmail.com', '01723100747', '2021-05-16 03:18:23', '2021-05-17 14:33:17'),
+(8, 47, NULL, 'users/banner/1.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-25 15:09:25'),
+(9, 48, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(10, 49, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(13, 52, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(14, 53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(15, 54, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(16, 55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(17, 56, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(18, 57, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(19, 58, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(20, 59, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-16 03:18:23', '2021-05-16 03:18:23'),
+(21, 60, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-30 20:47:03', '2021-05-30 20:47:03'),
+(22, 61, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-30 21:19:08', '2021-05-30 21:19:08'),
+(27, 66, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:35:44', '2021-06-16 15:35:44'),
+(28, 67, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:39:34', '2021-06-16 15:39:34'),
+(29, 68, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:41:18', '2021-06-16 15:41:18');
 
 --
 -- Indexes for dumped tables
@@ -53613,8 +53930,7 @@ ALTER TABLE `coupons`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `customers_email_unique` (`email`),
-  ADD KEY `customers_team_id_foreign` (`team_id`);
+  ADD UNIQUE KEY `customers_email_unique` (`email`);
 
 --
 -- Indexes for table `customer_addresses`
@@ -53628,13 +53944,6 @@ ALTER TABLE `customer_addresses`
 --
 ALTER TABLE `customer_password_resets`
   ADD KEY `customer_password_resets_email_index` (`email`);
-
---
--- Indexes for table `customer_siblings`
---
-ALTER TABLE `customer_siblings`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_siblings_customer_id_foreign` (`customer_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -53664,6 +53973,19 @@ ALTER TABLE `location_states`
   ADD KEY `location_states_country_id_foreign` (`country_id`);
 
 --
+-- Indexes for table `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `menus_menu_id_unique` (`menu_id`);
+
+--
+-- Indexes for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -53674,7 +53996,8 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `orders_customer_id_foreign` (`customer_id`);
+  ADD KEY `orders_customer_id_foreign` (`customer_id`),
+  ADD KEY `status` (`status`);
 
 --
 -- Indexes for table `order_addresses`
@@ -53705,6 +54028,25 @@ ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `postmetas`
+--
+ALTER TABLE `postmetas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
+
+--
+-- Indexes for table `post_tax`
+--
+ALTER TABLE `post_tax`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -53718,13 +54060,6 @@ ALTER TABLE `products`
 ALTER TABLE `product_attributes`
   ADD KEY `product_attributes_product_id_foreign` (`product_id`),
   ADD KEY `product_attributes_attribute_id_foreign` (`attribute_id`);
-
---
--- Indexes for table `product_attribute_options`
---
-ALTER TABLE `product_attribute_options`
-  ADD KEY `product_attribute_option_product_id_foreign` (`product_id`),
-  ADD KEY `product_attribute_option_attribute_option_id_foreign` (`attribute_option_id`);
 
 --
 -- Indexes for table `product_categories`
@@ -53753,6 +54088,14 @@ ALTER TABLE `product_images`
 ALTER TABLE `product_relations`
   ADD KEY `product_relations_parent_id_foreign` (`parent_id`),
   ADD KEY `product_relations_child_id_foreign` (`child_id`);
+
+--
+-- Indexes for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_reviews_product_id_foreign` (`product_id`),
+  ADD KEY `product_reviews_customer_id_foreign` (`customer_id`);
 
 --
 -- Indexes for table `product_up_sells`
@@ -53795,6 +54138,33 @@ ALTER TABLE `shipping_methods`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscribes`
+--
+ALTER TABLE `subscribes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subscriptions_user_id_stripe_status_index` (`user_id`,`stripe_status`);
+
+--
+-- Indexes for table `subscription_items`
+--
+ALTER TABLE `subscription_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `subscription_items_subscription_id_stripe_plan_unique` (`subscription_id`,`stripe_plan`),
+  ADD KEY `subscription_items_stripe_id_index` (`stripe_id`);
+
+--
+-- Indexes for table `taxonomies`
+--
+ALTER TABLE `taxonomies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tax_categories`
 --
 ALTER TABLE `tax_categories`
@@ -53818,20 +54188,13 @@ ALTER TABLE `tax_rates`
   ADD UNIQUE KEY `tax_rates_identifier_unique` (`identifier`);
 
 --
--- Indexes for table `teams`
---
-ALTER TABLE `teams`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `teams_club_id_foreign` (`club_id`),
-  ADD KEY `teams_coach_id_foreign` (`coach_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD UNIQUE KEY `users_username_unique` (`username`);
+  ADD UNIQUE KEY `users_username_unique` (`username`),
+  ADD KEY `users_stripe_id_index` (`stripe_id`);
 
 --
 -- Indexes for table `users_coupons`
@@ -53876,49 +54239,43 @@ ALTER TABLE `attributes`
 -- AUTO_INCREMENT for table `attribute_options`
 --
 ALTER TABLE `attribute_options`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `customer_addresses`
 --
 ALTER TABLE `customer_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `customer_siblings`
---
-ALTER TABLE `customer_siblings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -53945,28 +54302,40 @@ ALTER TABLE `location_states`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4122;
 
 --
+-- AUTO_INCREMENT for table `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `menu_items`
+--
+ALTER TABLE `menu_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_addresses`
 --
 ALTER TABLE `order_addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -53975,16 +54344,40 @@ ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `postmetas`
+--
+ALTER TABLE `postmetas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `post_tax`
+--
+ALTER TABLE `post_tax`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -53996,13 +54389,37 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `shipping_methods`
 --
 ALTER TABLE `shipping_methods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subscribes`
+--
+ALTER TABLE `subscribes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subscription_items`
+--
+ALTER TABLE `subscription_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `taxonomies`
+--
+ALTER TABLE `taxonomies`
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tax_categories`
@@ -54020,31 +54437,25 @@ ALTER TABLE `tax_categories_tax_rates`
 -- AUTO_INCREMENT for table `tax_rates`
 --
 ALTER TABLE `tax_rates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `teams`
---
-ALTER TABLE `teams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `users_coupons`
 --
 ALTER TABLE `users_coupons`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_profiles`
 --
 ALTER TABLE `user_profiles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
@@ -54083,12 +54494,6 @@ ALTER TABLE `customer_addresses`
   ADD CONSTRAINT `customer_addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `customer_siblings`
---
-ALTER TABLE `customer_siblings`
-  ADD CONSTRAINT `customer_siblings_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `location_cities`
 --
 ALTER TABLE `location_cities`
@@ -54118,7 +54523,7 @@ ALTER TABLE `order_addresses`
 --
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `order_items_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `products`
@@ -54132,13 +54537,6 @@ ALTER TABLE `products`
 ALTER TABLE `product_attributes`
   ADD CONSTRAINT `product_attributes_attribute_id_foreign` FOREIGN KEY (`attribute_id`) REFERENCES `attributes` (`id`),
   ADD CONSTRAINT `product_attributes_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `product_attribute_options`
---
-ALTER TABLE `product_attribute_options`
-  ADD CONSTRAINT `product_attribute_option_attribute_option_id_foreign` FOREIGN KEY (`attribute_option_id`) REFERENCES `attribute_options` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `product_attribute_option_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `product_categories`
@@ -54168,6 +54566,13 @@ ALTER TABLE `product_relations`
   ADD CONSTRAINT `product_relations_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `product_reviews`
+--
+ALTER TABLE `product_reviews`
+  ADD CONSTRAINT `product_reviews_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `product_reviews_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `product_up_sells`
 --
 ALTER TABLE `product_up_sells`
@@ -54189,11 +54594,10 @@ ALTER TABLE `tax_categories_tax_rates`
   ADD CONSTRAINT `tax_categories_tax_rates_tax_rate_id_foreign` FOREIGN KEY (`tax_rate_id`) REFERENCES `tax_rates` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `teams`
+-- Constraints for table `users`
 --
-ALTER TABLE `teams`
-  ADD CONSTRAINT `teams_club_id_foreign` FOREIGN KEY (`club_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `teams_coach_id_foreign` FOREIGN KEY (`coach_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_club_id_foreign` FOREIGN KEY (`club_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users_coupons`

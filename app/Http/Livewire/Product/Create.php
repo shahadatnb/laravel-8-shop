@@ -34,7 +34,7 @@ class Create extends Component
         'title'=>'required|max:255|unique:products,title',
         'sku'=>'required|alpha_dash|max:255|unique:products,sku',
         'qty'=>'required|numeric',
-        'store_id'=>'required|numeric',
+        //'store_id'=>'required|numeric',
         'photos.*' => ['required','file','mimes:jpg,jpeg,png,gif','max:2048'],
         'productvariant.*.price'=>'required|numeric',
         'productvariant.*.qty'=>'required|numeric',
@@ -139,8 +139,8 @@ class Create extends Component
         $product->price = $this->price;
         $product->special_price = $this->special_price;
 
-        $product->club_id = $this->club_id;
-        $product->store_id = $this->store_id;
+        //$product->club_id = $this->club_id;
+        //$product->store_id = $this->store_id;
 
         $product->sku = $this->sku;
         $product->barcode = $this->barcode;

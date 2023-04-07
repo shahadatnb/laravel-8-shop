@@ -51,6 +51,27 @@ class CustomHelperController
         return $this->productThumb($product);
     }
 
+    public function products($arg1){
+        $arg = [
+            'take'=>20,
+            'skip'=>0,
+            'cat'=>[],
+            'orderType'=>'DESC',
+            'category'=>null,
+            'single'=>false,
+        ];
+
+        $arg = array_merge($arg,$arg1);
+
+        $post = Product::whereNull('parent_id')->where('status',1);      
+        
+        $post = $post->take($arg['take'])
+        ->skip($arg['skip'])
+        ->get();
+
+        return $post;
+    }
+
     public function posts($arg1){
         $arg = [
             'post_type'=>'post',

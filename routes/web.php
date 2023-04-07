@@ -22,7 +22,6 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TaxRateController;
 use App\Http\Controllers\TaxonomyController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\ClubRegController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductReviewController;
 /*
@@ -54,9 +53,9 @@ Route::get('payment/success', [App\Http\Controllers\PayPalController::class, 'su
 Route::get('/page/{slug}', [FrontController::class, 'page'])->name('page');
 Route::get('/post/{slug}', [FrontController::class, 'page'])->name('post');
 
-Route::get('/store', [FrontController::class,'store'])->name('store')->middleware('auth:customer');
+Route::get('/store', [FrontController::class,'store'])->name('store');
 
-Route::get('/product/{id}', [FrontController::class,'productSingle'])->name('singleProduct')->middleware('auth:customer');
+Route::get('/product/{id}', [FrontController::class,'productSingle'])->name('singleProduct');
 
 //Route::post('/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
 Route::match(['GET', 'POST'],'/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
@@ -133,7 +132,6 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::match(['GET', 'POST'],'/editUser/{role}/{id}', [UsersController::class, 'editUser'])->name('editUser');
     Route::get('/userList/{role}', [UsersController::class, 'userList'])->name('userList');
 
-    Route::resource('club', ClubRegController::class);
     Route::resource('review', ProductReviewController::class);
 
     Route::post('attribute/option/add', [AttributeController::class, 'optionAdd'])->name('attribute.option.add');
@@ -161,20 +159,6 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::get('/user-unban/{id}', [UsersController::class, 'unban'])->name('user-unban');
 });
 
-Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin,staff,club']], function(){
-    Route::match(['GET', 'POST'],'/createTeam', [UsersController::class, 'createTeam'])->name('createTeam');
-    Route::match(['GET', 'POST'],'/editTeam/{id}', [UsersController::class, 'editTeam'])->name('editTeam');
-    Route::get('/teamList', [UsersController::class, 'teamList'])->name('teamList');
-});
-
-Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin,staff,club,team']], function(){
-    Route::resource('player', CustomerRegisterController::class);
-
-    //Route::match(['GET', 'POST'],'/storeManagement', [UserProfileController::class, 'storeManagement'])->name('storeManagement');
-    Route::match(['GET', 'POST'],'/storeManagement', [ProductController::class, 'storeManagement'])->name('storeManagement');
-
-    Route::get('/teamApi', [UsersController::class, 'teamApi'])->name('teamApi');
-});
 
 Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin']], function(){
 

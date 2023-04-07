@@ -20,13 +20,8 @@ class FrontController extends Controller
 
     public function store()
     {
-        //return Auth::user()->team_id;
-        $store = User::find(auth('customer')->user()->team_id);
-        if($store){
-            //$products = Product::whereNull('parent_id')->where('store_id',$store->id)->where('status',1)->latest()->paginate(20);
-            //return view('frontend.pages.store',compact('store','products'));
-            return view('frontend.pages.store',compact('store'));
-        }
+        $products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
+        return view('frontend.pages.store',compact('products'));
 
     }
 

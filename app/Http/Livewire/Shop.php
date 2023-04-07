@@ -72,7 +72,7 @@ class Shop extends Component
 
     public function render()
     {        
-        $products = Product::whereNull('parent_id')->where('store_id',$this->store->id)->where('status',1);
+        $products = Product::whereNull('parent_id')->where('status',1);
         if(!empty($this->cats)){
             $products = $products->whereHas('categories', function($q){
                 $q->whereIn('id', $this->cats);
