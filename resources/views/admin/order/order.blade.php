@@ -20,9 +20,6 @@
     <div class="card-body">
         {!! Form::model($data,['route'=>'order.index','method'=>'GET','class'=>'mb-3']) !!}
           <div class="row">
-            <div class="col-sm-2">{{ Form::select('club',$clubs,null,['class'=>'form-control select2','id'=>'club','placeholder'=>'All Club','data-url'=>route('teamApi')]) }}</div>
-            <div class="col-sm-2">{{ Form::select('team',$teams,null,['class'=>'form-control select2','id'=>'team','placeholder'=>'All Team']) }}</div>
-            <div class="col-sm-2">{{ Form::text('player_name',null,['class'=>'form-control','placeholder'=>'Player Name']) }}</div>
             <div class="col-sm-2">{{ Form::text('product_title',null,['class'=>'form-control','placeholder'=>'Product Title']) }}</div>
             <div class="col-sm-1">{{ Form::number('per_page',null,['class'=>'form-control','placeholder'=>'Product perpage']) }}</div>
             <div class="col-sm-3">
@@ -64,7 +61,7 @@
                     <td>#{{ $data->id }}</td>
                     <td><span data-toggle="tooltip" data-placement="top" title="{{ CustomHelper::prettyDateTime($data->created_at) }}">{{ CustomHelper::prettyDateS($data->created_at) }}</span></td>
                     <td>
-                        <span data-toggle="tooltip" data-placement="top" title="{{ $data->customer->team->club->name}} : {{ $data->customer->team->name }}">
+                        <span data-toggle="tooltip" data-placement="top" title="">
                             {{ $data->customer->first_name }} {{ $data->customer->last_name }}
                         </span>
                     </td>
@@ -124,21 +121,6 @@
 
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
-    });
-
-    //$('#club').change(function(){
-    $('.card').on('load | change', '#club', function() {
-        $.get($(this).data('url'), {
-                option: $(this).val()
-        },
-        function(data) {
-                var subcat = $('#team');
-                subcat.empty();
-                subcat.append("<option value=''>All Team</option>")
-                $.each(data, function(index, element) {
-                        subcat.append("<option value='"+ element.id +"'>" + element.name + "</option>");
-                });
-        });
     });
 
     //Date range as a button
