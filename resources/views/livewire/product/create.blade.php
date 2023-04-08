@@ -307,20 +307,6 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-        <div class="card card-outline">
-            <div class="card-body">
-                    <div class="form-group" wire:ignore>
-                        {{ Form::label('Store','Store',array('class' => '' )) }}
-                        {{ Form::select('club_id',$clubs,null,array('class'=>'form-control select2','placeholder'=>'Select Club','id'=>'club_id','data-url'=>route('teamApi'))) }}
-                    </div>
-                    <div class="form-group" wire:ignore>
-                        {{ Form::select('store_id',$store,null,array('class'=>'form-control' . ($errors->has('store_id') ? ' is-invalid' : null),'id'=>'store_id','wire:model'=>'store_id')) }}
-
-                    </div>
-                    @error('store_id')<span class="error invalid-feedback d-block">{{ $message }}</span>@enderror
-            </div>
-            <!-- /.card-footer-->
-        </div>
     <div class="text-center">{{ Form::submit('Save Product',array('class'=>'btn btn-success')) }}</div>
     </div>
     </div>
@@ -357,29 +343,6 @@
         @this.set('color', color);
         Livewire.emit('selectVariants');
   })
-
-  $('#club_id').change(function(){
-    $.get($(this).data('url'), {
-            option: $(this).val()
-    },
-    function(data) {
-            var subcat = $('#store_id');
-            subcat.empty();
-            subcat.append("<option value=''>-----</option>")
-            $.each(data, function(index, element) {
-                    subcat.append("<option value='"+ element.id +"'>" + element.name + "</option>");
-            });
-    });
-    var club_id = $(this).val();
-    @this.set('club_id', club_id);
-});
-
-
-$('#store_id').on('change', function(event) {
-    var store_id = $(this).val();
-    @this.set('store_id', store_id);
-});
-
 
 /*
     $('#size').select2();

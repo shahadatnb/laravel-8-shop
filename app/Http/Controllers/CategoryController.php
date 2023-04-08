@@ -128,19 +128,19 @@ class CategoryController extends Controller
         }
 
         $category->save();
-        Session::flash('success','Successfully Save');
+        session()->flash('success','Successfully Save');
         return redirect()->route('category.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Category $category)
     {
-        $category->delete();
+        if($category->child->count()==0){
+            $category->delete();
+            session()->flash('success','Successfully Deleted');
+        }else{
+            session()->flash('warning','There are more sub-categories under this category');
+        }
+        
         return redirect()->back();
     }
 }

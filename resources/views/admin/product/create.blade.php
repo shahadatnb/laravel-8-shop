@@ -27,7 +27,7 @@
 <script src="//cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
 @section('content')
-	@livewire('product.create', ['mode' => $mode,'store'=>$store,'categories'=>$categories,'clubs'=>$clubs,'colors'=>$colors,'sizes'=>$sizes])
+	@livewire('product.create', ['mode' => $mode,'store'=>$store,'categories'=>$categories,'colors'=>$colors,'sizes'=>$sizes])
 @endsection
 @section('js')
 <script src="{{ asset('assets/admin/plugins/summernote/summernote-bs4.min.js') }}"> </script>

@@ -135,13 +135,8 @@ class Create extends Component
         $product->type = $pType;
         $product->short_description = $this->short_description;
         $product->description = $this->description;
-
         $product->price = $this->price;
         $product->special_price = $this->special_price;
-
-        //$product->club_id = $this->club_id;
-        //$product->store_id = $this->store_id;
-
         $product->sku = $this->sku;
         $product->barcode = $this->barcode;
         $product->qty = $this->qty;
@@ -170,8 +165,6 @@ class Create extends Component
                 $item['status']=$product->status;
                 $item['user_id']=Auth::user()->id;
                 $item['title']='';
-                $item['club_id']=$product->club_id;
-                $item['store_id']=$product->store_id;
                 if ($item['color'] != null){
                     $item['color_label']= AttributeOption::where('name',$item['color'])->first()->label;
                 }
