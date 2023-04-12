@@ -27,8 +27,7 @@ class CustomerController extends Controller
         $total_orders = Order::where('customer_id',auth('customer')->user()->id)->count();
         $total_completed = Order::where('status','Completed')->where('customer_id',auth('customer')->user()->id)->count();
         $total_processing = Order::where('status','Processing')->where('customer_id',auth('customer')->user()->id)->count();
-        $products = Product::latest()->whereNull('parent_id')->where('store_id',auth('customer')->user()->team_id)->take(5)->get();
-        return view('frontend.customer.dashboard', compact('total_orders','total_processing','total_completed','products'));
+        return view('frontend.customer.dashboard', compact('total_orders','total_processing','total_completed'));
     }
 
     public function profile()

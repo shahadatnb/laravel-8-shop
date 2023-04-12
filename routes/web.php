@@ -58,7 +58,7 @@ Route::get('/store', [FrontController::class,'store'])->name('store');
 Route::get('/product/{id}', [FrontController::class,'productSingle'])->name('singleProduct');
 
 //Route::post('/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
-Route::match(['GET', 'POST'],'/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
+//Route::match(['GET', 'POST'],'/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
 
 Route::match(['GET', 'POST'],'/confirm', [UsersController::class,'confirm'])->name('confirm');
 
@@ -66,8 +66,10 @@ Route::get('/home', function(){ return redirect()->route('dashboard'); });
 
 //Route::get('/home', [HomeController::class,'index'])->name('home');
 
-Auth::routes();//['register' => true]
-//
+Route::prefix(config('app.admin_prefix','admin'))->group(function() {
+    //Auth::routes(['register' => false]);//['verify'=> false]
+    Auth::routes(['register' => false]);
+});
 
 Route::get('/stateApi', [LocationController::class, 'stateApi'])->name('stateApi');
 
@@ -80,15 +82,22 @@ Route::group(['middleware'=>'auth:customer'], function(){
     Route::post('/placeOrder',[CheckoutController::class, 'checkout'])->name('placeOrder');
 });
 
+
+    Route::get('login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
+    Route::post('login', [CustomerLoginController::class, 'login'])->name('customer.loginPost');
+    Route::post('logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
+    Route::get('register', [CustomerRegisterController::class, 'showRegisterForm'])->name('customer.register');
+    Route::post('register', [CustomerRegisterController::class, 'register'])->name('customer.registerPost');
+
+    //Customer Password Reset routes 
+    Route::post('/password/email','CustomerForgotPasswordController@sendResetLinkEmail')->name('customer.password.email');
+    Route::post('/password/reset', 'CustomerResetPasswordController@reset')->name('customer.password.update');
+    Route::get('/password/reset', 'CustomerForgotPasswordController@showLinkRequestForm')->name('customer.password.request');                                     
+    Route::get('/password/reset/{token}', 'CustomerResetPasswordController@showResetForm')->name('customer.password.reset');
+
+    //Route::match(['GET', 'POST'],'/confirm', [CustomerRegisterController::class,'confirm'])->name('customer.confirm');
+
 Route::prefix('customer')->as('customer.')->group(function() {
-
-    Route::get('login', [CustomerLoginController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [CustomerLoginController::class, 'login'])->name('loginPost');
-    Route::match(['GET', 'POST'],'/loginNext', [CustomerLoginController::class,'loginStep2'])->name('loginNext');
-    Route::post('logout', [CustomerLoginController::class, 'logout'])->name('logout');
-
-    Route::match(['GET', 'POST'],'/confirm', [CustomerRegisterController::class,'confirm'])->name('confirm');
-
     Route::group(['middleware'=>'auth:customer'], function(){
         Route::get('/', [CustomerController::class,'index'])->name('/');
         Route::get('/wishlist', [CustomerController::class,'wishlist'])->name('wishlist');
@@ -119,12 +128,6 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=>'auth']
 
 Route::resource('users', UsersController::class)->middleware(['auth','role:admin,staff']);
 Route::resource('roles', RolesController::class)->middleware(['auth','role:admin']);//->middleware('can:isAdmin');
-
-
-Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin']], function(){
-    Route::get('/createStuff/{role}', [UsersController::class, 'createUser'])->name('createStuff');
-    Route::get('/stuffList/{role}', [UsersController::class, 'userList'])->name('stuffList');
-});
 
 
 Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth','role:admin,staff']], function(){

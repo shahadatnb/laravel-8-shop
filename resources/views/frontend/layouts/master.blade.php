@@ -194,7 +194,8 @@
                         </ul>
                         <ul class="navbar-nav ms-auto">
                           @guest('customer')
-                            <li class="nav-item"><a class="btn btn-primary" href="{{route('customer.login')}}">Login</a></li>
+                            <li class="nav-item"><a class="btn btn-primary" href="{{route('customer.login')}}">Signin</a></li>
+                            <li class="nav-item"><a class="btn btn-primary" href="{{route('customer.register')}}">Signup</a></li>
 						@endguest
 						@auth('customer')
                             <li class="nav-item dropdown">

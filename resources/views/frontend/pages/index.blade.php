@@ -58,33 +58,47 @@
 
 </section>
 
+<section class="_product">
+    <div class="container">
+        <h3>We Produce</h3>
+    </div>
 
+    <div class="container-fluid py-3">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 justify-content-between">
+            <div class="col my-md-4 my-2" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50"
+                data-aos-duration="1000">
+                <figure class="m-0 border position-relative">
+                    <div class="quickview position-absolute top-0 end-0"><a class="quebtn text-black"
+                            data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i
+                                class="bi bi-eye-fill"></i></a>
+                    </div>
+                    <img class="img-fluid" src="img/Black-Acid-Washed-Jeans-58.jpg" alt="">
+                    <figcaption class="p-2 text-center">
+                        <h2 class="fstitle fs-6">Premium Quality Full sleeve Padded Crop Top</h2>
+                        <div class="productprice d-flex align-items-center justify-content-between">
+                            <span class="saleprice">$9999.00</span> <a href="#" class="buynow">Buy Now</a>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+<!--    Our Product -->
 
 <!--    Our Product -->
 <section class="_product">
 <div class="container">
-  <h2>We Produce</h2>
-  @php $produces = CustomHelper::products(['orderBy'=>'desc']) @endphp
-    @if($produces)
+  <h2>Categories</h2>
+    @if($categories)
     <div class="owl-carousel owl-theme" id="produces">
-    @foreach($produces as $key=>$item)
-    <figure class="_inn_overhover">
-        <a href="{{ url('/product',$item->id)}}">
-            <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
-            <figcaption class="_in_plink">
-                <h3>{{ $item->title }}</h3>
-                @include('frontend.layouts.price',['item',$item])
+    @foreach($categories as $key=>$category)
+        <figure class="_overhover">
+            <img class="img-fluid img-products" src="{{asset('storage/'.$category->image)}}" alt="Product Image">
+            <figcaption class="_plink">
+                <a href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
             </figcaption>
-
-        </a>
-        <div class="_button-set">
-            <a class="addto-wishlist" wire:click="addToWishlist({{$item->id}})" href="javascript:void(0);" rel="" tabindex="0" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-            <a class="quickShop" wire:click="addToCart({{$item->id}})" href="javascript:void(0);" rel="nofollow" tabindex="0" title="Quick Shop"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-            <!-- <a href="" type="button" rel="nofollow" class="quick-view" tabindex="0" title="Quick View" data-toggle="modal" data-target="#productMpdalLong"></a>-->
-            <a href="javascript:void(0);" class="quick-view" wire:click="quickView({{$item->id}})"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
-            <!-- Button trigger modal -->
-        </div>
-    </figure>
+        </figure>
     @endforeach
     @endif
     </div>

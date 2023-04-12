@@ -18,61 +18,28 @@ use Auth;
 class CustomerRegisterController extends Controller
 {
     use userTrait;
-    
-    public function index(){
-        $customers = Customer::latest();
-        if(Auth::user()->hasAnyRole(['admin','stuff'])){
-            $customers = $customers->paginate(20);
-        }elseif(Auth::user()->hasRole('club')){
-            $teans = User::where('club_id',Auth::user()->id)->pluck('id')->toArray();
-            $customers = $customers->whereIn('team_id',$teans)->paginate(20);
-        }elseif(Auth::user()->hasRole('team')){
-            $customers = $customers->where('team_id',Auth::user()->id)->paginate(20);
-        }
-        //return $teams;
-        return view('admin.users.customerList',compact('customers'));
-    }
 
-    public function create(Request $request){
-        if(Auth::user()->hasAnyRole(['admin','stuff'])){
-            $clubs = $this->usersArray('club');
-            $teams = array();
-        }elseif(Auth::user()->hasRole('club')){
-            $clubs = array();   //array(Auth::user()->id => Auth::user()->name);
-            $teams = $this->teams(Auth::user()->id);
-        }
-        elseif(Auth::user()->hasRole('team')){
-            $clubs = array(); //array(Auth::user()->club->id => Auth::user()->club->name);
-            $teams = array(); //array(Auth::user()->id => Auth::user()->name);
-        }
-        $mode = 'create';
-        return view('admin.users.createCustomer',compact('mode','clubs','teams'));        
+    public function showRegisterForm(){
+        return view('auth.customer.register');
     }
 
     public function store(Request $request){
         $this->validate($request, array(
             'first_name.*'=>'required|string|max:100',
             'last_name.*'=>'required|string|max:100',
-            //'gender'=>'required|string|max:255',
-            'team_id'=>'required',
+            'gender'=>'required|string|max:255',
             'email.*'=>'required|email|max:100|unique:customers,email',
         ));
 
-        //return count($request->first_name);
+        $user = new Customer;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->gender = $request->gender;
+        $user->email = $request->email;
+        $user->otp = rand(000000,999999);
+        $user->save();
 
-        for ($i=0; $i < count($request->first_name); $i++) {
-            $user = new Customer;
-            $user->first_name = $request->first_name[$i];
-            $user->last_name = $request->last_name[$i];
-            //$user->gender = $request->gender;
-            $user->team_id = $request->team_id;
-            $user->email = $request->email[$i];
-            $user->otp = rand(000000,999999);
-            $user->save();
-
-            //CustomerAddress::create(['customer_id'=>$user->id]);
-
-            Mail::to($user->email)->send(new CustomerRegister($user));
+            //Mail::to($user->email)->send(new CustomerRegister($user));
         }
 
         //event(new NewUserRegistered($user));
@@ -81,23 +48,6 @@ class CustomerRegisterController extends Controller
         return redirect()->route('player.index');
     }
 
-    public function edit(Request $request, $id){
-        $user = Customer::find($id);
-        if(Auth::user()->hasAnyRole(['admin','stuff'])){
-            $clubs = $this->usersArray('club');
-            $user->club_id = $user->team->club->id;
-            $teams = $this->teams($user->club_id);
-        }elseif(Auth::user()->hasRole('club')){
-            $clubs = array();   //array(Auth::user()->id => Auth::user()->name);
-            $teams = $this->teams(Auth::user()->id);
-        }
-        elseif(Auth::user()->hasRole('team')){
-            $clubs = array(); //array(Auth::user()->club->id => Auth::user()->club->name);
-            $teams = array(); //array(Auth::user()->id => Auth::user()->name);
-        }
-        $mode = 'edit';
-        return view('admin.users.createCustomer',compact('mode','user','clubs','teams'));        
-    }
 
     public function update(Request $request, $id){
         $user = Customer::find($id);
@@ -105,20 +55,14 @@ class CustomerRegisterController extends Controller
         $this->validate($request, array(
             'first_name.*'=>'required|string|max:100',
             'last_name.*'=>'required|string|max:100',
-            //'gender'=>'required|string|max:255',
-            'team_id'=>'required',
-            //'email.*'=>'required|email|max:100|unique:customers,email',
-            'email' => [
-                'required','email','max:40',
-                Rule::unique('customers')->ignore($id),
-            ],
+            'gender'=>'required|string|max:255',
+            'email.*'=>'required|email|max:100|unique:customers,email',$id,
         ));
 
                     
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        //$user->gender = $request->gender;
-        $user->team_id = $request->team_id;
+        $user->gender = $request->gender;
         $user->email = $request->email;
         $user->save();
 

@@ -68,21 +68,7 @@
                           <!-- /.card-header -->
                           <div class="card-body p-0">
                               <ul class="products-list product-list-in-card px-2">
-                                  @foreach($products as $item)
-                                  <li class="item clearfix">
-                                      <div class="product-img">
-                                          <img src="{{ CustomHelper::productThumb($item) }}" alt="" class="img-size-50">
-                                      </div>
-                                      <div class="product-info">
-                                          <a href="{{ url('/product',$item->id)}}" class="product-title">{{$item->title}}
-                                              <span class="badge bg-info float-end">{{config('settings.currencySymbol')}}{{ $item->price }}</span></a>
-                                          <span class="product-description">
-{{--                        Samsung 32" 1080p 60Hz LED Smart HDTV.--}}
-                      </span>
-                                      </div>
-                                  </li>
-                                  <!-- /.item -->
-                                  @endforeach
+                                  
                               </ul>
                           </div>
                           <!-- /.card-body -->

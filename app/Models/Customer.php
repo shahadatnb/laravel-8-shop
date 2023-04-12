@@ -17,16 +17,17 @@ class Customer extends Authenticatable // for auth Model //
         'password', 'remember_token',
     ];
 
-    public function team(){
-    	return $this->hasOne(User::class,'id','team_id');
-    }
+    /*
+    public static function boot() {
+        parent::boot();
+        self::created(function ($model) {
+            $profile = new UserProfile();
+            $model->profile()->save($profile);
+        });
+    }*/
 
     public function orders(){
     	return $this->hasMany(Order::class,'customer_id','id');
-    }
-
-    public function siblings(){
-    	return $this->hasMany(CustomerSibling::class,'customer_id','id');
     }
 
     public function address(){

@@ -160,12 +160,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              {{-- <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">
+              <li class="nav-item"><a href="{{ route('users.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i> Users</a>
               </li>
               <li class="nav-item"><a href="{{ route('roles.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i> User Role</a>
-              </li> --}}
+              </li>
               <li class="nav-item"><a href="{{ route('settings') }}" class="nav-link{{ (request()->routeIs('settings')) ? ' active' : '' }}">
                 <i class="far fa-circle nav-icon"></i> Basic Settings</a>
               </li>

@@ -50,18 +50,6 @@
                         {!! Form::text('last_name',null,['class'=>'form-control','required'=>'','placeholder'=>'Last name']) !!}
                 	</div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        {!! Form::label('jersey_name', 'Jersey name',['class'=>'form-label']) !!}
-                        {!! Form::text('jersey_name',null,['class'=>'form-control','required'=>'','placeholder'=>'Jersey name']) !!}
-                	</div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        {!! Form::label('jersey_no', 'Jersey number',['class'=>'form-label']) !!}
-                        {!! Form::number('jersey_no',null,['class'=>'form-control','required'=>'','placeholder'=>'Jersey number']) !!}
-                	</div>
-                </div>
                 <div class="col-12">
                     <div class="form-group">
                         {!! Form::label('email', 'Email',['class'=>'form-label']) !!}
@@ -110,51 +98,6 @@
                     <div class="form-check form-check-inline">
                         {!! Form::radio('gender', 'Female', null,['class'=>'form-check-input', 'id'=>'female']) !!}
                         {!! Form::label('female', 'Female',['class'=>'form-check-label']) !!}
-                    </div>
-                </div>
-                @if ($user->siblings->count() > 0)
-                    <div class="row my-3">
-                        <div class="col-12">
-                            <h3>Siblings info</h3>
-                            <table class="table">
-                                <tr>
-                                    <th>Siblings Name</th>
-                                    <th>Siblings Email</th>
-                                    <th>#</th>
-                                </tr>
-                                @foreach ($user->siblings as $item)
-                                    <tr>
-                                        <td>{{$item->SiblingsName }}</td>
-                                        <td>{{$item->SiblingsEmail }}</td>
-                                        <td>
-                                            <a href="{{ route('customer.removeSibling',$item->id) }}" onclick="return confirm('Are You Sure To Delete This Item?')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-
-                    </div>
-                @endif
-
-                <div class="row siblings">
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            {!! Form::label('SiblingsName', 'Siblings Name',['class'=>'form-label']) !!}
-                            {!! Form::text('SiblingsName[]',null,['class'=>'form-control','placeholder'=>'Siblings Name']) !!}
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <div class="form-group">
-                            {!! Form::label('SiblingsEmail', 'Siblings Email',['class'=>'form-label']) !!}
-                            {!! Form::email('SiblingsEmail[]',null,['class'=>'form-control','placeholder'=>'Siblings Email']) !!}
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-lg-2">
-                        <label class="mt-4">
-                        <button type="button" class="btn-add-more-field btn btn-success"><i class="fa fa-plus"></i></button>
-                        <button type="button" class="btn-remove-field btn btn-danger"><i class="fa fa-times"></i></button>
-                        </label>
                     </div>
                 </div>
                 <div class="row address-info">

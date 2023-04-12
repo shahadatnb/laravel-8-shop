@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Product;
+use App\Models\Category;
 use Session;
 use Auth;
 
@@ -15,7 +16,8 @@ class FrontController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.index');
+        $categories = Category::where('status',1)->whereNull('parent_id')->get();
+        return view('frontend.pages.index', compact('categories'));
     }
 
     public function store()

@@ -6,7 +6,7 @@
       @if (session('message'))
           <div class="alert alert-danger">{{ session('message') }}</div>
       @endif
-      <form action="{{ url('login') }}" method="post">
+      <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
             <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

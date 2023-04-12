@@ -24,20 +24,6 @@ class CustomerLoginController extends Controller
         return view('auth.customer.login');
     }
 
-    
-    public function loginStep2(Request $request){
-        if ($request->isMethod('GET')) {
-            //Session::flash('success','Successfully Save');
-            return view('auth.customer.login');
-        }
-        if ($request->isMethod('POST')) {
-            $this->validate($request, array(
-                'email'=>'required|email|max:255|exists:customers,email',
-            ));
-            $email = $request->email;
-            return view('auth.customer.loginStep2',compact('email'));
-        }
-    }
 
     public function username()
     {
