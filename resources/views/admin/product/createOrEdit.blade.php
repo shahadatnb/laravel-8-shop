@@ -130,10 +130,22 @@
     <div class="col-sm-12 col-lg-4">
 			<div class="card card-outline">
 				<div class="card-body">
-						<div class="form-group">
-							{{ Form::label('status','Product Status',array('class' => '' )) }}
-							{{ Form::select('status',[1=>'Active',0=>'Draft'],null,array('class'=>'form-control','required'=>'')) }}
-						</div>
+					<div class="form-group">
+						{{ Form::label('status','Product Status',array('class' => '' )) }}
+						{{ Form::select('status',[1=>'Active',0=>'Draft'],null,array('class'=>'form-control','required'=>'')) }}
+					</div>
+				</div>
+				<!-- /.card-footer-->
+			</div>
+			<!-- /.card -->
+			<div class="card card-outline">
+				<div class="card-body">
+					<div class="form-group">
+						{{ Form::label('thumbnail','Product thumbnail',array('class' => '' )) }}
+						@if ($mode=='edit')
+						<img width="100" src="{{ asset('storage/'.$product->thumbnail) }}" alt="" class="img-thumbnail">
+						@endif
+					</div>
 				</div>
 				<!-- /.card-footer-->
 			</div>

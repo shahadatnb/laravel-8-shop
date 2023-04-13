@@ -144,3 +144,6 @@
   });
 
 });
+
+
+ALTER TABLE `customers` ADD `mobile` VARCHAR(15) NULL DEFAULT NULL AFTER `last_name`; 

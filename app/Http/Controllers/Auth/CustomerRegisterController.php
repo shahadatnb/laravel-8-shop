@@ -23,29 +23,35 @@ class CustomerRegisterController extends Controller
         return view('auth.customer.register');
     }
 
-    public function store(Request $request){
+    public function register(Request $request){
         $this->validate($request, array(
-            'first_name.*'=>'required|string|max:100',
-            'last_name.*'=>'required|string|max:100',
-            'gender'=>'required|string|max:255',
-            'email.*'=>'required|email|max:100|unique:customers,email',
+            'first_name'=>'required|string|max:100',
+            'last_name'=>'required|string|max:100',
+            'mobile'=>'required|string|max:15',
+            //'gender'=>'required|string|max:255',
+            'email'=>'required|email|max:100|unique:customers,email',
+            'password'=>'required|string|min:6|confirmed',
         ));
 
-        $user = new Customer;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->gender = $request->gender;
-        $user->email = $request->email;
-        $user->otp = rand(000000,999999);
-        $user->save();
+        $customer = new Customer;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->mobile = $request->mobile;
+        //$customer->gender = $request->gender;
+        $customer->email = $request->email;
+        $customer->password = Hash::make($request->password);
+        $customer->otp = rand(000000,999999);
+        $customer->save();
 
             //Mail::to($user->email)->send(new CustomerRegister($user));
-        }
+        
 
         //event(new NewUserRegistered($user));
-        Session::flash('success','Successfully Save');
-
-        return redirect()->route('player.index');
+        if (Auth::guard('customer')->attempt(['email'=>$request->email,'password'=>$request->password])) {
+            // Authentication passed...
+            return redirect()->route('customer./');
+        }
+        return redirect()->back();
     }
 
 

@@ -20,7 +20,8 @@ class CategoryController extends Controller
         $datas = Category::with('child')->where('status',1)->whereNull('parent_id')->paginate(20);
         //return $datas;
         $cats = $this->catArray();
-        return view('admin.category.category',compact('datas','cats'));
+        $mode = 'create';
+        return view('admin.category.category',compact('datas','cats','mode'));
     }
 
     private function catArray(){
@@ -62,25 +63,22 @@ class CategoryController extends Controller
 
         $slug = $this->catSlug($request->title);  
 
-        $data = new Category;
-        $data->title = $request->title;
-        $data->slug = $slug;
-        $data->parent_id = $request->parent_id;
-        $data->status = 1;
+        $category = new Category;
+        $category->title = $request->title;
+        $category->slug = $slug;
+        $category->parent_id = $request->parent_id;
+        $category->status = 1;
 
         $image = $request->file('image');
         if ($image) {
-            $upload = 'public/upload/category';
-            $filename =  time() . '.' . $image->extension();
-            $success = $image->move($upload, $filename);
-            if ($success) {                
-                $data->image = $filename;
-            } else {
-                return redirect()->back()->with('success', "File couldn't be uploaded.");
-            }
+            $filename = time().'.'.$image->extension();
+            $full_path = 'category/'.$filename;
+            $image->storeAs('public/category/', $filename);
+            $category->image = $full_path;
+            //$category->save();
         }
 
-        $data->save();
+        $category->save();
         Session::flash('success','Successfully Save');
         return redirect()->route('category.index');
     }
@@ -94,7 +92,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $cats = $this->catArray();
-        return view('admin.category.edit',compact('category','cats'));
+        $mode = 'edit';
+        return view('admin.category.edit',compact('category','cats','mode'));
     }
 
     public function update(Request $request, Category $category)
@@ -117,14 +116,11 @@ class CategoryController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $upload = 'public/upload/category';
-            $filename =  time() . '.' . $image->extension();
-            $success = $image->move($upload, $filename);
-            if ($success) {                
-                $category->image = $filename;
-            } else {
-                return redirect()->back()->with('success', "File couldn't be uploaded.");
-            }
+            $filename = time().'.'.$image->extension();
+            $full_path = 'category/'.$filename;
+            $image->storeAs('public/category/', $filename);
+            $category->image = $full_path;
+            $category->save();
         }
 
         $category->save();
