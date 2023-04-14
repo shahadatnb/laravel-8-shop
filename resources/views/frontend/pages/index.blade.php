@@ -94,9 +94,9 @@
     <div class="owl-carousel owl-theme" id="produces">
     @foreach($categories as $key=>$category)
         <figure class="_overhover">
-            <img class="img-fluid img-products" src="{{asset('storage/'.$category->image)}}" alt="Product Image">
+            <img class="img-fluid img-products" src="{{asset('storage/'.$category->image)}}" alt="{{$category->title}}">
             <figcaption class="_plink">
-                <a href="#"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-search-plus" aria-hidden="true"></i>{{$category->title}}</a>
             </figcaption>
         </figure>
     @endforeach

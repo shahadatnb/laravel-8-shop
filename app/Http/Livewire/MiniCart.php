@@ -28,6 +28,9 @@ class MiniCart extends Component
     }
 
     public function addToWishlist($id){
+        if(!auth('customer')){
+            return redirect('/login');
+        }
         $this->wishlist = Cart::addToWishlist($id);
     }
 
@@ -72,8 +75,11 @@ class MiniCart extends Component
         }
     }
 
-    public function addToCart($arg){ //$id,$qty=1
-        //dd($arg['id']); exit;
+    public function addToCart($arg){ 
+        dd(auth('customer'));
+        if(!auth('customer')){
+            return redirect('/login');
+        }
         $cart = Cart::addToCart($arg['id'],$arg['qty']);
         if( $cart == 'redirect'){
             return redirect()->route('singleProduct',$arg['id']);

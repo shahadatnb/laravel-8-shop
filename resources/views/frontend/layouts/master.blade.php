@@ -210,9 +210,7 @@
                                 </ul>
                             </li>
                           @endauth
-                          @auth('customer')
                             @livewire('mini-cart')
-                          @endauth
                         </ul>
                     </div> <!-- navbar-collapse.// -->
                 </div> <!-- container-fluid.// -->

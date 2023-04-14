@@ -11,7 +11,7 @@ use App\Models\Product;
 class Images extends Component
 {
     use WithFileUploads;
-    public $photos, $product;
+    public $photos, $product, $thumbnail = 0;
 
     private function resetInput()
     {

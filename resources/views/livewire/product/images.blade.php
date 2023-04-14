@@ -17,7 +17,7 @@
                 <div class="col-4 col-lg-3">
                     <i class="fas fa-times-circle imaage-remove"
                             wire:click="phoroRemove({{$item->id}})"></i>
-                    <img class="img-thumbnail" src="{{ asset('storage/' . $item->path) }}" alt="">
+                    <img class="img-thumbnail {{$thumbnail==1? 'select-thum':''}}" src="{{ asset('storage/' . $item->path) }}" alt="">
                 </div>
                 @endforeach
             </div>
