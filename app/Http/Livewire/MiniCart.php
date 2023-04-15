@@ -14,7 +14,7 @@ class MiniCart extends Component
 
     public function mount()
     {
-            $this->wishlist = Wishlist::getWishlistCount();
+        
     }
     
     public function quickView($id){
@@ -88,6 +88,10 @@ class MiniCart extends Component
 
     public function render()
     {
+        //dd(auth('customer')->user());
+        if(auth('customer')->user()){
+            $this->wishlist = Wishlist::getWishlistCount();
+        }
         $this->cartItems = \Cart::getContent()->toArray();
         return view('livewire.mini-cart');
     }

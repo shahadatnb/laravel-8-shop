@@ -11,13 +11,14 @@
         </a>
 
     </li>
+    @if(auth('customer'))
     <li class="nav-item mini-cart d-inline-block">
         <a class="nav-link" href="{{route('customer.wishlist')}}">
             <i class="fa fa-heart-o" aria-hidden="true"></i>
             <span>{{ $wishlist }}</span>
         </a>
     </li>
-
+    @endif
     <div id="cart-sidebar" style="display: none;">
         @if ($cartItems)
 
