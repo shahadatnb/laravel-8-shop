@@ -148,29 +148,4 @@
         </div>
     </div>
   </section>
-  <!--    Our Product -->
-  @if ($product)
-      <div class="modal fade" id="productMpdal" tabindex="-1" aria-labelledby="productMpdalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="productMpdalLabel">{{$product->title}}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="_main_view_of_product_image">
-                        <figure>
-                            <img class="_side_main_img img-fluid" src="{{ asset('storage/' . $product->allphotos->first()->path) }}">
-                        </figure>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="{{ url('/product',$item->id)}}" class="btn btn-secondary">View</a>
-                    <button wire:click="addToCart({{$item->id}})" type="button" class="btn btn-primary">Buy Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-  @endif
-
 </div>

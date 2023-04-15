@@ -6,7 +6,6 @@ use App\Http\Traits\locTrait;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\CustomerSibling;
 use App\Models\CustomerAddress;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -46,24 +45,9 @@ class CustomerController extends Controller
         $this->validate($request, array(
             'first_name'=>'required|string|max:100',
             'last_name'=>'required|string|max:100',
-            'jersey_name'=>'required|string|max:100',
-            'jersey_no' =>['required','string','max:3',
-                Rule::unique('customers')->where(function ($query) use($customer){
-                return $query->where('team_id', $customer->team_id);
-            })->ignore($customer->id)],
             'email'=>[
                 'required','email','max:100',
                 Rule::unique('customers')->ignore($customer->id),
-            ],
-            'FatherName'=>'nullable|string|max:100',
-            'FatherEmail'=>[
-                'nullable','email','max:100',
-                //Rule::unique('customers')->ignore($customer->id),
-            ],
-            'MotherName'=>'nullable|string|max:100',
-            'MotherEmail'=>[
-                'nullable','email','max:100',
-                //Rule::unique('customers')->ignore($customer->id),
             ],
             'gender'=>'required|string|max:100',
             'date_of_birth'=>'required|date|max:100',
@@ -78,12 +62,7 @@ class CustomerController extends Controller
 
         $customer->first_name = $request->first_name;
         $customer->last_name = $request->last_name;
-        $customer->jersey_name = $request->jersey_name;
         $customer->email = $request->email;
-        $customer->FatherName = $request->FatherName;
-        $customer->FatherEmail = $request->FatherEmail;
-        $customer->MotherName = $request->MotherName;
-        $customer->MotherEmail = $request->MotherEmail;
         $customer->gender = $request->gender;
         $customer->date_of_birth = $dob;
         $customer->address1 = $request->address1;
@@ -92,14 +71,6 @@ class CustomerController extends Controller
         $customer->country = $request->country;
         $customer->postcode = $request->postcode;
         $customer->phone = $request->phone;
-
-        if($customer->jersey_name == ''){
-            $customer->jersey_name = $request->jersey_name;
-        }
-        if($customer->jersey_no == ''){
-            $customer->jersey_no = $request->jersey_no;
-        }
-
         $customer->save();
 
         /*
@@ -111,33 +82,14 @@ class CustomerController extends Controller
         $CustomerAddress->postcode = $request->postcode;
         $CustomerAddress->save();
 */
-        if($request->SiblingsName[0] != '' && $request->SiblingsEmail[0] != '' ){
-            for ($i=0; $i < count($request->SiblingsName); $i++) {
-                $user = new CustomerSibling;
-                $user->customer_id =  $customer->id;
-                $user->SiblingsName = $request->SiblingsName[$i];
-                $user->SiblingsEmail = $request->SiblingsEmail[$i];
-                $user->save();
-            }
-        }
 
         Session::flash('success','Successfully Save');
         return redirect()->back();
     }
 
-    public function removeSibling($id){
-        $sibling = CustomerSibling::where('id',$id)->where('customer_id',auth('customer')->user()->id)->first();
-        if($sibling){
-            $sibling->delete();
-            Session::flash('success','Successfully removed');
-        }
-
-        return redirect()->back();
-    }
-
     public function wishlist()
     {
-        $wishlist = \Cart::getWishlist();
+        $wishlist = \Wishlist::getWishlist();
         return view('frontend.customer.wishlist',compact('wishlist'));
     }
 

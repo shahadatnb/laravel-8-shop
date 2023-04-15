@@ -10,21 +10,11 @@ use Auth;
 
 class CheckoutCart extends Component
 {
-    public $cart = [], $quantity = [], $cartItems = [], $coupon_code, $user;
+    public $cartItems, $coupon_code, $user;
 
     public function mount()
     {
-        $this->cart = Cart::where('customer_id',auth()->user()->id)->where('is_active',1)->first();
-        if($this->cart){
-            $this->cartItems = $this->cart->cartItems;
-            foreach($this->cart->cartItems as $item){
-                $this->quantity[$item->id] = $item->quantity;
-            }
-        }
-        if($this->cart){
-            $this->coupon_code = $this->cart->coupon_code;
-        }
-        
+              
         $this->user = auth()->user();
 
     }
@@ -69,6 +59,7 @@ class CheckoutCart extends Component
 
     public function render()
     {
+        $this->cartItems = \Cart::getContent()->toArray();
         return view('livewire.checkout-cart');
     }
 }

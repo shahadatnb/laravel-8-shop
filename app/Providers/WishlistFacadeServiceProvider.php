@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App;
 
-class CartFacadeServiceProvider extends ServiceProvider
+class WishlistFacadeServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,8 +14,8 @@ class CartFacadeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        App::bind('cart',function() {
-            return new \App\Http\Controllers\CartController;
+        App::bind('wishlist',function() {
+            return new \App\Http\Controllers\WishlistController;
         });
     }
 

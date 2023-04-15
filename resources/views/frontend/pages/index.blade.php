@@ -60,27 +60,15 @@
 
 <section class="_product">
     <div class="container">
-        <h3>We Produce</h3>
-    </div>
-
-    <div class="container-fluid py-3">
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 justify-content-between">
-            <div class="col my-md-4 my-2" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50"
-                data-aos-duration="1000">
-                <figure class="m-0 border position-relative">
-                    <div class="quickview position-absolute top-0 end-0"><a class="quebtn text-black"
-                            data-bs-toggle="modal" href="#exampleModalToggle" role="button"><i
-                                class="bi bi-eye-fill"></i></a>
-                    </div>
-                    <img class="img-fluid" src="img/Black-Acid-Washed-Jeans-58.jpg" alt="">
-                    <figcaption class="p-2 text-center">
-                        <h2 class="fstitle fs-6">Premium Quality Full sleeve Padded Crop Top</h2>
-                        <div class="productprice d-flex align-items-center justify-content-between">
-                            <span class="saleprice">$9999.00</span> <a href="#" class="buynow">Buy Now</a>
-                        </div>
-                    </figcaption>
-                </figure>
-            </div>
+        <h2>We Produce</h2>
+        <div class="row">
+            @foreach ($feature_products as $item)
+                <div class="col-md-3 col-lg-3">
+                <div class="item">
+                    @include('frontend.layouts.product-loop')
+                </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -225,6 +213,18 @@
                     items:4
                 }
             }
-        })
+        });
+
+        $('.addto-wishlist').click(function(){
+		//console.log($(this).data('id'));
+		var id = $(this).data('id');
+		Livewire.emit('addToWishlist', { id : id} );
+	});
+
+	$('.quickShop').click(function(){
+		//console.log($(this).data('id'));
+		var id = $(this).data('id');
+		Livewire.emit('addToCart', { id : id,qty:1} );
+	});
     </script>
 @endsection

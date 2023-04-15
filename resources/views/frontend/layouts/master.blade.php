@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('/assets/front/css/owl.theme.default.min.css')}}" />
     <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/style.css')}}?v={{time()}}" />
+    <link rel="stylesheet" href="{{asset('assets/front/css/inner_product.css?v='.time())}}" media="all">
     <link rel="stylesheet" href="{{asset('/assets/front/font-awesome-4.7.0/css/font-awesome.css')}}" />
     @yield('css')
       <title>
@@ -63,8 +64,8 @@
                     </button>
                     <div class="collapse navbar-collapse _site_mega_menu" id="main_nav">
                         <ul class="navbar-nav _site_mega_menu_ul m-auto">
-                            <li class="nav-item active"> <a class="nav-link" href="{{ url('/') }}">Home </a> </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/store') }}"> Products </a></li>
+                            <li class="nav-item active"> <a class="nav-link" href="{{ route('/') }}">Home </a> </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('store') }}"> Products </a></li>
                             <li class="nav-item dropdown has-megamenu">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Mega menu </a>
                                 <div class="dropdown-menu megamenu _site_mega_menu_div" role="menu">
@@ -294,7 +295,13 @@
 @stack('scripts')
 <!-- custom js -->
 <script src="{{asset('/assets/front/js/custom.js')}}"></script>
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>   
+<script>
+    window.addEventListener('quick-view', event => {
+        //alert('Name updated to:');
+        $('#quickView').modal('show');
+    })
+</script>
 
     {{-- <script src="assts/js/jquery.js"></script>
     <script src="assts/js/bootstrap.min.js"></script>

@@ -19,15 +19,12 @@ class Shop extends Component
         //$this->filtered_product =  Product::whereNull('parent_id')->where('store_id',$this->store->id)->where('status',1)->latest();
     }
 
-    public function quickView($id){
-        $this->product = Product::find($id);
-        if($this->product ){
-            $this->dispatchBrowserEvent('quick-view', ['id' => $id]); 
-        }               
-    }
-
     public function addToCart($id){
         $this->emit('addToCart',['id'=>$id,'qty'=>1]);
+    }
+
+    public function quickView($id){
+        $this->emit('quickView',['id'=>$id]);
     }
 
     public function addToWishlist($id){

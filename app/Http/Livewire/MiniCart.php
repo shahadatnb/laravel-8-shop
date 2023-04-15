@@ -4,34 +4,31 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Coupon;
-use App\Facades\Cart;
+use App\Models\Product;
+use App\Facades\Wishlist;
 
 class MiniCart extends Component
 {
-    public $cart = [], $cartCount = '', $coupon_code = '', $wishlist = '';
-    protected $listeners = ['setCoupon','addToCart','addToWishlist'];
+    public $cartItems = [], $coupon_code = '', $wishlist = '', $quickItem;
+    protected $listeners = ['setCoupon','addToCart','addToWishlist','quickView'];
 
     public function mount()
     {
-        //  dd(auth('customer')->user()); exit;
-		//if(auth('customer')->user()->id){
-            $this->cart = Cart::getCart();
-            $this->wishlist = Cart::getWishlistCount();
-            //dd($this->wishlist);
-            if($this->cart != ''){
-                $this->cartCount = $this->cart->cartItems->count();
-                $this->coupon_code = $this->cart->coupon_code;
-            }
-
-		//}
-
+            $this->wishlist = Wishlist::getWishlistCount();
+    }
+    
+    public function quickView($id){
+        $this->quickItem = Product::find($id);
+        if($this->quickItem ){
+            $this->dispatchBrowserEvent('quick-view', ['id' => $id]); 
+        }
     }
 
     public function addToWishlist($id){
         if(!auth('customer')){
             return redirect('/login');
         }
-        $this->wishlist = Cart::addToWishlist($id);
+        $this->wishlist = Wishlist::addToWishlist($id);
     }
 
     public function setCoupon($coupon_code=''){
@@ -76,11 +73,7 @@ class MiniCart extends Component
     }
 
     public function addToCart($arg){ 
-        dd(auth('customer'));
-        if(!auth('customer')){
-            return redirect('/login');
-        }
-        $cart = Cart::addToCart($arg['id'],$arg['qty']);
+        $cart = Wishlist::addToCart($arg['id'],$arg['qty']);
         if( $cart == 'redirect'){
             return redirect()->route('singleProduct',$arg['id']);
         }else{
@@ -91,55 +84,11 @@ class MiniCart extends Component
             $this->cartCount = $this->cart->cartItems->count();
         }
 
-        /*
-        $product = Product::find($id)->first();
-        //dd($this->user->id);
-        if($product->parent_id != null){
-            //$parent = $product->parent->title;
-            $productTitle = $product->parent->title.' '.$product->size.' '.$product->color;
-        }else{
-            $productTitle = $product->title;
-        }
-
-        if ($product->special_price > 0) {
-            $price = $product->special_price;
-        } else {
-            $price = $product->price;
-        }
-
-
-        $this->cart = CartModel::firstOrCreate(
-            [
-                'customer_id' => auth('customer')->user()->id,
-                'is_active'=>1
-            ],
-            [
-                'customer_id' => auth('customer')->user()->id,
-                'is_active'=>1
-            ]
-        );
-
-
-        $cartItem = new CartItem;
-        $cartItem->cart_id = $this->cart->id;
-        $cartItem->quantity = $qty;
-        $cartItem->sku = $product->sku;
-        $cartItem->product_id = $product->id;
-        $cartItem->parent_id = $product->parent_id;
-        $cartItem->name = $productTitle;
-        $cartItem->price = $price;
-        $cartItem->total = $price*$qty;
-        $cartItem->save();
-
-        $this->cart->refresh();
-        $this->cartCount = $this->cart->cartItems->count();
-        session()->flash('success','Cart Added');
-
-        */
     }
 
     public function render()
     {
+        $this->cartItems = \Cart::getContent()->toArray();
         return view('livewire.mini-cart');
     }
 }

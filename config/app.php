@@ -179,7 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        App\Providers\CartFacadeServiceProvider::class,
+        App\Providers\WishlistFacadeServiceProvider::class,
         App\Providers\HelperFacadeServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         //Srmklive\PayPal\Providers\PayPalServiceProvider::class,
@@ -235,7 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        //'Cart'=> App\Facades\Cart::class,
+        'Wishlist'=> App\Facades\Wishlist::class,
         'CustomHelper'=> App\Facades\CustomHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,

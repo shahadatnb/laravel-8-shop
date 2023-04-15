@@ -1,8 +1,7 @@
 <div>
-
     <section id="bardowncheckout" class="bardowncheckout">
         {!! Form::model($user,['route'=>['placeOrder'], 'method'=>'POST']) !!}
-            <input type="hidden" name="cart_id" value="{{$cart->id}}">
+            {{-- <input type="hidden" name="cart_id" value="{{$cart->id}}"> --}}
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -79,24 +78,24 @@
                             <table class="proaligny">
 
                                 <tbody>
-                                    @foreach ($cart->cartItems as $item)
+                                    @foreach ($cartItems as $item)
                                     <tr class="protrtab">
                                         <td>
                                             <div class="procartimg">
                                                 <div class="procartimgdsd">
-                                                    <img src="{{ CustomHelper::productThumbById($item->product_id) }}" alt="{{$item->name}}">
+                                                    <img src="{{ CustomHelper::productThumbById($item['id']) }}" alt="{{$item['name']}}">
                                                 </div>
-                                                <span class="countproscart">{{$item->quantity}}</span>
+                                                <span class="countproscart">{{$item['quantity']}}</span>
                                             </div>
                                         </td>
                                         <td class="product__description" scope="row">
                                             <div class="cartproname">
-                                                <h2>{{$item->name}}</h2>
+                                                <h2>{{$item['name']}}</h2>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="cartpriceck">
-                                                <p>{{config('settings.currencySymbol')}}{{$item->total}}</p>
+                                                <p>{{config('settings.currencySymbol')}}{{Cart::getTotal()}}</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -107,7 +106,7 @@
 
                         </div>
 
-                        <div class="goftcart mb-3">
+                        {{-- <div class="goftcart mb-3">
                             <div class="row">
                                 <form class="row g-3">
                                     <div class="col-9">
@@ -118,7 +117,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="needsubbordar">
 
@@ -128,25 +127,25 @@
                                         <td>Subtotal</td>
                                         <td>
                                             <div class="text-right-tba">
-                                                <p>{{config('settings.currencySymbol')}}{{$cart->subTotal() }}</p>
+                                                <p>{{config('settings.currencySymbol')}}{{Cart::getTotal() }}</p>
                                             </div>
                                         </td>
                                     </tr>
-                                    @if ($cart->coupon_code != '')
+                                    {{-- @if ($cart->coupon_code != '')
                                         <tr>
                                             <td>{{$cart->coupon_code}}</td>
                                             <td>
                                                 <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->discount }}</p>
                                             </td>
                                         </tr>
-                                    @endif
-                                    <tr>
+                                    @endif --}}
+                                    {{-- <tr>
                                         <td>Tax</td>
                                         <td>
                                             <input wire:model="tax_total" value="{{$cart->tax_total }}" name="tax_total" type="hidden">
                                             <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->tax_total }}</p>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td>Shipping</td>
                                         <td>
@@ -167,7 +166,7 @@
                                         </td>
                                         <td>
                                             <div class="text-right-tbacad">
-                                                <p>{{config('settings.currencyCode')}} {{config('settings.currencySymbol')}}{{$cart->subTotal()-$cart->discount+$cart->tax_total }}</p>
+                                                <p>{{config('settings.currencyCode')}} {{config('settings.currencySymbol')}}{{Cart::getTotal() }}</p>
                                             </div>
                                         </td>
                                     </tr>

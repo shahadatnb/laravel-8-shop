@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\TaxRate;
 use Livewire\Component;
 use App\Models\Product;
-use App\Models\Cart;
+use App\Models\Cart as Wishlist;
 use App\Models\CartItem;
 use App\Models\Coupon;
 use Session;
@@ -14,14 +14,14 @@ use Auth;
 class CheckoutCheckout extends Component
 {
 
-    public $cart = [], $countries, $states, $tax_total, $coupon_code, $user, $country='', $state='';
+    public $cartItems, $countries, $states, $tax_total, $coupon_code, $user, $country='', $state='';
 
     protected $listeners = ['setTax'];
 
     public function mount()
     {
-        $this->cart = Cart::where('customer_id',$this->user->id)->where('is_active',1)->first();
-        $this->coupon_code = $this->cart->coupon_code;
+        $this->cartItems = \Cart::getContent()->toArray();
+        //$this->coupon_code = $this->cart->coupon_code;
     }
 
     public function setCoupon(){

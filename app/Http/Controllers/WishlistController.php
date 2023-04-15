@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Cart;
+use App\Models\Cart as Wishlist;
 use App\Models\CartItem;
 use Session;
 use Auth;
 
 use Illuminate\Support\Facades\Log;
 
-class CartController extends Controller
+class WishlistController extends Controller
 {
 
     public function __construct()
@@ -21,12 +21,8 @@ class CartController extends Controller
         //$this->user = Auth::user();
     }
 
-    public function getCart(){
-        return Cart::where('customer_id',auth('customer')->user()->id)->where('is_active',1)->first();
-    }
-
     public function getWishlistCount(){
-        $wishlist =  Cart::where('customer_id',auth('customer')->user()->id)->where('cartType','wishlist')->first();
+        $wishlist =  Wishlist::where('customer_id',auth('customer')->user()->id)->where('cartType','wishlist')->first();
         if($wishlist){
             return $wishlist->cartItems->count();
         }else{
@@ -35,18 +31,13 @@ class CartController extends Controller
     }
 
     public function getWishlist(){
-        return  Cart::where('customer_id',auth('customer')->user()->id)->where('cartType','wishlist')->first();
+        return  Wishlist::where('customer_id',auth('customer')->user()->id)->where('cartType','wishlist')->first();
     }
 
     public function removeWishlist($id){
         CartItem::destroy($id);
         return  redirect()->back();
     }
-
-    public function index(){
-        return view('frontend.pages.cart');
-    }
-
 
     public function addToWishlist($id){
 
@@ -65,7 +56,7 @@ class CartController extends Controller
             }
 
 
-            $wishlist = Cart::firstOrCreate(
+            $wishlist = Wishlist::firstOrCreate(
                 [
                     'customer_id' => auth('customer')->user()->id,
                     'cartType'=>'wishlist'
@@ -121,40 +112,20 @@ class CartController extends Controller
                 $price = $product->price;
             }
 
-            $cart = Cart::firstOrCreate(
-                [
-                    'customer_id' => auth('customer')->user()->id,
-                    'is_active'=>1
-                ],
-                [
-                    'customer_id' => auth('customer')->user()->id,
-                    'is_active'=>1
-                ]
-            );
+            \Cart::add([
+                'id' => $product->id,
+                'name' => $productTitle,
+                'price' => $price,
+                'quantity' => $qty,
+                'attributes' => array(
+                    'image' => '',
+                )
+            ]);
 
-            $check =  CartItem::where('cart_id',$cart->id)->where('product_id',$product->id)->first();
-            if($check){
-                $qty = $check->quantity+$qty;
-                $check->quantity = $qty;
-                $check->total = $price*$qty;
-                $check->save();
-            }else{
-                $cartItem = new CartItem;
-                $cartItem->cart_id = $cart->id;
-                $cartItem->quantity = $qty;
-                $cartItem->sku = $product->sku;
-                $cartItem->product_id = $product->id;
-                $cartItem->parent_id = $product->parent_id;
-                $cartItem->name = $productTitle;
-                $cartItem->price = $price;
-                $cartItem->total = $price*$qty;
-                $cartItem->save();
-            }
             session()->flash('success','Cart Added');
         }else{
             session()->flash('warning','Product not found');
         }
-        return $cart;
     }
 
     public function singleAddToCart(Request $request){

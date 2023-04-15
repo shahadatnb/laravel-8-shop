@@ -17,7 +17,8 @@ class FrontController extends Controller
     public function index()
     {
         $categories = Category::where('status',1)->whereNull('parent_id')->get();
-        return view('frontend.pages.index', compact('categories'));
+        $feature_products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
+        return view('frontend.pages.index', compact('categories','feature_products'));
     }
 
     public function store()

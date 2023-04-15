@@ -74,10 +74,8 @@ Route::prefix(config('app.admin_prefix','admin'))->group(function() {
 Route::get('/stateApi', [LocationController::class, 'stateApi'])->name('stateApi');
 
 Route::group(['middleware'=>'auth:customer'], function(){
-    Route::get('/cart',[CartController::class, 'index'])->name('cart');
-    Route::post('/add-to-cart',[CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/cart',[CheckoutController::class, 'cart'])->name('cart');
     Route::post('/product-review',[ProductReviewController::class, 'store'])->name('product-review');
-
     Route::get('/checkout',[CheckoutController::class, 'index'])->name('checkout');
     Route::post('/placeOrder',[CheckoutController::class, 'checkout'])->name('placeOrder');
 });

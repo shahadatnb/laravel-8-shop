@@ -229,6 +229,8 @@
 			$(document).ready(function(){
 				$('.textarea').summernote();
 
+				
+
                 /*
                                 $('#type').change(function() {
                                         var variants = $('.variantaddremove');

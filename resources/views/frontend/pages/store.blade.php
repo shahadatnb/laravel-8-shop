@@ -28,11 +28,5 @@
 @livewire('shop')
 @endsection
 @section('js')
-<script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>   
-<script>
-    window.addEventListener('quick-view', event => {
-        //alert('Name updated to:');
-        $('#productMpdal').modal('show');
-    })
-</script>
+
 @endsection

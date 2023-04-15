@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Cart;
+use App\Models\Cart as Wishlist;
 use App\Models\CartItem;
 use App\Http\Traits\locTrait;
 use App\Models\Order;
@@ -20,21 +20,24 @@ class CheckoutController extends Controller
 
 
     public function index(){
-        $this->cart = Cart::where('customer_id',auth('customer')->user()->id)->where('is_active',1)->first();
-        if($this->cart){
+        $cartItems = \Cart::getContent()->toArray();
+        if($cartItems){
             $user = auth('customer')->user();
             $countries = $this->countryArray();
             $states = array();
             if ($user->country != ''){
                 $states = $this->stateArray($user->country);
             }
-            return view('frontend.checkout.checkout',compact('countries','states','user'));
+            return view('frontend.checkout.checkout',compact('countries','states','user','cartItems'));
         }else{
             return redirect()->route('/');
         }
     }
 
 
+    public function cart(){
+        return view('frontend.pages.cart');
+    }
 
     /*
     <option value="wc-pending">Pending payment</option>
