@@ -207,7 +207,7 @@ $('#state').on('change', function(event) {
     var state = $(this).val();
     //console.log(state);
     @this.set('state', state);
-    Livewire.emit('setTax');
+    //Livewire.emit('setTax');
 });
 
 </script>

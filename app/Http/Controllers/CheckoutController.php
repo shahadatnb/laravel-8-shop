@@ -60,12 +60,12 @@ class CheckoutController extends Controller
             'state'=>'required|string|max:255',
             'country'=>'required|string|max:255',
             'postcode'=>'required|numeric',
-            'cart_id'=>'required|numeric',
+            //'cart_id'=>'required|numeric',
         ));
 
         $cart = Cart::find($request->cart_id);
 
-        $payment_method = 'paypal'; //'Cash on Delivery'
+        $payment_method = 'Cash on Delivery'; //'paypal'
 
         $order = new Order;
         //$order->cart_id = $cart->id;
@@ -74,8 +74,6 @@ class CheckoutController extends Controller
         $order->tax_amount = $cart->tax_total;
         $order->discount_amount = $cart->discount;
         $order->payment_method = $payment_method;
-        $order->club_id = auth('customer')->user()->team->club_id;
-        $order->team_id = auth('customer')->user()->team_id;
         $order->customer_id = auth('customer')->user()->id;
         //$order->shipping_method = $request->email;
         $order->customer_first_name = $request->first_name;

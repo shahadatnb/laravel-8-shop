@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2023 at 08:01 PM
+-- Generation Time: Apr 24, 2023 at 06:26 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -129,7 +129,8 @@ INSERT INTO `carts` (`id`, `cartType`, `shipping_method`, `coupon_code`, `exchan
 (7, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 6, '2021-05-17 07:42:45', '2021-05-17 07:42:45'),
 (8, 'cart', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 11, '2021-05-18 11:53:21', '2021-05-18 11:53:21'),
 (9, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 13, '2021-06-16 20:09:47', '2021-06-16 20:09:47'),
-(10, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 16, '2021-07-05 20:05:07', '2021-07-05 20:05:07');
+(10, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 16, '2021-07-05 20:05:07', '2021-07-05 20:05:07'),
+(11, 'wishlist', NULL, NULL, NULL, NULL, NULL, NULL, '0.0000', '0.0000', '0.0000', '0.0000', NULL, NULL, 1, NULL, 18, '2023-04-14 12:04:37', '2023-04-14 12:04:37');
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,9 @@ INSERT INTO `cart_items` (`id`, `quantity`, `sku`, `type`, `name`, `coupon_code`
 (16, 1, NULL, NULL, 'Title B XXL Blue', NULL, '1.0000', '0.0000', '0.0000', '4.00', '0.00', '0.00', '4.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 11, 17, 8, NULL, '2021-06-06 11:10:10', '2021-06-06 11:10:10'),
 (17, 2, NULL, NULL, 'Title B XL Blue', NULL, '1.0000', '0.0000', '0.0000', '4.00', '0.00', '0.00', '8.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, 11, 15, 7, NULL, '2021-06-16 15:19:11', '2021-06-16 15:19:11'),
 (18, 1, '80', NULL, 'GAMER HOODIE (UNISEX)', NULL, '1.0000', '0.0000', '0.0000', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 57, 9, NULL, '2021-06-16 20:09:47', '2021-06-16 20:09:47'),
-(19, 1, '2', NULL, 'RIDE THE PINE', NULL, '1.0000', '0.0000', '0.0000', '45.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 54, 10, NULL, '2021-07-05 20:05:07', '2021-07-05 20:05:07');
+(19, 1, '2', NULL, 'RIDE THE PINE', NULL, '1.0000', '0.0000', '0.0000', '45.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 54, 10, NULL, '2021-07-05 20:05:07', '2021-07-05 20:05:07'),
+(20, 1, 'Fl-2002-GRY-13S', NULL, 'Errie Otters TShirt', NULL, '1.0000', '0.0000', '0.0000', '30.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 35, 11, NULL, '2023-04-14 12:04:37', '2023-04-14 12:04:37'),
+(21, 1, '332', NULL, '10th may', NULL, '1.0000', '0.0000', '0.0000', '322.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', NULL, NULL, 46, 11, NULL, '2023-04-15 04:38:35', '2023-04-15 04:38:35');
 
 -- --------------------------------------------------------
 
@@ -218,10 +221,10 @@ INSERT INTO `categories` (`id`, `title`, `slug`, `image`, `position`, `status`, 
 (4, 'Demimm', 'demimm', NULL, 0, 1, 3, '2021-04-30 06:05:37', '2021-04-30 09:01:24'),
 (5, 'Cemim', 'cemim2', NULL, 0, 1, 3, '2021-04-30 06:06:20', '2021-04-30 06:06:31'),
 (7, 'Hujur', 'hujur2', NULL, 0, 1, 1, '2021-04-30 09:00:58', '2021-04-30 09:01:09'),
-(11, 'Hoodies', 'hoodies', NULL, 0, 1, 13, '2021-04-30 16:22:38', '2021-04-30 18:31:29'),
-(13, 'Clothing', 'clothing', NULL, 0, 1, NULL, '2021-04-30 18:31:20', '2021-04-30 18:31:20'),
-(14, 'Shirts', 'shirts', NULL, 0, 1, 13, '2021-04-30 18:32:55', '2021-04-30 18:32:55'),
-(15, 'Headwear', 'headwear', NULL, 0, 1, NULL, '2021-05-03 18:31:06', '2021-05-03 18:31:06'),
+(11, 'Hoodies', 'hoodies', 'category/1681409607.jpg', 0, 1, 13, '2021-04-30 16:22:38', '2023-04-13 18:13:27'),
+(13, 'Clothing', 'clothing', 'category/1681409502.jpg', 0, 1, NULL, '2021-04-30 18:31:20', '2023-04-13 18:11:42'),
+(14, 'Shirts', 'shirts', 'category/1681409613.jpg', 0, 1, 13, '2021-04-30 18:32:55', '2023-04-13 18:13:33'),
+(15, 'Headwear', 'headwear', 'category/1681409624.jpg', 0, 1, NULL, '2021-05-03 18:31:06', '2023-04-13 18:13:44'),
 (16, 'Hats', 'hats', NULL, 0, 1, 15, '2021-05-03 20:17:12', '2021-05-03 20:17:12'),
 (17, 'New', 'new', NULL, 0, 1, NULL, '2021-06-16 19:17:41', '2021-06-16 19:17:41'),
 (18, 'Very New', 'very-new', NULL, 0, 1, 17, '2021-06-16 19:17:51', '2021-06-16 19:17:51');
@@ -267,7 +270,6 @@ INSERT INTO `coupons` (`id`, `title`, `coupen_code`, `description`, `is_percenta
 
 CREATE TABLE `customers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `team_id` smallint(5) UNSIGNED DEFAULT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` enum('Male','Female','Others') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -294,23 +296,24 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `team_id`, `first_name`, `last_name`, `gender`, `date_of_birth`, `email`, `status`, `password`, `otp`, `subscribed_to_news_letter`, `notes`, `address1`, `address2`, `country`, `state`, `city`, `postcode`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 46, 'Schools', 'Dress', NULL, NULL, 'schoolsdress@gmail.com', 1, '$2y$10$InWxIinNjlNdX3LzqDb.POn0l5l4l63Bpm.46Y76twTXaQyCh9ZNK', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
-(3, 47, 'Monir', 'Noyon', 'Male', '1990-12-23', 'gallantdigital360@gmail.com', 1, '$2y$10$ioHQZNJNSRnHr9iizTypSuBM/KAkF0eThhwV24BGG8H8XrGfxvZxK', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:32', '2021-05-03 19:31:31'),
-(4, 47, 'Gobar', 'Down', NULL, NULL, 'gobardown.info@gmail.com', 1, '$2y$10$S0KlMFvRm2VPkpvWbg/CKuVc4yRvmeg9CDNbJfjNsFGDszYNkwN1m', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:33', '2021-04-30 16:44:44'),
-(5, 47, 'Jony', 'Jon', NULL, NULL, 'jon_info_all@yahoo.com', 1, '$2y$10$NITEtUBqA2rxo8.AwDUoLOQ2llI1VQbQ1YyDC0faIZV50bryVxf.O', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:20:57', '2021-05-03 17:34:59'),
-(6, 46, 'shariful', 'islam', NULL, NULL, 'shariful.islam.shuvo27@gmail.com', 1, '$2y$10$9BPYO8VYJ/X85jVN/25pcupnf03321S7AB3wdIagQHG8141vQGLhu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:30:47', '2021-05-03 17:37:36'),
-(7, 47, 'Hossain', 'Monir', NULL, NULL, 'sajiviphlujsjpvzxl@twzhhq.com', 1, NULL, '253575', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:49:48', '2021-05-03 18:49:48'),
-(8, 47, 'Shoroni', 'Khan', NULL, NULL, 'bekrrseiygoyhbqkhp@mhzayt.online', 1, NULL, '90881', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:52:40', '2021-05-03 19:52:40'),
-(9, 47, 'Sumaya', 'Khan', NULL, NULL, 'shoronikhan2020@gmail.com', 1, '$2y$10$dbqzyrgTQAqL5ewMtkcpQeFAeZsHwcnxhNqLIDYrh0Cg2nflTBgFa', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:54:47', '2021-05-03 19:55:16'),
-(10, 56, 'thehanse', 'ict', NULL, NULL, 'thehanseict@gmail.com', 1, '$2y$10$8tk8DSZfI726rz6.FYnJNe7THSBsKfrsjEeSwm7bOMkzMi3UBmBZq', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-05 15:23:11', '2021-05-05 15:24:06'),
-(11, 46, 'Schools', 'Dress', NULL, NULL, 'customer@gmail.com', 1, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
-(12, 59, 'Shourov', 'Chishti', NULL, NULL, 'shourovchishti@gmail.com', 1, NULL, '643044', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-07 15:57:00', '2021-06-07 15:57:00'),
-(13, 68, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@gmail.com', 1, '$2y$10$t705il7Py/Z9hs1dm0jd/uzajgMB8Z.QkgdHKYkjxI94WAcdtaQRu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:43:28', '2021-06-16 19:56:06'),
-(14, 68, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@outlook.com', 1, '$2y$10$Wrmt26K6c4e2LCTD7pU3CeqlydPqwUKHNigkWTRcF5uIf4R68dftS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:44:52', '2021-06-16 17:27:17'),
-(15, 67, 'Photos', 'Pervez', NULL, NULL, 'photospervez@gmail.com', 1, '$2y$10$ZqOQhVVBR079tsl.vXvP1OaRadN/oCJ8w1y.dKOGG/21td06xxY/K', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:22', '2021-06-16 16:50:29'),
-(16, 67, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@gmail.com', 1, '$2y$10$z54v.IdbZKHotN5LMdorhOE6682ozZJtpmquKuDpEUVZGzx0PwuQy', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:24', '2021-06-16 16:09:42'),
-(17, 68, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@outlook.com', 1, '$2y$10$trY21ANcmX7nOPqYcMy6Pu3u0f9kguNUFUUUvt3Y2WZpJ3RsTKGti', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 18:18:18', '2021-06-16 18:19:55');
+INSERT INTO `customers` (`id`, `first_name`, `last_name`, `gender`, `date_of_birth`, `email`, `status`, `password`, `otp`, `subscribed_to_news_letter`, `notes`, `address1`, `address2`, `country`, `state`, `city`, `postcode`, `phone`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'Schools', 'Dress', NULL, NULL, 'schoolsdress@gmail.com', 1, '$2y$10$gSOeoAJZudaSKmvMSHwNcu2aJZAP1TbmeJZPf4u9rxww0eJglLwLO', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
+(3, 'Monir', 'Noyon', 'Male', '1990-12-23', 'gallantdigital360@gmail.com', 1, '$2y$10$ioHQZNJNSRnHr9iizTypSuBM/KAkF0eThhwV24BGG8H8XrGfxvZxK', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:32', '2021-05-03 19:31:31'),
+(4, 'Gobar', 'Down', NULL, NULL, 'gobardown.info@gmail.com', 1, '$2y$10$S0KlMFvRm2VPkpvWbg/CKuVc4yRvmeg9CDNbJfjNsFGDszYNkwN1m', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 16:40:33', '2021-04-30 16:44:44'),
+(5, 'Jony', 'Jon', NULL, NULL, 'jon_info_all@yahoo.com', 1, '$2y$10$NITEtUBqA2rxo8.AwDUoLOQ2llI1VQbQ1YyDC0faIZV50bryVxf.O', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:20:57', '2021-05-03 17:34:59'),
+(6, 'shariful', 'islam', NULL, NULL, 'shariful.islam.shuvo27@gmail.com', 1, '$2y$10$9BPYO8VYJ/X85jVN/25pcupnf03321S7AB3wdIagQHG8141vQGLhu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 17:30:47', '2021-05-03 17:37:36'),
+(7, 'Hossain', 'Monir', NULL, NULL, 'sajiviphlujsjpvzxl@twzhhq.com', 1, NULL, '253575', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 18:49:48', '2021-05-03 18:49:48'),
+(8, 'Shoroni', 'Khan', NULL, NULL, 'bekrrseiygoyhbqkhp@mhzayt.online', 1, NULL, '90881', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:52:40', '2021-05-03 19:52:40'),
+(9, 'Sumaya', 'Khan', NULL, NULL, 'shoronikhan2020@gmail.com', 1, '$2y$10$dbqzyrgTQAqL5ewMtkcpQeFAeZsHwcnxhNqLIDYrh0Cg2nflTBgFa', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-03 19:54:47', '2021-05-03 19:55:16'),
+(10, 'thehanse', 'ict', NULL, NULL, 'thehanseict@gmail.com', 1, '$2y$10$8tk8DSZfI726rz6.FYnJNe7THSBsKfrsjEeSwm7bOMkzMi3UBmBZq', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-05-05 15:23:11', '2021-05-05 15:24:06'),
+(11, 'Schools', 'Dress', NULL, NULL, 'customer@gmail.com', 1, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-04-30 09:27:51', '2021-04-30 09:29:22'),
+(12, 'Shourov', 'Chishti', NULL, NULL, 'shourovchishti@gmail.com', 1, NULL, '643044', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-07 15:57:00', '2021-06-07 15:57:00'),
+(13, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@gmail.com', 1, '$2y$10$t705il7Py/Z9hs1dm0jd/uzajgMB8Z.QkgdHKYkjxI94WAcdtaQRu', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:43:28', '2021-06-16 19:56:06'),
+(14, 'Sarkar', 'Pervez', NULL, NULL, 'sarkarpervez@outlook.com', 1, '$2y$10$Wrmt26K6c4e2LCTD7pU3CeqlydPqwUKHNigkWTRcF5uIf4R68dftS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:44:52', '2021-06-16 17:27:17'),
+(15, 'Photos', 'Pervez', NULL, NULL, 'photospervez@gmail.com', 1, '$2y$10$ZqOQhVVBR079tsl.vXvP1OaRadN/oCJ8w1y.dKOGG/21td06xxY/K', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:22', '2021-06-16 16:50:29'),
+(16, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@gmail.com', 1, '$2y$10$z54v.IdbZKHotN5LMdorhOE6682ozZJtpmquKuDpEUVZGzx0PwuQy', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 15:59:24', '2021-06-16 16:09:42'),
+(17, 'Ahasan', 'Pervez', NULL, NULL, 'ahasanpervez@outlook.com', 1, '$2y$10$trY21ANcmX7nOPqYcMy6Pu3u0f9kguNUFUUUvt3Y2WZpJ3RsTKGti', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-06-16 18:18:18', '2021-06-16 18:19:55'),
+(18, 'Shahadat', 'Hosain', NULL, NULL, 'shahadat@asiancoder.com', 1, '$2y$10$.Oy3H4Yq4NsA5tH8NKbRcu4uWSgXyHYRtZWf24lihZc5yo5dbFGLa', '940656', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2023-04-13 16:31:27', '2023-04-13 16:31:27');
 
 -- --------------------------------------------------------
 
@@ -52912,8 +52915,6 @@ CREATE TABLE `orders` (
   `base_shipping_invoiced` decimal(12,2) DEFAULT 0.00,
   `shipping_refunded` decimal(12,2) DEFAULT 0.00,
   `base_shipping_refunded` decimal(12,2) DEFAULT 0.00,
-  `club_id` smallint(6) DEFAULT NULL,
-  `team_id` smallint(6) DEFAULT NULL,
   `customer_id` int(10) UNSIGNED DEFAULT NULL,
   `customer_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -52924,13 +52925,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `cart_id`, `invoice_id`, `status`, `payment_status`, `refund_status`, `payment_method`, `payment_method_title`, `shipping_status`, `carrier_code`, `carrier_title`, `track_number`, `is_guest`, `customer_email`, `customer_first_name`, `customer_last_name`, `shipping_method`, `shipping_title`, `shipping_description`, `coupon_code`, `is_gift`, `total_item_count`, `total_qty_ordered`, `base_currency_code`, `order_currency_code`, `grand_total`, `base_grand_total`, `grand_total_invoiced`, `base_grand_total_invoiced`, `grand_total_refunded`, `base_grand_total_refunded`, `sub_total`, `base_sub_total`, `sub_total_invoiced`, `base_sub_total_invoiced`, `sub_total_refunded`, `base_sub_total_refunded`, `discount_percent`, `discount_amount`, `base_discount_amount`, `discount_invoiced`, `base_discount_invoiced`, `discount_refunded`, `base_discount_refunded`, `tax_amount`, `base_tax_amount`, `tax_amount_invoiced`, `base_tax_amount_invoiced`, `tax_amount_refunded`, `base_tax_amount_refunded`, `shipping_amount`, `base_shipping_amount`, `shipping_invoiced`, `base_shipping_invoiced`, `shipping_refunded`, `base_shipping_refunded`, `club_id`, `team_id`, `customer_id`, `customer_type`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 4, 4, NULL, NULL, '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 41, 46, 5, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
-(2, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 42, 47, 5, NULL, '2021-05-11 11:42:57', '2021-05-11 11:42:57'),
-(3, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 8, NULL, NULL, '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 41, 51, 5, NULL, '2021-05-11 11:46:15', '2021-05-11 11:46:15'),
-(4, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 42, 54, 5, NULL, '2021-05-11 11:48:37', '2021-05-11 11:48:37'),
-(5, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 2, NULL, NULL, '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 49, 59, 6, NULL, '2021-05-11 11:51:14', '2021-05-11 11:51:14'),
-(6, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 52, 56, 10, NULL, '2021-05-11 11:52:47', '2021-05-11 11:52:47');
+INSERT INTO `orders` (`id`, `cart_id`, `invoice_id`, `status`, `payment_status`, `refund_status`, `payment_method`, `payment_method_title`, `shipping_status`, `carrier_code`, `carrier_title`, `track_number`, `is_guest`, `customer_email`, `customer_first_name`, `customer_last_name`, `shipping_method`, `shipping_title`, `shipping_description`, `coupon_code`, `is_gift`, `total_item_count`, `total_qty_ordered`, `base_currency_code`, `order_currency_code`, `grand_total`, `base_grand_total`, `grand_total_invoiced`, `base_grand_total_invoiced`, `grand_total_refunded`, `base_grand_total_refunded`, `sub_total`, `base_sub_total`, `sub_total_invoiced`, `base_sub_total_invoiced`, `sub_total_refunded`, `base_sub_total_refunded`, `discount_percent`, `discount_amount`, `base_discount_amount`, `discount_invoiced`, `base_discount_invoiced`, `discount_refunded`, `base_discount_refunded`, `tax_amount`, `base_tax_amount`, `tax_amount_invoiced`, `base_tax_amount_invoiced`, `tax_amount_refunded`, `base_tax_amount_refunded`, `shipping_amount`, `base_shipping_amount`, `shipping_invoiced`, `base_shipping_invoiced`, `shipping_refunded`, `base_shipping_refunded`, `customer_id`, `customer_type`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 4, 4, NULL, NULL, '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '275.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 5, NULL, '2021-05-11 11:40:01', '2021-05-11 11:40:01'),
+(2, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '75.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 5, NULL, '2021-05-11 11:42:57', '2021-05-11 11:42:57'),
+(3, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 8, NULL, NULL, '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '240.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 5, NULL, '2021-05-11 11:46:15', '2021-05-11 11:46:15'),
+(4, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '90.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 5, NULL, '2021-05-11 11:48:37', '2021-05-11 11:48:37'),
+(5, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 2, NULL, NULL, '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '5794.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 6, NULL, '2021-05-11 11:51:14', '2021-05-11 11:51:14'),
+(6, NULL, NULL, 'Processing', 0, 0, 'Cash on Delivery', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3, NULL, NULL, '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '12000.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 10, NULL, '2021-05-11 11:52:47', '2021-05-11 11:52:47');
 
 -- --------------------------------------------------------
 
@@ -53393,7 +53394,6 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `type`, `path`, `product_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'public/product/4/6dd01ae83f7870be62f7451734a0a7b0.png', 4, '2021-04-30 09:09:27', '2021-04-30 09:09:27'),
 (8, NULL, 'public/product/19/b2f0e76845432a823cab56e0abd54e0f.jpg', 19, '2021-04-30 23:24:42', '2021-04-30 23:24:42'),
 (11, NULL, 'product/2021/05/70e4cd296590c4a48c04d60f1f59417e.jpg', 20, '2021-05-03 17:02:39', '2021-05-03 17:02:39'),
 (15, NULL, 'product/2021/05/5a3c7dc32a294a722b810d99a6f6404f.jpg', 35, '2021-05-03 18:34:16', '2021-05-03 18:34:16'),
@@ -53419,7 +53419,8 @@ INSERT INTO `product_images` (`id`, `type`, `path`, `product_id`, `created_at`, 
 (45, NULL, 'product/2023/04/c79b08b42fe562e0b4295135573453f1.jpg', 57, '2023-04-07 17:21:29', '2023-04-07 17:21:29'),
 (46, NULL, 'product/2023/04/238ce571fbf330953766a1b15c3ebb00.jpg', 57, '2023-04-07 17:21:34', '2023-04-07 17:21:34'),
 (47, NULL, 'product/2023/04/b0f5cb9218552a22141ba47ddcffff11.jpg', 57, '2023-04-07 17:21:41', '2023-04-07 17:21:41'),
-(48, NULL, 'product/2023/04/82e6cfa47a0e3a5b55dcdf54a1d83b80.jpg', 57, '2023-04-07 17:21:41', '2023-04-07 17:21:41');
+(48, NULL, 'product/2023/04/82e6cfa47a0e3a5b55dcdf54a1d83b80.jpg', 57, '2023-04-07 17:21:41', '2023-04-07 17:21:41'),
+(49, NULL, 'product/2023/04/58f2562fb0c13ce4c6f82de36de3b607.jpg', 1, '2023-04-14 05:56:17', '2023-04-14 05:56:17');
 
 -- --------------------------------------------------------
 
@@ -53737,8 +53738,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `club_id`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `photo`, `otp`, `created_at`, `updated_at`, `stripe_id`, `card_brand`, `card_last_four`, `trial_ends_at`) VALUES
-(1, 'Admin', 'admin', NULL, '01700000000', 'shahadat@asiancoder.com', NULL, '$2y$10$wBYbbumx/wwt/vWzwaYxmONcuSHy0RR5SrwrBQBpJXfsZ5Z8S9K0a', NULL, NULL, NULL, '2020-10-31 19:51:35', '2021-03-27 05:48:32', NULL, NULL, NULL, NULL),
-(41, 'Ahasan Pervez', NULL, NULL, NULL, 'sarkarpervez@gmail.com', NULL, '$2y$10$csd0I4ScImHy.0Q2XkQgIOsXYiOVsLHGh9awEO6u6wjBCtZSAm6I2', NULL, NULL, NULL, '2021-04-23 16:07:27', '2021-04-23 16:09:05', NULL, NULL, NULL, NULL),
+(1, 'Admin', 'admin', NULL, '01700000000', 'shahadat@asiancoder.com', NULL, '$2y$10$gSOeoAJZudaSKmvMSHwNcu2aJZAP1TbmeJZPf4u9rxww0eJglLwLO', NULL, NULL, NULL, '2020-10-31 19:51:35', '2021-03-27 05:48:32', NULL, NULL, NULL, NULL),
+(41, 'Ahasan Pervez', NULL, NULL, NULL, 'sarkarpervez@gmail.com', NULL, '$2y$10$gSOeoAJZudaSKmvMSHwNcu2aJZAP1TbmeJZPf4u9rxww0eJglLwLO', NULL, NULL, NULL, '2021-04-23 16:07:27', '2021-04-23 16:09:05', NULL, NULL, NULL, NULL),
 (42, 'ABC Hockey Club', NULL, NULL, NULL, 'monirhossainoyon@gmail.com', NULL, '$2y$10$VLooeYMVq9E4k0I5IyiWh.1dQd3hq6PWCzM.r/7pI3RO.gePT5f8e', NULL, NULL, NULL, '2021-04-23 16:17:28', '2021-04-23 16:24:49', NULL, NULL, NULL, NULL),
 (43, 'Massimos Falcons', NULL, NULL, NULL, 'massimo@jumpresources.com', NULL, NULL, NULL, NULL, '841293', '2021-04-23 19:22:27', '2021-04-23 19:22:27', NULL, NULL, NULL, NULL),
 (44, 'Massimo', NULL, NULL, NULL, 'massimo1000@icloud.com', NULL, NULL, NULL, NULL, '332500', '2021-04-23 19:23:57', '2021-04-23 19:23:57', NULL, NULL, NULL, NULL),
@@ -54245,13 +54246,13 @@ ALTER TABLE `attribute_options`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -54269,7 +54270,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `customer_addresses`
@@ -54371,7 +54372,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `product_reviews`

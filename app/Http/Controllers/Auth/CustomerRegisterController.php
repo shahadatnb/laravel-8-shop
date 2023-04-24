@@ -27,7 +27,7 @@ class CustomerRegisterController extends Controller
         $this->validate($request, array(
             'first_name'=>'required|string|max:100',
             'last_name'=>'required|string|max:100',
-            'mobile'=>'required|string|max:15',
+            'phone'=>'required|string|max:15',
             //'gender'=>'required|string|max:255',
             'email'=>'required|email|max:100|unique:customers,email',
             'password'=>'required|string|min:6|confirmed',
@@ -36,7 +36,7 @@ class CustomerRegisterController extends Controller
         $customer = new Customer;
         $customer->first_name = $request->first_name;
         $customer->last_name = $request->last_name;
-        $customer->mobile = $request->mobile;
+        $customer->phone = $request->phone;
         //$customer->gender = $request->gender;
         $customer->email = $request->email;
         $customer->password = Hash::make($request->password);

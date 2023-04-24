@@ -89,10 +89,6 @@
             </div>
 
         </div>
-        <div class="chek_trams">
-            <input type="hidden" wire:model="product_id" required name="id">
-            <input id="tac" type="checkbox" required class="_cktms"> <label for="tac">I agree with the <a href="#">terms and conditions</a></label>
-        </div>
         <div class="_buyit">
             <button class="ps-btn" type="submit" @if ($product_type == 'variant' ) disabled @endif name="checkout">Buy it now</button>
             <p>spant $100.00 more far free shipping</p>
