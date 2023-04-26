@@ -12,20 +12,28 @@ class Shop extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $store, $product, $cats = array(), $categories='', $fcats = array();
+    public $store, $product, $cats = array(), $categories='', $fcats = array(), $quickItem ='';
 
     public function mount(){
         $this->categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
         //$this->filtered_product =  Product::whereNull('parent_id')->where('store_id',$this->store->id)->where('status',1)->latest();
     }
 
+    public function quickView($id){
+        $this->quickItem = Product::find($id);
+        //dd($this->quickItem);
+        if($this->quickItem ){
+            $this->dispatchBrowserEvent('quick-view', ['id' => $id]); 
+        }
+    }
+
     public function addToCart($id){
         $this->emit('addToCart',['id'=>$id,'qty'=>1]);
     }
 
-    public function quickView($id){
-        $this->emit('quickView',['id'=>$id]);
-    }
+    // public function quickView($id){
+    //     $this->emit('quickView',['id'=>$id]);
+    // }
 
     public function addToWishlist($id){
         $this->emit('addToWishlist',['id'=>$id]);

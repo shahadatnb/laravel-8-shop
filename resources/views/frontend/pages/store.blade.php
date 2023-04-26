@@ -28,5 +28,10 @@
 @livewire('shop')
 @endsection
 @section('js')
-
+<script>
+    window.addEventListener('quick-view', event => {
+        //alert('Name updated to:');
+        $('#quickView').modal('show');
+    });    
+</script>
 @endsection

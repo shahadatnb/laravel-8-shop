@@ -9,24 +9,17 @@ use App\Facades\Wishlist;
 
 class MiniCart extends Component
 {
-    public $cartItems = [], $coupon_code = '', $wishlist = '', $quickItem;
-    protected $listeners = ['setCoupon','addToCart','addToWishlist','quickView'];
+    public $cartItems = [], $coupon_code = '', $wishlist = '';
+    protected $listeners = ['setCoupon','addToCart','addToWishlist'];
 
     public function mount()
     {
         
     }
-    
-    public function quickView($id){
-        $this->quickItem = Product::find($id);
-        if($this->quickItem ){
-            $this->dispatchBrowserEvent('quick-view', ['id' => $id]); 
-        }
-    }
 
     public function addToWishlist($id){
         if(!auth('customer')){
-            return redirect('/login');
+            return redirect()->route('login');
         }
         $this->wishlist = Wishlist::addToWishlist($id);
     }
@@ -42,19 +35,6 @@ class MiniCart extends Component
         //dd($coupon);
         $active = 0;
         if($coupon){
-            //dd($coupon->teams->where('id',auth('customer')->user()->team_id)); exit;
-            //$coupon->teamHas(auth('customer')->user()->team_id); exit;
-            if($coupon->club == ''){
-                $active = 1;
-            }elseif($coupon->teams->count() == 0){
-                if($coupon->club == auth('customer')->user()->team->club->id){
-                    $active = 1;
-                }
-            }elseif($coupon->teams->where('id',auth('customer')->user()->team_id)->first()){
-                $active = 1;
-            }else{
-                session()->flash('warning', 'Coupon not allow for you.');
-            }
             if($active == 1){
                 if($coupon->is_percentage == 1){
                     $discount = $coupon->discount/100 * $this->cart->subTotal();
@@ -75,7 +55,8 @@ class MiniCart extends Component
     public function addToCart($arg){ 
         $cart = Wishlist::addToCart($arg['id'],$arg['qty']);
         if( $cart == 'redirect'){
-            return redirect()->route('singleProduct',$arg['id']);
+            dd(route('singleProduct',$arg['id']));
+            //return redirect()->route('singleProduct',$arg['id']);
         }else{
             $this->cart = $cart;
         }

@@ -121,7 +121,7 @@
 
                     <div class="col-md-3 col-lg-3">
                         <figure class="_inn_overhover">
-                            <a href="{{ url('/product',$item->id)}}">
+                            <a href="{{ route('singleProduct',$item->id)}}">
                                 <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
                                 <figcaption class="_in_plink">
                                     <h3>{{ $item->title }}</h3>
@@ -148,4 +148,29 @@
         </div>
     </div>
   </section>
+
+  <div class="modal fade" id="quickView" tabindex="-1" aria-labelledby="quickViewLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @if ($quickItem)
+            {{-- @dd($quickItem) --}}
+            <div class="modal-header">
+                <h5 class="modal-title" id="quickViewLabel">{{$quickItem->title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="_main_view_of_product_image">
+                    <figure>
+                        <img class="_side_main_img img-fluid" src="{{ asset('storage/' . $quickItem->allphotos->first()->path) }}">
+                    </figure>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ route('singleProduct',$quickItem->id)}}" class="btn btn-secondary">View</a>
+                <button wire:click="addToCart({{$quickItem->id}})" type="button" class="btn btn-primary">Buy Now</button>
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
 </div>

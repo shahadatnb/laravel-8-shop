@@ -296,12 +296,7 @@
 <!-- custom js -->
 <script src="{{asset('/assets/front/js/custom.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>   
-<script>
-    window.addEventListener('quick-view', event => {
-        //alert('Name updated to:');
-        $('#quickView').modal('show');
-    })
-</script>
+
 
     {{-- <script src="assts/js/jquery.js"></script>
     <script src="assts/js/bootstrap.min.js"></script>
