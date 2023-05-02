@@ -55,8 +55,8 @@ class MiniCart extends Component
     public function addToCart($arg){ 
         $cart = Wishlist::addToCart($arg['id'],$arg['qty']);
         if( $cart == 'redirect'){
-            dd(route('singleProduct',$arg['id']));
-            //return redirect()->route('singleProduct',$arg['id']);
+            //dd(route('singleProduct',$arg['id']));
+            return redirect()->route('singleProduct',$arg['id']);
         }else{
             $this->cart = $cart;
         }

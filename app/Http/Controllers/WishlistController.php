@@ -119,6 +119,8 @@ class WishlistController extends Controller
                 'quantity' => $qty,
                 'attributes' => array(
                     'image' => '',
+                    'sku' => $product->sku,
+                    'parent_id' => $product->parent_id,
                 )
             ]);
 

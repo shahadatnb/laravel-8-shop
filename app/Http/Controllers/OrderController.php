@@ -18,24 +18,7 @@ class OrderController extends Controller
     {
         $orders = Order::latest();
         $data = array('per_page'=>50,'startDate'=>'','endDate'=>'' ); //,'startDate'=>date('m-d-Y'),'endDate'=>date('m-d-Y')
-        $teams = array();
-        if(!empty($request->club)){
-            $orders = $orders->where('club_id',$request->club);
-            $teams = $this->teams($request->club);
-            $data['club'] = $request->club;
-        }
-        if(!empty($request->team)){
-            $orders = $orders->where('team_id',$request->team);
-            $data['team'] = $request->team;
-        }
-        if(!empty($request->player_name)){
-            //$orders = $orders->where('team_id',$request->team);
-            $data['player_name'] = $request->player_name;
-        }
-        if(!empty($request->player_name)){
-            //$orders = $orders->where('team_id',$request->team);
-            $data['product_title'] = $request->product_title;
-        }
+        
         if(!empty($request->startDate && $request->endDate )){
             $from_date = Carbon::createFromFormat('m-d-Y', $request->startDate)->format('Y-m-d').' 00:00:00';
             $to_date = Carbon::createFromFormat('m-d-Y', $request->endDate)->format('Y-m-d').' 23:59:59';
@@ -49,10 +32,7 @@ class OrderController extends Controller
 
         $orders = $orders->paginate($data['per_page']);
 
-        $clubs = $this->usersArray('club');
-
-
-        return view('admin.order.order',compact('orders','data','clubs','teams'));
+        return view('admin.order.order',compact('orders'));
     }
 
     private function orderStatus(){

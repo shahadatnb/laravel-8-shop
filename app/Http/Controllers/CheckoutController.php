@@ -63,38 +63,38 @@ class CheckoutController extends Controller
             //'cart_id'=>'required|numeric',
         ));
 
-        $cart = Cart::find($request->cart_id);
+        $cart = \Cart::getContent()->toArray();
 
         $payment_method = 'Cash on Delivery'; //'paypal'
 
         $order = new Order;
         //$order->cart_id = $cart->id;
         $order->status = 'Processing';
-        $order->coupon_code = $cart->coupon_code;
-        $order->tax_amount = $cart->tax_total;
-        $order->discount_amount = $cart->discount;
+        $order->coupon_code = '';//$cart->coupon_code;
+        $order->tax_amount = 0;//$cart->tax_total;
+        $order->discount_amount = 0;// $cart->discount;
         $order->payment_method = $payment_method;
         $order->customer_id = auth('customer')->user()->id;
         //$order->shipping_method = $request->email;
         $order->customer_first_name = $request->first_name;
         $order->customer_last_name = $request->last_name;
         $order->customer_email = $request->email;
-        $order->total_item_count = $cart->cartItems->count();
-        $order->total_qty_ordered = $cart->cartItems->sum('quantity');
-        $order->sub_total = $cart->subTotal();
-        $order->grand_total = $cart->subTotal();
+        $order->total_item_count = \Cart::getTotalQuantity();
+        $order->total_qty_ordered = \Cart::getTotalQuantity();
+        $order->sub_total = \Cart::getTotal();
+        $order->grand_total = \Cart::getTotal();
         $order->save();
 
-        foreach($cart->cartItems as $c){
+        foreach($cart as $c){
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_id' => $c->product_id,
-                'parent_id'=>$c->parent_id,
-                'sku' => $c->sku,
-                'name' => $c->name,
-                'price' => $c->price,
-                'qty_ordered' => $c->quantity,
-                'total' => $c->total,
+                'product_id' => $c['id'],
+                'parent_id'=>$c['attributes']['parent_id'],
+                'sku' => $c['attributes']['sku'],
+                'name' => $c['name'],
+                'price' => $c['price'],
+                'qty_ordered' => $c['quantity'],
+                'total' => $c['price']*$c['quantity'],
             ]);
         }
 
@@ -113,11 +113,8 @@ class CheckoutController extends Controller
         $address->order_id = $order->id;
         $address->customer_id = auth('customer')->user()->id;
         $address->save();
-
-        //$cart->is_active = 0;
-        $cart->save();
-
-        Mail::to($order->customer_email)->send(new OrderSubmited($order));
+        \Cart::clear();
+        //Mail::to($order->customer_email)->send(new OrderSubmited($order));
 /*
         if($payment_method == 'paypal'){
             session()->put('order_id', $order->id);
