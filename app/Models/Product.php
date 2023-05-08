@@ -66,9 +66,4 @@ class Product extends Model
         return $this->hasOne(Product::class,'id','parent_id');
     }
 
-    public function store()
-    {
-        return $this->belonsTo(Store::class);
-    }
-
 }

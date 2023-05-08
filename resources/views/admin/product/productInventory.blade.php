@@ -13,8 +13,8 @@
         @include('admin.layouts._message')
         {!! Form::model($data,['route'=>'product.inventory','method'=>'GET','class'=>'mb-3']) !!}
           <div class="row">
-            <div class="col-sm-2">{{ Form::select('club',$clubs,null,['class'=>'form-control select2','id'=>'club','placeholder'=>'All Club','data-url'=>route('teamApi')]) }}</div>
-            <div class="col-sm-2">{{ Form::select('team',$teams,null,['class'=>'form-control select2','id'=>'team','placeholder'=>'All Team']) }}</div>
+            <div class="col-sm-2">{{ Form::select('category_id',$categories,null,['class'=>'form-control select2','placeholder'=>'Select Category']) }}</div>
+            {{-- <div class="col-sm-2">{{ Form::select('team',$teams,null,['class'=>'form-control select2','id'=>'team','placeholder'=>'All Team']) }}</div> --}}
             <div class="col-sm-2">{{ Form::number('per_page',null,['class'=>'form-control','placeholder'=>'Product perpage']) }}</div>
             <div class="col-sm-2">{{ Form::submit('Find',array('class'=>'form-control btn btn-success')) }}</div>
           </div>
@@ -25,7 +25,7 @@
                     <tr>
                         <th>#</th>
                         <th>Title</th>
-                        <th>Store</th>
+                        <th>Category</th>
                         <th>Qty</th>
                         <th></th>
                     </tr>
@@ -41,7 +41,7 @@
                                 {{ $data->title }}
                             @endif
                         </td>
-                        <td>{{ $data->store->name }}</td>
+                        <td></td>
                         <td class="qty">{{ $data->qty }}</td>
                         <td>
                             <form action="{{ route('product.inventoryUpdate')}}" method="post" class="form-inline">
@@ -124,21 +124,6 @@
             }
         });
         //console.log(tdqtyval);
-    });
-
-
-    $('.card').on('load | change', '#club', function() {
-        $.get($(this).data('url'), {
-                option: $(this).val()
-        },
-        function(data) {
-                var subcat = $('#team');
-                subcat.empty();
-                subcat.append("<option value=''>All Team</option>")
-                $.each(data, function(index, element) {
-                        subcat.append("<option value='"+ element.id +"'>" + element.name + "</option>");
-                });
-        });
     });
 
 })(jQuery)

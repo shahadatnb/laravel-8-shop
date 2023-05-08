@@ -129,29 +129,17 @@ class ProductController extends Controller
         $products = Product::where('type','!=','variant')->latest();
         $data = array('per_page'=>50);
         $teams = array();
-        if(!empty($request->club)){
-            $products = $products->where('club_id',$request->club);
-            $teams = $this->teams($request->club);
-            $data['club'] = $request->club;
+        if(!empty($request->category_id)){
+            $products = $products->whereHas('categories', function($q) use($request){
+                $q->where('id',$request->category_id);
+            });
+            $data['category_id'] = $request->category_id;
         }
-        if(!empty($request->team)){
-            $products = $products->where('store_id',$request->team);
-            $data['team'] = $request->team;
-        }
-        if(!empty($request->per_page)){
-            $data['per_page'] = $request->per_page;
-        }
-        if(!empty($request->player_name)){
-            //$products = $products->where('team_id',$request->team);
-            $data['product_title'] = $request->product_title;
-        }
-        $clubs = $this->usersArray('club');
         $categories = $this->catArray();
-
         $products = $products->paginate($data['per_page']);
 
         //$datas = Product::where('type','!=','variant')->latest()->paginate(50);
-        return view('admin.product.productInventory',compact('products','categories','clubs','teams','data'));
+        return view('admin.product.productInventory',compact('products','categories','data'));
     }
 
     public function productInventoryUpdate(Request $request)
