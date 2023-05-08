@@ -858,9 +858,10 @@ ul.list-unstyled li a:hover:after {
     height: auto;
 }
 
-#cart-sidebar .card{
-    position: fixed;
-    right: 0;
+#cart-sidebar .card {
+	position: absolute;
+	right: 15px;
+	width: 350px;
 }
 
 #cart-sidebar.show {
