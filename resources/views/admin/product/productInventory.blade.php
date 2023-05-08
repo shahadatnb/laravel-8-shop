@@ -31,25 +31,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $data)
-                    <tr id="{{ $data->id }}">
-                        <td>{{ $data->id }}</td>
+                @foreach($products as $product)
+                    <tr id="{{ $product->id }}">
+                        <td>{{ $product->id }}</td>
                         <td>
-                            @if ($data->parent_id != null)
-                                {{ $data->parent->title }} {{ $data->size }}  {{ $data->color }}
+                            @if ($product->parent_id != null)
+                                {{ $product->parent->title }} {{ $product->size }}  {{ $product->color }}
                             @else
-                                {{ $data->title }}
+                                {{ $product->title }}
                             @endif
                         </td>
-                        <td></td>
-                        <td class="qty">{{ $data->qty }}</td>
+                        <td>@if ($product->categories)
+                            @foreach ($product->categories as $item)
+                                <span class="badge bg-primary float-right mr-1">{{$item->title}}</span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="qty">{{ $product->qty }}</td>
                         <td>
                             <form action="{{ route('product.inventoryUpdate')}}" method="post" class="form-inline">
                                 @csrf
                                 <div class="input-group input-group-sm">
                                     <input type="checkbox" name="add" checked data-on-text="Add" data-off-text="Set" data-bootstrap-switch data-off-color="primary" data-on-color="success">
                                     <input type="number" class="form-control" name="quantity" id="" placeholder="Quantity">
-                                    <input type="hidden" name="id" value="{{ $data->id }}">
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
                                     <input type="button" value="Save" class="btn btn-success btn-sm">
                                 </div>
                             </form>

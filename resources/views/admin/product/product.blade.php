@@ -30,23 +30,28 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
-                    {{-- <th>Store</th> --}}
+                    <th>Category</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($products as $item)
+            @foreach($products as $product)
                 <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->title }}</td>
-                    {{-- <td>{{ $item->store->name }}</td> --}}
+                    <td>{{ $product->id }}</td>
+                    <td>{{ $product->title }}</td>
+                    <td>@if ($product->categories)
+                        @foreach ($product->categories as $item)
+                            <span class="badge bg-primary float-right mr-1">{{$item->title}}</span>
+                        @endforeach
+                        @endif
+                    </td>
                     <td>
-                        @if ($item->trashed())
-                            <a href="{{ route('product.restore', $item) }}" class="btn btn-warning btn-sm">Restore</a>
-                            <a href="{{ route('product.permanentdelete', $item) }}" onclick="return confirm('Are You Sure To Delete This Item?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
+                        @if ($product->trashed())
+                            <a href="{{ route('product.restore', $product) }}" class="btn btn-warning btn-sm">Restore</a>
+                            <a href="{{ route('product.permanentdelete', $product) }}" onclick="return confirm('Are You Sure To Delete This Item?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</a>
                         @else
-                            <a href="{{ route('product.edit', $item) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                            <form class="delete" action="{{ route('product.destroy',$item) }}" method="post">
+                            <a href="{{ route('product.edit', $product) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            <form class="delete" action="{{ route('product.destroy',$product) }}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure To Delete This Item?')"><i class="fas fa-trash"></i> Delete</button>
