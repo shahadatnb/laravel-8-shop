@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-  <head>
+
+<head>
     <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,20 +15,22 @@
     <!-- site icons -->
     <link rel="icon" href="{{ asset('upload/site_file/'.config('settings.fevicon')) }}" type="image/gif" />
     <!-- bootstrap css -->
-    {{-- <link rel="stylesheet" href="{{asset('/assets/front')}}/css/bootstrap.min.css" /> --}}
-    <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/assets/front')}}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('/assets/front/css/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/style.css')}}?v={{time()}}" />
-    <link rel="stylesheet" href="{{asset('assets/front/css/inner_product.css?v='.time())}}" media="all">
-    <link rel="stylesheet" href="{{asset('/assets/front/font-awesome-4.7.0/css/font-awesome.css')}}" />
+
+    <!-- <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" /> -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/front/css/inner_product.css?v='.time())}}" media="all"> -->
+    <!-- <link rel="stylesheet" href="{{asset('/assets/front/font-awesome-4.7.0/css/font-awesome.css')}}" /> -->
     @yield('css')
-      <title>
-          @hasSection('title')
-          @yield('title') -
-          @endif
-          {{ config('settings.appTitle', 'Laravel') }}
+    <title>
+        @hasSection('title')
+        @yield('title') -
+        @endif
+        {{ config('settings.appTitle', 'Laravel') }}
     </title>
     <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -37,214 +40,102 @@
     @yield('js-head')
     @livewireStyles
     @livewireScripts
-    </head>
+</head>
+
 <body>
-    <header class="_home_header">
+    <header class="_home_header sticky-top py-2" style="background: #E3E6E6;">
+        <nav class="container-fluid px-sm-5">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-2">
+                    <div class="branding">
+                        <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo">
+                    </div>
+                </div>
+                <div class="col-md-1 text-end">
+                    <div class="productCategories">
+                        <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                        </span>
 
-        <div class="_headcontainer menus {{ (request()->routeIs('page','page')) ? 'bg-dark bg-gradient' : '' }}">
-            <!--
-            <div class="container">
-                <div class="row justify-content-between">
--->
-
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        @if(!empty(config('settings.appLogo')))
-                            <figure class="_hmenu">
-                                {{-- <img class="" src="{{asset('/assets/front')}}/img/menu-icon.png" alt="Menu Icon"> --}}
-                                <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="Logo">
-                            </figure>
-                        @else
-                            {{ config('settings.appTitle') }}
-                        @endif
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse _site_mega_menu" id="main_nav">
-                        <ul class="navbar-nav _site_mega_menu_ul m-auto">
-                            <li class="nav-item active"> <a class="nav-link" href="{{ route('/') }}">Home </a> </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('store') }}"> Products </a></li>
-                            <li class="nav-item dropdown has-megamenu">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false"> Mega menu </a>
-                                <div class="dropdown-menu megamenu _site_mega_menu_div" role="menu">
-                                    <div class="container">
-                                    <div class="row justify-content-between">
-                                        <div class="col-lg-2 col-md-2">
-                                            <div class="col-megamenu">
-                                                <span class="_mg_title_img">More Sports</span>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="#">Baseball Hall of Fame</a></li>
-                                                    <li><a href="#">Boxing</a></li>
-                                                    <li><a href="#">Cooperstown Teams</a></li>
-                                                    <li><a href="#">Gridiron Classic Teams</a></li>
-                                                    <li><a href="#">Hardwood Classic Teams</a></li>
-                                                    <li><a href="#">Kentucky Derby</a></li>
-                                                    <li><a href="#">NLL Lacrosse</a></li>
-                                                    <li><a href="#">Olympics</a></li>
-                                                </ul>
-                                                <button><a href="#">View More</a></button>
-                                            </div>
-                                            <div class="col-megamenu">
-                                                <span class="_mg_title_img">Top Searches</span>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="#">Beast Mode</a></li>
-                                                    <li><a href="#">Big & Tall</a></li>
-                                                    <li><a href="#">Plus Sizes</a></li>
-                                                    <li><a href="#">Cooperstown Collection</a></li>
-                                                    <li><a href="#">Fanatics Presents</a></li>
-                                                    <li><a href="#">Hardwood Classics</a></li>
-                                                    <li><a href="#">Hat Brands For All Fans</a></li>
-                                                    <li><a href="#">Vintage Clothing</a></li>
-                                                </ul>
-                                                <button><a href="#">View More</a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="col-megamenu">
-                                                <span class="_mg_title_img">National Teams</span>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="#">Argentina National Team</a></li>
-                                                    <li><a href="#">Australia National Team</a></li>
-                                                    <li><a href="#">Belarus National Team</a></li>
-                                                    <li><a href="#">Belgium National Team</a></li>
-                                                    <li><a href="#">Bosnia &amp; Herzegovina National Team</a></li>
-                                                    <li><a href="#">Brazil National Team</a></li>
-                                                    <li><a href="#">Mexico National Team</a></li>
-                                                    <li><a href="#">Nicaragua National Team</a></li>
-                                                    <li><a href="#">Norway National Team</a></li>
-                                                    <li><a href="#">Northern Ireland National Team</a></li>
-                                                    <li><a href="#">Morocco National Team</a></li>
-                                                    <li><a href="#">Panama National Team</a></li>
-                                                    <li><a href="#">Netherlands National Team</a></li>
-                                                    <li><a href="#">Nigeria National Team</a></li>
-                                                    <li><a href="#">South Korea National Team</a></li>
-                                                    <li><a href="#">Spain National Team</a></li>
-                                                    <li><a href="#">Sweden National Team</a></li>
-                                                    <li><a href="#">Switzerland National Team</a></li>
-                                                    <li><a href="#">Thailand National Team</a></li>
-                                                </ul>
-                                                <button><a href="#">View More</a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2">
-                                            <div class="col-megamenu">
-                                                <span class="_mg_title_img">International Clubs</span>
-                                                <ul class="list-unstyled">
-                                                    <li><a href="#">Arsenal</a></li>
-                                                    <li><a href="#">Barcelona</a></li>
-                                                    <li><a href="#">Bayern Munich</a></li>
-                                                    <li><a href="#">FC Nurnberg</a></li>
-                                                    <li><a href="#">AC Milan</a></li>
-                                                    <li><a href="#">Arsenal</a></li>
-                                                    <li><a href="#">Athletic Club Bilbao</a></li>
-                                                    <li><a href="#">Atletico de Madrid</a></li>
-                                                    <li><a href="#">AZ Alkmaar</a></li>
-                                                    <li><a href="#">Boca Juniors</a></li>
-                                                    <li><a href="#">Borussia Dortmund</a></li>
-                                                    <li><a href="#">C.F. Pachuca</a></li>
-                                                    <li><a href="#">Liverpool</a></li>
-                                                    <li><a href="#">Manchester City</a></li>
-                                                    <li><a href="#">Manchester United</a></li>
-                                                    <li><a href="#">Newcastle United</a></li>
-                                                    <li><a href="#">Olympique Marseille</a></li>
-                                                    <li><a href="#">Premier League</a></li>
-                                                    <li><a href="#">PSV Eindhoven</a></li>
-                                                </ul>
-                                                <button><a href="#">View More</a></button>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2">
-                                            <div class="col-megamenu">
-
-                                                <figure>
-                                                    <img class="img-fluid" src="{{asset('/assets/front')}}/img/q1.webp">
-                                                </figure>
-                                                <span class="_mg_title_img">New Arrival</span>
-                                            </div>
-
-                                            <div class="col-megamenu">
-                                                <figure>
-                                                    <img class="img-fluid" src="{{asset('/assets/front')}}/img/q2.webp">
-                                                </figure>
-                                                <span class="_mg_title_img">10% Off</span>
-                                            </div>
-                                        </div><!-- end col-3 -->
-
-                                        <div class="col-lg-2 col-md-2">
-                                            <div class="col-megamenu">
-
-                                                <figure>
-                                                    <img class="img-fluid" src="{{asset('/assets/front')}}/img/q3.webp">
-                                                </figure>
-                                                <span class="_mg_title_img">New Arrival</span>
-                                            </div>
-
-                                            <div class="col-megamenu">
-                                                <figure>
-                                                    <img class="img-fluid" src="{{asset('/assets/front')}}/img/q4.webp">
-                                                </figure>
-                                                <span class="_mg_title_img">10% Off</span>
-                                            </div>
-                                        </div>
-                                    </div><!-- end row -->
-                                    </div><!-- end container -->
-                                </div> <!-- dropdown-mega-menu.// -->
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ms-auto">
-                          @guest('customer')
-                            <li class="nav-item"><a class="btn btn-primary" href="{{route('customer.login')}}">Signin</a></li>
-                            <li class="nav-item"><a class="btn btn-primary" href="{{route('customer.register')}}">Signup</a></li>
-						@endguest
-						@auth('customer')
-                            <li class="nav-item dropdown">
-                                <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
-                                <ul class="dropdown-menu dropdown-menu-end _nedd_color">
-                                    <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();"> Sign Out </a></li>
-                                        <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Product Sub Categories</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="list-unstyled list-group list-group-flush text-start">
+                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
+                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
+                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
+                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
                                 </ul>
-                            </li>
-                          @endauth
-                            @livewire('mini-cart')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="siteMenu" id="siteMenu">
+                        <ul class="list-unstyled m-0 p-0">
+                            <li class="px-2 text-center"><a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Home</a></li>
+                            <li class="px-2 text-center"><a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category</a></li>
                         </ul>
-                    </div> <!-- navbar-collapse.// -->
-                </div> <!-- container-fluid.// -->
-            </nav>
-        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="siteSearch">
+                        <form class="searchBox" role="search">
+                            <input class="form-control me-2 w-medium fs-5 text-body-secondary bg-transparent rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="userProfile">
+                        <a class="dropdown-toggle dropdownUser text-body-secondary text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                            </svg>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="wishCartList text-end">
+                        <ul class="textRightSet list-unstyled p-0 m-0" style="display: inline-flex;">
+                            <li class="pe-2">
+                                <a href="#" class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                    </svg></a>
+                            </li>
+                            <li class="ps-2">
+                                <a href="#" class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                                    </svg></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-@yield('content')
-    <footer class="_site_footer">
+    @yield('content')
+    <footer class="_site_footer pt-5">
 
         <section class="_footer_section">
-            <div class="container-fluid">
-                <div class="row justify-content-center">
+            <div class="container-fluid px-5">
+                <div class="row justify-content-between">
 
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-md-3 col-lg-2">
                         <div class="_address">
                             <h5>About soccer club</h5>
                             <p>{{ config('settings.footerDdescription', '') }}</p>
-                            <div class="_loactions">
-                                <h6>Contact Us</h6>
-                                <p><b>Address:</b> {{ config('settings.appAddress', '') }}</p>
-                                <p><b>Call Us:</b><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></p>
-                                <p><b>Email Us:</b><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></p>
-                            </div>
-                            <div class="_social">
-                                <h6>Follow Us</h6>
-                                <ul>
-                                    @empty(!CustomHelper::SocialMenu('social'))
-                                        @foreach (CustomHelper::SocialMenu('social') as $item)
-                                        <li><a href="{{$item->menu_url}}"><i class="{{$item->menu_class}}" aria-hidden="true"></i></a></li>
-                                        @endforeach
-                                    @endempty
-                                </ul>
-                            </div>
                         </div>
                     </div>
 
@@ -252,27 +143,41 @@
                         <div class="_useful">
                             <h5>Quick shop</h5>
                             @empty(!CustomHelper::NaveMenu('quick-shop',[]))
-                                {!! CustomHelper::NaveMenu('quick-shop',[]) !!}
+                            {!! CustomHelper::NaveMenu('quick-shop',[]) !!}
                             @endempty
                         </div>
+                        <div class="_loactions">
+                                <h6>Contact Us</h6>
+                                <p><b>Address:</b> {{ config('settings.appAddress', '') }}</p>
+                                <p><b>Call Us:</b><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></p>
+                                <p><b>Email Us:</b><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></p>
+                            </div>
                     </div>
 
                     <div class="col-md-2 col-lg-2">
                         <div class="_useful">
                             <h5>Useful links</h5>
                             @empty(!CustomHelper::NaveMenu('useful-links',[]))
-                                {!! CustomHelper::NaveMenu('useful-links',[]) !!}
+                            {!! CustomHelper::NaveMenu('useful-links',[]) !!}
                             @endempty
                         </div>
+                        <div class="_social">
+                                <h6>Follow Us</h6>
+                                <ul>
+                                    @empty(!CustomHelper::SocialMenu('social'))
+                                    @foreach (CustomHelper::SocialMenu('social') as $item)
+                                    <li><a href="{{$item->menu_url}}"><i class="{{$item->menu_class}}" aria-hidden="true"></i></a></li>
+                                    @endforeach
+                                    @endempty
+                                </ul>
+                            </div>
                     </div>
 
-                    <div class="col-md-4 col-lg-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="_newsletter">
-                            <h5>Sign up to receive our newsletter</h5>
-                            <p>Some representative placeholder content for the first slide content for the.</p>
-                                @livewire('subscribe-form')
+                            <h5>PAYMENT METHODS</h5>
                             <div class="_payment">
-                                <img src="{{asset('/assets/front')}}/img/bank-logo.png" alt="">
+                                <img src="{{asset('/assets/front')}}/img/SSLCommerz-Pay.png" alt="" class="w-100">
                             </div>
 
 
@@ -281,27 +186,42 @@
                 </div>
             </div>
         </section>
-        <section class="_footer_copyright">
-            <div class="container">
-                <p>&copy; 2021. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
+        <section class="_footer_copyright py-2">
+            <div class="container-fluid px-5">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-3 col-lg-2">
+                        <img src="assets\front\img\Ladiumbd-logo-white.png" class="w-100" alt="Company Logo">
+                    </div>
+                    <div class="col-md-5 col-lg-6">
+                        <p>&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                    @livewire('subscribe-form')
+                    </div>
+                </div>
             </div>
         </section>
     </footer>
 
-<!-- js section -->
-<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-<script src="{{asset('/assets/front/js/owl.carousel.min.js')}}"></script>
-@yield('js')
-@stack('scripts')
-<!-- custom js -->
-<script src="{{asset('/assets/front/js/custom.js')}}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>   
+    <!-- js section -->
+
+    <script src="{{asset('/assets/front/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/assets/front/js/owl.carousel.min.js')}}"></script>
+    @yield('js')
+    @stack('scripts')
+    <!-- custom js -->
+    <script src="{{asset('/assets/front/js/custom.js')}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
 
-    {{-- <script src="assts/js/jquery.js"></script>
+    <!-- {{-- <script src="assts/js/jquery.js"></script>
     <script src="assts/js/bootstrap.min.js"></script>
     <script src="assts/js/owl.carousel.min.js"></script>
-    <script src="assts/js/custom.js"></script> --}}
+    <script src="assts/js/custom.js"></script> --}} -->
 
 </body>
 

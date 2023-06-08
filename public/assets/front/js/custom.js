@@ -23,7 +23,7 @@ jQuery(function ($) {
         autoplayHoverPause: true,
         autoplaySpeed: 1000,
         loop: true,
-        margin: 20,
+        margin: 10,
         responsiveClass: true,
         responsive: {
             0: {
@@ -57,7 +57,7 @@ jQuery(function ($) {
         autoplayHoverPause: true,
         autoplaySpeed: 1000,
         loop: true,
-        margin: 20,
+        margin: 10,
         responsiveClass: true,
         responsive: {
             0: {

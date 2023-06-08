@@ -2,12 +2,17 @@
     <div wire:loading  wire:target="sendMail">
         @include('admin/layouts/_loading')
     </div>
-    <div class="container">
-        <div class="_register_text">
-            <h2>register your club</h2>
-            <p>Some representative placeholder content for the first slide content for the. Some representative placeholder content for the first slide content for the.</p>
+
+    <div class="container-fluid px-sm-5">
+        <div class="row py-4">
+            <div class="col-md-12">
+                <h4 class="sectionTitle">Create <span>Account</span></h4>
+                <h3 class="pt-5">Some representative placeholder content for the first slide content for the. Some representative placeholder content for the first slide content for the.</h3>
+            </div>
         </div>
     </div>
+
+  
     <div class="container">
         <form wire:submit.prevent="sendMail">
         @if(session()->has('success'))
@@ -75,11 +80,10 @@
 
         <div class="row justify-content-center _bottom_space">
             <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-                <div class="_input_capcha @error('message') is-invalid @enderror">
+                <div class="_input_capcha flex @error('message') is-invalid @enderror">
                     <div class="">
                         <input type="text" readonly class="form-va" value="{{$c1st}}">
                     </div>
-
                     <div class="">
                         <input type="text" readonly class="form-op" value="+">
                     </div>
