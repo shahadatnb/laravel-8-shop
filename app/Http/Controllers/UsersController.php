@@ -9,11 +9,9 @@ use App\Mail\NewUserRegistered;
 //use App\Events\NewUserRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Traits\userTrait;
 use Carbon\Carbon;
-use Session;
 use Auth;
 
 class UsersController extends Controller
@@ -120,14 +118,8 @@ class UsersController extends Controller
             'name' => 'required|max:255',
             //'Designation' => 'required|max:255',
             'mobile' => 'required|max:255',
-            'username' => [
-                'nullable','alpha_dash','max:30',
-                Rule::unique('users')->ignore($user->id),
-            ],
-            'email' => [
-                'required','email','max:40',
-                Rule::unique('users')->ignore($user->id),
-            ],
+            'username' => ['nullable','alpha_dash','max:30','unique:users,username,'.$user->id],
+            'email' => ['required','email','alpha_dash','max:30','unique:users,email,'.$user->id],
             'password' => 'confirmed',
         ]);
 
@@ -170,30 +162,22 @@ class UsersController extends Controller
     }
 
     public function updateProfile(Request $request){
+        $user = User::find(auth()->user()->id);
         $this->validate($request, array(
             'name' => 'required|string|max:255',
-            'Designation' => 'required|string|max:100',
+            'Designation' => 'nullable|string|max:100',
             'mobile' => 'required|string|max:14',
-            'username' => [
-                'required','alpha_dash','max:30',
-                Rule::unique('users')->ignore(Auth::User()->id),
-            ],
-            'email' => [
-                'required','email','max:40',
-                Rule::unique('users')->ignore(Auth::User()->id),
-            ],
+            'username' => ['nullable','alpha_dash','max:30','unique:users,username,'.$user->id],
+            'email' => ['required','email','max:30','unique:users,email,'.$user->id],
         ));
                               
-        $data = User::find(Auth::User()->id);
         
-        $data->name = $request->name;
-        $data->Designation = $request->Designation;
-        $data->mobile = $request->mobile;
-        $data->email = $request->email;
-        //$data->mobile = $request->mobile;
-        $data->save();
-        Session::flash('success','Successfully Save');
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->save();
 
+        session()->flash('success','Successfully Save');
         return redirect()->route('profile');
     }
 
@@ -202,15 +186,14 @@ class UsersController extends Controller
             'CurrentPassword'=>'required|max:15',
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             ));
-
-    	if(Hash::check($request->CurrentPassword, Auth::user()->password )){                      
-	        $obj_user = User::find(Auth::User()->id);
-	        $obj_user->password = Hash::make($request->password);
-	        $obj_user->save();
-            Session::flash('success', "Password chenged.");
+        $user = User::find(auth()->user()->id);
+    	if(Hash::check($request->CurrentPassword, $user->password )){
+	        $user->password = Hash::make($request->password);
+	        $user->save();
+            session()->flash('success', "Password chenged.");
 	        return redirect()->back();            
     	}else{
-            Session::flash('warning', "CurrentPassword does not match.");
+            session()->flash('warning', "Current Password does not match.");
     		return redirect()->back();
     	}
 
@@ -238,7 +221,7 @@ class UsersController extends Controller
         if($user){
             $user->banned_till = $ban_days;
             $user->save();
-            Session::flash('success', "Successfully ban.");
+            session()->flash('success', "Successfully ban.");
         }
 	    return redirect()->back(); 
     }
@@ -249,7 +232,7 @@ class UsersController extends Controller
         if($user){
             $user->banned_till = null;
             $user->save();
-            Session::flash('success', "Successfully unban.");
+            session()->flash('success', "Successfully unban.");
         }
 	    return redirect()->back();   
     }
@@ -279,7 +262,7 @@ class UsersController extends Controller
         //return $user->customers;
 
         if($user->teams->count() > 0  || $user->customers->count()>0 ){
-            Session::flash('warning','Can`t deleted.');
+            session()->flash('warning','Can`t deleted.');
         }else{
             $user->roles()->detach();
             $user->permissions()->detach();

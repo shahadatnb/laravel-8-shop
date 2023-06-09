@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Attribute;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use App\Http\Traits\userTrait;
-use Session;
-use Auth;
 
 class ProductController extends Controller
 {
@@ -108,7 +104,7 @@ class ProductController extends Controller
             }
 
             $profile->save();
-            Session::flash('success','Successfully updated.');
+            session()->flash('success','Successfully updated.');
 
             return redirect()->back();
         }
@@ -248,10 +244,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $this->validate($request, array(
-            'title'=>[
-                'required','max:255',
-                Rule::unique('products')->ignore($product->id),
-            ],
+            'title'=>['required','max:255','unique:products,title,'.$product->id],
         ));
         //$this->validate($request, $this->InsValidator($request));
         //return $request->all();
@@ -268,7 +261,7 @@ class ProductController extends Controller
         }
 */
         $product->categories()->sync($request->categories);
-        Session::flash('success','Successfully Save');
+        session()->flash('success','Successfully Save');
         return redirect()->route('product.edit',$product);
     }
 
@@ -288,7 +281,7 @@ class ProductController extends Controller
                 $product->restore();
             }
 
-            Session::flash('success', "Product restored.");
+            session()->flash('success', "Product restored.");
         }
 
         return redirect()->back();
@@ -310,7 +303,7 @@ class ProductController extends Controller
                 $product->forceDelete();
             }
 
-            Session::flash('warning', "Product restored.");
+            session()->flash('warning', "Product restored.");
         }
 
         return redirect()->back();
@@ -328,7 +321,7 @@ class ProductController extends Controller
             $product->delete();
         }
 
-        Session::flash('success', "Product deleted.");
+        session()->flash('success', "Product deleted.");
         return redirect()->back();
     }
 }
