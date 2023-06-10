@@ -8,7 +8,7 @@
             <h3>Name: {{$user->name}}</h3>  
             <h4>Email: {{$user->email}}</h4>
             @if ($user->banned_till == '')
-                {!! Form::open(['route' => 'admin.user-ban','class'=>'form-horizontal']) !!}  
+                {!! Form::open(['route' => 'user-ban','class'=>'form-horizontal']) !!}  
                 <div class="input-group">
                   {!! Form::select('days',['0'=>'Permanently Ban', '7'=>'Next 7 Days', '15'=>'Next 15 Days', '30'=>'Next 30 Days'],null,['class'=>'form-control', 'placeholder'=>'Ban Type']) !!}
                   <span class="input-group-btn">
@@ -18,7 +18,7 @@
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
               {!! Form::close() !!}
             @else
-                <a href="{{route('admin.user-unban',$user->id)}}" class="btn btn-success">Unban</a>
+                <a href="{{route('user-unban',$user->id)}}" class="btn btn-success">Unban</a>
             @endif
         </div>
         <div class="card-body">

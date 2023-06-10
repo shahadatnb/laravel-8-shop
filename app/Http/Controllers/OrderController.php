@@ -32,7 +32,7 @@ class OrderController extends Controller
 
         $orders = $orders->paginate($data['per_page']);
 
-        return view('admin.order.order',compact('orders'));
+        return view('admin.order.order',compact('orders','data'));
     }
 
     private function orderStatus(){

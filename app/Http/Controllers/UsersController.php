@@ -50,8 +50,7 @@ class UsersController extends Controller
             'Designation' => 'required|max:255',
             'mobile' => 'required|max:255',
             'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|between:8,255|confirmed',
-            'password_confirmation' => 'required'
+            //'password' => 'required|between:8,255|confirmed'
         ]);
 
         $user = new User;
@@ -75,8 +74,8 @@ class UsersController extends Controller
             }
         }
 
-        UserProfile::create(['user_id' => $user->id, 'photo' => $full_path]);
-        Mail::to($request->email)->send(new NewUserRegistered($user));
+        UserProfile::create(['user_id' => $user->id, 'photo' => '']);
+        //Mail::to($request->email)->send(new NewUserRegistered($user));
 
         return redirect()->route('users.index');
     }
@@ -119,8 +118,8 @@ class UsersController extends Controller
             //'Designation' => 'required|max:255',
             'mobile' => 'required|max:255',
             'username' => ['nullable','alpha_dash','max:30','unique:users,username,'.$user->id],
-            'email' => ['required','email','alpha_dash','max:30','unique:users,email,'.$user->id],
-            'password' => 'confirmed',
+            'email' => ['required','email','max:30','unique:users,email,'.$user->id],
+            //'password' => 'nullable|min:6|confirmed',
         ]);
 
         $user->name = $request->name;
@@ -259,15 +258,10 @@ class UsersController extends Controller
 
     public function destroy(User $user)
     {
-        //return $user->customers;
-
-        if($user->teams->count() > 0  || $user->customers->count()>0 ){
-            session()->flash('warning','Can`t deleted.');
-        }else{
-            $user->roles()->detach();
-            $user->permissions()->detach();
-            $user->delete();
-        }
+        
+        $user->roles()->detach();
+        $user->permissions()->detach();
+        $user->delete();
 
         return redirect()->back();
     }

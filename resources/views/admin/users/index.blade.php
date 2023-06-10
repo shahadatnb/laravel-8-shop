@@ -71,11 +71,16 @@
                         @endif
                     </td>
                     <td>
-                    <a href="{{asset('/')}}/users/{{ $user['id'] }}"><i class="fa fa-eye"></i></a>
-                        <a href="{{asset('/')}}/users/{{ $user['id'] }}/edit"><i class="fa fa-edit"></i></a>
+                    <a href="{{route('users.show',$user['id'])}}"><i class="fa fa-eye"></i></a>
+                        <a href="{{route('users.edit',$user['id']) }}"><i class="fa fa-edit"></i></a>
+                        <form class="delete" action="{{ route('users.destroy',$user['id']) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="" onclick="return confirm('Are You Sure To Delete This Item?')"><i class="fa fa-trash"></i></button>
+                        </form>
                         {{-- @cannot('isManager') --}}
                             {{-- @can('delete-user', $user) --}}
-                                <a href="#" data-toggle="modal" data-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>
+                                {{-- <a href="#" data-toggle="modal" data-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a> --}}
                             {{-- @endcan --}}
                         {{-- @endcannot --}}
                     </td>
