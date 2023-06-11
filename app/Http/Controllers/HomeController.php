@@ -6,6 +6,7 @@ use App\Models\OrderItem;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Order;
 use App\Http\Traits\userTrait;
@@ -92,5 +93,19 @@ endif;
         //return $orders_last_month;
         return view('admin.pages.dashboard',compact('dashboard'));//,'orders','order_items','orders_last_month'
 
+    }
+
+    
+    public function customer()
+    {
+        $customers = Customer::latest()->paginate(100);
+        return view('admin.customer.index',compact('customers'));
+    }
+    
+    public function customerEdit($id)
+    {
+        $mode ='edit';
+        $customer = Customer::find($id);
+        return view('admin.customer.createOrEdit',compact('customer','mode'));
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CustomerLoginController;
 use App\Http\Controllers\Auth\CustomerRegisterController;
 use App\Http\Controllers\AttributeController;
@@ -132,6 +131,11 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::match(['GET', 'POST'],'/createUser/{role}', [UsersController::class, 'createUser'])->name('createUser');
     Route::match(['GET', 'POST'],'/editUser/{role}/{id}', [UsersController::class, 'editUser'])->name('editUser');
     Route::get('/userList/{role}', [UsersController::class, 'userList'])->name('userList');
+
+    Route::get('/customer', [HomeController::class, 'customer'])->name('admin.customer');
+    Route::get('/customer/edit/{id}', [HomeController::class, 'customerEdit'])->name('admin.customer.edit');
+    Route::post('/customer/update/{id}', [CustomerRegisterController::class, 'update'])->name('admin.customer.update');
+    Route::delete('/customer/destroy/{id}', [CustomerRegisterController::class, 'destroy'])->name('admin.customer.destroy');
 
     Route::resource('review', ProductReviewController::class);
 
