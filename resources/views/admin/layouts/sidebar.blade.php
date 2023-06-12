@@ -111,6 +111,12 @@
             </a>
           </li>
         <li class="nav-item">
+            <a href="{{route('admin.customer')}}" class="nav-link{{ (request()->routeIs('admin.customer')) ? ' active' : '' }}">
+                <i class="nav-icon fas fa-store"></i>
+                <p>Customers</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{route('review.index')}}" class="nav-link{{ (request()->routeIs('review.*')) ? ' active' : '' }}">
                 <i class="nav-icon fas fa-store"></i>
                 <p>Reviews</p>

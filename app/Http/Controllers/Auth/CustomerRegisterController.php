@@ -57,24 +57,25 @@ class CustomerRegisterController extends Controller
 
     public function update(Request $request, $id){
         $user = Customer::find($id);
-        
+        //dd($user); exit;
         $this->validate($request, array(
-            'first_name.*'=>'required|string|max:100',
-            'last_name.*'=>'required|string|max:100',
-            'gender'=>'required|string|max:255',
-            'email.*'=>'required|email|max:100|unique:customers,email',$id,
+            'first_name'=>'required|string|max:100',
+            'last_name'=>'required|string|max:100',
+            'phone'=>'required|max:15',
+            'email'=>'required|email|max:100|unique:customers,email,'.$user->id,
         ));
 
                     
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        $user->gender = $request->gender;
+        //$user->gender = $request->gender;
         $user->email = $request->email;
+        $user->phone = $request->phone;
         $user->save();
 
         Session::flash('success','Successfully Save');
 
-        return redirect()->route('player.index');
+        return redirect()->back();
     }
 
 
@@ -110,8 +111,6 @@ class CustomerRegisterController extends Controller
         if($customer->orders->count() > 0){
             Session::flash('warning','Can`t deleted.');
         }else{
-            $customer->roles()->detach();
-            $customer->permissions()->detach();
             $customer->delete();
         }
 
