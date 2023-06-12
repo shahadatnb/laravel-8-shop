@@ -226,7 +226,7 @@
                         <p>&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
                     </div>
                     <div class="col-md-4 col-lg-3">
-                        <!-- @livewire('subscribe-form') -->
+                        @livewire('subscribe-form')
                     </div>
                 </div>
             </div>
