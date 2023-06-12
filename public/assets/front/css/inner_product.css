@@ -1,3 +1,35 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Regular.woff2') format('woff2'),
+        url('../font/Ubuntu-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+   }
+   @font-face {
+    font-family: 'Ubuntu';
+    src: url('../font/Ubuntu-Light.woff2') format('woff2'),
+        url('../font/Ubuntu-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+   }
+   @font-face {
+       font-family: 'Kanit';
+       src: url('../font/Kanit-Light.woff2') format('woff2'),
+           url('../font/Kanit-Light.woff') format('woff');
+       font-weight: 300;
+       font-style: normal;
+       font-display: swap;
+   }
+   @font-face {
+       font-family: 'qatar2022_bold';
+       src: url('../font/Qatar2022-Bold.woff2') format('woff2'),
+           url('../font/Qatar2022-Bold.woff') format('woff');
+       font-weight: 300;
+       font-style: normal;
+       font-display: swap;
+   }
 ._topHeader {
     background: #0089cf;
 }
@@ -271,23 +303,24 @@ ul._color_swatch li {
     margin-right: 10px;
 }
 
-._wish_list {
-    display: flex;
-    justify-content: space-between;
-    padding: 24px 0px;
+._wish_list button {
+    background-color: #fff;
+    border: 1px solid #000;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 50px;
+    text-align: center;
+    text-transform: capitalize;
+    border-radius: 8px;
+    color: #000;
 }
-
-._wish_list > div {
-    max-width: 33.33%;
+._wish_list button:hover {
+    background-color: #000;
+    color: #FFF;
 }
-
 .form-group--number.product__qty {
-    width: 22%;
-    margin-right: 20px;
     border: 1px solid #5a53538f;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border-radius: 6px;
 }
 
 ._add_cart {
@@ -298,12 +331,8 @@ ul._color_swatch li {
     align-items: center;
 }
 
-._product_catr {
-    width: 74%;
-}
-
 input.qty-input {
-    width: 50px;
+    width: 150px;
     text-align: center;
     height: 40px;
     border: 0;
@@ -316,23 +345,13 @@ input.qty-input {
 
 .form-group--number.product__qty button {
     border: 0;
-    width: 30px;
+    width: 49px;
     display: inline-block;
     font-weight: 300;
     font-size: 16px;
     background: no-repeat;
 }
 
-button.ps-btn.ps-btn--black {
-    width: 100%;
-    border: 0;
-    display: block;
-    background: hsl(200deg 100% 41%);
-    color: #FFF;
-    text-transform: uppercase;
-    font-size: 20px;
-    padding: 6px 0px;
-}
 
 .chek_trams {
     padding: 15px 0px;
@@ -350,17 +369,6 @@ input._cktms {
     color: #000;
     font-size: 16px;
     margin-left: 5px;
-}
-
-.ps-btn {
-    width: 100%;
-    border: 0;
-    text-transform: uppercase;
-    font-size: 20px;
-    background: #de5531;
-    color: #FFF;
-    display: block;
-    padding: 6px 0px;
 }
 
 ._buyit p,
@@ -390,23 +398,15 @@ input._cktms {
 }
 
 .row_nav_tabs .nav-tabs {
-    border-bottom: 1px solid #008bd1;
+    border-bottom: 1px solid #d6dbdf;
 }
 
 .row_nav_tabs .nav-tabs .nav-link {
-    margin-bottom: -1px;
     background: 0 0;
-    border: 1px solid #008bd1;
-    border-top-left-radius: 0;
+    border: 0;
     border-radius: 0;
-    margin-right: 13px;
-}
-
-.row_nav_tabs .nav-tabs .nav-item.show .nav-link,
-.row_nav_tabs .nav-tabs .nav-link.active {
-    color: #ffffff;
-    background-color: #008bd1;
-    border-color: #008bd1 #008bd1 #008bd1;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 ._descriptions {

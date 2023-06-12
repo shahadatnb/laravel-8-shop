@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/style.css')}}?v={{time()}}" />
 
-    <!-- <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" /> -->
-    <!-- <link rel="stylesheet" href="{{asset('assets/front/css/inner_product.css?v='.time())}}" media="all"> -->
-    <!-- <link rel="stylesheet" href="{{asset('/assets/front/font-awesome-4.7.0/css/font-awesome.css')}}" /> -->
+    <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/front/css/inner_product.css?v='.time())}}" media="all">
+    <link rel="stylesheet" href="{{asset('/assets/front/font-awesome-4.7.0/css/font-awesome.css')}}" />
     @yield('css')
     <title>
         @hasSection('title')
@@ -43,12 +43,22 @@
 </head>
 
 <body>
-    <header class="_home_header sticky-top py-2" style="background: #E3E6E6;">
+    <header class="_home_header sticky-top py-2">
         <nav class="container-fluid px-sm-5">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-2">
                     <div class="branding">
-                        <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                                <figure class="_hmenu">
+                                @if(!empty(config('settings.appLogo')))
+                                <img class="" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
+                                @else
+                                <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                                @endif 
+                                </figure>
+                                
+                                </a>
+                        <!-- <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo"> -->
                     </div>
                 </div>
                 <div class="col-md-1 text-end">
@@ -86,7 +96,7 @@
                 <div class="col-md-3">
                     <div class="siteSearch">
                         <form class="searchBox" role="search">
-                            <input class="form-control me-2 w-medium fs-5 text-body-secondary bg-transparent rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" placeholder="Search" aria-label="Search">
                         </form>
                     </div>
                 </div>
@@ -98,11 +108,25 @@
                                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
                         </a>
-
+@auth('customer')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
+                                <ul class="dropdown-menu dropdown-menu-end _nedd_color">
+                                    <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"> Sign Out </a></li>
+                                        <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                </ul>
+                            </li>
+                          @endauth
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        @guest('customer')
+                            <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
+                            <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
@@ -218,10 +242,10 @@
     </script>
 
 
-    <!-- {{-- <script src="assts/js/jquery.js"></script>
+    {{-- <script src="assts/js/jquery.js"></script>
     <script src="assts/js/bootstrap.min.js"></script>
     <script src="assts/js/owl.carousel.min.js"></script>
-    <script src="assts/js/custom.js"></script> --}} -->
+    <script src="assts/js/custom.js"></script> --}}
 
 </body>
 
