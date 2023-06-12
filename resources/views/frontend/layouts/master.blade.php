@@ -48,16 +48,16 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-md-2">
                     <div class="branding">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                                <figure class="_hmenu">
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <figure class="_hmenu">
                                 @if(!empty(config('settings.appLogo')))
                                 <img class="" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
                                 @else
                                 <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
-                                @endif 
-                                </figure>
-                                
-                                </a>
+                                @endif
+                            </figure>
+
+                        </a>
                         <!-- <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo"> -->
                     </div>
                 </div>
@@ -108,21 +108,21 @@
                                 <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                             </svg>
                         </a>
-@auth('customer')
-                            <li class="nav-item dropdown">
-                                <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
-                                <ul class="dropdown-menu dropdown-menu-end _nedd_color">
-                                    <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
+                        @auth('customer')
+                        <li class="nav-item dropdown">
+                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
+                            <ul class="dropdown-menu dropdown-menu-end _nedd_color">
+                                <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"> Sign Out </a></li>
-                                        <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                </ul>
-                            </li>
-                          @endauth
+                                <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </li>
+                        @endauth
                         <ul class="dropdown-menu">
-                        @guest('customer')
+                            @guest('customer')
                             <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
                             <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -156,45 +156,51 @@
             <div class="container-fluid px-5">
                 <div class="row justify-content-between">
 
-                    <div class="col-md-3 col-lg-2">
+                    <div class="col-md-3 col-lg-2 pb-4">
                         <div class="_address">
                             <h5>About soccer club</h5>
                             <p>{{ config('settings.footerDdescription', '') }}</p>
                         </div>
                     </div>
 
-                    <div class="col-md-2 col-lg-2">
+                    <div class="col-md-2 col-lg-2 pb-4">
                         <div class="_useful">
                             <h5>Quick shop</h5>
                             @empty(!CustomHelper::NaveMenu('quick-shop',[]))
                             {!! CustomHelper::NaveMenu('quick-shop',[]) !!}
                             @endempty
                         </div>
-                        <div class="_loactions">
-                                <h6>Contact Us</h6>
-                                <p><b>Address:</b> {{ config('settings.appAddress', '') }}</p>
-                                <p><b>Call Us:</b><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></p>
-                                <p><b>Email Us:</b><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></p>
-                            </div>
-                    </div>
-
-                    <div class="col-md-2 col-lg-2">
-                        <div class="_useful">
+                        <div class="_useful pt-3">
                             <h5>Useful links</h5>
                             @empty(!CustomHelper::NaveMenu('useful-links',[]))
                             {!! CustomHelper::NaveMenu('useful-links',[]) !!}
                             @endempty
                         </div>
+
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 pb-4">
+                        <div class="_loactions">
+                            <h5>Contact Us</h5>
+                            <ul><li><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></li>
+                        <li><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></li>
+                        <li>{{ config('settings.appAddress', '') }}</li>
+                        </ul>
+                            <!-- <p><b>Email Us:</b></p>
+                            <p><b>Call Us:</b></p>
+                            <p><b>Address:</b> </p> -->
+                                                       
+                        </div>
                         <div class="_social">
-                                <h6>Follow Us</h6>
-                                <ul>
-                                    @empty(!CustomHelper::SocialMenu('social'))
-                                    @foreach (CustomHelper::SocialMenu('social') as $item)
-                                    <li><a href="{{$item->menu_url}}"><i class="{{$item->menu_class}}" aria-hidden="true"></i></a></li>
-                                    @endforeach
-                                    @endempty
-                                </ul>
-                            </div>
+                            <h5 class="pt-3">Follow Us</h5>
+                            <ul class="list-unstyled d-inline-flex m-0 p-0">
+                                @empty(!CustomHelper::SocialMenu('social'))
+                                @foreach (CustomHelper::SocialMenu('social') as $item)
+                                <li><a href="{{$item->menu_url}}"><i class="{{$item->menu_class}}" aria-hidden="true"></i></a></li>
+                                @endforeach
+                                @endempty
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="col-md-4 col-lg-3">
@@ -220,7 +226,7 @@
                         <p>&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
                     </div>
                     <div class="col-md-4 col-lg-3">
-                    @livewire('subscribe-form')
+                        @livewire('subscribe-form')
                     </div>
                 </div>
             </div>
