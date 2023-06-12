@@ -11,7 +11,7 @@
         @endif
             <form wire:submit.prevent="save">
                 <div class="input-group position-relative">
-                    <input type="email" class="_newscontrol @error('email') is-invalid @enderror w-100 position-relative" wire:model="email" placeholder="Enter Your Email">
+                    <input type="email" class="_newscontrol @error('email') is-invalid @enderror w-100 position-relative rounded" wire:model="email" placeholder="Enter Your Email">
                     <button type="submit" class="btn_newsl position-absolute end-0 top-0">subscribe</button>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
