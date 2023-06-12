@@ -146,6 +146,7 @@
                         </ul>
                     </div>
                 </div>
+                @livewire('mini-cart')
             </div>
         </nav>
     </header>
