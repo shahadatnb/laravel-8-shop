@@ -3,6 +3,7 @@
     <div wire:loading>
         @include('admin/layouts/_loading')
     </div>
+{{--     
     <ul class="navbar-right">
     @if(auth('customer'))
     <li class="nav-item mini-cart d-inline-block">
@@ -15,7 +16,6 @@
 
     <li class="nav-item mini-cart d-inline-block">
         <a class="nav-link cart-icon"  href="#">
-        {{-- <a class="nav-link" href="{{route('cart')}}"> --}}
             <i class="fa fa-cart-plus" aria-hidden="true"></i>
             <span>{{ Cart::getTotalQuantity()}}</span>
         </a>
@@ -58,7 +58,7 @@
             <span><a href="{{route('checkout')}}">Checkout</a></span>
         </div>
         @endif
-    </div>
+    </div> --}}
 
 </div>
 @push('scripts')
