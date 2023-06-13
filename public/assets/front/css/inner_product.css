@@ -109,19 +109,19 @@
 /*Inner Page Banner*/
 ._inner_page_banner {
     position: relative;
-    background: url(../img/banner_inner_page.jpg);
+    background: #f5f5f5;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
-    padding: 60px 0px;
-    color: #FFF;
+    padding: 20px 0px;
     text-align: center;
 }
 
 ._in_title_text h1 {
+    color: #000;
     text-transform: uppercase;
-    padding: 80px 0px;
+    padding: 20px 0px;
     font-weight: 600;
     font-size: 30px;
     line-height: 1.3em;

@@ -61,7 +61,7 @@
                         <!-- <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo"> -->
                     </div>
                 </div>
-                <div class="col-md-1 text-end">
+                <!-- <div class="col-md-1 text-end">
                     <div class="productCategories">
                         <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -69,7 +69,7 @@
                             </svg>
                         </span>
 
-                        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
                             <div class="offcanvas-header">
                                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Product Sub Categories</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -84,12 +84,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                     <div class="siteMenu" id="siteMenu">
                         <ul class="list-unstyled m-0 p-0">
-                            <li class="px-2 text-center"><a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Home</a></li>
-                            <li class="px-2 text-center"><a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category</a></li>
+                            <li class="px-2 text-center"><a href="#" class="fs-6 text-body-secondary text-decoration-none">Home</a></li>
+                            <li class="dropdown">
+                            <a class="dropdown-toggle fs-6 text-body-secondary text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+  </ul>
+                            <!-- <a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category()</a> -->
+                        
+                        </li>
                         </ul>
                     </div>
                 </div>
@@ -132,18 +142,79 @@
                 </div>
                 <div class="col-md-1">
                     <div class="wishCartList text-end">
-                        <ul class="textRightSet list-unstyled p-0 m-0" style="display: inline-flex;">
-                            <li class="pe-2">
+                        <!-- <ul class="textRightSet list-unstyled p-0 m-0" style="display: inline-flex;">
+                            <li class="pe-2"> -->
                                 <a href="#" class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                     </svg></a>
-                            </li>
-                            <li class="ps-2">
-                                <a href="#" class="text-body-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                                    </svg></a>
-                            </li>
-                        </ul>
+                            <!-- </li>
+                        </ul> -->
+                    </div>
+                </div>
+
+                <div class="col-md-1 text-end">
+                    <div class="productCategories">
+                        <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHomeCart" aria-controls="offcanvasHomeCart">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                        </span>
+
+                        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasHomeCart" aria-labelledby="offcanvasHomeCartLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasHomeCartLabel">Your Cart</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <div class="cartTableArea">
+                                    <div class="gr">
+                                        <div class="g">
+                                            <div class="border">
+                                                <div class="table-responsive">
+                                                    <table class="text-start mb-0 table align-middle">
+                                                        <!-- <thead>
+                                                            <tr>
+                                                                <th>Items:<sup>2</sup></th>
+                                                                <th>Subtotal:</th>
+                                                            </tr>
+                                                        </thead> -->
+                                                        <tbody>
+                                                            <tr class="align-content-center">
+                                                                <td style="width: 30%;"><img src="http://localhost/laravel-8-shop/public/storage/product/2023/06/07721155b35a4f8ff39eb398d4cabe21.jpg" alt="w-list" class="w-100">
+                                                                    <div class="actionBtn text-center py-1">
+                                                                        <i class="bi bi-x-circle"></i>
+                                                                    </div>
+                                                                </td>
+                                                                <td style="width: 70%;"><a href="#">Adjustable Full supportive and Anti Shaking Sports Bra-Blue</a>
+                                                                    <div class="py-1"> <span> Size: <b>M</b></span> <span>Color: <b>Blue</b></span> <span>Price: <b>1290</b></span></div>
+                                                                    <div class="d-flex justify-content-between border py-1">
+                                                                        <button type="button" class="btn">-</button>
+                                                                        
+                                                                        <input disabled="" class="border w-50" value="2" style="text-align: center;">
+                                                                        
+                                                                        <button type="button" class="btn">+</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="cartSideHome">
+                                                <div class="border text-center my-2">
+                                                        <h3 class="m-0 p-1">Totals: ৳ 2650</h3>                                                 
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-3">
+                                                    <button type="button" class="btn rounded-0 border">Checkout</button>
+                                                    <button type="button" class="btn rounded-0 border">View Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @livewire('mini-cart')
@@ -183,14 +254,15 @@
                     <div class="col-md-2 col-lg-2 pb-4">
                         <div class="_loactions">
                             <h5>Contact Us</h5>
-                            <ul><li><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></li>
-                        <li><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></li>
-                        <li>{{ config('settings.appAddress', '') }}</li>
-                        </ul>
+                            <ul>
+                                <li><a href="mailto:{{ config('settings.appEmail', 'info@emailaddress.com') }}"> {{ config('settings.appEmail', 'info@emailaddress.com') }}</a></li>
+                                <li><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></li>
+                                <li>{{ config('settings.appAddress', '') }}</li>
+                            </ul>
                             <!-- <p><b>Email Us:</b></p>
                             <p><b>Call Us:</b></p>
                             <p><b>Address:</b> </p> -->
-                                                       
+
                         </div>
                         <div class="_social">
                             <h5 class="pt-3">Follow Us</h5>
