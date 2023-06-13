@@ -16,10 +16,10 @@
     <link rel="icon" href="{{ asset('upload/site_file/'.config('settings.fevicon')) }}" type="image/gif" />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{asset('/assets/front')}}/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('/assets/front/css/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/owl.theme.default.min.css')}}" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="//unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="{{asset('/assets/front/css/style.css')}}?v={{time()}}" />
 
     <link rel="stylesheet" href="{{asset('/assets/loading.css')}}" />
@@ -50,7 +50,7 @@
                     <div class="branding">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <figure class="_hmenu">
-                                @if(!empty(config('settings.appLogo')))
+                                @if(empty(config('settings.appLogo')))
                                 <img class="" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
                                 @else
                                 <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
@@ -214,7 +214,11 @@
             <div class="container-fluid px-5">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3 col-lg-2">
-                        <img src="assets\front\img\Ladiumbd-logo-white.png" class="w-100" alt="Company Logo">
+                        @if(empty(config('settings.appLogo')))
+                        <img class="" src="{{asset('/assets/front')}}/img/Ladiumbd-logo-white.png" alt="{{ config('settings.appTitle') }}">
+                        @else
+                        <img src="{{ asset('storage/'.config('settings.footerLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                        @endif
                     </div> 
                     <div class="col-md-5 col-lg-6">
                         <p>&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
@@ -236,7 +240,7 @@
     <!-- custom js -->
     <script src="{{asset('/assets/front/js/custom.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="//unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
