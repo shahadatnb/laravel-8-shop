@@ -1,3 +1,6 @@
+INSERT INTO `settings` (`id`, `sl`, `name`, `description`, `value`, `category`, `field`, `status`, `created_at`, `updated_at`) VALUES (NULL, '3', 'footerLogo', 'Footer Logo', 'site_file/1686673117.jpg', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"image\"}', '1', NULL, '2023-06-13 22:18:38'); 
+
+
 
         $(function () {
             'use strict'

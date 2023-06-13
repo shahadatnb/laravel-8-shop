@@ -112,27 +112,25 @@
                 </div>
                 <div class="col-md-1">
                     <ul class="userProfile list-unstyled m-0 p-0">
-                        
-                        @auth('customer')
                         <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
+                            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
                             <ul class="dropdown-menu dropdown-menu-end _nedd_color">
+                                @auth('customer')
                                 <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"> Sign Out </a></li>
                                 <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
+                                @endauth
+                                @guest('customer')
+                                <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
+                                <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                @endguest                        
                             </ul>
                         </li>
-                        @endauth
-                        <ul class="dropdown-menu list-unstyled m-0 p-0">
-                            @guest('customer')
-                            <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
-                            <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            @endguest
-                        </ul>
                     </ul>
                 </div>
                 <div class="col-auto">
