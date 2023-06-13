@@ -46,14 +46,14 @@
     <header class="_home_header sticky-top py-2">
         <nav class="container-fluid px-sm-5">
             <div class="row justify-content-between align-items-center">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="branding">
                         <a class="navbar-brand" href="{{ url('/') }}">
-                            <figure class="_hmenu">
+                            <figure class="m-0 _hmenu">
                                 @if(empty(config('settings.appLogo')))
-                                <img class="w-100" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
+                                <img class="w-75" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
                                 @else
-                                <img class="w-100" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                                <img class="w-75" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
                                 @endif
                             </figure>
 
@@ -114,7 +114,9 @@
                     <ul class="userProfile list-unstyled m-0 p-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> </a>
+                                <!-- <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> -->
+                                <i class="bi bi-person-circle"></i>
+                             </a>
                             <ul class="dropdown-menu dropdown-menu-end _nedd_color">
                                 @auth('customer')
                                 <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
@@ -127,7 +129,6 @@
                                 @guest('customer')
                                 <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
                                 <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 @endguest                        
                             </ul>
                         </li>

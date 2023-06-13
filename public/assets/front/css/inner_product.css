@@ -482,9 +482,8 @@ div#tab-reviews {
     color: #edb867;
 }
 
-._in_plink {
+/* ._in_plink {
     text-align: center;
-    padding: 10px 0px;
 }
 
 ._in_plink h3 {
@@ -496,19 +495,19 @@ div#tab-reviews {
 ._in_plink h4 {
     padding-top: 10px;
     padding-bottom: 10px;
-}
+} */
 
 ._in_plink h4 ._sell {
-    color: #c43b17;
-    font-weight: bold;
-    margin-right: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 2px;
 }
 
-._in_plink h4 ._peSell {
+/* ._in_plink h4 ._peSell {
     color: #000;
     font-size: 16px;
     vertical-align: middle;
-}
+} */
 
 ._store_by_team {
     padding: 30px 0px;

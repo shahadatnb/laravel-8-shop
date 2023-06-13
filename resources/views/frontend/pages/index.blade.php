@@ -158,9 +158,8 @@
                     <div class="row align-items-center bg-white leftRignt py-2">
                         <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1679277566/u5tyfvlvxabrfze2bwam.jpg" alt="category" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
-                            <h6 class="m-0 py-1">Plus size</h6>
-                            <h5 class="m-0 py-2">Plus size</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">Get Offer</a></div>
+                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
                         </div>
                     </div>
                 </div>
@@ -170,9 +169,8 @@
                     <div class="row align-items-center bg-white leftRignt py-2">
                         <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1679277442/bkkeuywwuhi4nnvwhjzr.jpg" alt="category" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
-                            <h6 class="m-0 py-1">Sports Top</h6>
-                            <h5 class="m-0 py-2">Sports Top</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">Get Offer</a></div>
+                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
                         </div>
                     </div>
                 </div>
@@ -182,9 +180,8 @@
                     <div class="row align-items-center bg-white leftRignt py-2">
                         <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662788653/l22jzur4vkqtiig0biar.jpg" alt="category" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
-                            <h6 class="m-0 py-1">Sports Leggings</h6>
-                            <h5 class="m-0 py-2">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">Get Offer</a></div>
+                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
                         </div>
                     </div>
                 </div>
@@ -196,9 +193,8 @@
                             <img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662345094/kcz7zvfwo7u0tug9ankk.jpg" alt="category" style="max-height: 100px;">
                         </div>
                         <div class="col-md-6 py-3 textSide">
-                            <h6 class="m-0 py-1">Gym yoga set</h6>
-                            <h5 class="m-0 py-2">Gym yoga set</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">Get Offer</a></div>
+                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
                         </div>
                     </div>
                 </div>
@@ -208,23 +204,22 @@
                     <div class="row align-items-center bg-white leftRignt py-2">
                         <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662788653/l22jzur4vkqtiig0biar.jpg" alt="category" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
-                            <h6 class="m-0 py-1">Sports Leggings</h6>
-                            <h5 class="m-0 py-2">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">Get Offer</a></div>
+                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="viewMoreBtn text-center">
+    <!-- <div class="viewMoreBtn text-center">
         <a href="/">View All</a>
-    </div>
+    </div> -->
 </article>
 <!--    Our Categories End -->
 
 <section class="_clients_testimonial bg-white py-5">
-    
+
     <div class="container-fluid px-sm-5">
         <div class="row py-4">
             <div class="col-md-12">

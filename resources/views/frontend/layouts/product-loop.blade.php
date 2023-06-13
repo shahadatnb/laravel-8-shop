@@ -9,7 +9,7 @@
       <h2>{{ $item->title }}</h2>
 
       <div class="priceBuy d-flex justify-content-between align-items-center">
-        <div class="proPrice ps-3 text-black">
+        <div class="proPrice text-black">
           @if ($item->special_price > 0)
           <h4><span class="_sell">{{config('settings.currencySymbol')}}{{ $item->special_price }}</span> <del class="_peSell">{{config('settings.currencySymbol')}}{{ $item->price }} </del></h4>
           @else
