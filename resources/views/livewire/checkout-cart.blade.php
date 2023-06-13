@@ -3,25 +3,23 @@
         @include('admin/layouts/_loading')
     </div>
     <section id="bardowncart" class="bardowncart">
-
-   
         <div class="container">
             @if ($cartItems != '')
             <div class="row">
+                <div class="col-md-8">
                     <div class="cartborright">
                         <form wire:submit.prevent="save" class="cartpage">
-                            <table class="carttablew table-responsive my-2">
+                            <table class="carttablew my-2">
                                 <thead class="cart__row cart__header small--hide">
-                                <tr>
-      <th>Image</th>
-      <th>Product name</th>
-       
-       <!-- <th>Color</th> -->
-       <!-- <th>Size</th> -->
-       <th scope="col">Price</th>
-       <th scope="col">Quantity</th>
-       <th scope="col">Actions</th>
-      </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="2" class="text-left">Product</th>
+                                        <th class="small--hide">Price</th>
+
+                                        <th class="text-center">Quantity</th>
+
+                                        <th class="small--hide text-right">Total</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($cartItems as $item)
@@ -66,7 +64,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="row" id="coupon">
+                            {{-- <div class="row" id="coupon">
                                 <div class="col-sm-12 col-lg-6">
                                     <div class="input-group mb-3">
                                         <input wire:model="coupon_code" type="text" class="form-control">
@@ -75,19 +73,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
-                
-            </div>
-            @else
-                <p>No cart found.</p>
-            @endif
-        </div>
-        <div class="container">
-            <div class="row">
+                </div>
+
                 <div class="col-md-4">
-                <div class="sidecart">
+                    <div class="sidecart">
                         <div class="cartSummery">
                             <div class="cart-option cart-note">
                                 <p class="cart-options-ttl">Special instructions for seller with your order</p>
@@ -136,6 +128,9 @@
                     </div>
                 </div>
             </div>
+            @else
+                <p>No cart found.</p>
+            @endif
         </div>
     </section>      
 </div>
