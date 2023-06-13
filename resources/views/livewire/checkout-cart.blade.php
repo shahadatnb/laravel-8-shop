@@ -3,6 +3,108 @@
         @include('admin/layouts/_loading')
     </div>
     <section id="bardowncart" class="bardowncart">
+
+
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-10 table-responsive">
+      <table class="table align-middle border mb-0 ">
+        <thead>
+          <tr>
+            <th>SKU CODE</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td style="width: 10%;">
+            <img src="http://localhost/laravel-8-shop/public/storage/product/2023/06/fe6911cb0382373d7abcafa573115ff7.jpg"
+                alt="w-list" class="img-fluid">
+            </td>
+
+            <td class="w-50">
+                <p><a href="#">Adjustable Full supportive and Anti Shaking Sports Bra-Blue</a></p>
+                <p>
+                    <span>Color: <b>Blue berry</b></span> <span>Size: <b>M</b></span>
+                </p>
+        </td>
+            <td>1290</td>
+            <td style="width: 15%;">
+              <div class="d-flex justify-content-between border py-1">
+                <button type="button" class="btn">-</button>
+                <input disabled="" class="border w-50" value="2" style="text-align: center;">
+                <button type="button" class="btn">+</button>
+              </div>
+            </td>
+            <td style="width: 5%;">
+              <div class="actionBtn text-center py-1">
+                <i class="bi bi-x-circle"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2">
+      <div class="table-responsive">
+        <table class="table border">
+          <thead>
+            <tr>
+              <th>Cart</th>
+              <th>totals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Subtotal</td>
+              <td>৳ 2580</td>
+            </tr>
+            <tr>
+              <td>Shipping</td>
+              <td>৳ 70</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>৳ 2650</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-center mb-3"><button type="button" class="btn btn-dark">Proceed To
+          Checkout</button></div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Up Ahasan New Code -->
+
         <div class="container">
             @if ($cartItems != '')
             <div class="row">
