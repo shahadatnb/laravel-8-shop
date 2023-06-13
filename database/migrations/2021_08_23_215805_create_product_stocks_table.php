@@ -14,7 +14,7 @@ class CreateProductStocksTable extends Migration
     public function up()
     {
         Schema::create('product_stocks', function (Blueprint $table) {
-            $table->id();            
+            $table->id();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedBigInteger('store_id');

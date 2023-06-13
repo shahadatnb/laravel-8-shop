@@ -144,7 +144,7 @@ class CustomHelperController
                             $nav .= '</ul>';
                         $nav .= '</li>';
                     else:
-                        $nav .= '<li class='.$arg['listClass'].'>'.NaveMenuUrl($item, $arg['linkClass']).'</li>';
+                        $nav .= '<li class="'.$arg['listClass'].'">'.NaveMenuUrl($item, $arg['linkClass']).'</li>';
                     endif;
                 }
             $nav .= '</ul>';

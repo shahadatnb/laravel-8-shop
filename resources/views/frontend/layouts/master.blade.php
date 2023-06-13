@@ -87,7 +87,10 @@
                 </div> -->
                 <div class="col-md-4">
                     <div class="siteMenu" id="siteMenu">
-                        <ul class="list-unstyled m-0 p-0">
+                        @empty(!CustomHelper::NaveMenu('main',[]))
+                            {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'px-2 text-center','linkClass'=>'fs-6 text-body-secondary text-decoration-none']) !!}
+                        @endempty
+                        {{-- <ul class="list-unstyled m-0 p-0">
                             <li class="px-2 text-center"><a href="#" class="fs-6 text-body-secondary text-decoration-none">Home</a></li>
                             <li class="dropdown">
                             <a class="dropdown-toggle fs-6 text-body-secondary text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
@@ -100,7 +103,7 @@
                             <!-- <a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category()</a> -->
                         
                         </li>
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
                 <div class="col-md-3">
