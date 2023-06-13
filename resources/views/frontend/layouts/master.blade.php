@@ -46,14 +46,14 @@
     <header class="_home_header sticky-top py-2">
         <nav class="container-fluid px-sm-5">
             <div class="row justify-content-between align-items-center">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div class="branding">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <figure class="_hmenu">
                                 @if(empty(config('settings.appLogo')))
-                                <img class="" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
+                                <img class="w-100" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
                                 @else
-                                <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                                <img class="w-100" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
                                 @endif
                             </figure>
 
