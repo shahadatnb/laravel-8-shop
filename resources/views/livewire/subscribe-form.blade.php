@@ -1,4 +1,4 @@
-<!-- <div>
+<div>
     <div wire:loading  wire:target="save">
         @include('admin/layouts/_loading')
     </div>
@@ -21,4 +21,4 @@
                 </div>
         </from>
     </div>
-</div> -->
+</div>
