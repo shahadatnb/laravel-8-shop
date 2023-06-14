@@ -88,7 +88,7 @@
                 <div class="col-md-4">
                     <div class="siteMenu" id="siteMenu">
                         @empty(!CustomHelper::NaveMenu('main',[]))
-                            {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'px-2 text-center','linkClass'=>'fs-6 text-body-secondary text-decoration-none']) !!}
+                            {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
                         @endempty
                         {{-- <ul class="list-unstyled m-0 p-0">
                             <li class="px-2 text-center"><a href="#" class="fs-6 text-body-secondary text-decoration-none">Home</a></li>

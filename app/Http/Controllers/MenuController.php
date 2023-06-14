@@ -86,6 +86,7 @@ class MenuController extends Controller
         $data->parent_id =  $request->parent_id;
         $data->menu_id = $request->menu_id;
         $data->menu_class = $request->menu_class;
+        $data->link_class = $request->link_class;
         $data->save();
 
         Session::flash('success', "Saved.");
@@ -106,6 +107,7 @@ class MenuController extends Controller
             'lebel'=>['required','string','max:200'],
             'menu_url'=>['required','string','max:200'],
             'menu_class'=>['nullable','string','max:80'],
+            'link_class'=>['nullable','string','max:80'],
             'menuType'=>['required','string','max:200'],
         ]);
 
@@ -113,6 +115,7 @@ class MenuController extends Controller
         $data->lebel = $request->lebel;
         $data->menu_url = $request->menu_url;
         $data->menu_class = $request->menu_class;
+        $data->link_class = $request->link_class;
         $data->menuType = $request->menuType;
         $data->parent_id = $request->parent_id;
         $data->save();

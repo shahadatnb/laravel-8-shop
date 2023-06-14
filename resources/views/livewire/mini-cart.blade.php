@@ -19,7 +19,7 @@
         <div class="productCategories">
             <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHomeCart" aria-controls="offcanvasHomeCart">
                 <!-- <img src="{{asset('assets\front\img\cart.png')}}" class="img-fluid" alt="cart"> -->
-                <i class="bi bi-bag-fill"></i><sup>3</sup>
+                <i class="bi bi-bag-fill"></i><sup>{{$cartItems? count($cartItems):0}}</sup>
             </span>
 
             <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasHomeCart" aria-labelledby="offcanvasHomeCartLabel">
@@ -43,13 +43,13 @@
                                             <tbody>
                                                 @foreach($cartItems as $item)
                                                 <tr class="align-content-center">
-                                                    <td style="width: 30%;"><img src="{{ $item['attributes']['image'] }}" alt="w-list" class="w-100">
+                                                    <td style="width: 30%;"><img src="{{ $item->attributes->image }}" alt="w-list" class="w-100">
                                                         <div class="actionBtn text-center py-1">
-                                                            <i class="bi bi-x-circle"></i>
+                                                           <a  href="javascript:void(0);" wire:click="cartItemRemove({{$item->id}})"><i class="bi bi-x-circle"></i></a>
                                                         </div>
                                                     </td>
-                                                    <td style="width: 70%;"><a href="{{ CustomHelper::productLink($item['id'])}}">{{$item['name']}}</a> {{-- <span> Size: <b>M</b></span> <span>Color: <b>Blue</b></span> --}}
-                                                        <div class="py-1 d-flex justify-content-between"> <span>{{config('settings.currencySymbol')}}{{ $item['price'] }} x {{$item['quantity']}}</span>  <span>Price: <b>{{config('settings.currencySymbol')}}{{ $item['quantity']*$item['price'] }}</b></span></div>
+                                                    <td style="width: 70%;"><a href="{{ CustomHelper::productLink($item->id)}}">{{$item->name}}</a> {{-- <span> Size: <b>M</b></span> <span>Color: <b>Blue</b></span> --}}
+                                                        <div class="py-1 d-flex justify-content-between"> <span>{{config('settings.currencySymbol')}}{{ $item->price }} x {{$item->quantity}}</span>  <span>Price: <b>{{config('settings.currencySymbol')}}{{ $item->quantity*$item->price }}</b></span></div>
                                                         {{-- <div class="d-flex justify-content-between border py-1">
                                                             <button type="button" class="btn">-</button>
                                                             
