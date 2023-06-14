@@ -34,6 +34,12 @@
     </div>
     <div class="col-sm-2">
         <div class="form-group">
+            {!! Form::label('link_class', __('Link Class')) !!}{{-- ,'placeholder'=> __('Menu Type') --}}
+            {!! Form::text('link_class',null,['class'=>'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
             {!! Form::label('save', '&nbsp;') !!}
             {!! Form::submit('Save', ['class'=>'btn btn-success']) !!}
         </div>

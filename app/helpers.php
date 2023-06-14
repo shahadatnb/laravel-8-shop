@@ -14,44 +14,6 @@ function settingValue($col){
         return Setting::where('name',$col)->pluck('value')->first();
     }
 
-function NaveMenuUrl($item, $linkClass){
-    if($item->menuType == 'extrenal'):
-        $url = $item->menu_url;
-    /* elseif($item->menuType == 'page'):
-        $url = url('/page').'/'.$item->menu_url; */
-    elseif($item->menuType == 'home'):
-        $url = url('/');
-    else://($item->menuType == 'others'):
-        $url = url('/').'/'.$item->menu_url;
-    endif; 
-
-    return "<a class=\"{$linkClass}\" href=\"{$url}\">{$item->lebel}</a>";
-}
-
-function NaveMenu($menu_id, $menuClass='menu', $listClass='', $listParentClass='', $subMenuClass='', $linkClass='nav-link'){
-    $menu = Menu::where('menu_id',$menu_id)->first();
-    if($menu->menuItem->count()>0):
-        $nav = "<ul class=\"{$menuClass}\">";
-        foreach($menu->menuItem as $item){
-                if($item->subMenu->count()>0):
-                    $nav .= '<li class='.$listParentClass.'>'.NaveMenuUrl($item, $linkClass);
-                        $nav .= "<ul class=\"{$subMenuClass}\">";
-                            foreach ($item->subMenu as $subItem):                                                   
-                                $nav .= '<li class='.$listClass.'>'.NaveMenuUrl($subItem, $linkClass).'</li>';
-                            endforeach;
-                        $nav .= '</ul>';
-                    $nav .= '</li>';
-                else:
-                    $nav .= '<li class='.$listClass.'>'.NaveMenuUrl($item, $linkClass).'</li>';                  
-                endif;
-            }
-        $nav .= '</ul>';
-        return $nav;
-    else:
-        return '';
-    endif;    
-}
-
 
 function nextDate($date){
     $date1 = Carbon::parse($date)->addDays(1);

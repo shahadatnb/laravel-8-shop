@@ -52,6 +52,12 @@ class MiniCart extends Component
         }
     }
 
+    public function cartItemRemove($id){
+        //dd($id);
+        //$this->emit('itemRemove',$id);
+        \Cart::remove($id);
+    }
+
     public function addToCart($arg){ 
         //dd('ff'); exit;
         $cart = Wishlist::addToCart($arg['id'],$arg['qty']);
@@ -74,7 +80,7 @@ class MiniCart extends Component
         if(auth('customer')->user()){
             $this->wishlist = Wishlist::getWishlistCount();
         }
-        $this->cartItems = \Cart::getContent()->toArray();
+        $this->cartItems = \Cart::getContent();
         return view('livewire.mini-cart');
     }
 }

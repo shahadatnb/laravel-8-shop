@@ -106,7 +106,7 @@ class CustomHelperController
         return $post;
     }
 
-    public function NaveMenuUrl($item, $linkClass){
+    public function NaveMenuUrl($item, $linkClass, $extra=null){
         if($item->menuType == 'extrenal'):
             $url = $item->menu_url;
         /* elseif($item->menuType == 'page'):
@@ -117,7 +117,7 @@ class CustomHelperController
             $url = url('/').'/'.$item->menu_url;
         endif;
 
-        return "<a class=\"{$linkClass}\" href=\"{$url}\">{$item->lebel}</a>";
+        return "<a class=\"{$linkClass}\" {$extra} href=\"{$url}\">{$item->lebel}</a>";
     }
 
     public function NaveMenu($menu_id, $arg1){
@@ -125,6 +125,7 @@ class CustomHelperController
             'menuClass'=>'',
             'listClass'=>'',
             'listParentClass'=>'',
+            'listParentLinkClass'=>'',
             'subMenuClass'=>'',
             'linkClass'=>''
         ];
@@ -136,15 +137,15 @@ class CustomHelperController
             $nav = "<ul class=\"{$arg['menuClass']}\">";
             foreach($menu->menuItem as $item){
                     if($item->subMenu->count()>0):
-                        $nav .= '<li class='.$arg['listParentClass'].'>'.NaveMenuUrl($item, $arg['linkClass']);
+                        $nav .= "<li class=\"{$arg['listParentClass']} {$arg['listClass']} {$item->menu_class} \">". self::NaveMenuUrl($item, $arg['linkClass'].' '.$arg['listParentLinkClass'], 'data-bs-toggle="dropdown"');
                             $nav .= "<ul class=\"{$arg['subMenuClass']}\">";
                                 foreach ($item->subMenu as $subItem):
-                                    $nav .= '<li class='.$arg['listClass'].'>'.NaveMenuUrl($subItem, $arg['linkClass']).'</li>';
+                                    $nav .= "<li class=\"{$arg['listClass']} {$item->menu_class}\">" . self::NaveMenuUrl($subItem, $arg['linkClass']) .'</li>';
                                 endforeach;
                             $nav .= '</ul>';
                         $nav .= '</li>';
                     else:
-                        $nav .= '<li class="'.$arg['listClass'].'">'.NaveMenuUrl($item, $arg['linkClass']).'</li>';
+                        $nav .= "<li class=\"{$arg['listClass']} {$item->menu_class}\">" . self::NaveMenuUrl($item, $arg['linkClass']) . '</li>';
                     endif;
                 }
             $nav .= '</ul>';

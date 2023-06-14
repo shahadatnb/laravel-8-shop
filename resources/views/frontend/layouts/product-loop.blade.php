@@ -3,7 +3,7 @@
     @if($item->allphotos->first())
     <img class="img-fluid img-products" src="{{ asset('storage/' . $item->allphotos->first()->path) }}" alt="Product Image">
     @else
-    <img src="assets\front\img\product-demo.jpg" alt="" srcset="" class="img-fluid">
+    <img src="{{asset('assets\front\img\product-demo.jpg')}}" alt="" srcset="" class="img-fluid">
     @endif
     <figcaption class="_in_plink">
       <h2>{{ $item->title }}</h2>
