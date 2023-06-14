@@ -18,7 +18,8 @@
     <div class="p-2">
         <div class="productCategories">
             <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHomeCart" aria-controls="offcanvasHomeCart">
-                <img src="{{asset('assets\front\img\cart.png')}}" class="img-fluid" alt="cart">
+                <!-- <img src="{{asset('assets\front\img\cart.png')}}" class="img-fluid" alt="cart"> -->
+                <i class="bi bi-bag-fill"></i><sup>3</sup>
             </span>
 
             <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasHomeCart" aria-labelledby="offcanvasHomeCartLabel">

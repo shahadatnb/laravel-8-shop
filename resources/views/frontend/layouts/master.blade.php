@@ -153,7 +153,7 @@
 
                     <div class="col-md-3 col-lg-2 pb-4">
                         <div class="_address">
-                            <h5>About soccer club</h5>
+                            <h5>About our priority.</h5>
                             <p>{{ config('settings.footerDdescription', '') }}</p>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
         </section>
         <section class="_footer_copyright py-2">
             <div class="container-fluid px-5">
-                <div class="row justify-content-between align-items-center">
+                <div class="row justify-content-between align-items-center align-content-center">
                     <div class="col-md-3 col-lg-2">
                         @if(empty(config('settings.appLogo')))
                         <img class="w-75" src="{{asset('/assets/front')}}/img/Ladiumbd-logo-white.png" alt="{{ config('settings.appTitle') }}">
@@ -223,7 +223,7 @@
                         @endif
                     </div> 
                     <div class="col-md-5 col-lg-6">
-                        <p>&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
+                        <p class="m-0">&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
                     </div>
                     <div class="col-md-4 col-lg-3">
                         @livewire('subscribe-form')
