@@ -43,7 +43,7 @@
                                             <tbody>
                                                 @foreach($cartItems as $item)
                                                 <tr class="align-content-center">
-                                                    <td style="width: 30%;"><img src="{{ CustomHelper::productThumbById($item['id']) }}" alt="w-list" class="w-100">
+                                                    <td style="width: 30%;"><img src="{{ $item['attributes']['image'] }}" alt="w-list" class="w-100">
                                                         <div class="actionBtn text-center py-1">
                                                             <i class="bi bi-x-circle"></i>
                                                         </div>

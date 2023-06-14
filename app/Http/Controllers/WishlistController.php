@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart as Wishlist;
 use App\Models\CartItem;
-use Session;
+use CustomHelper;
 use Auth;
 
 use Illuminate\Support\Facades\Log;
@@ -118,7 +118,7 @@ class WishlistController extends Controller
                 'price' => $price,
                 'quantity' => $qty,
                 'attributes' => array(
-                    'image' => '',
+                    'image' => CustomHelper::productThumbById($product->id),
                     'sku' => $product->sku,
                     'parent_id' => $product->parent_id,
                 )

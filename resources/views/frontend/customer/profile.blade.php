@@ -59,31 +59,6 @@
 
                 <div class="col-6">
                     <div class="form-group">
-                        {!! Form::label('FatherName', 'Father`s Name',['class'=>'form-label']) !!}
-                        {!! Form::text('FatherName',null,['class'=>'form-control','required'=>'','placeholder'=>'Father`s Name']) !!}
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        {!! Form::label('FatherEmail', 'Father`s email',['class'=>'form-label']) !!}
-                        {!! Form::email('FatherEmail',null,['class'=>'form-control','placeholder'=>'Father`s Email']) !!}
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        {!! Form::label('MotherName', 'Father`s name',['class'=>'form-label']) !!}
-                        {!! Form::text('MotherName',null,['class'=>'form-control','placeholder'=>'Mother`s Name']) !!}
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        {!! Form::label('MotherEmail', 'Mother`s Email',['class'=>'form-label']) !!}
-                        {!! Form::email('MotherEmail',null,['class'=>'form-control','placeholder'=>'Mother`s Email']) !!}
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="form-group">
                         {!! Form::label('date_of_birth', 'Date of birth',['class'=>'form-label']) !!}
                         {!! Form::date('date_of_birth',null,['class'=>'form-control','required'=>'']) !!}
                     </div>
