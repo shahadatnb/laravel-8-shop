@@ -73,7 +73,7 @@
                           </div>
                           <!-- /.card-body -->
                           <div class="card-footer text-center">
-                              <a href="{{ route('store')  }}" class="uppercase">View All Products</a>
+                              <a href="{{ route('shop')  }}" class="uppercase">View All Products</a>
                           </div>
                           <!-- /.card-footer -->
                       </div>

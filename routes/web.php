@@ -73,12 +73,12 @@ Route::prefix(config('app.admin_prefix','admin'))->group(function() {
 
 Route::get('/stateApi', [LocationController::class, 'stateApi'])->name('stateApi');
 
-//Route::group(['middleware'=>'auth:customer'], function(){
-    Route::get('/cart',[CheckoutController::class, 'cart'])->name('cart');
+Route::get('/cart',[CheckoutController::class, 'cart'])->name('cart');
+Route::group(['middleware'=>'auth:customer'], function(){
     Route::post('/product-review',[ProductReviewController::class, 'store'])->name('product-review');
     Route::get('/checkout',[CheckoutController::class, 'index'])->name('checkout');
     Route::post('/placeOrder',[CheckoutController::class, 'checkout'])->name('placeOrder');
-//});
+});
 
 
     Route::get('login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
