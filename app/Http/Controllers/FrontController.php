@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductReview;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Category;
-use Session;
-use Auth;
 
 class FrontController extends Controller
 {
@@ -21,11 +16,21 @@ class FrontController extends Controller
         return view('frontend.pages.index', compact('categories','feature_products'));
     }
 
-    public function store()
+    public function shop()
     {
         $products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
-        return view('frontend.pages.store',compact('products'));
+        return view('frontend.pages.shop',compact('products'));
 
+    }
+
+    public function productByCat($slug)
+    {
+        $category = Category::where('slug',$slug)->first();
+        if($category){
+            return view('frontend.pages.productByCat',compact('category'));
+        }else{
+            return redirect()->route('/');
+        }
     }
 
     public function page($slug){

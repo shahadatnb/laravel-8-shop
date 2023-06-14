@@ -52,9 +52,10 @@ Route::get('payment/success', [App\Http\Controllers\PayPalController::class, 'su
 Route::get('/page/{slug}', [FrontController::class, 'page'])->name('page');
 Route::get('/post/{slug}', [FrontController::class, 'page'])->name('post');
 
-Route::get('/store', [FrontController::class,'store'])->name('store');
+Route::get('/shop', [FrontController::class,'shop'])->name('shop');
 
 Route::get('/product/{id}', [FrontController::class,'productSingle'])->name('singleProduct');
+Route::get('/category/{slug}', [FrontController::class,'productByCat'])->name('productByCat');
 
 //Route::post('/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
 //Route::match(['GET', 'POST'],'/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
