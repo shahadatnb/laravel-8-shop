@@ -214,9 +214,9 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3 col-lg-2">
                         @if(empty(config('settings.appLogo')))
-                        <img class="" src="{{asset('/assets/front')}}/img/Ladiumbd-logo-white.png" alt="{{ config('settings.appTitle') }}">
+                        <img class="w-75" src="{{asset('/assets/front')}}/img/Ladiumbd-logo-white.png" alt="{{ config('settings.appTitle') }}">
                         @else
-                        <img src="{{ asset('storage/'.config('settings.footerLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                        <img class="w-75" src="{{ asset('storage/'.config('settings.footerLogo')) }}" alt="{{ config('settings.appTitle') }}">
                         @endif
                     </div> 
                     <div class="col-md-5 col-lg-6">
