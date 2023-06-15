@@ -37,9 +37,11 @@ class CustomHelperController
         //if($path == ''){
             if($product->allphotos->first()) {
                 $path = $product->allphotos->first()->path;
+                return asset('storage/' . $path);
+            }else{
+                return '';
             }
         //}
-        return asset('storage/' . $path);
     }
 
 
