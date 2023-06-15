@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //if($this->app->environment('production')) {
+            \URL::forceScheme('http');
+        //}
         Paginator::useBootstrap();
         \View::share('postType', $this->postType);
     }
