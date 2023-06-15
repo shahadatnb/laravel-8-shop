@@ -16,24 +16,24 @@
             @foreach($slides as $key=>$slide)
             <div class="carousel-item @if($key==0) active @endif ">
                 <img src="{{asset('storage/'.$slide->image)}}" class="w-100 _carouselImg" alt="Banner Image">
-                <div class="carousel-caption _carousel_caption">
+                <!-- <div class="carousel-caption _carousel_caption">
                     <div class="_carousel_caption_text">
                         <h2>{!! $slide->title !!}</h2>
                         {!! $slide->body !!}
                         <button class="_btn_banner"><a href="#">Learn More <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a></button>
                     </div>
-                </div>
+                </div> -->
             </div>
             @endforeach
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
+        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselBanner" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselBanner" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
-        </button>
+        </button> -->
         @endif
     </div>
 </section>
