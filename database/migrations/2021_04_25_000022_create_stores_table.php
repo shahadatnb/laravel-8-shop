@@ -14,7 +14,7 @@ class CreateStoresTable extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-            $table->id();
+            $table->smallIncrements('id');
             $table->string('logo')->nullable();
             $table->string('banner')->nullable();
             $table->string('address1')->nullable();

@@ -15,6 +15,10 @@ class CreateProductHomepagesTable extends Migration
     {
         Schema::create('product_homepages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('homepage_id');
+            $table->foreign('homepage_id')->references('id')->on('homepages')->onDelete('cascade');
             $table->timestamps();
         });
     }

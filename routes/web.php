@@ -22,6 +22,7 @@ use App\Http\Controllers\TaxRateController;
 use App\Http\Controllers\TaxonomyController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ProductReviewController;
 /*
 |--------------------------------------------------------------------------
@@ -160,6 +161,7 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::resource('order', OrderController::class);
 
     Route::resource('coupon', CouponController::class);
+    Route::resource('homepage', HomepageController::class);
 
     Route::post('/user-ban', [UsersController::class, 'ban'])->name('user-ban');
     Route::get('/user-unban/{id}', [UsersController::class, 'unban'])->name('user-unban');

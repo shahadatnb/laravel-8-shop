@@ -15,6 +15,13 @@ class CreateHomepagesTable extends Migration
     {
         Schema::create('homepages', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('template')->nullable();
+            $table->enum('hType',['product','category'])->default('product');
+            $table->unsignedTinyInteger('sl')->nullable()->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
