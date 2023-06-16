@@ -105,11 +105,17 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="{{ route('homepage.index') }}" class="nav-link{{ (request()->routeIs('homepage.*')) ? ' active' : '' }}">
+              <i class="nav-icon fas fa-ad"></i>
+              <p>Homepage Settings</p>
+            </a>
+          </li>
+          {{-- <li class="nav-item">
             <a href="{{ route('coupon.index') }}" class="nav-link{{ (request()->routeIs('coupon.*')) ? ' active' : '' }}">
               <i class="nav-icon fas fa-ad"></i>
               <p>Manage Promotion</p>
             </a>
-          </li>
+          </li> --}}
         <li class="nav-item">
             <a href="{{route('admin.customer')}}" class="nav-link{{ (request()->routeIs('admin.customer')) ? ' active' : '' }}">
                 <i class="nav-icon fas fa-store"></i>

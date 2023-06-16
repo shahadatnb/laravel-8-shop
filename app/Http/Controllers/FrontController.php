@@ -6,14 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Homepage;
 
 class FrontController extends Controller
 {
     public function index()
     {
+        $sections = [];
         $categories = Category::where('status',1)->whereNull('parent_id')->get();
-        $feature_products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
-        return view('frontend.pages.index', compact('categories','feature_products'));
+        //$feature_products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
+        $product_sections = Homepage::where('status',1)->orderBy('sl','ASC')->get();
+        foreach($product_sections as $item){
+            $sections[$item->id] = ['title'=> $item->title, 'product'=>Product::whereHas('hompage', function($q) use($item){
+                $q->where('homepage_id',$item->id);
+            })->get()];
+        }
+        //dd($sections); exit;
+        return view('frontend.pages.index', compact('categories','sections'));
     }
 
     public function shop()

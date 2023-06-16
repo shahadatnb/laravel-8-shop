@@ -55,17 +55,19 @@
     </div>
 </section>
 
+@foreach ($sections as $items)
+{{-- @dd($items) --}}
 <!--    Our Product Start -->
 <section class="products py-4">
     <div class="container-fluid px-sm-5">
         <div class="row py-4">
             <div class="col-md-12">
-                <h4 class="sectionTitle">new <span>arrivals</span></h4>
+                <h4 class="sectionTitle">{{$items['title']}}</h4>
             </div>
         </div>
 
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
-            @foreach ($feature_products as $item)
+            @foreach ($items['product'] as $item)
             <div class="col my-2 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
                 <div class="productItem border border-secondary-subtle">
                     @include('frontend.layouts.product-loop')
@@ -76,50 +78,8 @@
     </div>
 </section>
 <!--    Our Product End-->
+@endforeach
 
-<!--    Our Product Start -->
-<section class="products py-4">
-    <div class="container-fluid px-sm-5">
-        <div class="row py-4">
-            <div class="col-md-12">
-                <h4 class="sectionTitle">best <span>selling products</span></h4>
-            </div>
-        </div>
-
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
-            @foreach ($feature_products as $item)
-            <div class="col my-2 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="productItem border border-secondary-subtle">
-                    @include('frontend.layouts.product-loop')
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-<!--    Our Product End-->
-
-
-<!--    Our Product Start -->
-<section class="products py-4">
-    <div class="container-fluid px-sm-5">
-        <div class="row py-4">
-            <div class="col-md-12">
-                <h4 class="sectionTitle">featured <span>Products</span></h4>
-            </div>
-        </div>
-
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
-            @foreach ($feature_products as $item)
-            <div class="col my-2 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="productItem border border-secondary-subtle">
-                    @include('frontend.layouts.product-loop')
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
 <!--    Our Product End-->
 
 <!--    Our Categories -->
