@@ -13,7 +13,7 @@ class FrontController extends Controller
     public function index()
     {
         $sections = [];
-        $categories = Category::where('status',1)->whereNull('parent_id')->get();
+        $categories = Category::where('status',1)->whereNotNull('parent_id')->get();
         //$feature_products = Product::whereNull('parent_id')->where('status',1)->latest()->paginate(20);
         $product_sections = Homepage::where('status',1)->orderBy('sl','ASC')->get();
         foreach($product_sections as $item){

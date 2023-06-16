@@ -101,6 +101,7 @@
     </div>
 </section> -->
 
+@if($categories)
 <article class="products py-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="4000">
 
     <div class="container-fluid px-sm-5">
@@ -113,63 +114,19 @@
 
     <div class="container-fluid px-sm-5">
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
+            @foreach($categories as $key=>$category)
             <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
                 <div class="container-fluid">
                     <div class="row align-items-center bg-white leftRignt py-2">
-                        <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1679277566/u5tyfvlvxabrfze2bwam.jpg" alt="category" style="max-height: 100px;"></div>
+                        <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="{{asset('storage/'.$category->image)}}" alt="{{$category->title}}" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
-                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
+                            <h5 class="m-0 py-2 fs-6">{{$category->title}}</h5>
+                            <div class="btoffer text-center"><a class="btnoffer" href="{{route('productByCat',$category->slug)}}">View All</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="container-fluid">
-                    <div class="row align-items-center bg-white leftRignt py-2">
-                        <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1679277442/bkkeuywwuhi4nnvwhjzr.jpg" alt="category" style="max-height: 100px;"></div>
-                        <div class="col-md-6 py-3 textSide">
-                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="container-fluid">
-                    <div class="row align-items-center bg-white leftRignt py-2">
-                        <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662788653/l22jzur4vkqtiig0biar.jpg" alt="category" style="max-height: 100px;"></div>
-                        <div class="col-md-6 py-3 textSide">
-                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="container-fluid">
-                    <div class="row align-items-center bg-white leftRignt py-2">
-                        <div class="col-md-6 order-sm-2 imageCate text-center">
-                            <img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662345094/kcz7zvfwo7u0tug9ankk.jpg" alt="category" style="max-height: 100px;">
-                        </div>
-                        <div class="col-md-6 py-3 textSide">
-                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="container-fluid">
-                    <div class="row align-items-center bg-white leftRignt py-2">
-                        <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="https://res.cloudinary.com/dpkigct8u/image/upload/v1662788653/l22jzur4vkqtiig0biar.jpg" alt="category" style="max-height: 100px;"></div>
-                        <div class="col-md-6 py-3 textSide">
-                            <h5 class="m-0 py-2 fs-6">Sports leggings</h5>
-                            <div class="btoffer text-center"><a class="btnoffer" href="/">View All</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- <div class="viewMoreBtn text-center">
@@ -177,6 +134,7 @@
     </div> -->
 </article>
 <!--    Our Categories End -->
+@endif
 
 <section class="_clients_testimonial bg-white py-5">
 
