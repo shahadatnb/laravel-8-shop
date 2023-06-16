@@ -46,14 +46,14 @@
     <header class="_home_header sticky-top py-2">
         <nav class="container-fluid px-sm-5">
             <div class="row justify-content-between align-items-center">
-                <div class="col-md-2">
+                <div class="col-md-2 col-4">
                     <div class="branding">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <figure class="m-0 _hmenu">
                                 @if(empty(config('settings.appLogo')))
-                                <img class="w-75" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
+                                <img class="img-fluid w-sm-75" src="{{asset('/assets/front')}}/newImg/ladimum-logo.png" alt="{{ config('settings.appTitle') }}">
                                 @else
-                                <img class="w-75" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
+                                <img class="img-fluid w-sm-75" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
                                 @endif
                             </figure>
 
@@ -85,28 +85,28 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="col-md-4">
+                <div class="col-md-4 col-3">
                     <div class="siteMenu" id="siteMenu">
                         @empty(!CustomHelper::NaveMenu('main',[]))
-                            {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
+                        {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
                         @endempty
                         {{-- <ul class="list-unstyled m-0 p-0">
                             <li class="px-2 text-center"><a href="#" class="fs-6 text-body-secondary text-decoration-none">Home</a></li>
                             <li class="dropdown">
                             <a class="dropdown-toggle fs-6 text-body-secondary text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
 
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-  </ul>
-                            <!-- <a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category()</a> -->
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
+                                </ul>
+                            <a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category()</a> 
                         
                         </li>
                         </ul> --}}
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 d-none d-sm-block">
                     <div class="siteSearch">
                         <form class="searchBox" role="search">
                             <input class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" placeholder="Search" aria-label="Search">
@@ -119,7 +119,7 @@
                             <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
                                 <!-- <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> -->
                                 <i class="bi bi-person-circle"></i>
-                             </a>
+                            </a>
                             <ul class="dropdown-menu dropdown-menu-end _nedd_color">
                                 @auth('customer')
                                 <li><a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a></li>
@@ -132,15 +132,15 @@
                                 @guest('customer')
                                 <li><a class="dropdown-item" href="{{route('customer.login')}}">Sign In</a></li>
                                 <li><a class="dropdown-item" href="{{route('customer.register')}}">Sign Up</a></li>
-                                @endguest                        
+                                @endguest
                             </ul>
                         </li>
                     </ul>
                 </div>
-                <div class="col-auto">
+                <div class="col-1">
                     @livewire('mini-cart')
-                </div>                
-                
+                </div>
+
             </div>
         </nav>
     </header>
@@ -221,7 +221,7 @@
                         @else
                         <img class="w-75" src="{{ asset('storage/'.config('settings.footerLogo')) }}" alt="{{ config('settings.appTitle') }}">
                         @endif
-                    </div> 
+                    </div>
                     <div class="col-md-5 col-lg-6">
                         <p class="m-0">&copy; 2023. All Rights Reserved. Powered by {{ config('settings.appTitle','') }}.</p>
                     </div>
