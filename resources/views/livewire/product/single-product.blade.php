@@ -1,6 +1,6 @@
 <div>
     <div wire:loading>
-        @include('admin/layouts/_loading')
+        {{-- @include('admin/layouts/_loading') --}}
     </div>
     <form class="add-to-cart-form" wire:submit.prevent="addToCart">
         {{-- <form class="add-to-cart-form" action="{{url('add-to-cart')}}" method="POST" > --}}

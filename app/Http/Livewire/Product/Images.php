@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use App\Models\ProductImage;
 use App\Models\Product;
+use Image;
 
 class Images extends Component
 {
@@ -20,9 +21,24 @@ class Images extends Component
 
     public function phoroRemove($id){        
         $image = ProductImage::find($id);
-        Storage::delete($image->path);
+        Storage::delete('public/'.$image->path);
         $image->delete();
         $this->mount();
+    }
+
+    public function makeThumb($id){        
+        $image = ProductImage::find($id);
+        //dd(Storage::get('public/'.$image->path));
+        //Storage::delete($image->path);
+        $imgFile  = Image::make(Storage::get('public/'.$image->path))->resize(320, 240, function ($constraint) {
+            $constraint->aspectRatio();
+        })->encode('jpg',80);
+        $file_name = 'product/thumb/'.time() .'.jpg';
+        Storage::disk('public')->put($file_name, $imgFile);
+        //dd($this->product);
+        $this->product->thumbnail = $file_name;
+        $this->product->save();
+        $this->emit('thumbUpdated', asset('storage/'.$file_name));
     }
 
     public function mount()
@@ -43,17 +59,21 @@ class Images extends Component
         foreach ($this->photos as $photo) {
             $filename = md5($photo . microtime()).'.'.$photo->extension();
             $path = 'product/'.date("Y").'/'.date("m");
-            $full_path = $path.'/'.$filename;
+            /*
+            $imgFile  = Image::make($photo->getRealPath())->resize(320, 240, function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode($photo->extension(),80);//->save('public/bar.jpg');
 
-            $photo->storeAs('public/'.$path, $filename);
+            Storage::disk('public')->put($path.'/thumb-'.$filename, $imgFile);
+            */
+            $full_path = Storage::disk('public')->putFileAs(
+                $path, $photo, $filename
+            );
+
+            //$photo->storeAs('public/'.$path, $filename);
             //$this->photo->store('photo');
 
             ProductImage::create(['path' => $full_path,'product_id'=>$this->product->id]);
-
-            if($this->product->thumbnail == ''){
-                $this->product->thumbnail = $full_path;
-                $this->product->save();
-            }
         }
 
         $this->resetInput();

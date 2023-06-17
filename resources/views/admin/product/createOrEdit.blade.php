@@ -18,6 +18,17 @@
 		box-shadow: 0px 0px 5px #ddd;
 	}
 
+	.image-thumb {
+		position: absolute;
+		left: 15px;
+		top: 10px;
+		background: #fff;
+		padding: 1px;
+		cursor: pointer;
+		border-radius: 10px;
+		box-shadow: 0px 0px 5px #ddd;
+	}
+
 	#variants .form-control{
 		min-width: 100px;
 	}
@@ -144,7 +155,7 @@
 						{{ Form::label('thumbnail','Product thumbnail',array('class' => '' )) }}
 						@if ($mode=='edit')
 						<br>
-						<img width="100" height="80" data-toggle="modal" data-target="#thumbnailModal" src="{{ asset('storage/'.$product->thumbnail) }}" alt="Chenge thumbnail" class="img-thumbnail">
+						<img id="product_thumb" width="100" height="80" src="{{ asset('storage/'.$product->thumbnail) }}" alt="Chenge thumbnail" class="img-thumbnail">
 						@endif
 					</div>
 				</div>
@@ -198,55 +209,19 @@
 	</div>
 </div>
 <!-- Default box -->
-
-<div class="modal fade" id="thumbnailModal" tabindex="-1" role="dialog" aria-labelledby="thumbnailModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title">Select Photo</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		  </button>
-		</div>
-		<div class="modal-body">
-			@if ($mode=='edit')
-				@livewire('product.images', ['product' => $product, 'thumbnail'=>1])
-			@endif
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-
 @endsection
 @section('js')
 <script src="{{ asset('assets/admin/plugins/summernote/summernote-bs4.min.js') }}"> </script>
 {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js" integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w==" crossorigin="anonymous"></script> --}}
 <script src="{{asset('assets/admin/js/bootstrap-tagsinput.js')}}"></script>
 	<script>
-			$(document).ready(function(){
-				$('.textarea').summernote();
+		$(document).ready(function(){
+			$('.textarea').summernote();
 
-				
-
-                /*
-                                $('#type').change(function() {
-                                        var variants = $('.variantaddremove');
-                                        if(this.checked) {
-                                            variants.removeClass("d-none");
-                                            //variants.addClass("d-block");
-                                        }else{
-                                            variants.addClass("d-none");
-                                        }
-                                });
-
-
-                                function capitalizeFirstLetter(string) {
-                                    return string.charAt(0).toUpperCase() + string.slice(1);
-                                }
-                */
+			Livewire.on('thumbUpdated', thumbnail => {
+				//alert('A post was added with the id of: ' + postId);
+				document.getElementById("product_thumb").src = thumbnail;				
+			})
       });
 
     </script>

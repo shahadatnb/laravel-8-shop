@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Session;
+use Storage;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -71,9 +73,14 @@ class CategoryController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $filename = time().'.'.$image->extension();
-            $full_path = 'category/'.$filename;
-            $image->storeAs('public/category/', $filename);
+            //$filename = time().'.'.$image->extension();
+            //$full_path = 'category/'.$filename;
+            //$image->storeAs('public/category/', $filename);
+            $imgFile  = Image::make($image->getRealPath())->resize(320, 240, function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('jpg',80);
+            $full_path = 'product/thumb/'.time() .'.jpg';
+            Storage::disk('public')->put($full_path, $imgFile);
             $category->image = $full_path;
             //$category->save();
         }
@@ -116,9 +123,18 @@ class CategoryController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $filename = time().'.'.$image->extension();
-            $full_path = 'category/'.$filename;
-            $image->storeAs('public/category/', $filename);
+            if (Storage::disk('public')->exists($category->image)) {
+                Storage::delete('public/'.$category->image);
+            }
+            //$filename = time().'.'.$image->extension();
+            //$full_path = 'category/'.$filename;
+            //$image->storeAs('public/category/', $filename);
+            $imgFile  = Image::make($image->getRealPath())->resize(320, 240, function ($constraint) {
+                $constraint->aspectRatio();
+            })->encode('jpg',80);
+            $full_path = 'product/thumb/'.time() .'.jpg';
+            Storage::disk('public')->put($full_path, $imgFile);
+
             $category->image = $full_path;
             $category->save();
         }

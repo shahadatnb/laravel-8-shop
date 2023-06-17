@@ -33,15 +33,15 @@ class CustomHelperController
     }
 
     public function productThumb($product){
-        //$path = $product->thumbnail;
-        //if($path == ''){
+        $path = $product->thumbnail;
+        if($path == ''){
             if($product->allphotos->first()) {
                 $path = $product->allphotos->first()->path;
-                return asset('storage/' . $path);
             }else{
                 return '';
             }
-        //}
+        }
+        return asset('storage/' . $path);
     }
 
 

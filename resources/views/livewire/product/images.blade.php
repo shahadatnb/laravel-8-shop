@@ -15,9 +15,8 @@
             <div class="row">
                 @foreach ($product->allphotos as $item)
                 <div class="col-4 col-lg-3">
-                    <i class="fas fa-times-circle imaage-remove"
-                            wire:click="phoroRemove({{$item->id}})"></i>
-                    
+                    <i class="fas fa-photo-video image-thumb" wire:click="makeThumb({{$item->id}})"></i>
+                    <i class="fas fa-times-circle imaage-remove" wire:click="phoroRemove({{$item->id}})"></i>                    
                     <img class="img-thumbnail {{$thumbnail==1? 'select-thum':''}}" src="{{ asset('storage/' . $item->path) }}" alt="">
                 </div>
                 @endforeach

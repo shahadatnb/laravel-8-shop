@@ -12,7 +12,8 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Session;
+use Image;
+use Storage;
 use Auth;
 
 class Create extends Component
@@ -146,12 +147,14 @@ class Create extends Component
         $product->noShappingCharge = $this->noShappingCharge;
         $product->status = $this->status;
 
-        if(count($this->color)>0){
-            $product->color = json_encode($this->color);
-        }
+        if($this->type == 'variant'){
+            if(count($this->color)>0){
+                $product->color = json_encode($this->color);
+            }
 
-        if(count($this->size)>0){
-            $product->size = json_encode($this->size);
+            if(count($this->size)>0){
+                $product->size = json_encode($this->size);
+            }
         }
 
         $product->user_id = Auth::user()->id;
@@ -186,7 +189,14 @@ class Create extends Component
             ProductImage::create(['path' => $full_path,'product_id'=>$product->id]);
 
             if($product->thumbnail == ''){
-                $product->thumbnail = $full_path;
+                $imgFile  = Image::make($photo->getRealPath())->resize(320, 240, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->encode('jpg',80);//->save('public/bar.jpg');
+    
+                $file_name = 'product/thumb/'.time() .'.jpg';
+                Storage::disk('public')->put($file_name, $imgFile);
+
+                $product->thumbnail = $file_name;
                 $product->save();
             }
         }

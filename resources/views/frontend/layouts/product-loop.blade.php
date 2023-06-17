@@ -1,7 +1,7 @@
 <figure class="_inn_overhover m-0 border-1 p-2 bg-white">
   <a href="{{ route('singleProduct',$item->id)}}" class="text-decoration-none text-black-50">
-    @if($item->allphotos->first())
-    <img class="img-fluid img-products" src="{{ asset('storage/' . $item->allphotos->first()->path) }}" alt="Product Image">
+    @if($item->thumbnail != '')
+    <img class="img-fluid img-products" src="{{ asset('storage/' . $item->thumbnail) }}" alt="Product Image">
     @else
     <img src="{{asset('assets\front\img\product-demo.jpg')}}" alt="" srcset="" class="img-fluid">
     @endif

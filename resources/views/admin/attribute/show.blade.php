@@ -14,12 +14,14 @@
                 <div class="form-inline">
                     {{ Form::text('name',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Name')) }}
                     {{ Form::hidden('attribute_id',$attribute->id)  }}
+                    @if ($attribute->code=='color')                        
                     <div class="input-group my-colorpicker2">
-                        <input type="text" name="label" {{ $attribute->code=='color'? 'required':'' }} class="form-control">
+                        <input type="text" name="label" required class="form-control">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-square"></i></span>
                         </div>
                     </div>
+                    @endif
                     {{ Form::submit('Save',array('class'=>'btn btn-success')) }}
                 </div>
                 {!! Form::close() !!}
