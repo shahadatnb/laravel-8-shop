@@ -76,7 +76,7 @@ class CategoryController extends Controller
             //$filename = time().'.'.$image->extension();
             //$full_path = 'category/'.$filename;
             //$image->storeAs('public/category/', $filename);
-            $imgFile  = Image::make($image->getRealPath())->resize(320, 240, function ($constraint) {
+            $imgFile  = Image::make($image->getRealPath())->resize(120, 120, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('jpg',80);
             $full_path = 'product/thumb/'.time() .'.jpg';
@@ -129,7 +129,7 @@ class CategoryController extends Controller
             //$filename = time().'.'.$image->extension();
             //$full_path = 'category/'.$filename;
             //$image->storeAs('public/category/', $filename);
-            $imgFile  = Image::make($image->getRealPath())->resize(320, 240, function ($constraint) {
+            $imgFile  = Image::make($image->getRealPath())->resize(120, 120, function ($constraint) {
                 $constraint->aspectRatio();
             })->encode('jpg',80);
             $full_path = 'product/thumb/'.time() .'.jpg';

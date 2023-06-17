@@ -30,7 +30,7 @@ class Images extends Component
         $image = ProductImage::find($id);
         //dd(Storage::get('public/'.$image->path));
         //Storage::delete($image->path);
-        $imgFile  = Image::make(Storage::get('public/'.$image->path))->resize(320, 240, function ($constraint) {
+        $imgFile  = Image::make(Storage::get('public/'.$image->path))->resize(330, 330, function ($constraint) {
             $constraint->aspectRatio();
         })->encode('jpg',80);
         $file_name = 'product/thumb/'.time() .'.jpg';

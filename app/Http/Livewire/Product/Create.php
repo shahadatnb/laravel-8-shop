@@ -189,7 +189,7 @@ class Create extends Component
             ProductImage::create(['path' => $full_path,'product_id'=>$product->id]);
 
             if($product->thumbnail == ''){
-                $imgFile  = Image::make($photo->getRealPath())->resize(320, 240, function ($constraint) {
+                $imgFile  = Image::make($photo->getRealPath())->resize(330, 330, function ($constraint) {
                     $constraint->aspectRatio();
                 })->encode('jpg',80);//->save('public/bar.jpg');
     
