@@ -47,11 +47,11 @@
             <label class="attribute-name">Color: </label>
             <div class="attribute-values">
                 <ul class="_color_swatch list-unstyled m-0 p-0 d-flex fw-bold gap-3">
-                    @foreach ($colors as $color)
+                    @foreach ($colors as $key=>$color)
                     <li data-slug="green" class="attribute-swatch-item" title="Green">
                         <div class="custom-radio">
                             <label>
-                                <input class="product-filter-item fs-3" type="radio" wire:model="attribute_color" name="attribute_color" value="{{$color}}">
+                                <input {{$key==0? 'checked':''}} class="product-filter-item fs-3" type="radio" wire:model="attribute_color" name="attribute_color" value="{{$color}}">
                                 {{-- <span class="mr-2 p-3">{{$color}}</span>--}}
                                 <span style="background-color: {{$color}};"></span>
                             </label>

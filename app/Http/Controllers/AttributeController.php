@@ -11,7 +11,7 @@ class AttributeController extends Controller
 
     public function index()
     {
-        $attributes = Attribute::where('code','color')->paginate(50);
+        $attributes = Attribute::paginate(50);//where('code','color')->
         return view('admin.attribute.index',compact('attributes'));
     }
 

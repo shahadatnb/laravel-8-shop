@@ -170,6 +170,15 @@ class ProductController extends Controller
         return $colors;
     }
 
+    private function sizeAtt(){
+        $color = Attribute::where('code','size')->first()->attoption;
+        $colors = array();
+        foreach ($color as $c){
+            $colors[$c->name] = $c->name;
+        }
+        return $colors;
+    }
+
     public function create()
     {
         //$categories = $this->catArray();
@@ -177,7 +186,7 @@ class ProductController extends Controller
         $categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
 
         $colors = $this->colorAtt();
-        $sizes = ['S'=>'S','M'=>'M','L'=>'L'];
+        $sizes = $this->sizeAtt();
         $mode='create';
         $store = array();
         //return view('admin.product.createOrEdit',compact('mode','store','categories','clubs'));

@@ -147,8 +147,8 @@
                         <div class="form-group " wire:ignore>
                             {{ Form::label('size','Attribute Value',array('class' => '' )) }}
                                 {{-- {{ Form::select('attribute_options[]',[],null,array('class'=>'form-control select2-multi')) }} --}}
-                                {{ Form::text('size',null,array('class'=>'form-control attribute_option', 'data-role'=>'tagsinput')) }}
-                                {{-- {{ Form::select('size',$sizes,null,array('class'=>'form-control attribute_option','wire:model'=>'size','multiple'=>'multiple')) }} --}}
+                                {{-- {{ Form::text('size',null,array('class'=>'form-control attribute_option', 'data-role'=>'tagsinput')) }} --}}
+                                {{ Form::select('size',$sizes,null,array('class'=>'form-control select2-multi attribute_option','wire:model'=>'size','multiple'=>true)) }}
 
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                         {{ Form::label('color','Attribute Value',array('class' => '' )) }}
                         {{-- {{ Form::select('attribute_options[]',[],null,array('class'=>'form-control select2-multi')) }} --}}
 {{--                        {{ Form::text('color',null,array('class'=>'form-control attribute_option','data-role'=>'tagsinput')) }}--}}
-                         {{ Form::select('color',$colors,null,array('class'=>'form-control select2-multi attribute_option','wire:model'=>'color','multiple'=>'multiple')) }}
+                         {{ Form::select('color',$colors,null,array('class'=>'form-control select2-multi attribute_option','wire:model'=>'color','multiple'=>true)) }}
                     </div>
                     </div>
                 </div>
@@ -335,7 +335,8 @@
   });
 
   $('.attribute_option').on('itemAdded || itemRemoved || change', function(event) { //itemAddedOnInit
-		var size = $("#size").tagsinput('items');
+		//var size = $("#size").tagsinput('items');
+		var size = $("#size").val();
 		//var color = $("#color").tagsinput('items');
       var color = $("#color").val();
       //console.log(color);
