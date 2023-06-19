@@ -144,7 +144,7 @@ class PostsController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $filename = $post->id.'.'.$image->extension();
+            $filename = time().'.'.$image->extension();
             $full_path = 'post_file/'.$filename;
             $image->storeAs('public/post_file/', $filename);
             $post->image = $full_path;
@@ -200,7 +200,10 @@ class PostsController extends Controller
         $image = $request->file('image');
         //dd($image); exit;
         if ($image) {
-            $filename = $post->id.'.'.$image->extension();
+            if (Storage::disk('public')->exists($post->image)) {
+                \Storage::disk('public')->delete($post->image);
+            }
+            $filename = time().'.'.$image->extension();
             $full_path = 'post_file/'.$filename;
             $image->storeAs('public/post_file/', $filename);
             $post->image = $full_path;
@@ -243,8 +246,8 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post=Post::find($id);
-        if(!empty($post->image)){
-            \Storage::delete($post->image);
+        if (Storage::disk('public')->exists($post->image)) {
+            \Storage::disk('public')->delete($post->image);
         }
 
         //Storage::delete(['file.jpg', 'file2.jpg']);

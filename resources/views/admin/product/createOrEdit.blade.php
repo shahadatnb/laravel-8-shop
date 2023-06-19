@@ -204,7 +204,7 @@
 <div class="row">
 	<div class="col-sm-12 col-lg-8">
 		@if ($mode=='edit')
-			@livewire('product.variant', ['product' => $product, 'colors'=> $colors])
+			@livewire('product.variant', ['product' => $product, 'colors'=> $colors,'sizes'=>$sizes])
 		@endif
 	</div>
 </div>

@@ -4,11 +4,11 @@
 <div class="card card-primary card-outline">
     <div class="card-body box-profile">
     <div class="text-center">
-        @if(Auth::user()->profile->photo != '')
+        {{-- @if(Auth::user()->profile->photo != '')
             @php $profilePhoto='storage/'.Auth::user()->profile->photo @endphp
-        @else
+        @else --}}
             @php $profilePhoto='assets/admin/img/avatar.png' @endphp
-        @endif
+        {{-- @endif --}}
         <img class="profile-user-img img-fluid img-circle"
             src="{{asset('/').$profilePhoto}}"
             alt="{{Auth::user()->name}}">

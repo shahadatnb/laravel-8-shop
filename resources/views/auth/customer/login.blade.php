@@ -67,8 +67,17 @@
                                     {{ __('Register') }}
                                 </a>
                             </div>
-                        </div>
                     </form>
+                        <div class="row">
+                        <h5 class="text-center">Or</h5>
+                            <div class="col-12 text-center">
+                                <a href="{{ route('social.redirect','google') }}" class="btn btn-danger">Login with Google</a>
+                                <a href="{{ route('social.redirect','facebook') }}" class="btn btn-primary">Login with Facebook</a>
+                                <a href="{{ route('social.redirect','github') }}" class="btn btn-success">Login with Github</a>
+                            </div>
+                        </div>
+                        
+                        </div>
                 </div>
             </div>
         </div>

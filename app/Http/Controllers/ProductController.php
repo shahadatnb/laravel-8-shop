@@ -244,9 +244,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $colors = $this->colorAtt();
+        $sizes = $this->sizeAtt();
         $categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
         $mode='edit';
-        return view('admin.product.createOrEdit',compact('mode','categories','product','colors'));
+        return view('admin.product.createOrEdit',compact('mode','categories','product','colors','sizes'));
     }
 
 

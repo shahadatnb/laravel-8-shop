@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\CustomerLoginController;
 use App\Http\Controllers\Auth\CustomerRegisterController;
+use App\Http\Controllers\Auth\CustomerForgotPasswordController;
+use App\Http\Controllers\Auth\CustomerResetPasswordController;
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -81,18 +84,20 @@ Route::group(['middleware'=>'auth:customer'], function(){
     Route::post('/placeOrder',[CheckoutController::class, 'checkout'])->name('placeOrder');
 });
 
+Route::get('social-auth/{provider}/callback',[SocialLoginController::class,'providerCallback']);
+Route::get('social-auth/{provider}',[SocialLoginController::class,'redirectToProvider'])->name('social.redirect');
 
-    Route::get('login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
-    Route::post('login', [CustomerLoginController::class, 'login'])->name('customer.loginPost');
-    Route::post('logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
-    Route::get('register', [CustomerRegisterController::class, 'showRegisterForm'])->name('customer.register');
-    Route::post('register', [CustomerRegisterController::class, 'register'])->name('customer.registerPost');
+Route::get('login', [CustomerLoginController::class, 'showLoginForm'])->name('customer.login');
+Route::post('login', [CustomerLoginController::class, 'login'])->name('customer.loginPost');
+Route::post('logout', [CustomerLoginController::class, 'logout'])->name('customer.logout');
+Route::get('register', [CustomerRegisterController::class, 'showRegisterForm'])->name('customer.register');
+Route::post('register', [CustomerRegisterController::class, 'register'])->name('customer.registerPost');
 
-    //Customer Password Reset routes 
-    Route::post('/password/email','CustomerForgotPasswordController@sendResetLinkEmail')->name('customer.password.email');
-    Route::post('/password/reset', 'CustomerResetPasswordController@reset')->name('customer.password.update');
-    Route::get('/password/reset', 'CustomerForgotPasswordController@showLinkRequestForm')->name('customer.password.request');                                     
-    Route::get('/password/reset/{token}', 'CustomerResetPasswordController@showResetForm')->name('customer.password.reset');
+//Customer Password Reset routes 
+Route::post('/password/email',[CustomerForgotPasswordController::class, 'sendResetLinkEmail'])->name('customer.password.email');
+Route::post('/password/reset', [CustomerResetPasswordController::class, 'reset'])->name('customer.password.update');
+Route::get('/password/reset', [CustomerForgotPasswordController::class, 'showLinkRequestForm'])->name('customer.password.request');                                     
+Route::get('/password/reset/{token}', [CustomerResetPasswordController::class, 'showResetForm'])->name('customer.password.reset');
 
     //Route::match(['GET', 'POST'],'/confirm', [CustomerRegisterController::class,'confirm'])->name('customer.confirm');
 

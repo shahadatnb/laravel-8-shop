@@ -113,6 +113,7 @@
                         <div class="form-group row">
                             {{ Form::label('newVariant.size','Size',array('class' => 'col-sm-3 col-form-label' )) }}
                             {{ Form::text('newVariant.size',null,array('class'=>'form-control col-sm-9' . ($errors->has('newVariant.size') ? ' is-invalid' : null),'wire:model.lazy'=>'newVariant.size')) }}
+                            {{-- {{ Form::select('newVariant.size',$sizes,null,array('class'=>'form-control col-sm-9 select2 n-size','placeholder'=>'Select Size','wire:model.lazy'=>'newVariant.size')) }} --}}
                             @error('newVariant.size') <span class="text-danger error">{{ $message }}</span>@enderror
                         </div>
                         <div class="form-group row" wire:ignore>
@@ -171,7 +172,7 @@
     $('.n-color').on('change', function(event) {
         var color = $(this).val();
         //console.log(name);
-    @this.set('newVariant.color', color);
+        @this.set('newVariant.color', color);
     });
 </script>
 @endpush

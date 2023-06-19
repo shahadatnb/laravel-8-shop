@@ -44,22 +44,6 @@ class User extends Authenticatable //implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function club(){
-    	return $this->hasOne(User::class,'id','club_id');
-    }
-
-    public function teams(){
-    	return $this->hasMany(User::class,'club_id','id');
-    }
-
-    public function customers(){
-    	return $this->hasMany(Customer::class,'team_id','id');
-    }
-
-    public function profile(){
-    	return $this->hasOne(UserProfile::class,'user_id','id');
-    }
-
     public function role()
     {
         return $this->belongsToMany(Role::class, 'users_roles');

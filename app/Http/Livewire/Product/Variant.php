@@ -9,7 +9,7 @@ use App\Models\Product;
 
 class Variant extends Component
 {
-    public $product, $productvariant=[], $newVariant=[], $colors;
+    public $product, $productvariant=[], $newVariant=[], $colors, $sizes;
 
     public function mount()
     {
@@ -19,8 +19,16 @@ class Variant extends Component
             unset($this->productvariant[$product->id]['created_at']);
             unset($this->productvariant[$product->id]['updated_at']);
         }
-        $this->newVariant = current($this->productvariant);
-        unset($this->newVariant['id']);
+        if($this->productvariant == []){
+            $this->newVariant['type'] = 'simple';
+            $this->newVariant['parent_id'] = $this->product->id;
+            $this->newVariant['user_id'] = $this->product->user_id;
+            $this->newVariant['special_price'] = '';
+        }else{
+            $this->newVariant = current($this->productvariant);
+            unset($this->newVariant['id']);
+        }
+        
         $this->newVariant['color'] = '';
         $this->newVariant['color_label'] = '';
         $this->newVariant['size']= '';
