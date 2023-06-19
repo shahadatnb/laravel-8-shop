@@ -8,7 +8,37 @@
             <div class="row justify-content-center">
                 <div class="col-sm-3 col-md-2 col-lg-2">
 
-                    <div class="side_navbar_stor">
+
+                    <div class="sideSearch">
+
+                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
+                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Price</p>
+                            <div class="d-flex align-items-center"><input placeholder="min" type="number" class="form-control"><input placeholder="max" type="number" class="form-control"></div>
+                        </form>
+                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
+                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Category</p>
+                            <div class="form-check"><input name="Plus size" type="checkbox" id="default-checkbox" class="form-check-input" value="Plus size"><label title="" for="default-checkbox" class="form-check-label">Plus size</label></div>
+
+                        </form>
+                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
+                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Size</p>
+                            <div class="designClass d-flex gap-2">
+                                <div class="form-check">
+                                    <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
+                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Color family</p>
+                            <div class="form-check"><input name="Black" type="checkbox" id="default-checkbox" class="form-check-input" value="Black"><label title="" for="default-checkbox" class="form-check-label">Black</label></div>
+                        </form>
+
+                    </div>
+
+                    <!-- <div class="side_navbar_stor">
 
                         <h6>Shop by Category</h6>
 
@@ -73,7 +103,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10">
@@ -92,9 +122,9 @@
                                 <div class="col-md-4 col-lg-4">
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected>Color</option>
-                                        <option class="cred" value="1"></option>
-                                        <option class="blu" value="2"></option>
-                                        <option class="grn" value="3"></option>
+                                        <option class="" value="1">Black</option>
+                                        <option class="" value="2">Blue</option>
+                                        <option class="" value="3">Green</option>
                                     </select>
                                 </div>
 
