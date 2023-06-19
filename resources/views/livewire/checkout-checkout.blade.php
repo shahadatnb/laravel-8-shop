@@ -1,25 +1,18 @@
 <div>
     <section id="bardowncheckout" class="bardowncheckout">
         {!! Form::model($user,['route'=>['placeOrder'], 'method'=>'POST']) !!}
-            {{-- <input type="hidden" name="cart_id" value="{{$cart->id}}"> --}}
+        {{-- <input type="hidden" name="cart_id" value="{{$cart->id}}"> --}}
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="chkborright">
 
                         <div class="checkprocess">
-                            <h2>Company Logo</h2>
-                            <div class="ckcrtshipay">
-                                <a href="#">Cart</a> <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                <a href="#">Information</a> <span><i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </span><a href="#">Shipping</a> <span><i class="fa fa-angle-right"
-                                        aria-hidden="true"></i></span> <a href="#">Payment</a>
-                            </div>
                             <div class="expresscheckout">
-                                <h3>Express checkout</h3>
-                                <a href="#">shop Pay</a>
-                                <a href="#">Paypal</a>
-                                <a href="#">G Pay</a>
+                                <h3>Checkout</h3>
+                                <span href="#">Shipping</span>
+                                <span href="#">Information</span>
+                                <span href="#">Payment</span>
                             </div>
                         </div>
 
@@ -74,36 +67,30 @@
                 <div class="col-md-4">
                     <div class="chkborleft">
                         <div class="porv-scoral">
-
-                            <table class="proaligny">
-
-                                <tbody>
-                                    @foreach ($cartItems as $item)
-                                    <tr class="protrtab">
-                                        <td>
-                                            <div class="procartimg">
-                                                <div class="procartimgdsd">
-                                                    <img src="{{ CustomHelper::productThumbById($item['id']) }}" alt="{{$item['name']}}">
-                                                </div>
-                                                <span class="countproscart">{{$item['quantity']}}</span>
+                            <div class="proaligny">
+                                @foreach ($cartItems as $item)
+                                <div class="protrtab d-flex gap-2">
+                                    <div>
+                                        <div class="procartimg">
+                                            <div class="procartimgdsd">
+                                                <img src="{{ CustomHelper::productThumbById($item['id']) }}" alt="{{$item['name']}}">
                                             </div>
-                                        </td>
-                                        <td class="product__description" scope="row">
-                                            <div class="cartproname">
-                                                <h2>{{$item['name']}}</h2>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="cartpriceck">
-                                                <p>{{config('settings.currencySymbol')}}{{Cart::getTotal()}}</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                                        </div>
+                                    </div>
+                                    <div class="product__description ps-2" scope="row">
+                                        <div class="cartproname">
+                                            <h2 class="text-capitalize fs-6">{{$item['name']}} :* <span class="countproscart">{{$item['quantity']}}</span></h2>
+                                            <!-- <sup class="countproscart">{{$item['quantity']}}</sup> -->
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="cartpriceck">
+                                            <p class="text-capitalize fs-6">{{config('settings.currencySymbol')}}{{Cart::getTotal()}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
 
                         {{-- <div class="goftcart mb-3">
@@ -134,17 +121,17 @@
                                     {{-- @if ($cart->coupon_code != '')
                                         <tr>
                                             <td>{{$cart->coupon_code}}</td>
-                                            <td>
-                                                <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->discount }}</p>
-                                            </td>
-                                        </tr>
+                                    <td>
+                                        <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->discount }}</p>
+                                    </td>
+                                    </tr>
                                     @endif --}}
                                     {{-- <tr>
                                         <td>Tax</td>
                                         <td>
                                             <input wire:model="tax_total" value="{{$cart->tax_total }}" name="tax_total" type="hidden">
-                                            <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->tax_total }}</p>
-                                        </td>
+                                    <p class="text-right-tbass">{{config('settings.currencySymbol')}}{{$cart->tax_total }}</p>
+                                    </td>
                                     </tr> --}}
                                     <tr>
                                         <td>Shipping</td>
@@ -181,7 +168,7 @@
                 </div>
             </div>
         </div>
-    </form>
+        </form>
     </section><!-- End About Us Section -->
 </div>
 @push('scripts')
@@ -196,19 +183,18 @@
                 subcat.empty();
                 subcat.append("<option value=''>Select State</option>")
                 $.each(data, function(index, element) {
-                    subcat.append("<option value='"+ element.name +"'>" + element.name + "</option>");
+                    subcat.append("<option value='" + element.name + "'>" + element.name + "</option>");
                 });
             });
         var country = $(this).val();
         @this.set('country', country);
     });
 
-$('#state').on('change', function(event) {
-    var state = $(this).val();
-    //console.log(state);
-    @this.set('state', state);
-    //Livewire.emit('setTax');
-});
-
+    $('#state').on('change', function(event) {
+        var state = $(this).val();
+        //console.log(state);
+        @this.set('state', state);
+        //Livewire.emit('setTax');
+    });
 </script>
 @endpush
