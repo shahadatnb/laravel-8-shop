@@ -19,7 +19,7 @@
             @if ($special_price > 0)
             <h3>Price: <span class="_doller">{{config('settings.currencySymbol')}}{{$special_price}}</span> <del class="_peSell">{{config('settings.currencySymbol')}}{{ $price }} </del></h3>
             @else
-            <h3 class="fw-bolder fs-3 py-3">Tk: <span class="_doller">{{config('settings.currencySymbol')}}{{$price}}</span></h3>
+            <h3 class="fw-bolder fs-3 py-3"><span class="_doller">{{config('settings.currencySymbol')}}{{$price}}</span></h3>
             @endif
         </div>
         @if (count($sizes) > 0)

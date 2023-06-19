@@ -45,8 +45,8 @@
 <body>
     <header class="_home_header sticky-top py-2">
         <nav class="container-fluid px-sm-5">
-            <div class="row justify-content-between align-items-center">
-                <div class="col-md-2 col-4">
+            <div class="row justify-content-between g-2 g-sm-0 align-items-center">
+                <div class="col-md-2 col-5 order-sm-1">
                     <div class="branding">
                         <a class="navbar-brand" href="{{ url('/') }}">
                             <figure class="m-0 _hmenu">
@@ -56,68 +56,14 @@
                                 <img class="img-fluid w-sm-75" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="{{ config('settings.appTitle') }}">
                                 @endif
                             </figure>
-
                         </a>
-                        <!-- <img src="assets\front\img\Ladiumbd-logo.png" class="w-75" alt="Company Logo"> -->
                     </div>
                 </div>
-                <!-- <div class="col-md-1 text-end">
-                    <div class="productCategories">
-                        <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                            </svg>
-                        </span>
 
-                        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-                            <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Product Sub Categories</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <ul class="list-unstyled list-group list-group-flush text-start">
-                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
-                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
-                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
-                                    <li><a href="#" class="fw-medium fs-5 text-body-secondary text-decoration-none">Sub Categories List Here</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-md-4 col-3">
-                    <div class="siteMenu" id="siteMenu">
-                        @empty(!CustomHelper::NaveMenu('main',[]))
-                        {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
-                        @endempty
-                        {{-- <ul class="list-unstyled m-0 p-0">
-                            <li class="px-2 text-center"><a href="#" class="fs-6 text-body-secondary text-decoration-none">Home</a></li>
-                            <li class="dropdown">
-                            <a class="dropdown-toggle fs-6 text-body-secondary text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Women</a>
-
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-                                    <li><a class="dropdown-item" href="#">Sub Categories</a></li>
-                                </ul>
-                            <a href="#" class="fw-semibold fs-5 text-body-secondary text-decoration-none">Category()</a> 
-                        
-                        </li>
-                        </ul> --}}
-                    </div>
-                </div>
-                <div class="col-md-3 d-none d-sm-block">
-                    <div class="siteSearch">
-                        <form class="searchBox" role="search">
-                            <input class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" placeholder="Search" aria-label="Search">
-                        </form>
-                    </div>
-                </div>
-                <div class="col-md-1">
+                <div class="col-md-1 col-4 text-center order-sm-4">
                     <ul class="userProfile list-unstyled m-0 p-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                <!-- <img src="{{asset('/assets/front')}}/img/user.png" alt="User"> -->
                                 <i class="bi bi-person-circle"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end _nedd_color">
@@ -137,13 +83,51 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-1">
+
+                <div class="col-md-1 col-3 text-end order-sm-5">
                     @livewire('mini-cart')
                 </div>
+
+                <div class="col-md-4 col-3 order-sm-2">
+                    <div class="mobileNav d-block d-sm-none">
+                        <a class="" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                            <i class="bi bi-list fs-3 fw-5"></i>
+                        </a>
+
+                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <div class="mobileMenus">
+                                    @empty(!CustomHelper::NaveMenu('main',[]))
+                                    {!! CustomHelper::NaveMenu('main',['menuClass'=>'mobileMenusUl','listClass'=>'navitem','linkClass'=>'nav-link', 'listParentClass'=>'dropdow','subMenuClass'=>'dropdownmenu','listParentLinkClass'=>'dropdowntoggle']) !!}
+                                    @endempty
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="siteMenu d-none d-sm-block" id="siteMenu">
+                        @empty(!CustomHelper::NaveMenu('main',[]))
+                        {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
+                        @endempty
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-9 order-sm-3">
+                    <div class="siteSearch">
+                        <form class="searchBox" role="search">
+                            <input class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </div>
+                </div>
+
 
             </div>
         </nav>
     </header>
+
     @yield('content')
     <footer class="_site_footer pt-5">
 

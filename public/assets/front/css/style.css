@@ -114,7 +114,7 @@ sup {
     text-overflow: ellipsis;
     text-transform: uppercase;
     color: #06080b;
-    min-height: 60px;
+    min-height: 75px;
     overflow: hidden;
 }
 .btnBuyNow p,a.btnoffer {
@@ -175,3 +175,41 @@ footer._site_footer h5 {
 /* Inner Page Css */
 
 /* Inner Page Css */
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .w-sm-75 {
+        width: 80% !important;
+    }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {}
+
+
+
+/* Mobile Menu */
+ul.mobileMenusUl,ul.mobileMenusUl li ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+ul.mobileMenusUl li a {
+    text-align: center;
+    font-size: 16px;
+    font-family: qatar2022_bold;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0px;
+}
+/* Mobile menu end */

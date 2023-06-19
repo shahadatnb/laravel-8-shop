@@ -2,7 +2,6 @@
 @section('content')
 
 
-
 <section class="_home_carousel">
     <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
         @php $slides = CustomHelper::posts(['post_type'=>'slide','orderBy'=>'sort']) @endphp
@@ -68,7 +67,7 @@
 
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
             @foreach ($items['product'] as $item)
-            <div class="col my-2 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
+            <div class="col my-3 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
                 <div class="productItem border border-secondary-subtle">
                     @include('frontend.layouts.product-loop')
                 </div>
@@ -77,29 +76,12 @@
         </div>
     </div>
 </section>
+
 <!--    Our Product End-->
 @endforeach
-
 <!--    Our Product End-->
 
 <!--    Our Categories -->
-<!-- <section class="_product">
-    <div class="container">
-        <h2>Categories</h2>
-        @if($categories)
-        <div class="owl-carousel owl-theme" id="produces">
-            @foreach($categories as $key=>$category)
-            <figure class="_overhover">
-                <img class="img-fluid img-products" src="{{asset('storage/'.$category->image)}}" alt="{{$category->title}}">
-                <figcaption class="_plink">
-                    <a href="#"><i class="fa fa-search-plus" aria-hidden="true"></i>{{$category->title}}</a>
-                </figcaption>
-            </figure>
-            @endforeach
-            @endif
-        </div>
-    </div>
-</section> -->
 
 @if($categories)
 <article class="products py-5 aos-init aos-animate" data-aos="fade-up" data-aos-duration="4000">
