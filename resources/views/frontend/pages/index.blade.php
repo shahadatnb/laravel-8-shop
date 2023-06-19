@@ -2,7 +2,6 @@
 @section('content')
 
 
-
 <section class="_home_carousel">
     <div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
         @php $slides = CustomHelper::posts(['post_type'=>'slide','orderBy'=>'sort']) @endphp
