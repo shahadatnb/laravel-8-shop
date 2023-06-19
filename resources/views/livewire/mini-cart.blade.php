@@ -1,27 +1,20 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center text-end">
 @include('admin.layouts._message_noty')
-    <div wire:loading>
-        @include('admin/layouts/_loading')
-    </div>
-    <div class="p-2">
-        <div class="wishCartList text-end">
-            <!-- <ul class="textRightSet list-unstyled p-0 m-0" style="display: inline-flex;">
-                <li class="pe-2"> -->
+    
+    <div class="pe-1 text-end">
+        <div class="wishCartList">
                     <a href="#" class="text-body-secondary">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                        </svg> -->
                         <i class="bi bi-heart-fill"></i>
                     </a>
-                <!-- </li>
-            </ul> -->
         </div>
     </div>
 
-    <div class="p-2">
+    <div class="ps-1 text-end">
+    <div wire:loading>
+        @include('admin/layouts/_loading')
+    </div>
         <div class="productCategories">
             <span class="btnOffcanvas" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasHomeCart" aria-controls="offcanvasHomeCart">
-                <!-- <img src="{{asset('assets\front\img\cart.png')}}" class="img-fluid" alt="cart"> -->
                 <i class="bi bi-bag-fill"></i><sup>{{$cartItems? count($cartItems):0}}</sup>
             </span>
 
@@ -37,12 +30,6 @@
                                 <div class="border">
                                     <div class="table-responsive">
                                         <table class="text-start mb-0 table align-middle">
-                                            <!-- <thead>
-                                                <tr>
-                                                    <th>Items:<sup>2</sup></th>
-                                                    <th>Subtotal:</th>
-                                                </tr>
-                                            </thead> -->
                                             <tbody>
                                                 @foreach($cartItems as $item)
                                                 <tr class="align-content-center">

@@ -6,7 +6,8 @@
     <section class="_store_by_team">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-md-3 col-lg-3">
+                <div class="col-sm-3 col-md-2 col-lg-2">
+
                     <div class="side_navbar_stor">
 
                         <h6>Shop by Category</h6>
@@ -75,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9 col-lg-9">
+                <div class="col-sm-9 col-md-10 col-lg-10">
                     <div class="_search_by_category">
                         <form>
                             <div class="row">
@@ -113,12 +114,12 @@
 
 
                     @if ($products)
-                    <div class="row">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
                         <!-- Productd -->
 
                         @foreach ($products as $item)
 
-                        <div class="col-md-3 col-lg-3">
+                        <div class="col my-3 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
                             <figure class="_inn_overhover m-0 border-1 p-2 bg-white">
                                 <a href="{{ route('singleProduct',$item->id)}}">
                                     <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
