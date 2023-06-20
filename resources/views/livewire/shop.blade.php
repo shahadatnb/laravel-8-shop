@@ -107,42 +107,7 @@
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10">
-                    <div class="_search_by_category">
-                        <form>
-                            <div class="row">
-                                <div class="col-md-4 col-lg-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Men</option>
-                                        <option value="1">Women</option>
-                                        <option value="2">Child</option>
-                                        <option value="3">Old</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4 col-lg-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Color</option>
-                                        <option class="" value="1">Black</option>
-                                        <option class="" value="2">Blue</option>
-                                        <option class="" value="3">Green</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-4 col-lg-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Size</option>
-                                        <option value="1">Slim</option>
-                                        <option value="2">Fat</option>
-                                        <option value="3">M</option>
-                                        <option value="3">XXL</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-
-
+                    
                     @if ($products)
                     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
                         <!-- Productd -->
