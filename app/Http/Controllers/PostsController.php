@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\Taxonomy;
 use App\Models\Postmeta;
 use Session;
+use Storage;
 use Auth;
 
 class PostsController extends Controller
@@ -201,7 +202,7 @@ class PostsController extends Controller
         //dd($image); exit;
         if ($image) {
             if (Storage::disk('public')->exists($post->image)) {
-                \Storage::disk('public')->delete($post->image);
+                Storage::disk('public')->delete($post->image);
             }
             $filename = time().'.'.$image->extension();
             $full_path = 'post_file/'.$filename;
@@ -247,7 +248,7 @@ class PostsController extends Controller
     {
         $post=Post::find($id);
         if (Storage::disk('public')->exists($post->image)) {
-            \Storage::disk('public')->delete($post->image);
+            Storage::disk('public')->delete($post->image);
         }
 
         //Storage::delete(['file.jpg', 'file2.jpg']);

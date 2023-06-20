@@ -20,7 +20,7 @@ class CheckoutCheckout extends Component
 
     public function mount()
     {
-        $this->cartItems = \Cart::getContent()->toArray();
+        $this->cartItems = \Cart::getContent();
         //$this->coupon_code = $this->cart->coupon_code;
     }
 

@@ -20,7 +20,8 @@ class CheckoutController extends Controller
 
 
     public function index(){
-        $cartItems = \Cart::getContent()->toArray();
+        $cartItems = \Cart::getContent();
+        //dd($cartItems);exit;
         if($cartItems){
             $user = auth('customer')->user();
             $countries = $this->countryArray();
@@ -63,7 +64,7 @@ class CheckoutController extends Controller
             //'cart_id'=>'required|numeric',
         ));
 
-        $cart = \Cart::getContent()->toArray();
+        $cartItems = \Cart::getContent()->toArray();
 
         $payment_method = 'Cash on Delivery'; //'paypal'
 
@@ -85,16 +86,17 @@ class CheckoutController extends Controller
         $order->grand_total = \Cart::getTotal();
         $order->save();
 
-        foreach($cart as $c){
+        foreach($cartItems as $item){
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_id' => $c['id'],
-                'parent_id'=>$c['attributes']['parent_id'],
-                'sku' => $c['attributes']['sku'],
-                'name' => $c['name'],
-                'price' => $c['price'],
-                'qty_ordered' => $c['quantity'],
-                'total' => $c['price']*$c['quantity'],
+                'product_id' => $item['id'],
+                'parent_id'=>$item['attributes']['parent_id'],
+                'image'=>$item['attributes']['image'],
+                'sku' => $item['attributes']['sku'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'qty_ordered' => $item['quantity'],
+                'total' => $item['price']*$item['quantity'],
             ]);
         }
 
@@ -113,6 +115,7 @@ class CheckoutController extends Controller
         $address->order_id = $order->id;
         $address->customer_id = auth('customer')->user()->id;
         $address->save();
+        
         \Cart::clear();
         //Mail::to($order->customer_email)->send(new OrderSubmited($order));
 /*

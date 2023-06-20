@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-12">
             <h4>
-              <img src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="Logo"> {{-- config('settings.appTitle') --}}
+              <img height="80" src="{{ asset('storage/'.config('settings.appLogo')) }}" alt="Logo"> {{-- config('settings.appTitle') --}}
               <small class="float-right">Date: {{ CustomHelper::prettyDate($order->created_at) }}</small>
             </h4>
           </div>
@@ -64,7 +64,7 @@
               <thead>
               <tr>
                 <th>SL</th>
-                <th>Product</th>
+                <th colspan="2">Product Name</th>
                 <th>Qty</th>
                 {{-- <th>Serial #</th> --}}
                 {{-- <th>Description</th> --}}
@@ -75,6 +75,7 @@
 								@foreach ($order->orderItems as $key=>$item)
 									<tr>
 										<td>{{++$key}}</td>
+                    <td><img width="80" src="{{$item->image}}" alt=""></td>
 										<td>{{$item->name}}</td>
 										<td>{{$item->qty_ordered}}</td>
 										{{-- <td>455-981-221</td> --}}

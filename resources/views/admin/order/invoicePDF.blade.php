@@ -84,7 +84,7 @@
     <tr>
         <td>
             @if(!empty(config('settings.appLogo')))
-                <img src="{{ './storage/'.config('settings.appLogo') }}" alt="Logo">
+                <img height="80" src="{{ './storage/'.config('settings.appLogo') }}" alt="Logo">
             @else
                 {{ config('settings.appTitle') }}
             @endif
@@ -130,7 +130,7 @@
       <thead>
       <tr>
         <th>SL</th>
-        <th>Product</th>
+        <th colspan="2">Product Name</th>
         <th>Qty</th>
         {{-- <th>Serial #</th> --}}
         {{-- <th>Description</th> --}}
@@ -141,6 +141,7 @@
         @foreach ($order->orderItems as $key=>$item)
             <tr>
                 <td>{{++$key}}</td>
+                <td><img width="80" src="{{$item->image}}" alt=""></td>
                 <td>{{$item->name}}</td>
                 <td>{{$item->qty_ordered}}</td>
                 {{-- <td>455-981-221</td> --}}

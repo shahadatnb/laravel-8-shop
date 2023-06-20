@@ -73,19 +73,19 @@
                                     <div>
                                         <div class="procartimg">
                                             <div class="procartimgdsd">
-                                                <img src="{{ CustomHelper::productThumbById($item['id']) }}" alt="{{$item['name']}}">
+                                                <img src="{{ $item->attributes->image }}" alt="{{$item->name}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product__description ps-2" scope="row">
                                         <div class="cartproname">
-                                            <h2 class="text-capitalize fs-6">{{$item['name']}} :* <span class="countproscart">{{$item['quantity']}}</span></h2>
-                                            <!-- <sup class="countproscart">{{$item['quantity']}}</sup> -->
+                                            <h2 class="text-capitalize fs-6">{{$item->name}} <span class="countproscart"></span></h2>
+                                            {{-- <sup class="countproscart">{{$item->quantity * }}</sup> --}}
                                         </div>
                                     </div>
                                     <div>
                                         <div class="cartpriceck">
-                                            <p class="text-capitalize fs-6">{{config('settings.currencySymbol')}}{{Cart::getTotal()}}</p>
+                                            <p class="text-capitalize fs-6">{{config('settings.currencySymbol')}}{{$item->quantity * $item->price}}</p>
                                         </div>
                                     </div>
                                 </div>

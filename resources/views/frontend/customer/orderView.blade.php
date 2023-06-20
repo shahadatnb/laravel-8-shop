@@ -98,7 +98,7 @@
               <thead>
                   <tr>
                       <th>SL</th>
-                      <th>Title</th>
+                      <th colspan="2">Product name</th>
                       <th>Price</th>
                       <th>Quantity</th>
                       <th class="text-end">Subtotal</th>
@@ -108,6 +108,7 @@
                   @foreach ($order->orderItems as $key=>$item)
                   <tr>
                     <td>{{++$key}}</td>
+                    <td><img width="50" src="{{$item->image}}" alt=""></td>
                     <td>{{$item->name}}</td>
                     <td>{{config('settings.currencySymbol')}}{{$item->price}}</td>
                     <td>{{$item->qty_ordered}}</td>
