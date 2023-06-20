@@ -63,7 +63,7 @@
         </div>
         @endif
 
-        <div class="_add_cart d-flex py-3">
+        <div class="_add_cart d-flex gap-3 py-3">
             <div class="form-group--number product__qty w-50">
                 <button wire:click="quantityminus" class="down" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
                 <input class="qty-input" type="text" wire:model="productquantity" name="productquantity" readonly="">
@@ -77,7 +77,7 @@
 
 
 
-        <div class="_wish_list d-flex align-items-center justify-content-between pt-4">
+        <div class="_wish_list d-flex align-items-center gap-3 pt-4">
             <div class="_product_catr">
                 <button class="ps-btn ps-btn--black" @if ($product_type=='variant' ) disabled @endif type="submit">Add to cart</button>
 
