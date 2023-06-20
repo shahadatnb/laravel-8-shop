@@ -11,29 +11,81 @@
 
                     <div class="sideSearch">
 
-                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
-                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Price</p>
-                            <div class="d-flex align-items-center"><input placeholder="min" type="number" class="form-control"><input placeholder="max" type="number" class="form-control"></div>
-                        </form>
-                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
-                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Category</p>
-                            <div class="form-check"><input name="Plus size" type="checkbox" id="default-checkbox" class="form-check-input" value="Plus size"><label title="" for="default-checkbox" class="form-check-label">Plus size</label></div>
+                        <form>
+                            <div class="wrapper">
+                                <div class="rangeHeader">
+                                    <h2>Price Range</h2>
+                                </div>
+                                <div class="price-input pb-3 d-flex justify-content-between">
+                                    <div class="field w-50 text-start">
+                                        <input type="number" class="input-min" value="2500">
+                                    </div>
+                                    <div class="field w-50 text-end">
+                                        <input type="number" class="input-max" value="7500">
+                                    </div>
+                                </div>
+                                <div class="slider">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                                </div>
+                            </div>
 
                         </form>
+
                         <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
-                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Size</p>
-                            <div class="designClass d-flex gap-2">
-                                <div class="form-check">
-                                    <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                            <div class="rangeHeader">
+                                <h2>Category</h2>
+                            </div>
+
+                            <div class="form-check d-flex justify-content-between">
+                            <div>
+                                <input name="Plus size" type="checkbox" id="default-checkbox" class="form-check-input" value="Plus size"><label title="" for="default-checkbox" class="form-check-label">Plus size</label>
+                            </div>
+                            <div>
+                                        <span class="filterNo">111</span>
+                                    </div>
+                            </div>
+                        </form>
+
+                        <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
+                            <div class="rangeHeader">
+                                <h2>Size</h2>
+                            </div>
+
+                            <div class="designClass">
+                                <div class="form-check d-flex justify-content-between">
+                                    <div>
+                                        <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                    </div>
+                                    <div>
+                                        <span class="filterNo">111</span>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                <div class="form-check d-flex justify-content-between">
+                                    <div>
+                                        <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                    </div>
+                                    <div>
+                                        <span class="filterNo">111</span>
+                                    </div>
                                 </div>
                             </div>
                         </form>
                         <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
-                            <p style="border-bottom: 1px solid rgb(138, 138, 138); width: fit-content;">Color family</p>
-                            <div class="form-check"><input name="Black" type="checkbox" id="default-checkbox" class="form-check-input" value="Black"><label title="" for="default-checkbox" class="form-check-label">Black</label></div>
+                            <div class="rangeHeader">
+                                <h2>Color</h2>
+                            </div>
+                            <div class="form-check d-flex justify-content-between">
+                                <div>
+                                    <input name="Black" type="checkbox" id="default-checkbox" class="form-check-input" value="Black"><label title="" for="default-checkbox" class="form-check-label">Black</label>
+                                </div>
+                                <div>
+                                    <span class="filterNo">111</span>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
@@ -107,37 +159,39 @@
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10">
-                    
+
                     @if ($products)
-                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5 justify-content-start justify-items-start">
                         <!-- Productd -->
 
                         @foreach ($products as $item)
 
-                        <div class="col my-3 productCard" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                            <figure class="_inn_overhover m-0 border-1 p-2 bg-white">
-                                <a href="{{ route('singleProduct',$item->id)}}">
-                                    <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
-                                    <figcaption class="_in_plink">
-                                        <h2>{{ $item->title }}</h2>
-                                        <div class="priceBuy d-flex justify-content-between align-items-center">
-                                            <div class="proPrice text-black">
-                                                @include('frontend.layouts.price',['item',$item])
+                        <div class="col my-3 productCard">
+                            <div class="productItem border border-secondary-subtle">
+                                <figure class="_inn_overhover m-0 p-2 bg-white">
+                                    <a href="{{ route('singleProduct',$item->id)}}" class="text-decoration-none text-black-50">
+                                        <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
+                                        <figcaption class="_in_plink">
+                                            <h2>{{ $item->title }}</h2>
+                                            <div class="priceBuy d-flex justify-content-between align-items-center">
+                                                <div class="proPrice text-black">
+                                                    @include('frontend.layouts.price',['item',$item])
+                                                </div>
+                                                <div class="btnBuyNow">
+                                                    <p class="m-0" href="#">Buy Now</p>
+                                                </div>
                                             </div>
-                                            <div class="btnBuyNow">
-                                                <p class="m-0" href="#">Buy Now</p>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </a>
-                                <div class="_button-set">
-                                    <a class="addto-wishlist" wire:click="addToWishlist({{$item->id}})" href="javascript:void(0);" rel="" tabindex="0" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                    <a class="quickShop" wire:click="addToCart({{$item->id}})" href="javascript:void(0);" rel="nofollow" tabindex="0" title="Quick Shop"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                    <!-- <a href="" type="button" rel="nofollow" class="quick-view" tabindex="0" title="Quick View" data-toggle="modal" data-target="#productMpdalLong"></a>-->
-                                    <a href="javascript:void(0);" class="quick-view" wire:click="quickView({{$item->id}})"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
-                                    <!-- Button trigger modal -->
-                                </div>
-                            </figure>
+                                        </figcaption>
+                                    </a>
+                                    <div class="_button-set">
+                                        <a class="addto-wishlist" wire:click="addToWishlist({{$item->id}})" href="javascript:void(0);" rel="" tabindex="0" title="Add to Wishlist"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                        <a class="quickShop" wire:click="addToCart({{$item->id}})" href="javascript:void(0);" rel="nofollow" tabindex="0" title="Quick Shop"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                        <!-- <a href="" type="button" rel="nofollow" class="quick-view" tabindex="0" title="Quick View" data-toggle="modal" data-target="#productMpdalLong"></a>-->
+                                        <a href="javascript:void(0);" class="quick-view" wire:click="quickView({{$item->id}})"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                                        <!-- Button trigger modal -->
+                                    </div>
+                                </figure>
+                            </div>
                         </div>
                         @endforeach
                     </div>

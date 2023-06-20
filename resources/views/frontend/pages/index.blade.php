@@ -98,7 +98,7 @@
         <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-start justify-items-start">
             @foreach($categories as $key=>$category)
             <div class="col-md-3 col-6 col-sm-4 my-3 aos-init aos-animate" data-aos="fade-up" data-aos-offset="200" data-aos-delay="50" data-aos-duration="1000">
-                <div class="container-fluid">
+                <div class="container-fluid border border-secondary-subtle rounded-4">
                     <div class="row align-items-center bg-white leftRignt py-2">
                         <div class="col-md-6 order-sm-2 imageCate text-center"><img class="img-fluid" src="{{asset('storage/'.$category->image)}}" alt="{{$category->title}}" style="max-height: 100px;"></div>
                         <div class="col-md-6 py-3 textSide">
@@ -128,12 +128,12 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container pt-3">
         <div class="owl-carousel owl-theme" id="owl-clients">
             @php $testimonials = CustomHelper::posts(['post_type'=>'testimonial','orderBy'=>'sort']) @endphp
             @if($testimonials)
             @foreach($testimonials as $key=>$testimonial)
-            <div class="item">
+            <div class="item border border-secondary-subtle rounded-4">
                 <div class="_clients_box text-center">
                     <div class="_client_name_image">
                         <figure>

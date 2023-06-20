@@ -24,7 +24,7 @@
         </div>
         @if (count($sizes) > 0)
         <div class="_info_siz">
-            <div class="_swatches_wrapper d-flex gap-2" data-type="text">
+            <div class="_swatches_wrapper d-flex" data-type="text">
                 <div class="attribute-name">Size: </div>
                 <div class="_size_attribute_values">
                     <ul class="_text-swatch list-unstyled m-0 p-0 d-flex fw-bold gap-3">
