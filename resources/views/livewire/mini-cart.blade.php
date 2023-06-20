@@ -3,7 +3,7 @@
     
     <div class="pe-1 text-end">
         <div class="wishCartList">
-                    <a href="#" class="text-body-secondary">
+                    <a href="{{route('customer.wishlist')}}" class="text-body-secondary">
                         <i class="bi bi-heart-fill"></i>
                     </a>
         </div>

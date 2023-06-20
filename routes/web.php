@@ -15,7 +15,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
@@ -105,7 +105,7 @@ Route::prefix('customer')->as('customer.')->group(function() {
     Route::group(['middleware'=>'auth:customer'], function(){
         Route::get('/', [CustomerController::class,'index'])->name('/');
         Route::get('/wishlist', [CustomerController::class,'wishlist'])->name('wishlist');
-        Route::get('/removeWishlist/{id}', [CartController::class,'removeWishlist'])->name('removeWishlist');
+        Route::get('/removeWishlist/{id}', [WishlistController::class,'removeWishlist'])->name('removeWishlist');
 
         Route::post('/order/itemRefund/{id}', [CustomerController::class,'orderItemRefund'])->name('order.item.refund');
         Route::get('/order/refund/{id}', [CustomerController::class,'orderRefund'])->name('order.refund');
@@ -114,7 +114,6 @@ Route::prefix('customer')->as('customer.')->group(function() {
 
         Route::get('/profile', [CustomerController::class,'profile'])->name('profile');
         Route::post('/profile/{customer}', [CustomerController::class,'profileUpdate'])->name('profile.update');
-        Route::get('/removeSibling/{id}', [CustomerController::class,'removeSibling'])->name('removeSibling');
     });
 
 });

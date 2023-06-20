@@ -118,7 +118,9 @@
           </table>
         <div class="row d-flex justify-content-end">
           <div class="col-6">
-              <a href="{{ route('customer.order.refund',$order->id) }}" class="btn btn-danger">Refund</a>
+            @if (config('settings.refund')=='on')                
+            <a href="{{ route('customer.order.refund',$order->id) }}" class="btn btn-danger">Refund</a>
+            @endif
           </div>
           <div class="col-6">
             <div class="table-responsive">
