@@ -6,17 +6,26 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\AttributeOption;
 
 class Shop extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $store, $product, $cats = array(), $categories='', $fcats = array(), $quickItem ='';
+    public $store,$rangeMin=0, $rangeMax=10000, $product, $cats=[], $categories='', $sizes='', $colors='', $size=[], $color=[], $priceMin=0, $priceMax=10000, $quickItem ='';
 
     public function mount(){
-        $this->categories = Category::with('child')->where('status',1)->whereNull('parent_id')->get();
-        //$this->filtered_product =  Product::whereNull('parent_id')->where('store_id',$this->store->id)->where('status',1)->latest();
+        $this->categories = Category::with('child')->withCount('products')->where('status',1)->whereNull('parent_id')->get();
+        $this->sizes = AttributeOption::whereHas('attribute',function($q){
+            $q->where('code','size');
+        })->get();
+        $this->colors = AttributeOption::whereHas('attribute',function($q){
+            $q->where('code','color');
+        })->get();
+        $max = Product::where('status',1)->max('price');
+        $this->rangeMax = $this->priceMax = ceil($max / 100) * 100;
+        //dd($this->rangeMax);
     }
 
     public function quickView($id){
@@ -39,51 +48,25 @@ class Shop extends Component
         $this->emit('addToWishlist',['id'=>$id]);
     }
 
-    public function selectCat($id){
-        if (!in_array($id, $this->cats)) {
-            array_push($this->cats, $id);  
-        }              
-        $this->catFilter();
-    }
-
-    public function removeCat($id){
-        if (($key = array_search($id, $this->cats)) !== false) {
-            unset($this->cats[$key]);
-        }
-        $this->catFilter();
-    }
-
-    public function catFilter(){        
-        $this->fcats = Category::whereIn('id',$this->cats)->get();
-    }
-
-    public function selectSize($id){
-        if (!in_array($id, $this->cats)) {
-            array_push($this->cats, $id);  
-        }              
-        $this->sizeFilter();
-    }
-
-    public function removeSize($id){
-        if (($key = array_search($id, $this->cats)) !== false) {
-            unset($this->cats[$key]);
-        }
-        $this->sizeFilter();
-    }
-
-    public function sizeFilter(){        
-        $this->fcats = Category::whereIn('id',$this->cats)->get();
-    }
-
     public function render()
     {        
-        $products = Product::whereNull('parent_id')->where('status',1);
-        if(!empty($this->cats)){
+        $products = Product::whereNull('parent_id')->whereBetween('price', [$this->priceMin, $this->priceMax])->where('status',1);
+        if(!empty(array_filter($this->cats))){
             $products = $products->whereHas('categories', function($q){
-                $q->whereIn('id', $this->cats);
+                $q->whereIn('id', array_filter($this->cats));
             });
         }
-        $products = $products->latest()->paginate(20);
+        if(!empty($this->size)){
+            $products = $products->whereHas('childs', function($q){
+                $q->whereIn('size', array_filter($this->size));
+            });
+        }
+        if(!empty(array_filter($this->color))){
+            $products = $products->whereHas('childs', function($q){
+                $q->whereIn('color', array_filter($this->color));
+            });
+        }
+        $products = $products->latest()->paginate(40);
         return view('livewire.shop',[
             'products' => $products
         ]);

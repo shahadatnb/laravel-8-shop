@@ -1,5 +1,5 @@
 <figure class="_inn_overhover m-0 p-2 bg-white">
-  <a href="{{ route('singleProduct',$item->id)}}" class="text-decoration-none text-black-50">
+  <a href="{{ route('singleProduct',[$item->id,$item->slug])}}" class="text-decoration-none text-black-50">
     @if($item->thumbnail != '')
     <img class="img-fluid img-products" src="{{ asset('storage/' . $item->thumbnail) }}" alt="Product Image">
     @else

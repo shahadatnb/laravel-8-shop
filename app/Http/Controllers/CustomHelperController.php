@@ -29,7 +29,7 @@ class CustomHelperController
         if($product->parent_id != null){
             $product = Product::find($product->parent_id);
         }
-        return route('singleProduct',$product->id);
+        return route('singleProduct',[$product->id,$product->slug]);
     }
 
     public function productThumb($product){

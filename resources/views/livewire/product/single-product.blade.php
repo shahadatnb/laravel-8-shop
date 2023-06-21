@@ -1,7 +1,7 @@
 <div>
-    <div wire:loading>
-        {{-- @include('admin/layouts/_loading') --}}
-    </div>
+    {{-- <div wire:loading>
+        @include('admin/layouts/_loading')
+    </div> --}}
     <form class="add-to-cart-form" wire:submit.prevent="addToCart">
         {{-- <form class="add-to-cart-form" action="{{url('add-to-cart')}}" method="POST" > --}}
         {{ csrf_field() }}
@@ -9,9 +9,9 @@
             <div class="d-flex gap-5">
 
                 <div class="rwviews">
-                    <p><a href="#">Review 0</a></p>
+                    <p><a href="#">Review {{$product->reviews->count()}}</a></p>
                 </div>
-                <div class="sold">Sold 0</div>
+                {{-- <div class="sold">Sold 0</div> --}}
             </div>
             <h2 class="fw-bolder fs-5 text-capitalize py-3">{{$product->title}} {{ $attribute_size }} {{ $attribute_color_label }} </h2>
             <div class="skucode">SKU: {{$sku}}</div>

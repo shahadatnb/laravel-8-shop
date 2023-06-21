@@ -51,18 +51,18 @@ class FrontController extends Controller
         return $this->notFound();
     }
 
-    public function productSingle($id)
+    public function productSingle($id,$slug=null)
     {
         $product = Product::find($id);
 
         if ($product) {
             $related_products = Product::whereHas('categories', function ($q) use ($product) {
                 $q->whereIn('id', $product->categories->pluck('id'));
-            })->whereNull('parent_id')->latest()->limit(15)->get();
+            })->whereNull('parent_id')->latest()->limit(5)->get();
 
             $recommended_products = Product::whereHas('categories', function ($q) use ($product) {
                 $q->whereIn('id', $product->categories->pluck('id'));
-            })->whereNull('parent_id')->inRandomOrder()->limit(15)->get();
+            })->whereNull('parent_id')->inRandomOrder()->limit(5)->get();
 
             return view('frontend.pages.product-single', compact('product', 'related_products', 'recommended_products'));
         } else {

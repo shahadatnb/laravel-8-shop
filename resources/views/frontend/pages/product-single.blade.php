@@ -108,7 +108,7 @@
 				<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">DESCRIPTION</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">REVIEWS (0)</button>
+				<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">REVIEWS ({{$product->reviews->count()}})</button>
 			</li>
 			{{--
 				<li class="nav-item" role="presentation">
@@ -230,9 +230,9 @@
 <section class="_product">
 	<div class="container">
 		<h2>Related products</h2>
-		<div class="owl-carousel owl-theme" id="related_products">
+		<div class="row" id="related_products">
 			@foreach ($related_products as $item)
-			<div class="item">
+			<div class="col">
 				@include('frontend.layouts.product-loop')
 			</div>
 			@endforeach
@@ -247,9 +247,9 @@
 <section class="_product">
 	<div class="container">
 		<h2>Recommended Products</h2>
-		<div class="owl-carousel owl-theme" id="recommended_products">
+		<div class="row" id="recommended_products">
 			@foreach ($recommended_products as $item)
-			<div class="item">
+			<div class="col">
 				@include('frontend.layouts.product-loop')
 			</div>
 			@endforeach

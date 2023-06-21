@@ -18,18 +18,18 @@
                                 </div>
                                 <div class="price-input pb-3 d-flex justify-content-between">
                                     <div class="field w-50 text-start">
-                                        <input type="number" class="input-min" value="2500">
+                                        <input type="number" class="input-min" value="{{$priceMin}}">
                                     </div>
                                     <div class="field w-50 text-end">
-                                        <input type="number" class="input-max" value="7500">
+                                        <input type="number" class="input-max" value="{{$priceMax}}">
                                     </div>
                                 </div>
                                 <div class="slider">
-                                    <div class="progress"></div>
+                                    <div class="progress" style="left:{{$priceMin/$rangeMax*100}}%; right:{{100-($priceMax/$rangeMax*100)}}%"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
-                                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                                    <input wire:model.lazy="priceMin" type="range" class="range-min" min="{{$rangeMin}}" max="{{$rangeMax}}" value="{{$priceMin}}" step="100">
+                                    <input wire:model.lazy="priceMax" type="range" class="range-max" min="{{$rangeMin}}" max="{{$rangeMax}}" value="{{$priceMax}}" step="100">
                                 </div>
                             </div>
 
@@ -39,127 +39,73 @@
                             <div class="rangeHeader">
                                 <h2>Category</h2>
                             </div>
-
-                            <div class="form-check d-flex justify-content-between">
-                            <div>
-                                <input name="Plus size" type="checkbox" id="default-checkbox" class="form-check-input" value="Plus size"><label title="" for="default-checkbox" class="form-check-label">Plus size</label>
-                            </div>
-                            <div>
-                                        <span class="filterNo">111</span>
+                            @foreach ($categories as $item)
+                                <div>
+                                    <div class="form-check d-flex justify-content-between">
+                                        <div>
+                                            {{-- <a href="javascript:void(0);" wire:click="removeCat({{$item->id}})"></a> --}}
+                                            <input wire:model="cats.{{$item->id}}" type="checkbox" id="{{ $item->slug }}" class="form-check-input" value="{{ $item->id }}"><label title="{{ $item->title }}" for="{{ $item->slug }}" class="form-check-label">{{ $item->title }}</label>
+                                        </div>
+                                        <div>
+                                            <span class="filterNo">{{$item->products_count}}</span>
+                                        </div>
                                     </div>
-                            </div>
+                                </div>
+                                <div class="ps-3">
+                                @foreach ($item->child as $cat)
+                                    <div class="form-check d-flex justify-content-between">
+                                        <div>
+                                            {{-- <a href="javascript:void(0);" wire:click="removeCat({{$item->id}})"></a> --}}
+                                            <input wire:model="cats.{{$cat->id}}" type="checkbox" id="{{ $cat->slug }}" class="form-check-input" value="{{ $cat->id }}"><label title="{{ $cat->title }}" for="{{ $cat->slug }}" class="form-check-label">{{ $cat->title }}</label>
+                                        </div>
+                                        <div>
+                                            {{-- <span class="filterNo">{{$cat->products_count}}</span> --}}
+                                        </div>
+                                    </div>
+                                @endforeach
+                                </div>
+                            @endforeach
                         </form>
 
                         <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
                             <div class="rangeHeader">
                                 <h2>Size</h2>
                             </div>
-
                             <div class="designClass">
+                            @foreach ($sizes as $item)
                                 <div class="form-check d-flex justify-content-between">
-                                    <div>
-                                        <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
+                                    <div>                                        
+                                        <input wire:model="size.{{$item->name}}" name="size[]" type="checkbox" id="size{{$item->name}}" class="form-check-input" value="{{$item->name}}"><label title="" for="size{{$item->name}}" class="form-check-label">{{$item->name}}</label>
                                     </div>
                                     <div>
-                                        <span class="filterNo">111</span>
+                                        {{-- <span class="filterNo">111</span> --}}
                                     </div>
                                 </div>
-                                <div class="form-check d-flex justify-content-between">
-                                    <div>
-                                        <input name="S" type="checkbox" id="default-checkbox" class="form-check-input" value="S"><label title="" for="default-checkbox" class="form-check-label">S</label>
-                                    </div>
-                                    <div>
-                                        <span class="filterNo">111</span>
-                                    </div>
-                                </div>
+                            @endforeach
                             </div>
                         </form>
                         <form class="py-2" style="border-top: 1px solid rgb(221, 221, 221);">
                             <div class="rangeHeader">
                                 <h2>Color</h2>
                             </div>
+                            @foreach ($colors as $item)
                             <div class="form-check d-flex justify-content-between">
                                 <div>
-                                    <input name="Black" type="checkbox" id="default-checkbox" class="form-check-input" value="Black"><label title="" for="default-checkbox" class="form-check-label">Black</label>
+                                    <input wire:model="color.{{$item->name}}" name="color[]" type="checkbox" id="{{$item->name}}" class="form-check-input" value="{{$item->name}}"><label for="{{$item->name}}" class="form-check-label">{{$item->name}}</label>
                                 </div>
                                 <div>
-                                    <span class="filterNo">111</span>
+                                    <span class="filterNo px-3" style="background-color: {{$item->label}}">  </span>
                                 </div>
                             </div>
+                            @endforeach
                         </form>
 
                     </div>
-
-                    <!-- <div class="side_navbar_stor">
-
-                        <h6>Shop by Category</h6>
-
-                        <div class="_your_selections">
-                            <h5>Your Selections Items</h5>
-                            {{-- @dump($this->cats) --}}
-                            <ul>
-                                @foreach ($fcats as $item)
-                                <li><a href="javascript:void(0);" wire:click="removeCat({{$item->id}})">{{ $item->title }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="side_navbar_css">
-                            <div class="accordion" id="accordionExample">
-
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingShop">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseShop" aria-expanded="true" aria-controls="collapseShop">
-                                            Clothing
-                                        </button>
-                                    </h2>
-                                    <div id="collapseShop" class="accordion-collapse collapse show" aria-labelledby="headingShop" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul>
-
-
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Shop For
-                                        </button>
-                                    </h2>
-                                </div>
-                                @foreach ($categories as $item)
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingTwo">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            {{$item->title}}
-                                        </button>
-                                    </h2>
-                                    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul>
-                                                @foreach ($item->child as $child)
-                                                <li><a href="javascript:void(0);" wire:click="selectCat({{$child->id}})"><input type="radio"> {{$child->title}}</a></li>
-                                                {{-- <li><input type="radio" wire:model="cats" name="{{$item->title}}[{{$child->id}}]" value="{{$child->id}}" id="c-{{$child->id}}" type="radio">
-                                                <label for="c-{{$child->id}}">{{$child->title}}</label> </li> --}}
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-
-                            </div>
-                        </div>
-                    </div> -->
+        
                 </div>
 
                 <div class="col-sm-9 col-md-10 col-lg-10">
-
+                    {{-- @dd($categories) --}}
                     @if ($products)
                     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5 justify-content-start justify-items-start">
                         <!-- Productd -->
@@ -169,7 +115,7 @@
                         <div class="col my-3 productCard">
                             <div class="productItem border border-secondary-subtle">
                                 <figure class="_inn_overhover m-0 p-2 bg-white">
-                                    <a href="{{ route('singleProduct',$item->id)}}" class="text-decoration-none text-black-50">
+                                    <a href="{{ route('singleProduct',[$item->id,$item->slug])}}" class="text-decoration-none text-black-50">
                                         <img class="img-fluid img-products" src="{{ CustomHelper::productThumb($item) }}" alt="Product Image">
                                         <figcaption class="_in_plink">
                                             <h2>{{ $item->title }}</h2>
@@ -221,7 +167,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="{{ route('singleProduct',$quickItem->id)}}" class="btn btn-secondary">View</a>
+                    <a href="{{ route('singleProduct',[$quickItem->id,$quickItem->slug])}}" class="btn btn-secondary">View</a>
                     <button wire:click="addToCart({{$quickItem->id}})" type="button" class="btn btn-primary">Buy Now</button>
                 </div>
                 @endif
@@ -229,3 +175,51 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+// Rang Js
+const rangeInput = document.querySelectorAll(".range-input input"),
+  priceInput = document.querySelectorAll(".price-input input"),
+  range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minPrice = parseInt(priceInput[0].value),
+      maxPrice = parseInt(priceInput[1].value);
+    if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+      if (e.target.className === "input-min") {
+        rangeInput[0].value = minPrice;
+        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+      } else {
+        rangeInput[1].value = maxPrice;
+        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+      }
+    }
+  });
+});
+
+rangeInput.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    let minVal = parseInt(rangeInput[0].value),
+      maxVal = parseInt(rangeInput[1].value);
+
+    if (maxVal - minVal < priceGap) {
+      if (e.target.className === "range-min") {
+        rangeInput[0].value = maxVal - priceGap;
+      } else {
+        rangeInput[1].value = minVal + priceGap;
+      }
+    } else {
+      priceInput[0].value = minVal;
+      priceInput[1].value = maxVal;
+      range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+      range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+    }
+  });
+});
+
+// Rang Js
+</script>
+@endpush

@@ -58,7 +58,7 @@ Route::get('/post/{slug}', [FrontController::class, 'page'])->name('post');
 
 Route::get('/shop', [FrontController::class,'shop'])->name('shop');
 
-Route::get('/product/{id}', [FrontController::class,'productSingle'])->name('singleProduct');
+Route::get('/product/{id}/{slug?}', [FrontController::class,'productSingle'])->name('singleProduct');
 Route::get('/category/{slug}', [FrontController::class,'productByCat'])->name('productByCat');
 
 //Route::post('/loginNext', [LoginController::class,'loginStep2'])->name('loginNext');
