@@ -20,38 +20,38 @@
                             <h6>Shipping Address</h6>
                             <div class="row g-4">
                                 <div class="col-6">
-                                    {{ Form::text('first_name',null,array('class'=>'form-control','required'=>'','placeholder'=>'First name')) }}
+                                    {{ Form::text('first_name',null,array('class'=>'form-control','required'=>true,'placeholder'=>'First name')) }}
                                 </div>
                                 <div class="col-6">
-                                    {{ Form::text('last_name',null,array('class'=>'form-control','required'=>'','placeholder'=>'Last name')) }}
+                                    {{ Form::text('last_name',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Last name')) }}
                                 </div>
                                 <div class="col-6">
-                                    {{ Form::email('email',null,array('class'=>'form-control','required'=>'','placeholder'=>'Email')) }}
+                                    {{ Form::email('email',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Email')) }}
                                 </div>
                                 <div class="col-6">
-                                    {{ Form::text('phone',null,array('class'=>'form-control','required'=>'','placeholder'=>'Phone')) }}
+                                    {{ Form::text('phone',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Phone')) }}
                                 </div>
                                 <div class="col-12">
-                                    {{ Form::text('address1',null,array('class'=>'form-control','required'=>'','placeholder'=>'Address')) }}
+                                    {{ Form::text('address1',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Address')) }}
                                 </div>
                                 <div class="col-12">
-                                    {{ Form::text('address2',null,array('class'=>'form-control','required'=>'','placeholder'=>'Apartment, suite, etc. (optional)')) }}
+                                    {{ Form::text('address2',null,array('class'=>'form-control','placeholder'=>'Apartment, suite, etc. (optional)')) }}
                                 </div>
                                 <div class="col-6">
-                                    {{ Form::text('city',null,array('class'=>'form-control','required'=>'','placeholder'=>'City')) }}
+                                    {{ Form::text('city',null,array('class'=>'form-control','required'=>true,'placeholder'=>'City')) }}
                                 </div>
                                 <div class="col-6">
-                                    {{ Form::text('postcode',null,array('class'=>'form-control','required'=>'','placeholder'=>'Postal Code')) }}
+                                    {{ Form::text('postcode',null,array('class'=>'form-control','placeholder'=>'Postal Code')) }}
                                 </div>
 
                                 <!-- </div>
                         <div class="row g-4"> -->
 
-                                <div class="col-md" wire:ignore>
+                                <div class="col-6" wire:ignore>
                                     {{ Form::select('country',$countries,null,array('class'=>'form-control select2','id'=>'country','data-url'=>route('stateApi'),'placeholder'=>'Select Country')) }}
                                 </div>
 
-                                <div class="col-md" wire:ignore>
+                                <div class="col-6" wire:ignore>
                                     {{ Form::select('state',$states,null,array('class'=>'form-control select2','id'=>'state','placeholder'=>'Select State')) }}
                                 </div>
                             </div>
