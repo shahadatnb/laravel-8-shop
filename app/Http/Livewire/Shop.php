@@ -56,7 +56,7 @@ class Shop extends Component
                 $q->whereIn('id', array_filter($this->cats));
             });
         }
-        if(!empty($this->size)){
+        if(!empty(array_filter($this->size))){
             $products = $products->whereHas('childs', function($q){
                 $q->whereIn('size', array_filter($this->size));
             });
