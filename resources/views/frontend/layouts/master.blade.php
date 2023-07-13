@@ -110,7 +110,7 @@
                     </div>
                     <div class="siteMenu d-none d-sm-block" id="siteMenu">
                         @empty(!CustomHelper::NaveMenu('main',[]))
-                        {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
+                        {!! CustomHelper::NaveMenu('main',['menuClass'=>'list-unstyled m-0 p-0','listClass'=>'nav-item','linkClass'=>'nav-link px-2', 'listParentClass'=>'dropdown','subMenuClass'=>'border-bottom dropdown-menu','listParentLinkClass'=>'dropdown-toggle']) !!}
                         @endempty
                     </div>
                 </div>
