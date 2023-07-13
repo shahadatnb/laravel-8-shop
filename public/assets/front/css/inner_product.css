@@ -340,7 +340,7 @@ ul._color_swatch li {
 }
 
 input.qty-input {
-    width: 50%;
+    width: 46%;
     text-align: center;
     height: 40px;
     border: 0;
@@ -353,7 +353,7 @@ input.qty-input {
 
 .form-group--number.product__qty button {
     border: 0;
-    width: 49px;
+    width: 25%;
     display: inline-block;
     font-weight: 300;
     font-size: 16px;

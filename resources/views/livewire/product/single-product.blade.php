@@ -11,15 +11,15 @@
                 <div class="rwviews">
                     <p><a href="#">Review {{$product->reviews->count()}}</a></p>
                 </div>
-                {{-- <div class="sold">Sold 0</div> --}}
+                <div class="sold">Sold 0</div>
             </div>
             <h2 class="fw-bolder fs-5 text-capitalize py-3">{{$product->title}} {{ $attribute_size }} {{ $attribute_color_label }} </h2>
             <div class="skucode">SKU: {{$sku}}</div>
 
             @if ($special_price > 0)
-            <h3>Price: <span class="_doller">{{config('settings.currencySymbol')}}{{$special_price}}</span> <del class="_peSell">{{config('settings.currencySymbol')}}{{ $price }} </del></h3>
+            <h3 class="fs-5 text-dark">Price: <span class="_doller">{{config('settings.currencySymbol')}}{{$special_price}}</span> <del class="_peSell">{{config('settings.currencySymbol')}}{{ $price }} </del></h3>
             @else
-            <h3 class="fw-bolder fs-3 py-3"><span class="_doller">{{config('settings.currencySymbol')}}{{$price}}</span></h3>
+            <h3 class="fs-5 text-dark">Price: <span class="_doller">{{config('settings.currencySymbol')}}{{$price}}</span></h3>
             @endif
         </div>
         @if (count($sizes) > 0)
@@ -27,7 +27,7 @@
             <div class="_swatches_wrapper d-flex" data-type="text">
                 <div class="attribute-name">Size: </div>
                 <div class="_size_attribute_values">
-                    <ul class="_text-swatch list-unstyled m-0 p-0 d-flex fw-bold gap-3">
+                    <ul class="_text-swatch list-unstyled m-0 p-0 d-flex fw-bold">
                         @foreach ($sizes as $size)
                         <li data-slug="s" class="_attribute-swatch">
                             <label>
@@ -43,7 +43,7 @@
         @endif
 
         @if (count($colors) > 0)
-        <div class="_product_color d-flex gap-2" data-type="visual">
+        <div class="_product_color d-flex" data-type="visual">
             <label class="attribute-name">Color: </label>
             <div class="attribute-values">
                 <ul class="_color_swatch list-unstyled m-0 p-0 d-flex fw-bold gap-3">
@@ -71,7 +71,7 @@
 
             </div>
             <div class="inStock w-25">
-                <p class="m-0 fs-5 fw-bold">{{ $stock }} in stock</p>
+                <p class="m-0 fs-5 fw-bold">{{ $stock }}</p>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
 
             <div class="_add_wish">
                 <button>
-                    <a class="js-add-to-wishlist-button" href="javascript:void(0);" wire:click="addToWishlist({{$product->id}})"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                    <a class="js-add-to-wishlist-button" href="javascript:void(0);" wire:click="addToWishlist({{$product->id}})"><i class="bi bi-heart-fill"></i></a>
                 </button>
             </div>
         </div>

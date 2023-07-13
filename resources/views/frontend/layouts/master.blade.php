@@ -135,7 +135,7 @@
             <div class="container-fluid px-5">
                 <div class="row justify-content-between">
 
-                    <div class="col-md-3 col-lg-2 pb-4">
+                    <div class="col-md-4 col-lg-3 pb-4">
                         <div class="_address">
                             <h5>About our priority.</h5>
                             <p>{{ config('settings.footerDdescription', '') }}</p>
@@ -166,10 +166,6 @@
                                 <li><a href="tel:{{ config('settings.appPhone', '') }}"> {{ config('settings.appPhone', '') }}</a></li>
                                 <li>{{ config('settings.appAddress', '') }}</li>
                             </ul>
-                            <!-- <p><b>Email Us:</b></p>
-                            <p><b>Call Us:</b></p>
-                            <p><b>Address:</b> </p> -->
-
                         </div>
                         <div class="_social">
                             <h5 class="pt-3">Follow Us</h5>
@@ -183,14 +179,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-lg-3">
+                    <div class="col-md-3 col-lg-3">
                         <div class="_newsletter">
                             <h5>PAYMENT METHODS</h5>
                             <div class="_payment">
                                 <img src="{{asset('/assets/front')}}/img/SSLCommerz-Pay.png" alt="" class="w-100">
                             </div>
-
-
                         </div>
                     </div>
                 </div>
