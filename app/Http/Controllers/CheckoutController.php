@@ -58,8 +58,8 @@ class CheckoutController extends Controller
             'address1'=>'required|string|max:255',
             'address2'=>'nullable|string|max:255',
             'city'=>'required|string|max:255',
-            'state'=>'required|string|max:255',
-            'country'=>'required|string|max:255',
+            'state'=>'nullable|string|max:255',
+            'country'=>'nullable|string|max:255',
             'postcode'=>'required|numeric',
             //'cart_id'=>'required|numeric',
         ));

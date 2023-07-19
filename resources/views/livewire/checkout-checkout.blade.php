@@ -34,26 +34,23 @@
                                 <div class="col-12">
                                     {{ Form::text('address1',null,array('class'=>'form-control','required'=>true,'placeholder'=>'Address')) }}
                                 </div>
-                                <div class="col-12">
+                                {{-- <div class="col-12">
                                     {{ Form::text('address2',null,array('class'=>'form-control','placeholder'=>'Apartment, suite, etc. (optional)')) }}
-                                </div>
+                                </div> --}}
                                 <div class="col-6">
                                     {{ Form::text('city',null,array('class'=>'form-control','required'=>true,'placeholder'=>'City')) }}
                                 </div>
                                 <div class="col-6">
                                     {{ Form::text('postcode',null,array('class'=>'form-control','placeholder'=>'Postal Code')) }}
                                 </div>
-
-                                <!-- </div>
-                        <div class="row g-4"> -->
-
+                                {{-- 
                                 <div class="col-6" wire:ignore>
                                     {{ Form::select('country',$countries,null,array('class'=>'form-control select2','id'=>'country','data-url'=>route('stateApi'),'placeholder'=>'Select Country')) }}
                                 </div>
-
                                 <div class="col-6" wire:ignore>
                                     {{ Form::select('state',$states,null,array('class'=>'form-control select2','id'=>'state','placeholder'=>'Select State')) }}
-                                </div>
+                                </div> 
+                                --}}
                             </div>
                         </div>
 

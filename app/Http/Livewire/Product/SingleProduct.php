@@ -49,7 +49,7 @@ class SingleProduct extends Component
             $this->attribute_color_label = $product->color;
             $this->stock = $product->qty > 0 ? 'In Stock' : 'Not available';
         }else{
-            $this->stock = 'None';
+            $this->stock = '';
         }
 
 

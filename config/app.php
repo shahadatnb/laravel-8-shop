@@ -168,7 +168,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -239,6 +239,7 @@ return [
         'CustomHelper'=> App\Facades\CustomHelper::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

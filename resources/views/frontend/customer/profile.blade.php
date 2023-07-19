@@ -86,11 +86,17 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        {!! Form::label('phone', 'Phone',['class'=>'form-label']) !!}
+                        {!! Form::text('phone',null,['class'=>'form-control','required'=>'','placeholder'=>'Phone']) !!}
+                	</div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         {!! Form::label('city', 'City',['class'=>'form-label']) !!}
                         {!! Form::text('city',null,['class'=>'form-control','required'=>'','placeholder'=>'City']) !!}
                 	</div>
                 </div>
-                <div class="col-3">
+                {{-- <div class="col-3">
                     <div class="form-group">
                         {!! Form::label('country', 'State',['class'=>'form-label']) !!}
                         {!! Form::select('country',$countries,null,['class'=>'form-control select2','required'=>'','id'=>'country','placeholder'=>'Country','data-url'=>route('stateApi')]) !!}
@@ -101,7 +107,7 @@
                         {!! Form::label('state', 'State',['class'=>'form-label']) !!}
                         {!! Form::select('state',$states,null,['class'=>'form-control select2','required'=>'','id'=>'state','placeholder'=>'State']) !!}
                 	</div>
-                </div>
+                </div> --}}
                 <div class="col-md-2">
                     <div class="form-group">
                         {!! Form::label('postcode', 'Zip',['class'=>'form-label']) !!}
