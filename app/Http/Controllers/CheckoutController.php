@@ -117,7 +117,7 @@ class CheckoutController extends Controller
         $address->save();
         
         \Cart::clear();
-        //Mail::to($order->customer_email)->send(new OrderSubmited($order));
+        Mail::to($order->customer_email)->send(new OrderSubmited($order));
 /*
         if($payment_method == 'paypal'){
             session()->put('order_id', $order->id);
