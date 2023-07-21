@@ -8,19 +8,20 @@ use App\Models\Product;
 use App\Models\Cart as Wishlist;
 use App\Models\CartItem;
 use App\Models\Coupon;
+use App\Models\ShippingRole;
 use Session;
 use Auth;
 
 class CheckoutCheckout extends Component
 {
 
-    public $cartItems, $countries, $states, $tax_total, $coupon_code, $user, $country='', $state='';
+    public $cartItems, $countries, $states, $tax_total, $coupon_code, $user, $country='', $state='', $shippingAmt=120;
 
-    protected $listeners = ['setTax'];
+    protected $listeners = ['setTax','shippingRole'];
 
     public function mount()
     {
-        $this->cartItems = \Cart::getContent();
+        
         //$this->coupon_code = $this->cart->coupon_code;
     }
 
@@ -42,6 +43,16 @@ class CheckoutCheckout extends Component
             $this->cart->tax_total = $this->tax_total;
             $this->cart->save();
             $this->cart->refresh();
+        }
+    }
+
+    public function shippingRole(){
+        if($this->state != ''){
+            $shippingRole = ShippingRole::where('location_id','!=',$this->state)->where('condition','Not Equal')->first();
+            if(!$shippingRole){
+                $shippingRole = ShippingRole::where('location_id',$this->state)->where('condition','Equal')->first();
+            }
+            $this->shippingAmt = ShippingRole::where('id',$shippingRole->id)->first()->amount;
         }
     }
 
@@ -85,6 +96,7 @@ class CheckoutCheckout extends Component
 */
     public function render()
     {
+        $this->cartItems = \Cart::getContent();
         return view('livewire.checkout-checkout');
     }
 }

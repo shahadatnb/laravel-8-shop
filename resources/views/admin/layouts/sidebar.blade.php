@@ -128,6 +128,12 @@
                 <p>Reviews</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{route('shippingRole.index')}}" class="nav-link{{ (request()->routeIs('shippingRole.*')) ? ' active' : '' }}">
+                <i class="nav-icon fas fa-store"></i>
+                <p>Shipping Role</p>
+            </a>
+        </li>
           @endif
           @if(Auth::user()->hasAnyRole(['admin']))
           <li class="nav-header">CMS</li>

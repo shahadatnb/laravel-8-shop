@@ -902,7 +902,7 @@ h6._or_::before {
     z-index: 1;
 }
 
-.chkborright input,span.select2-selection.select2-selection--single {
+.chkborright input {
     padding: 15px 10px !important;
 }
 

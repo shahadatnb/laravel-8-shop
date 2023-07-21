@@ -25,10 +25,11 @@ class CheckoutController extends Controller
         if($cartItems){
             $user = auth('customer')->user();
             $countries = $this->countryArray();
-            $states = array();
-            if ($user->country != ''){
-                $states = $this->stateArray($user->country);
-            }
+            // $states = array();
+            // if ($user->country != ''){
+            //     $states = $this->stateArray($user->country);
+            // }
+            $states = $this->stateIdArray('BD');
             return view('frontend.checkout.checkout',compact('countries','states','user','cartItems'));
         }else{
             return redirect()->route('/');
@@ -75,6 +76,7 @@ class CheckoutController extends Controller
         $order->tax_amount = 0;//$cart->tax_total;
         $order->discount_amount = 0;// $cart->discount;
         $order->payment_method = $payment_method;
+        $order->shipping_amount = $request->shipping_amount;
         $order->customer_id = auth('customer')->user()->id;
         //$order->shipping_method = $request->email;
         $order->customer_first_name = $request->first_name;
@@ -83,7 +85,7 @@ class CheckoutController extends Controller
         $order->total_item_count = \Cart::getTotalQuantity();
         $order->total_qty_ordered = \Cart::getTotalQuantity();
         $order->sub_total = \Cart::getTotal();
-        $order->grand_total = \Cart::getTotal();
+        $order->grand_total = \Cart::getTotal()+$request->shipping_amount;
         $order->save();
 
         foreach($cartItems as $item){
@@ -100,6 +102,7 @@ class CheckoutController extends Controller
             ]);
         }
 
+
         $address = new OrderAddress;
         $address->first_name = $request->first_name;
         $address->last_name = $request->last_name;
@@ -107,7 +110,7 @@ class CheckoutController extends Controller
         $address->address1 = $request->address1;
         $address->address2 = $request->address2;
         $address->country = $request->country;
-        $address->state = $request->state;
+        $address->state = $this->stateIdToName($request->state);
         $address->city = $request->city;
         $address->postcode = $request->postcode;
         $address->phone = $request->phone;

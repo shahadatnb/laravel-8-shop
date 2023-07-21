@@ -22,6 +22,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TaxRateController;
+use App\Http\Controllers\ShippingRoleController;
 use App\Http\Controllers\TaxonomyController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\MenuController;
@@ -144,6 +145,7 @@ Route::group(['prefix'=>config('app.admin_prefix','admin'),'middleware'=> ['auth
     Route::delete('/customer/destroy/{id}', [CustomerRegisterController::class, 'destroy'])->name('admin.customer.destroy');
 
     Route::resource('review', ProductReviewController::class);
+    Route::resource('shippingRole', ShippingRoleController::class);
 
     Route::post('attribute/option/add', [AttributeController::class, 'optionAdd'])->name('attribute.option.add');
     Route::get('attribute/option/delete/{id}', [AttributeController::class, 'optionDelete'])->name('attribute.option.delete');

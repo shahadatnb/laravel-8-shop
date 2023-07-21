@@ -47,10 +47,10 @@
                                 <div class="col-6" wire:ignore>
                                     {{ Form::select('country',$countries,null,array('class'=>'form-control select2','id'=>'country','data-url'=>route('stateApi'),'placeholder'=>'Select Country')) }}
                                 </div>
-                                <div class="col-6" wire:ignore>
-                                    {{ Form::select('state',$states,null,array('class'=>'form-control select2','id'=>'state','placeholder'=>'Select State')) }}
-                                </div> 
                                 --}}
+                                <div class="col-6" wire:ignore>
+                                    {{ Form::select('state',$states,null,array('class'=>'form-control select2','id'=>'state', 'required'=>true,'placeholder'=>'Select State')) }}
+                                </div> 
                             </div>
                         </div>
 
@@ -132,8 +132,9 @@
                                     </tr> --}}
                                     <tr>
                                         <td>Shipping</td>
-                                        <td>
-                                            <p class="text-right-tbass"></p>
+                                        <td class="text-right-tba">
+                                            <input type="hidden" wire:model="shippingAmt" name="shipping_amount">
+                                            <p>{{$shippingAmt}}</p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -150,7 +151,7 @@
                                         </td>
                                         <td>
                                             <div class="text-right-tbacad">
-                                                <p>{{config('settings.currencyCode')}} {{config('settings.currencySymbol')}}{{Cart::getTotal() }}</p>
+                                                <p>{{config('settings.currencyCode')}} {{config('settings.currencySymbol')}}{{Cart::getTotal() + $shippingAmt}}</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -191,6 +192,7 @@
         var state = $(this).val();
         //console.log(state);
         @this.set('state', state);
+        Livewire.emit('shippingRole');
         //Livewire.emit('setTax');
     });
 </script>
