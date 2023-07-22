@@ -8,7 +8,7 @@
 <section class="_inner_page_banner" {{--style="background-image: url()"--}}>
   <div class="container">
       <div class="_in_title_text">
-          <h1>{{ auth('customer')::user()->first_name }} {{ auth('customer')::user()->last_name }}</h1>
+          <h1>{{ auth('customer')->user()->first_name }} {{ auth('customer')->user()->last_name }}</h1>
       </div>
   </div>
 </section>
