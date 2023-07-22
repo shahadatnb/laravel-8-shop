@@ -117,8 +117,8 @@
 
                 <div class="col-md-3 col-9 order-sm-3">
                     <div class="siteSearch">
-                        <form class="searchBox" role="search">
-                            <input class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" placeholder="Search" aria-label="Search">
+                        <form method="GET" class="searchBox" role="search" action="{{ route('search') }}">
+                            <input name="search" class="form-control me-2 w-medium fs-6 text-body-secondary bg-transparent rounded" type="search" value="{{ request()->search }}" placeholder="Search" aria-label="Search">
                         </form>
                     </div>
                 </div>

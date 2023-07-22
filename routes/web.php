@@ -57,6 +57,7 @@ Route::get('payment/success', [App\Http\Controllers\PayPalController::class, 'su
 Route::get('/page/{slug}', [FrontController::class, 'page'])->name('page');
 Route::get('/post/{slug}', [FrontController::class, 'page'])->name('post');
 
+Route::get('/search', [FrontController::class,'search'])->name('search');
 Route::get('/shop', [FrontController::class,'shop'])->name('shop');
 
 Route::get('/product/{id}/{slug?}', [FrontController::class,'productSingle'])->name('singleProduct');

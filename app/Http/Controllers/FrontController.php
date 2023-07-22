@@ -32,6 +32,14 @@ class FrontController extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        $request->search = htmlspecialchars($request->search); //e()
+        $products = Product::whereNull('parent_id')->where('status',1)->where('title','LIKE','%'.$request->search.'%')->latest()->paginate(20);
+        
+        return view('frontend.pages.search',compact('products'));
+    }
+
     public function productByCat($slug)
     {
         $category = Category::where('slug',$slug)->first();
