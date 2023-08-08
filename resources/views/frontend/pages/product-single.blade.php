@@ -276,7 +276,7 @@ console.log($('.picZoomer').width());
 		var $pic = $(this).find('img');
 		$('.picZoomer-pic').attr('src',$pic.attr('src'));
 	});
-
+/*
 	$('#related_products').owlCarousel({
 		loop: true,
 		margin: 10,
@@ -310,7 +310,7 @@ console.log($('.picZoomer').width());
 			}
 		}
 	});
-
+*/
 
 	$('.addto-wishlist').click(function() {
 		//console.log($(this).data('id'));
