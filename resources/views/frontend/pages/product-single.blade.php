@@ -265,7 +265,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 <script>
 
-console.log($('.picZoomer').width());
 	$('.picZoomer').picZoomer({
 		picWidth:500,
 		picHeight:380,
