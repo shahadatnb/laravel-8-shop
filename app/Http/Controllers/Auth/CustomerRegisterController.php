@@ -25,12 +25,12 @@ class CustomerRegisterController extends Controller
 
     public function register(Request $request){
         $this->validate($request, array(
-            'first_name'=>'required|string|max:100',
-            'last_name'=>'required|string|max:100',
-            'phone'=>'required|string|max:15',
+            'first_name'=>'required|string|max:25|regex:/^[\pL\s\-]+$/u',
+            'last_name'=>'required|string|regex:/^[\pL\s\-]+$/u|max:25',
+            'phone'=>'required|regex:/^([0-9\-\+\(\)]*)$/|max:15',
             //'gender'=>'required|string|max:255',
-            'email'=>'required|email|max:100|unique:customers,email',
-            'password'=>'required|string|min:6|confirmed',
+            'email'=>'required|email|max:50|unique:customers,email',
+            'password'=>'required|string|min:6|max:16|confirmed',
         ));
 
         $customer = new Customer;

@@ -7,6 +7,7 @@ DELETE FROM `settings` WHERE `settings`.`id` = 15;
 INSERT INTO `settings` (`id`, `sl`, `name`, `description`, `value`, `category`, `field`, `status`, `created_at`, `updated_at`) VALUES (NULL, '5', 'refund', 'Refund', 'off', 'basic', '{\"required\":\"1\",\"label\":\"Value\",\"type\":\"select\",\"options\": {\"on\": \"ON\", \"off\": \"Off\"}}', '1', NULL, '2020-03-20 14:44:37');
 ALTER TABLE `order_items` CHANGE `type` `image` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
 
+ALTER TABLE `product_images` ADD `thumb` VARCHAR(255) NULL DEFAULT NULL AFTER `path`; 
 
 
         $(function () {

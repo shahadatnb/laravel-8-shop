@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('customer.register') }}">
                         @csrf
-                        @include('admin.layouts._message')  
+                        {{-- @include('admin.layouts._message')   --}}
                         <div class="form-group row">
                             <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('phone No') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone No') }}</label>
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">

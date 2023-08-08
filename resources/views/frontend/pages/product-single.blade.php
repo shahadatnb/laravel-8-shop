@@ -3,7 +3,7 @@
 @section('css')
 {{-- <link rel="stylesheet" href="{{asset('assets/front/slick/slick.min.css')}}" media="all">
 <link rel="stylesheet" href="{{asset('1assets/front/slick/slick-theme.css')}}" media="all"> --}}
-<!-- <link rel="stylesheet" href="{{asset('assets/admin/plugins/pic-zoomer/css/jquery-picZoomer.css')}}" media="all"> -->
+<link rel="stylesheet" href="{{asset('assets/admin/plugins/pic-zoomer/css/jquery-picZoomer.css')}}" media="all">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" />
 
 @endsection
@@ -50,9 +50,9 @@
 					<div class="col-2">
 						<div id="single-product-slide-wrapper">
 							{{--<img id="slideLeft" class="arrow" src="images/arrow-left.png">--}}
-							<div id="single-product-slider">
+							<div class="piclist">
 								@foreach ($photos as $item)
-								<img class="w-100" src="{{ asset('storage/' . $item->path) }}">
+								<li><img class="w-100" src="{{ asset('storage/' . $item->path) }}"></li>
 								@endforeach
 							</div>
 							{{--<img id="slideRight" class="arrow" src="images/arrow-right.png">--}}
@@ -261,37 +261,22 @@
 
 @section('js')
 {{-- <script src="{{asset('/assets/front')}}/slick/slick.min.js"></script> --}}
-<!-- <script src="{{asset('assets/admin/plugins/pic-zoomer/src/jquery.picZoomer.js')}}"></script> -->
+<script src="{{asset('assets/admin/plugins/pic-zoomer/src/jquery.picZoomer.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 <script>
-	$('.slider').owlCarousel({
-		loop: true,
-		margin: 10,
-		items: 1,
-		dots: false,
-		URLhashListener: true
+
+console.log($('.picZoomer').width());
+	$('.picZoomer').picZoomer({
+		picWidth:500,
+		picHeight:380,
+		zoomerPosition:{top:'0px', left: $('.picZoomer').width() + 15 +'px'}
+	});
+	
+	$('.piclist li').on('click',function(event){
+		var $pic = $(this).find('img');
+		$('.picZoomer-pic').attr('src',$pic.attr('src'));
 	});
 
-	$('.slider2').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: true,
-		items: 3,
-		dots: false,
-		center: true,
-		URLhashListener: true
-	});
-
-	$('.picZoomer').picZoomer();
-
-	/*
-    $('.slider2').data('owl.carousel').difference = function(first, second) {
-        return {
-            x: first.x - second.x + (first.y - second.y),
-            y: first.y - second.y
-        };
-    };
-*/
 	$('#related_products').owlCarousel({
 		loop: true,
 		margin: 10,
@@ -342,7 +327,7 @@
 			id: id
 		});
 	});
-
+/*
 	// Product Slider
 	let thumbnails = document.getElementsByClassName('thumbnail')
 
@@ -362,7 +347,7 @@
 			document.getElementById('featured').src = this.src
 		})
 	}
-
+*/
 	/*
 	    let buttonRight = document.getElementById('slideRight');
 	    let buttonLeft = document.getElementById('slideLeft');

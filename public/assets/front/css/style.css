@@ -247,6 +247,11 @@ ul.mobileMenusUl li a {
     -webkit-appearance: none;
   }
 
+  .piclist li {
+        list-style: none;
+        margin-bottom: 10px;
+    }
+
   .slider {
     height: 5px;
     position: relative;

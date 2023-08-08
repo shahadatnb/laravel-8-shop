@@ -43,17 +43,12 @@ class CustomerController extends Controller
     public function profileUpdate(Request $request,Customer $customer)
     {
         $this->validate($request, array(
-            'first_name'=>'required|string|max:100',
-            'last_name'=>'required|string|max:100',
-            'email'=>[
-                'required','email','max:100',
-                Rule::unique('customers')->ignore($customer->id),
-            ],
+            'first_name'=>'required|string|regex:/^[\pL\s\-]+$/u|max:25',
+            'last_name'=>'required|string|regex:/^[\pL\s\-]+$/u|max:25',
+            'phone'=>'required|regex:/^([0-9\-\+\(\)]*)$/|max:15',
+            'email'=>'required','email','max:50','unique:customers,email,'.$customer->id,
             'gender'=>'required|string|max:100',
             'date_of_birth'=>'required|date|max:100',
-
-            'SiblingsName[]'=>'nullable|string|max:100',
-            'SiblingsEmail[]'=>'nullable|email|max:100',
         ));
 
 

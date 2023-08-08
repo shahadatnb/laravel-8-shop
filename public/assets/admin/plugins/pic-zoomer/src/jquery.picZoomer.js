@@ -10,7 +10,8 @@
 	$.fn.picZoomer = function(options){
 		var opts = $.extend({}, $.fn.picZoomer.defaults, options), 
 			$this = this,
-			$picBD = $('<div class="picZoomer-pic-wp"></div>').css({'width':opts.picWidth+'px', 'height':opts.picHeight+'px'}).appendTo($this),
+			//$picBD = $('<div class="picZoomer-pic-wp"></div>').css({'width':opts.picWidth+'px', 'height':opts.picHeight+'px'}).appendTo($this),
+			$picBD = $('<div class="picZoomer-pic-wp"></div>').css({'width':'100%', 'height':'auto'}).appendTo($this),
 			$pic = $this.children('img').addClass('picZoomer-pic').appendTo($picBD),
 			$cursor = $('<div class="picZoomer-cursor"><i class="f-is picZoomCursor-ico"></i></div>').appendTo($picBD),
 			cursorSizeHalf = {w:$cursor.width()/2 ,h:$cursor.height()/2},
